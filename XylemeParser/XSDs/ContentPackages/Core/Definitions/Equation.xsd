@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    
+    Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+    All rights reserved.
+    
+    This file and related documentation are protected by copyright and
+    are distributed under licenses regarding their use, copying, distribution,
+    and decompilation. No part of this product or related documentation may
+    be reproduced or transmitted in any form or by any means, electronic or
+    mechanical, for any purpose, without the express written permission of
+    Xyleme, Inc.
+    
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="Equation"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="ParaComponents.xsd"/>
+	<xs:element name="Equation">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/EquationDef.xml"/>
+					<component type="sequence" caption="Equation" propertyPanel="true" panelIcon="Core/Definitions/Media/Equation-24x24-b.png"/>
+					<property-owner/>
+					<translation lang="es" caption="Ecuación"/>
+					<translation lang="fr" caption="Équation"/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-contents-group"/>
+						<widget-icon iconClass="equation"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Formula" type="EquationType"/>
+			</xs:sequence>
+			<xs:attribute name="uri" type="xs:anyURI" use="required">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="formula" showThrough="true" caption="Formula"/>
+							<translation lang="es" caption="Fórmula"/>
+							<translation lang="fr" caption="Formule"/>
+							<property name="media.uri"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ZoomCoefficient" use="optional" default="9">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+						<xs:enumeration value="3"/>
+						<xs:enumeration value="4"/>
+						<xs:enumeration value="5"/>
+						<xs:enumeration value="6"/>
+						<xs:enumeration value="7"/>
+						<xs:enumeration value="8"/>
+						<xs:enumeration value="9"/>
+						<xs:enumeration value="10"/>
+						<xs:enumeration value="11"/>
+						<xs:enumeration value="12"/>
+						<xs:enumeration value="13"/>
+						<xs:enumeration value="14"/>
+						<xs:enumeration value="15"/>
+						<xs:enumeration value="16"/>
+						<xs:enumeration value="17"/>
+						<xs:enumeration value="18"/>
+						<xs:enumeration value="19"/>
+						<xs:enumeration value="20"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="altText" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="altText"/>
+							<translation lang="es" caption="Texto Alt"/>
+							<property name="value"/>
+							<widget-properties>
+								<property name="option-property" tabName="Basic" value="true"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="longDesc" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="longDesc"/>
+							<translation lang="es" caption="Descripción"/>
+							<property name="value"/>
+							<widget-properties>
+								<property name="option-property" tabName="Basic" value="true"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="EquationType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Equation" editor="mathFlowEquation"/>
+					<translation lang="es" caption="Ecuación"/>
+					<translation lang="fr" caption="Équation"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="SerializedData" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="SerializedData"/>
+							<property name="value"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MathMLData" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="MathMLData"/>
+							<property name="value"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LatexData" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="LatexData"/>
+							<property name="value"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

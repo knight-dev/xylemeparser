@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	
+	Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+	All rights reserved.
+	
+	This file and related documentation are protected by copyright and
+	are distributed under licenses regarding their use, copying, distribution,
+	and decompilation. No part of this product or related documentation may
+	be reproduced or transmitted in any form or by any means, electronic or
+	mechanical, for any purpose, without the express written permission of
+	Xyleme, Inc.
+	
+-->
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="QuestionBlockTypes.xsd"/>
+	<xs:element name="BranchingSim">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/QuestionTypes/BranchingSimDef.xml"/>
+					<component propertyPanel="true" panelIcon="Core/Definitions/Media/Q-24x24-b.png" type="sequence" caption="Branching Simulation" metaCaption="$name(text.text)$" isvisible="false" hidden="true"/>
+					<translation lang="es" caption="Simular Ramificación"/>
+					<translation lang="fr" caption="Simuler Ramification"/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-question-web-group"/>
+						<widget-icon largeClass="branching-sim"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Title" type="RichTextType" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="wysiwyg" css2="background-image:'Core/Definitions/Media/quote';background-color:rgb(240,240,240);font-style:italic;font-family:tahoma;" caption="Title"/>
+								<translation lang="es" caption="Título"/>
+								<translation lang="fr" caption="Titre"/>
+								<property name="text.text"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Scenario" type="SimpleBlockType">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Sim Scenario"/>
+								<translation lang="es" caption="Simular Escenario"/>
+								<translation lang="fr" caption="Simuler Scénario"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Instructions" type="RichTextType">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="wysiwyg" css2="background-image:'Core/Definitions/Media/quote';background-color:rgb(240,240,240);font-style:italic;font-family:tahoma;" caption="Instructions"/>
+								<translation lang="es" caption="Instrucciones"/>
+								<translation lang="fr" caption="Instructions"/>
+								<property name="text.text"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="BranchingSimObjects"/>
+				<xs:element ref="LOM" minOccurs="0"/>
+				<xs:element ref="CompetencyDefinition" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute ref="name" use="optional"/>
+			<xs:attribute ref="Weight" use="optional"/>
+			<xs:attribute ref="CognitionLevel" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BranchingMultipleChoice">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/QuestionTypes/BranchingMultipleChoiceDef.xml"/>
+					<component propertyPanel="true" panelIcon="Core/Definitions/Media/Q-24x24-b.png" type="sequence" caption="Decision"/>
+					<translation lang="es" caption="Decisión"/>
+					<translation lang="fr" caption="Décision"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="BranchingMultipleChoiceType"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="BranchingMultipleChoiceType">
+		<xs:sequence>
+			<xs:element ref="QuestionStem"/>
+			<xs:element ref="MCQuestionOption" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute ref="Weight" use="optional"/>
+		<xs:attribute ref="CognitionLevel" use="optional"/>
+	</xs:complexType>
+	<xs:element name="MCQuestionOption">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/QuestionTypes/BranchingSimOptionDef.xml"/>
+					<component type="sequence" caption="Question Option"/>
+					<translation lang="es" caption="Opción de Pregunta"/>
+					<translation lang="fr" caption="Option de Question"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Distractor" type="SimpleBlockType">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Distractor"/>
+								<translation lang="es" caption="Distractor"/>
+								<translation lang="fr" caption="Distracteur"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Feedback" type="RichTextType" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="wysiwyg" caption="Response Specific Feedback"/>
+								<translation lang="es" caption="Comentarios a Respuesta Específica"/>
+								<translation lang="fr" caption="Commentaires à Réponse  Spécifique"/>
+								<property name="text.text"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="SubBranch" type="BranchNodeType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="BranchNodeType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" hidden="true" caption="Sub Branch"/>
+					<translation lang="es" caption="Sub Rama"/>
+					<translation lang="fr" caption="Sub Branche"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:choice>
+				<xs:element ref="Outcome"/>
+				<xs:element ref="BranchingMultipleChoice"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Outcome">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Outcome"/>
+					<translation lang="es" caption="Resultados"/>
+					<translation lang="fr" caption="Résultat"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Distractor" type="SimpleBlockType">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Distractor"/>
+								<translation lang="es" caption="Distractor"/>
+								<translation lang="fr" caption="Distracteur"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute ref="IsCorrect" use="optional" default="false"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BranchingSimObjects">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" editor="branchingsim" caption="Branching Sim Objects"/>
+					<translation lang="es" caption="Objetos de Sim Ramificación"/>
+					<translation lang="fr" caption="Objets de Sim Ramification"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="BranchingMultipleChoice"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

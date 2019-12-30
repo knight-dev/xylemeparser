@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../../Core/Definitions/Contributor.xsd"/>
+	<xs:include schemaLocation="../../Core/Definitions/Paragraph.xsd"/>
+	<xs:element name="Credits">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Credits"/>
+					<translation lang="es" caption="Créditos"/>
+					<translation lang="fr" caption="Crédits"/>	
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Contributors" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Contributors"/>
+								<translation lang="es" caption="Colaboradores"/>
+								<translation lang="fr" caption="Contributeurs"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="Contributor" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="CopyrightBlock" type="SimpleBlockType" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/CopyrightBlockDef.xml"/>
+								<component type="sequence" caption="Copyright Block"/>
+								<translation lang="es" caption="Bloque de Derechos de Autor"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="CopyrightDate" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="implicit" caption="Copyright Date"/>
+								<property name="value"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ISBN" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="implicit" caption="ISBN"/>
+								<property name="value"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

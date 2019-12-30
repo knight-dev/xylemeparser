@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../Metadata/DesignData.xsd"/>
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="Supplement"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="Supplement">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/TopicTypes/SupplementDef.xml"/>
+					<component type="sequence" caption="Supplement" metaCaption="$Title(text.xml)$"/>
+					<translation lang="es" caption="Suplemento"/>
+					<translation lang="fr" caption="Supplément"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="SupplementTypes">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/Metadata/SupplementTypesDef.xml"/>
+								<component type="sequence" collectionGUID="c0a80f66-11e2d371-0e711-e2d3-710e89cb28f66faa" editor="collectionsinglechoice" propertyPanel="true" showTitle="true" caption="Supplement Types" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+								<translation lang="es" caption="Tipos de Suplemento"/>
+								<translation lang="fr" caption="Types de Supplément"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="BarCode" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="FilterMetadata"/>
+				<xs:choice>
+					<xs:element ref="Topic"/>
+					<xs:element ref="Procedure"/>
+					<xs:element ref="InternalLink"/>
+					<xs:element ref="ExternalLink"/>
+				</xs:choice>
+			</xs:sequence>
+			<xs:attribute name="PageOrientation" use="optional">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="PageOrientation"/>
+							<property name="value"/>
+							<widget-properties>
+								<property name="option-property" value="true"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Portrait"/>
+						<xs:enumeration value="Landscape"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="TargetModality" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="PDF"/>
+						<xs:enumeration value="HTML"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

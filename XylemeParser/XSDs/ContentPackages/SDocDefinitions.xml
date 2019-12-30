@@ -1,0 +1,247 @@
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xml_lats_definition>
+	<xml_lat name="Search Query" definition="SYSTEM/search.xml"/>
+	<xml_lat name="IMSCP" definition="Core/Definitions/IMS/IMSCPDef.xml"/>
+	<!-- Filter Metadata-->
+	<xml_lat name="Filter Metadata" definition="Core/Definitions/Metadata/FilterMetadataDef.xml"/>
+	<xml_lat name="Master MD List" definition="Core/Definitions/Metadata/MasterMetadataListsDef.xml"/>
+	<xml_lat name="Target Output" definition="Core/Definitions/Metadata/TargetOutputDef.xml"/>
+	<xml_lat name="Target Outputs" definition="Core/Definitions/Metadata/TargetOutputsDef.xml"/>
+	<xml_lat name="Output Profile" definition="Core/Definitions/Metadata/OutputProfileDef.xml"/>
+	<xml_lat name="Output Profile Group" definition="Core/Definitions/Metadata/OutputProfileGroupDef.xml"/>
+	<xml_lat name="Target Audiences" definition="Core/Definitions/Metadata/TargetAudiencesDef.xml"/>
+	<xml_lat name="Target Audience" definition="Core/Definitions/Metadata/TargetAudienceDef.xml"/>
+	<xml_lat name="Assessment Types" definition="Core/Definitions/Metadata/AssessmentTypesDef.xml"/>
+	<xml_lat name="Assessment Type" definition="Core/Definitions/Metadata/AssessmentTypeDef.xml"/>
+	<xml_lat name="SupplementTypes" definition="Core/Definitions/Metadata/SupplementTypesDef.xml"/>
+	<xml_lat name="Supplement Type" definition="Core/Definitions/Metadata/SupplementTypeDef.xml"/>
+	<xml_lat name="Supplement" definition="Core/Definitions/TopicTypes/SupplementDef.xml"/>
+	<xml_lat name="Design Data" definition="Core/Definitions/Metadata/DesignDataDef.xml"/>
+	<xml_lat name="LOM" definition="Core/Definitions/Metadata/LOMDef.xml"/>
+	<xml_lat name="Variable Text Substitution Profiles" definition="Core/Definitions/Metadata/SubstitutionProfilesDef.xml"/>
+	<xml_lat name="Variable Text Substitution Profile" definition="Core/Definitions/Metadata/SubstitutionProfileDef.xml"/>
+	<xml_lat name="Element Profile Map" definition="Core/Definitions/Metadata/ElementProfileMapDef.xml"/>
+	<xml_lat name="Element Type Profile" definition="Core/Definitions/Metadata/ElementTypeProfileDef.xml"/>
+	<xml_lat name="Project Profile" definition="Core/Definitions/Metadata/ProjectProfileDef.xml"/>
+	<xml_lat name="Project Data" definition="Core/Definitions/Metadata/ProfileDataDef.xml"/>
+	<xml_lat name="Element Types" definition="Core/Definitions/Metadata/ElementTypesDef.xml"/>
+	<xml_lat name="Element Type" definition="Core/Definitions/Metadata/ElementTypeDef.xml"/>
+	<xml_lat name="DocTypeStyles" definition="Core/Definitions/Metadata/DocTypeStylesDef.xml"/>
+	<xml_lat name="DocTypeStyle" definition="Core/Definitions/Metadata/DocTypeStyleDef.xml"/>
+	<xml_lat name="ProductRangeStyles" definition="Core/Definitions/Metadata/ProductRangeStylesDef.xml"/>
+	<xml_lat name="ProductRangeStyle" definition="Core/Definitions/Metadata/ProductRangeStyleDef.xml"/>
+	<xml_lat name="Skins" definition="Core/Definitions/Metadata/SkinsDef.xml"/>
+	<xml_lat name="Skin" definition="Core/Definitions/Metadata/SkinDef.xml"/>
+	<xml_lat name="Langs" definition="Core/Definitions/Metadata/LangsDef.xml"/>
+	<xml_lat name="Lang" definition="Core/Definitions/Metadata/LangDef.xml"/>
+	<xml_lat name="Style Mappings" definition="Core/Definitions/Metadata/StyleMappingsDef.xml"/>
+	<xml_lat name="Word Import Profiles" definition="Core/Definitions/Metadata/WordImportProfilesDef.xml"/>
+	<xml_lat name="Word Import Profile" definition="Core/Definitions/Metadata/WordImportProfileDef.xml"/>
+	<xml_lat name="PowerPoint Import Profiles" definition="Core/Definitions/Metadata/PowerPointImportProfilesDef.xml"/>
+	<xml_lat name="PowerPoint Import Profile" definition="Core/Definitions/Metadata/PowerPointImportProfileDef.xml"/>
+	<xml_lat name="Item States" definition="Core/Definitions/Metadata/ItemStatesDef.xml"/>
+	<xml_lat name="Item State" definition="Core/Definitions/Metadata/ItemStateDef.xml"/>
+	<!--LOM-->
+	<xml_lat name="General" definition="Core/Definitions/Metadata/GeneralDef.xml"/>
+	<xml_lat name="Keyword" definition="Core/Definitions/Metadata/KeywordDef.xml"/>
+	<xml_lat name="Lifecycle" definition="Core/Definitions/Metadata/VersionDef.xml"/>
+	<xml_lat name="Version" definition="Core/Definitions/Metadata/LifeCycleDef.xml"/>
+	<xml_lat name="Status" definition="Core/Definitions/Metadata/StatusDef.xml"/>
+	<xml_lat name="Technical" definition="Core/Definitions/Metadata/TechnicalDef.xml"/>
+	<xml_lat name="Educational" definition="Core/Definitions/Metadata/EducationalDef.xml"/>
+	<xml_lat name="Interactivity Type" definition="Core/Definitions/Metadata/InteractivityTypeDef.xml"/>
+	<xml_lat name="Learning Resource Type" definition="Core/Definitions/Metadata/LearningResourceTypeDef.xml"/>
+	<xml_lat name="InteractivityLevel" definition="Core/Definitions/Metadata/InteractivityLevelDef.xml"/>
+	<xml_lat name="Intended User Role" definition="Core/Definitions/Metadata/IntendedUserRoleDef.xml"/>
+	<xml_lat name="Context" definition="Core/Definitions/Metadata/ContextDef.xml"/>
+	<xml_lat name="Difficulty" definition="Core/Definitions/Metadata/DifficultyDef.xml"/>
+	<xml_lat name="Typical Learning Time" definition="Core/Definitions/Metadata/TypicalLearningTimeDef.xml"/>
+	<xml_lat name="Language" definition="Core/Definitions/Metadata/LanguageDef.xml"/>
+	<xml_lat name="Rights" definition="Core/Definitions/Metadata/RightsDef.xml"/>
+	<xml_lat name="Copyright Restrictions" definition="Core/Definitions/Metadata/CopyrightRestrictionsDef.xml"/>
+	<xml_lat name="Copyright Owner" definition="Core/Definitions/Metadata/CopyrightOwnerDef.xml"/>
+	<xml_lat name="Classification" definition="Core/Definitions/Metadata/ClassificationDef.xml"/>
+	<xml_lat name="Taxon" definition="Core/Definitions/Metadata/TaxonDef.xml"/>
+	<xml_lat name="Purpose" definition="Core/Definitions/Metadata/PurposeDef.xml"/>
+	<xml_lat name="Attribute" definition="Core/Definitions/Metadata/AttributeDef.xml"/>
+	<xml_lat name="Attribute Group" definition="Core/Definitions/Metadata/AttributeGroupDef.xml"/>
+	<xml_lat name="VocabTaxon" definition="Core/Definitions/Metadata/VocabTaxonDef.xml"/>
+	<xml_lat name="VocabTaxonPath" definition="Core/Definitions/Metadata/VocabTaxonPathDef.xml"/>
+	<xml_lat name="ReuseReportVocabs" definition="Core/Definitions/Metadata/ReuseReportVocabsDef.xml"/>
+	<xml_lat name="PageBreakRule (PBR)" definition="Core/Definitions/PBRDef.xml"/>
+
+
+	<!-- Core	-->
+	<!--xml_lat name="MetaData" definition="Core/Definitions/MetadataDef.xml"/-->
+	<xml_lat name="Print Properties" definition="Core/Definitions/PrintPropertiesDef.xml"/>
+	<xml_lat name="Web Publishing Properties" definition="Core/Definitions/WebPublishingPropertiesDef.xml"/>
+	<xml_lat name="Contributor" definition="Core/Definitions/ContributorDef.xml"/>
+	<xml_lat name="Competency" definition="Core/Definitions/CompetencyDefinitionDef.xml"/>
+	<xml_lat name="CompetencyMap" definition="Core/Definitions/CompetencyMapDef.xml"/>
+	<xml_lat name="Competency Group" definition="Core/Definitions/CompetencyGroupDef.xml"/>
+	<xml_lat name="Educational Objective" definition="Core/Definitions/EdObjectiveDef.xml"/>
+	<xml_lat name="Media Object" definition="Core/Definitions/MediaObjectDef.xml"/>
+	<xml_lat name="Figure" definition="Core/Definitions/FigureDef.xml"/>
+	<xml_lat name="Glossary Item" definition="Core/Definitions/GlossaryItemDef.xml"/>
+	<xml_lat name="Glossary of Terms" definition="Core/Definitions/GlossaryDef.xml"/>
+	<xml_lat name="Glossary Item Group" definition="Core/Definitions/GlossaryItemsGroupDef.xml"/>
+	<xml_lat name="List" definition="Core/Definitions/ListDef.xml"/>
+	<xml_lat name="Categories" definition="Core/Definitions/CategoriesDef.xml"/>
+	<xml_lat name="Table" definition="Core/Definitions/TableDef.xml"/>
+	<xml_lat name="Movie" definition="Core/Definitions/MovieDef.xml"/>
+	<!--xml_lat name="Paragraph" definition="Core/Definitions/ParagraphDef.xml"/-->
+	<xml_lat name="ParaBlock" definition="Core/Definitions/ParaBlockDef.xml"/>
+	<xml_lat name="Flash" definition="Core/Definitions/FlashDef.xml"/>
+	<xml_lat name="Flash XML" definition="Core/Definitions/FlashXMLDef.xml"/>
+	<xml_lat name="Audio" definition="Core/Definitions/AudioDef.xml"/>
+	<xml_lat name="Applet" definition="Core/Definitions/AppletDef.xml"/>
+	<xml_lat name="Equation" definition="Core/Definitions/EquationDef.xml"/>
+	<xml_lat name="Flash Cards" definition="Core/Definitions/FlashCardsDef.xml"/>
+	<xml_lat name="Flash Card" definition="Core/Definitions/FlashCardDef.xml"/>
+	<xml_lat name="Copyright Block" definition="Core/Definitions/CopyrightBlockDef.xml"/>
+	<xml_lat name="Tabs" definition="Core/Definitions/TabsDef.xml"/>
+	<xml_lat name="Slide Themes" definition="Core/Definitions/Metadata/SlideThemesDef.xml"/>	
+	<xml_lat name="Slide Theme" definition="Core/Definitions/Metadata/SlideThemeDef.xml"/>	
+	<xml_lat name="Table Themes" definition="Core/Definitions/Metadata/TableThemesDef.xml"/>	
+	<xml_lat name="Table Theme" definition="Core/Definitions/Metadata/TableThemeDef.xml"/>	
+	<xml_lat name="Custom Note Themes" definition="Core/Definitions/Metadata/CustomNoteThemesDef.xml"/>	
+	<xml_lat name="Custom Note Theme" definition="Core/Definitions/Metadata/CustomNoteThemeDef.xml"/>		
+	<xml_lat name="Border Types" definition="Core/Definitions/Metadata/BorderTypesDef.xml"/>		
+	<xml_lat name="Border Type" definition="Core/Definitions/Metadata/BorderTypeDef.xml"/>
+	<xml_lat name="ChoiceBranch" definition="Core/Definitions/ChoiceBranchDef.xml"/>
+	<!--Note Types -->
+	<xml_lat name="Titled Block" definition="Core/Definitions/TitledBlockDef.xml"/>
+	<xml_lat name="Margin Note " definition="Core/Definitions/MarginNoteDef.xml"/>
+	<xml_lat name="Custom Note " definition="Core/Definitions/CustomNoteDef.xml"/>
+	<xml_lat name="Icon " definition="Core/Definitions/IconDef.xml"/>
+	<xml_lat name="Logo " definition="Core/Definitions/LogoDef.xml"/>
+	<xml_lat name="Cover art " definition="Core/Definitions/CoverArtDef.xml"/>
+	<xml_lat name="BarCode " definition="Core/Definitions/BarCodeDef.xml"/>
+	<xml_lat name="Doc Writer " definition="Core/Definitions/DocWriterDef.xml"/>
+	<xml_lat name="WebComponent " definition="Core/Definitions/WebComponentDef.xml"/>
+	<!--Parking lot
+	<xml_lat name="StepGroup" definition="Core/Definitions/StepGroupDef.xml"/-->
+
+	<!--Interactive Question Types -->
+	<xml_lat name="Fill-In-Blank Content" definition="Core/Definitions/QuestionTypes/FillInBlankDef.xml"/>
+	<xml_lat name="Matching Activity" definition="Core/Definitions/QuestionTypes/MatchingActivityDef.xml"/>
+	<xml_lat name="Multiple Choice Content" definition="Core/Definitions/QuestionTypes/MultipleChoiceDef.xml"/>
+	<xml_lat name="NonScored Activity" definition="Core/Definitions/QuestionTypes/NonScoredActivityDef.xml"/>
+	<xml_lat name="Sequence Activity" definition="Core/Definitions/QuestionTypes/SequenceActivityDef.xml"/>
+	<xml_lat name="Interactive Web Behaviors" definition="Core/Definitions/QuestionTypes/WebActivityBehaviorDef.xml"/>
+	<xml_lat name="Drag Drop" definition="Core/Definitions/QuestionTypes/DragDropDef.xml"/>
+	<xml_lat name="Essay Activity" definition="Core/Definitions/QuestionTypes/EssayActivityDef.xml"/>
+	<xml_lat name="Matrix" definition="Core/Definitions/QuestionTypes/MatrixDef.xml"/>
+	<xml_lat name="Image Map Assessment" definition="Core/Definitions/QuestionTypes/ImageMapAssessmentDef.xml"/>
+	<xml_lat name="Branching Sim" definition="Core/Definitions/QuestionTypes/BranchingSimDef.xml"/>
+	<xml_lat name="Branching Sim MC Content" definition="Core/Definitions/QuestionTypes/BranchingMultipleChoiceDef.xml"/>
+	<xml_lat name="Branching Sim Option" definition="Core/Definitions/QuestionTypes/BranchingSimOptionDef.xml"/>	
+	<xml_lat name="Bin Drop" definition="Core/Definitions/QuestionTypes/BinDropDef.xml"/>
+	<xml_lat name="VideoAssessment " definition="Core/Definitions/QuestionTypes/VideoAssessmentDef.xml"/>
+	<xml_lat name="ImageMapQuiz" definition="Core/Definitions/QuestionTypes/ImageMapQuizDef.xml"/>
+	<xml_lat name="Game Show" definition="Core/Definitions/QuestionTypes/GameshowDef.xml"/>
+	<xml_lat name="Self Assessment" definition="Core/Definitions/QuestionTypes/SelfAssessmentDef.xml"/>
+	<xml_lat name="Ledger" definition="Core/Definitions/QuestionTypes/LedgerDef.xml"/>
+	<xml_lat name="Select Hot Text" definition="Core/Definitions/QuestionTypes/SelectHotTextDef.xml"/>
+	<xml_lat name="Enhanced Score Card" definition="Core/Definitions/QuestionTypes/EnhancedScoreCardDef.xml"/>
+	<xml_lat name="Compound Question" definition="Core/Definitions/QuestionTypes/CompoundQuestionDef.xml"/>
+	<xml_lat name="Passage" definition="Core/Definitions/QuestionTypes/PassageDef.xml"/>
+	
+	
+	<!-- Topic Types-->
+	<xml_lat name="Procedure" definition="Core/Definitions/TopicTypes/ProcedureDef.xml"/>
+	<xml_lat name="Topic" definition="Core/Definitions/TopicTypes/TopicDef.xml"/>
+	<xml_lat name="Content Block" definition="Core/Definitions/TopicTypes/ContentBlockDef.xml"/>
+	<xml_lat name="Lesson Intro" definition="Core/Definitions/IntroBlockDef.xml"/>
+	<xml_lat name="Lesson Summary" definition="Core/Definitions/SummaryBlockDef.xml"/>
+	<xml_lat name="ImageMap" definition="Core/Definitions/ImageMapDef.xml"/>
+	<xml_lat name="Slide" definition="Core/Definitions/SlideDef.xml"/>
+	<xml_lat name="Slide Deck" definition="Core/Definitions/SlideDeckDef.xml"/>
+	<xml_lat name="Step Group" definition="Core/Definitions/TopicTypes/StepGroupDef.xml"/>
+	<xml_lat name="Step" definition="Core/Definitions/TopicTypes/StepDef.xml"/>
+	<xml_lat name="Resources" definition="Core/Definitions/ResourcesDef.xml"/>
+	<xml_lat name="Resource" definition="Core/Definitions/ResourceDef.xml"/>
+	<xml_lat name="Card Deck" definition="Core/Definitions/CardDeckDef.xml"/>
+
+	<xml_lat name="Native PPT" definition="Core/Definitions/NativePPTDef.xml"/>
+	<xml_lat name="PPT Slide" definition="Core/Definitions/PPTSlideDef.xml"/>
+	<xml_lat name="FAQs" definition="Core/Definitions/FrequentlyAskedQuestionsDef.xml"/>
+	<xml_lat name="FAQ" definition="Core/Definitions/FAQDef.xml"/>
+	<xml_lat name="FAQ Category" definition="Core/Definitions/FAQCategoryDef.xml"/>
+
+	<!-- Web Course -->
+	<xml_lat name="ScoreCard" definition="Core/Definitions/ScoreCardDef.xml"/>
+	<xml_lat name="Page" definition="Core/Definitions/PageDef.xml"/>
+	<xml_lat name="HTML Page" definition="Core/Definitions/HtmlPageDef.xml"/>
+	<xml_lat name="Container" definition="Core/Definitions/ContainerDef.xml"/>
+	<xml_lat name="Question Block" definition="Core/Definitions/QuestionTypes/QuestionBlockDef.xml"/>
+	<xml_lat name="Web Course" definition="Core/Definitions/WebCourseDef.xml"/>
+	<!-- WestNet -->
+	<xml_lat name="IA Module" definition="IA/Definitions/ModuleDef.xml"/>
+	<xml_lat name="Chapter" definition="IA/Definitions/ChapterDef.xml"/>
+	<!--xml_lat name="Print Module" definition="IA/Definitions/ModulePresentationDef.xml"/-->
+	<xml_lat name="IA Lesson" definition="IA/Definitions/LessonDef.xml"/>
+	<!--xml_lat name="Print Lesson" definition="IA/Definitions/LessonPresentationDef.xml"/-->
+	<xml_lat name="IA" definition="IA/Definitions/IADef.xml"/>
+	<!--xml_lat name="Classroom Guide" definition="IA/Definitions/ClassroomGuideDef.xml"/-->
+	<!--<xml_lat name="Lesson Pretest Item Pool" definition="IA/Definitions/LessonPretestItemsDef.xml"/>-->
+	<xml_lat name="eLearning Items" definition="IA/Definitions/ElearningItemsDef.xml"/>
+	<xml_lat name="Certification Exam Pool" definition="IA/Definitions/CertificationItemsDef.xml"/>
+	<xml_lat name="Instructor Item Pool" definition="IA/Definitions/InstructorItemsDef.xml"/>
+	<!--<xml_lat name="Text Book Extra Item Pool" definition="IA/Definitions/LessonExtraItemsDef.xml"/>-->
+	<xml_lat name="Lesson Items" definition="IA/Definitions/LessonItemsDef.xml"/>
+	<xml_lat name="Module Items" definition="IA/Definitions/ModuleItemsDef.xml"/>
+	<xml_lat name="Course Quiz Items" definition="IA/Definitions/CourseItemsDef.xml"/>
+	<xml_lat name="Content Group" definition="IA/Definitions/ContentGroupDef.xml"/>
+	<xml_lat name="Discipline" definition="IA/Definitions/DisciplineDef.xml"/>
+	<xml_lat name="SavedBooks" definition="IA/Definitions/SavedBooksDef.xml"/>
+	<xml_lat name="SavedBook" definition="IA/Definitions/SavedBookDef.xml"/>
+	<xml_lat name="BooksSessions" definition="IA/Definitions/BooksSessionsDef.xml"/>
+	<xml_lat name="Stage" definition="Core/Definitions/StageDef.xml"/>
+	<xml_lat name="StageLayoutObject" definition="Core/Definitions/StageLayoutObjectDef.xml"/>
+	<xml_lat name="StageLayoutContent" definition="Core/Definitions/StageLayoutContentDef.xml"/>
+	<xml_lat name="StageLayoutAttributes" definition="Core/Definitions/StageLayoutAttributesDef.xml"/>
+	
+	<!-- Production Scheduling Documents -->
+	<xml_lat name="Assignment Data" definition="Core/Definitions/ScheduleTypes/AssignmentDataDef.xml" /> 
+	<xml_lat name="Production Schedule" definition="Core/Definitions/ScheduleTypes/ProductionScheduleDef.xml" /> 
+	<xml_lat name="Production Schedule Task" definition="Core/Definitions/ScheduleTypes/ProductionScheduleTaskDef.xml" /> 
+	<xml_lat name="Workflow" definition="Core/Definitions/ScheduleTypes/WorkflowDef.xml" /> 
+	<xml_lat name="NonworkingDays" definition="Core/Definitions/ScheduleTypes/NonworkingDaysDef.xml" /> 
+	<xml_lat name="TaskResource Types" definition="Core/Definitions/Metadata/TaskResourceTypesDef.xml"/>
+	<xml_lat name="TaskResource Type" definition="Core/Definitions/Metadata/TaskResourceTypeDef.xml"/>		
+	<xml_lat name="TypeOfTask Types" definition="Core/Definitions/Metadata/TypeOfTaskTypesDef.xml"/>
+	<xml_lat name="TypeOfTask Type" definition="Core/Definitions/Metadata/TypeOfTaskTypeDef.xml"/>		
+	<xml_lat name="BusinessArea Types" definition="Core/Definitions/Metadata/BusinessAreaTypesDef.xml"/>
+	<xml_lat name="BusinessArea Type" definition="Core/Definitions/Metadata/BusinessAreaTypeDef.xml"/>	
+	<xml_lat name="ProjectType Types" definition="Core/Definitions/Metadata/ProjectTypeTypesDef.xml"/>
+	<xml_lat name="ProjectType Type" definition="Core/Definitions/Metadata/ProjectTypeTypeDef.xml"/>	
+	<xml_lat name="ProductionScheduleStatus Types" definition="Core/Definitions/Metadata/ProductionScheduleStatusTypesDef.xml"/>
+	<xml_lat name="ProductionScheduleStatus Type" definition="Core/Definitions/Metadata/ProductionScheduleStatusTypeDef.xml"/>
+	<xml_lat name="TaskResource" definition="Core/Definitions/ScheduleTypes/TaskResourceDef.xml"/>	
+	<xml_lat name="TypeOfTask" definition="Core/Definitions/ScheduleTypes/TypeOfTaskDef.xml"/>	
+	<xml_lat name="BusinessArea" definition="Core/Definitions/ScheduleTypes/BusinessAreaDef.xml"/>	
+	<xml_lat name="ProjectType" definition="Core/Definitions/ScheduleTypes/ProjectTypeDef.xml"/>	
+	<xml_lat name="ProductionScheduleStatus" definition="Core/Definitions/ScheduleTypes/ProductionScheduleStatusDef.xml"/>
+	
+	<!--  System Categories Documents  -->
+	<xml_lat name="Template Category" definition="SYSTEM/TemplateCategoryDef.xml"/>
+	<xml_lat name="Report Category" definition="SYSTEM/ReportDef.xml"/>
+
+	<!--  Review Session Documents  -->
+	<xml_lat name="Assignment Data" definition="SYSTEM/review-docs/FragmentCommentsDef.xml" /> 
+	<xml_lat name="Production Schedule" definition="SYSTEM/review-docs/ReviewSessionDef.xml" /> 
+		
+</xml_lats_definition>

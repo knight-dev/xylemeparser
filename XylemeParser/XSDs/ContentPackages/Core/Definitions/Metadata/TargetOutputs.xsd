@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp1 U (http://www.altova.com) by Jeffrey Katzman (Xyleme Inc) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="TargetOutputs"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="TargetOutputs">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/TargetOutputsDef.xml"/>
+					<component type="sequence" caption="Target Outputs" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Publicaciones Meta"/>
+					<translation lang="fr" caption="Publications Cible"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="TargetOutput" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TargetOutput" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/TargetOutputDef.xml"/>
+					<component type="text" caption="Output Type" metaCaption="$TargetOutput(text.text)$"/>
+					<translation lang="es" caption="Tipo de Publicación"/>
+					<translation lang="fr" caption="Type de Publication"/>
+					<property name="text.text"/>
+					<widget-properties>
+						<property name="option-property" value="true"/>
+                        <property name="property-group-editor-type" value="basic-group" />
+                        <property name="property-group-editor-name" value="properties.group.filtermetadata" />
+                        <property name="property-group-editor-item-key" value="properties.filter.targetOutputs" />
+                        <property name="property-layout-index" value="1000"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

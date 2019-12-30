@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="Paragraph.xsd"/>
+	<xs:element name="Stage">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/StageDef.xml"/>
+					<component caption="Stage - deprecated" metaCaption="$Title(text.xml)$" type="sequence" usePlaceholderInStyled="true" placeholder="Core/Definitions/Media/StageLayout-600x450-a.png" propertyPanel="true" panelIcon="Core/Definitions/Media/Stage-24x24-a.png"/>
+					<translation caption="Escenario - deprecated" lang="es"/>
+					<widget-properties>
+                        <widget-icon iconClass="stage"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Layout"/>
+			</xs:sequence>
+			<xs:attribute name="stage-width" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component caption="Width" type="implicit"/>
+							<translation lang="es" caption="Ancho"/>
+							<property name="value" default="800"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="stage-height" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component caption="Height" type="implicit"/>
+							<translation lang="es" caption="Alto"/>
+							<property name="value" default="600"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="stage-bgcolor" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component caption="Background Color" type="color"/>
+							<translation lang="es" caption="Color de fondo"/>
+							<property name="color.value" default="#ffffff"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Layout">
+		<xs:complexType>
+			<xs:annotation>
+				<xs:appinfo>
+					<jupiter>
+						<component caption="Layout" editor="stagelayout" type="sequence"/>
+						<translation lang="es" caption="Disposición"/>
+					</jupiter>
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element ref="LayoutObjects"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LayoutObjects">
+		<xs:complexType>
+			<xs:annotation>
+				<xs:appinfo>
+					<jupiter>
+						<component caption="Layout Objects" type="sequence"/>
+						<translation lang="es" caption="Objetos de Disposición"/>
+					</jupiter>
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" ref="LayoutObject"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LayoutObject">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/StageLayoutObjectDef.xml"/>
+					<component caption="Layout Object" type="sequence"/>
+					<translation lang="es" caption="Objeto de Disposición"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element name="LayoutContent">
+						<xs:annotation>
+							<xs:appinfo>
+								<jupiter>
+									<link def="Core/Definitions/StageLayoutContentDef.xml"/>
+									<component caption="Layout Content" type="sequence"/>
+								</jupiter>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:choice maxOccurs="unbounded">
+								<xs:element ref="RichText"/>
+								<xs:element ref="List"/>
+								<xs:element ref="Figure"/>
+								<xs:element ref="Table"/>
+								<xs:element ref="Tabs"/>
+								<xs:element ref="Flash"/>
+								<xs:element ref="FlashXML"/>
+								<xs:element ref="Code"/>
+								<xs:element ref="Movie"/>
+								<xs:element ref="Title"/>
+							</xs:choice>
+						</xs:complexType>
+					</xs:element>
+					<xs:element ref="LayoutObject"/>
+				</xs:choice>
+				<xs:element name="LayoutAttributes">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/StageLayoutAttributesDef.xml"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>				
+					<xs:complexType>
+						<xs:attribute name="left" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component caption="X" type="implicit"/>
+										<property name="value"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="top" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component caption="Y" type="implicit"/>
+										<property name="value"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="width" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component caption="Width" type="implicit"/>
+										<translation lang="es" caption="Ancho"/>
+										<property name="value"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="height" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component caption="Height" type="implicit"/>
+										<translation lang="es" caption="Alto"/>
+										<property name="value"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="Order" type="xs:integer"/>
+						<xs:attribute name="opacity">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component caption="Opacity" type="implicit"/>
+										<translation lang="es" caption="Opacidad"/>
+										<property name="value"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:integer">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="100"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="bgcolor" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component caption="Background Color" type="color" transparencyPossible="true"/>
+										<translation lang="es" caption="Color de Fondo"/>
+										<property name="color.value" default="#ffffff"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="float" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component caption="Float" type="list" values="left right none" labels="Left Right None"/>
+										<translation lang="es" caption="Flotar"/>
+										<property name="choice.value" default="none"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="padding" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component caption="Padding" type="implicit"/>
+										<translation lang="es" caption="Relleno"/>
+										<property name="value"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="margin" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component caption="Margin" type="implicit"/>
+										<translation lang="es" caption="Margen"/>
+										<property name="value"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="incue" type="xs:time">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component caption="In Cue" type="implicit"/>
+										<translation lang="es" caption="Señal de entrada"/>
+										<property name="value"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="outcue" type="xs:time">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component caption="Out Cue" type="implicit"/>
+										<translation lang="es" caption="Señal de salida"/>
+										<property name="value"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="transition" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component caption="Transition" type="implicit"/>
+										<translation lang="es" caption="Transición"/>
+										<property name="value"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="border-style" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component caption="Border Style" type="list" values="none solid dotted dashed double groove ridge inset outset" labels="None Solid Dotted Dashed Double Groove Ridge Inset Outset"/>
+										<translation lang="es" caption="Estilo de borde" labels="Ninguno Sólido Punteado Discontinuo Doble SombreadoHaciaArriba SombreadoHaciaAbajo SóloSombreadoSuperior SóloSombreadoInferior"/>
+										<property name="choice.value" default="none"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="border-width" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component caption="Border Width" type="implicit"/>
+										<translation lang="es" caption="Ancho de borde"/>
+										<property name="value"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="border-color" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component caption="Border Color" type="color"/>
+										<translation lang="es" caption="Color de borde"/>
+										<property name="color.value" default="#000000"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="left-border-style" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component caption="Left Border Style" type="list" values="none inherit solid dotted dashed double groove ridge inset outset" labels="None Inherit Solid Dotted Dashed Double Groove Ridge Inset Outset"/>
+										<translation lang="es" caption="Estilo de borde izquierdo" labels="Ninguno Heredar Sólido Punteado Discontinuo Doble SombreadoHaciaArriba SombreadoHaciaAbajo SóloSombreadoSuperior SóloSombreadoInferior"/>
+										<property name="choice.value" default="inherit"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="left-border-width" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component caption="Left Border Width" type="implicit"/>
+										<translation lang="es" caption="Ancho de borde izquierdo"/>
+										<property name="value"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="left-border-color" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component caption="Left Border Color" type="color"/>
+										<translation lang="es" caption="Color de borde izquierdo"/>
+										<property name="color.value" default="#000000"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="right-border-style" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component caption="Right Border Style" type="list" values="none inherit solid dotted dashed double groove ridge inset outset" labels="None Inherit Solid Dotted Dashed Double Groove Ridge Inset Outset"/>
+										<translation lang="es" caption="Estilo de borde derecho" labels="Ninguno Heredar Sólido Punteado Discontinuo Doble SombreadoHaciaArriba SombreadoHaciaAbajo SóloSombreadoSuperior SóloSombreadoInferior"/>
+										<property name="choice.value" default="inherit"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="right-border-width" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component caption="Right Border Width" type="implicit"/>
+										<translation lang="es" caption="Ancho de borde derecho"/>
+										<property name="value"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="right-border-color" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component caption="Right Border Color" type="color"/>
+										<translation lang="es" caption="Color de borde derecho"/>
+										<property name="color.value" default="#000000"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="top-border-style" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component caption="Top Border Style" type="list" values="none inherit solid dotted dashed double groove ridge inset outset" labels="None Inherit Solid Dotted Dashed Double Groove Ridge Inset Outset"/>
+										<translation lang="es" caption="Estilo de borde superior" labels="Ninguno Heredar Sólido Punteado Discontinuo Doble SombreadoHaciaArriba SombreadoHaciaAbajo SóloSombreadoSuperior SóloSombreadoInferior"/>
+										<property name="choice.value" default="inherit"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="top-border-width" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component caption="Top Border Width" type="implicit"/>
+										<translation lang="es" caption="Ancho de borde superior"/>
+										<property name="value"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="top-border-color" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component caption="Top Border Color" type="color"/>
+										<translation lang="es" caption="Color de borde superior"/>
+										<property name="color.value" default="#000000"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="bottom-border-style" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component caption="Bottom Border Style" type="list" values="none inherit solid dotted dashed double groove ridge inset outset" labels="None Inherit Solid Dotted Dashed Double Groove Ridge Inset Outset"/>
+										<translation lang="es" caption="Estilo de borde inferior" labels="Ninguno Heredar Sólido Punteado Discontinuo Doble SombreadoHaciaArriba SombreadoHaciaAbajo SóloSombreadoSuperior SóloSombreadoInferior"/>
+										<property name="choice.value" default="inherit"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="bottom-border-width" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component caption="Bottom Border Width" type="implicit"/>
+										<translation lang="es" caption="Ancho de borde inferior"/>
+										<property name="value"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="bottom-border-color" type="xs:string">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component caption="Bottom Border Color" type="color"/>
+										<translation lang="es" caption="Color de borde inferior"/>
+										<property name="color.value" default="#000000"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

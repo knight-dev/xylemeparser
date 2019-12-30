@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="ImageMap"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="ParaComponents.xsd"/>
+	<xs:element name="ImageMap">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/ImageMapDef.xml"/>
+					<component propertyPanel="true" panelIcon="Core/Definitions/Media/ImageMap-24x24-a.png" type="sequence" caption="ImageMap" widget-type="imagemap" metaCaption="$Title(text.xml)$" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Mapa de Imagen"/>
+					<translation lang="fr" caption="Carte d'Image"/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-media-group"/>
+						<widget-icon iconClass="image-map"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title"/>
+				<xs:element ref="Instructions" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<property-owner/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="BaseImage"/>
+				<xs:element name="HotSpots">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" editor="imagemap" caption="Hot Spots"/>
+								<translation lang="es" caption="Hot Spots"/>
+								<translation lang="fr" caption="Hot Spots"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="HotSpot" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="Hot Spot"/>
+											<translation lang="es" caption="Hot Spot"/>
+											<translation lang="fr" caption="Hot Spot"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+								<!--The imagemap component expects minOccurs to be 0.-->
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Name" type="xs:string"/>
+										<xs:element ref="HotSpotType"/>
+										<xs:element name="HotSpotContent">
+											<xs:annotation>
+												<xs:appinfo>
+													<jupiter>
+														<component type="sequence" caption="Hot Spot Text"/>
+														<translation lang="es" caption="Hot Spot - Texto"/>
+														<translation lang="fr" caption="Hot Spot - Texte"/>
+													</jupiter>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:choice maxOccurs="unbounded">
+														<xs:element ref="RichText"/>
+														<xs:element ref="List"/>
+														<xs:element ref="Table"/>
+														<xs:element ref="Figure"/>
+														<xs:element ref="Audio"/>
+														<xs:element ref="Movie"/>
+														<xs:element ref="Flash"/>
+													</xs:choice>
+													<xs:element ref="AltText" minOccurs="0"/>
+													<xs:element name="SetColor" default="black" minOccurs="0">
+														<xs:simpleType>
+															<xs:restriction base="xs:string">
+																<xs:enumeration value="yellow"/>
+																<xs:enumeration value="red"/>
+																<xs:enumeration value="black"/>
+																<xs:enumeration value="white"/>
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Caption" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="implicit" caption="Caption"/>
+								<property name="value"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="ShowHotSpotOutlines" use="optional">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="Show HotSpot Outlines"/>
+							<property name="value"/>
+							<widget-properties>
+								<property name="option-property" tabName="Basic" value="true"/>
+								<property name="property-layout-index" value="4"/>
+								<property name="property-group-editor-type" value="basic-group"/>
+								<property name="property-group-editor-name" value="properties.group.hotspot"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="OnLoad"/>
+						<xs:enumeration value="Mouseover"/>
+						<xs:enumeration value="Click"/>
+						<xs:enumeration value="Never"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="HotSpotEvent" use="optional">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="Hotspot Event"/>
+							<property name="value"/>
+							<widget-properties>
+								<property name="option-property" tabName="Basic" value="true"/>
+								<property name="property-layout-index" value="5"/>
+								<property name="property-group-editor-type" value="basic-group"/>
+								<property name="property-group-editor-name" value="properties.group.hotspot"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Click"/>
+						<xs:enumeration value="Mouseover"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="wrap" use="optional">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="Wrap"/>
+							<property name="value"/>
+							<widget-properties>
+								<property name="option-property" tabName="Basic" value="true"/>
+								<property name="property-layout-index" value="2"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="left"/>
+						<xs:enumeration value="right"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="OutlineColor" default="red">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="Hotspot Outline Color"/>
+							<property name="value"/>
+							<widget-properties>
+								<property name="option-property" tabName="Basic" value="true"/>
+								<property name="property-layout-index" value="3"/>
+								<property name="property-group-editor-type" value="basic-group"/>
+								<property name="property-group-editor-name" value="properties.group.hotspot"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="transparent"/>
+						<xs:enumeration value="black"/>
+						<xs:enumeration value="white"/>
+						<xs:enumeration value="yellow"/>
+						<xs:enumeration value="red"/>
+						<xs:enumeration value="blue"/>
+						<xs:enumeration value="green"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="MustBeCompleted" type="xs:boolean" use="optional">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="Must Be Completed"/>
+							<property name="value"/>
+							<widget-properties>
+								<property name="option-property" tabName="Basic" value="true"/>
+								<property name="property-layout-index" value="1"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="hotspotsScaled" type="xs:boolean" use="optional">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="Don't Autoscale Hotspots"/>
+							<property name="value"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Position">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Position"/>
+					<translation lang="es" caption="Posición"/>
+					<translation lang="fr" caption="Position"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="top" type="xs:integer" use="required"/>
+			<xs:attribute name="left" type="xs:integer" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BaseImage" type="ImageType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Base Image Properties"/>
+					<translation lang="es" caption="Propiedades de la imagen base"/>
+					<translation lang="fr" caption="Propriétés de l'image de base"/>
+					<property-owner/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="HotSpotType" type="HotSpotTypeType"/>
+	<xs:complexType name="HotSpotTypeType">
+		<xs:choice>
+			<xs:element ref="Rect"/>
+			<xs:element ref="Circle"/>
+			<xs:element ref="Polygon"/>
+			<xs:element ref="DisplayArea"/>
+		</xs:choice>
+		<xs:attribute name="Name" type="xs:string"/>
+	</xs:complexType>
+	<xs:element name="Rect">
+		<xs:complexType>
+			<xs:attribute name="width" type="xs:integer" use="required"/>
+			<xs:attribute name="height" type="xs:integer" use="required"/>
+			<xs:attribute name="top" type="xs:integer" use="required"/>
+			<xs:attribute name="left" type="xs:integer" use="required"/>
+			<xs:attribute name="ObjectLabel" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Circle">
+		<xs:complexType>
+			<xs:attribute name="x" type="xs:integer" use="required"/>
+			<xs:attribute name="y" type="xs:integer" use="required"/>
+			<xs:attribute name="diameter" type="xs:integer" use="required"/>
+			<xs:attribute name="ObjectLabel" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Polygon">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="PlotPoint" minOccurs="3" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Plot Point"/>
+								<translation lang="es" caption="Punto Plot"/>
+								<translation lang="fr" caption="Point Plot"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="x" type="xs:integer" use="required"/>
+						<xs:attribute name="y" type="xs:integer" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="ObjectLabel" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DisplayArea">
+		<xs:complexType>
+			<xs:attribute name="width" type="xs:integer" use="required"/>
+			<xs:attribute name="height" type="xs:integer" use="required"/>
+			<xs:attribute name="top" type="xs:integer" use="required"/>
+			<xs:attribute name="left" type="xs:integer" use="required"/>
+			<xs:attribute name="ObjectLabel" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

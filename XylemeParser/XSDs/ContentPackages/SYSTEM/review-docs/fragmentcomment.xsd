@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="comment">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="sequence" caption="Comment"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:element name="comment-guid" type="xs:string"/>
+				<xs:element name="comment-id" type="xs:string" minOccurs="0"/>
+				<xs:element name="review-guid" type="xs:string"/>
+				<xs:element name="container-guid" type="xs:string"/>
+				<xs:element name="rangestart-guid" type="xs:string"  minOccurs="0"/>
+				<xs:element name="rangestart-index" type="xs:string"  minOccurs="0"/>
+				<xs:element name="rangestart-path" type="xs:string"  minOccurs="0"/>
+				<xs:element name="rangestart-page" type="xs:string" minOccurs="0"/>
+				<xs:element name="rangeend-guid" type="xs:string"  minOccurs="0"/>
+				<xs:element name="rangeend-index" type="xs:string"  minOccurs="0"/>
+				<xs:element name="rangeend-path" type="xs:string"  minOccurs="0"/>
+				<xs:element name="rangeend-page" type="xs:string" minOccurs="0"/>
+				<xs:element name="selection-text" type="xs:string"/>
+				<xs:element name="comment-text" type="xs:string"/>
+				<xs:element name="author-id" type="xs:string"/>
+				<xs:element name="document-version" type="xs:string"  minOccurs="0"/>
+				<xs:element name="status" type="xs:string"/>
+				<xs:element name="date" type="xs:string"/>
+				<xs:element name="type" type="xs:string" minOccurs="0"/>
+				<xs:element name="status-set-by" type="xs:string" minOccurs="0"/>
+				<xs:element name="status-set-on" type="xs:string" minOccurs="0"/>
+				<xs:element name="reply-to" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

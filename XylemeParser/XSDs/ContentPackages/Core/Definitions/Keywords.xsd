@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+	
+	Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+	All rights reserved.
+	
+	This file and related documentation are protected by copyright and
+	are distributed under licenses regarding their use, copying, distribution,
+	and decompilation. No part of this product or related documentation may
+	be reproduced or transmitted in any form or by any means, electronic or
+	mechanical, for any purpose, without the express written permission of
+	Xyleme, Inc.
+	
+-->
+
+<!-- edited with XMLSpy v2006 sp1 U (http://www.altova.com) by Jeffrey Katzman (Xyleme Inc) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+    <xs:annotation>
+        <xs:appinfo>
+            <jupiter>
+                <root name="Keywords"/>
+            </jupiter>
+        </xs:appinfo>
+    </xs:annotation>
+    <xs:element name="Keywords">
+        <xs:annotation>
+            <xs:appinfo>
+                <jupiter>
+                    <component type="sequence" caption="Keywords"/>
+                    <translation lang="es" caption="Palabras Clave"/>
+                    <translation lang="fr" caption="Mots-clé"/>
+                    <property name="value"/>
+                </jupiter>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Keyword" type="xs:string" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <jupiter>
+                                <component type="implicit" caption="Keyword"/>
+                                <property name="value"/>
+                                <widget-properties>
+                                    <property name="option-property" value="true"/>
+                                </widget-properties>
+                            </jupiter>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

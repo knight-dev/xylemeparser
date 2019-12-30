@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!-- edited with XML Spy v4.0.1 U (http://www.xmlspy.com) by Jeff Katzman (Avaltus) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="ParaBlock"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="Categories.xsd"/>
+	<xs:include schemaLocation="EdObjective.xsd"/>
+	<xs:include schemaLocation="RichText.xsd"/>
+	<xs:include schemaLocation="ParaComponents.xsd"/>
+	<xs:include schemaLocation="MultiMediaTypes.xsd"/>
+	<xs:include schemaLocation="Slide.xsd"/>
+	<xs:include schemaLocation="FlashXML.xsd"/>
+	<xs:include schemaLocation="Equation.xsd"/>
+	<xs:include schemaLocation="DocWriter.xsd"/>
+	<xs:include schemaLocation="NativePPT.xsd"/>
+	<xs:include schemaLocation="WebComponent.xsd"/>
+	<xs:include schemaLocation="ChoiceBranch.xsd"/>
+	<xs:element name="ParaBlock" type="ParagraphType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/ParaBlockDef.xml"/>
+					<component type="sequence" caption="Para Block" shortcutkey="p"/>
+					<translation lang="es" caption="Bloque de Párrafo"/>
+					<translation lang="fr" caption="Bloc de Paragraphe"/>
+					<widget-properties>
+					    <property name="main-children" value="RichText,Table,List,Code,Equation,CustomNote,Figure,Audio,Movie,QuoteBlock,Tabs"/>
+						<property name="container" value="true"/>
+					</widget-properties>
+					<property-owner/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ParagraphType">
+		<xs:sequence>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="RichText"/>
+				<xs:element ref="List"/>
+				<xs:element ref="Figure"/>
+				<xs:element ref="Table"/>
+				<xs:element ref="Code"/>
+				<xs:element ref="Categories"/>
+				<xs:element ref="CustomNote"/>
+				<xs:element ref="MarginNote"/>
+				<xs:element ref="QuoteBlock"/>
+				<xs:element ref="GlossaryItem"/>
+				<xs:element ref="Applet"/>
+				<xs:element ref="Flash"/>
+				<xs:element ref="Movie"/>
+				<xs:element ref="Audio"/>
+				<xs:element ref="ImageMap"/>
+				<xs:element ref="TitledBlock"/>
+				<xs:element ref="Slide"/>
+				<xs:element ref="PPTSlide" maxOccurs="1"/>
+				<xs:element ref="FlashXML"/>
+				<xs:element ref="WebComponent"/>
+				<xs:element ref="Equation"/>
+				<xs:element ref="Tabs"/>
+				<xs:element ref="DocWriter"/>
+				<xs:element ref="FlashCards"/>
+				<xs:element ref="HorizontalRuleLines"/>
+				<xs:element ref="Icon"/>
+				<xs:element ref="PBR"/>
+				<xs:element ref="ChoiceBranch" maxOccurs="1"/>
+			</xs:choice>
+			<xs:element ref="FilterMetadata" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

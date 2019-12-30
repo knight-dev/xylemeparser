@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="Title.xsd"/>
+	<xs:include schemaLocation="Figure.xsd"/>
+	<xs:element name="CoverPage">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Cover Page" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Portada"/>
+					<translation lang="fr" caption="Page de couverture"/>
+					<structural>
+						<shortDesc>Short description of "Cover Page"</shortDesc>
+						<longDesc>Long description of "Cover Page"</longDesc>
+					</structural>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="wysiwyg" caption="Title" css2="border-top-width:2px;border-bottom-width:2px;font-size:24;font-family:'Times New Roman';font-weight:bold;" menuUseParent="true"/>
+								<property-owner/>
+								<translation lang="es" caption="Título"/>
+								<translation lang="fr" caption="Titre"/>
+								<property name="text.xml"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="SubTitle" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="wysiwyg" caption="SubTitle" css2="border-top-width:2px;border-bottom-width:2px;font-size:18;font-family:'Times New Roman';font-weight:bold;" menuUseParent="true"/>
+								<translation lang="es" caption="Subtítulo"/>
+								<property name="text.xml"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Notice" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Notice"/>
+								<property-owner/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="Title"/>
+							<xs:element ref="ParaBlock"/>
+							<xs:element ref="FilterMetadata"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

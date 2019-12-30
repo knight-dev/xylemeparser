@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+
+
+<xml_lat_definition name="Web Course" schema="WebCourse.xsd">
+	<property name="name" value="Curso Web" lang="es"/>
+	<map name="xsl">
+		<item name="DesignDocHTML" value="Core/Transforms/DesignDoc.xsl"/>
+		<item name="resources" value="Core/Transforms/WebCourseRes.xsl"/>
+		<item name="OnlineStoryboard" value="Core/Transforms/WebCourseScorm13.xsl"/>
+		<item name="ProductionReport" value="Core/Transforms/ProductionReport.xsl"/>
+		<item name="OnlineCourse" value="Core/Transforms/WebCourseScorm13.xsl"/>
+		<item name="static2004_manifest" value="Core/Transforms/WebCourseScorm13.xsl"/>
+		<item name="cc" value="Core/Transforms/WebCourseCC.xsl"/>
+		<item name="qti" value="Core/Transforms/WebCourseQTI.xsl"/>
+		<item name="manifest" value="Core/Transforms/WebCourseScorm13.xsl"/>
+		<item name="glossary" value="Core/Transforms/Glossary.xsl"/>
+		<item name="ia_fstree" value="IA/Transforms/IA_Frameset.xsl"/>
+		<item name="PerformanceSupport(HTML)" value="IA/Transforms/IA_Frameset.xsl"/>
+		<item name="PerformanceSupport(Mobile)" value="IA/Transforms/IA_Mobile_Frameset.xsl"/>
+		<item name="mobile" value="IA/Transforms/IA_Mobile_Frameset.xsl"/>
+		<item name="mobile_manifest" value="Core/Transforms/WebCourseScorm13.xsl"/>
+		<item name="aicc" value="Core/Transforms/AICC_Course.xsl" />		
+		<item name="media" value="Core/Transforms/MediaList.xsl"/>	
+		<item name="metadata_course" value="Core/Transforms/MetadataCourse.xsl"/>		
+		<item name="xml" value="components/Filter-XML.xsl"/>
+	</map>
+	<map name="targets">
+		<item name="OnlineCourse" value="web"/>
+		<item name="resources" value="html"/>
+		<item name="manifest" value="manifest"/>
+		<item name="cc" value="manifest"/>
+		<item name="qti" value="manifest"/>
+		<item name="print" value="pdf"/>
+		<item name="ProductionReport" value="html"/>
+		<item name="OnlineStoryboard" value="web"/>
+		<item name="DesignDocHTML" value="html"/>
+		<item name="ia_fstree" value="html"/>
+		<item name="PerformanceSupport(HTML)" value="web"/>
+		<item name="PerformanceSupport(Mobile)" value="html"/>
+		<item name="mobile" value="html"/>
+		<item name="aicc" value="html" />
+		<item name="media" value="manifest"/>
+		<item name="metadata_course" value="manifest"/>
+		<item name="xml" value="manifest"/>
+	</map>
+	<property name="ss" value="true"/>
+	<property name="root" value="true"/>
+	<property name="profile" value="9f0dbb7e-8316-4337-afcc-374e0a5c2928"/>
+	
+	<!-- map name="publishUINames">
+		<item name="web" value="Online Course (SCORM)"/>
+		<item name="OnlineStoryboard" value="Online Storyboard"/>
+		<item name="web_ProductionReport" value="Production Report"/>
+		<item name="design_doc" value="Design Document"/>
+		<item name="manifest" value="Online Course Manifest"/>
+		<item name="PerformanceSupport(HTML)" value="Performance Support (HTML)"/>
+		<item name="PerformanceSupport(Mobile)" value="Performance Support (Mobile)"/>
+	</map>
+	<map name="publishUINames" lang="es">
+		<item name="web" value="Curso Web (SCORM)"/>
+		<item name="OnlineStoryboard" value="Guión Gráfico Web"/>
+		<item name="web_ProductionReport" value="Reporte de Producción"/>
+		<item name="design_doc" value="Documento de Diseño"/>
+		<item name="manifest" value="Manifiesto del Curso Web"/>
+		<item name="PerformanceSupport(HTML)" value="Apoyo al Desempeño (HTML)"/>
+		<item name="PerformanceSupport(Mobile)" value="Apoyo al Desempeño (Móvil)"/>
+	</map -->
+	<list name="groups">
+		<item value="content"/>
+	</list>
+	<list name="menu">
+		<item value="Publications"/>
+	</list>
+	<list name="menu" lang="es">
+		<item value="Publicaciones"/>
+	</list>
+	<list name="menu" lang="fr">
+		<item value="Publications"/>
+	</list>
+	<list name="newMenu">
+		<item value="Publications"/>
+	</list>
+	<list name="newMenu" lang="es">
+		<item value="Publicaciones"/>
+	</list>
+	<list name="newMenu" lang="fr">
+		<item value="Publications"/>
+	</list>
+	<property name="showInNewMenu" value="true"/>
+	<property name="isDeployable" value="true"/>
+	<property name="learningObject" value="true"/>
+</xml_lat_definition>

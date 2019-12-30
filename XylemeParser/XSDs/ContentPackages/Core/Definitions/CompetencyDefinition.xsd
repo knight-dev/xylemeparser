@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!-- edited with XML Spy v4.0.1 U (http://www.xmlspy.com) by Jeff Katzman (Avaltus) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+    <xs:annotation>
+        <xs:appinfo>
+            <jupiter>
+                <root name="CompetencyDefinition"/>
+            </jupiter>
+        </xs:appinfo>
+    </xs:annotation>
+    <xs:element name="CompetencyDefinition">
+        <xs:annotation>
+            <xs:appinfo>
+                <jupiter>
+                    <link def="Core/Definitions/CompetencyDefinitionDef.xml"/>
+                    <component propertyPanel="true" panelIcon="Core/Definitions/Media/Competency-24x24-b.png"
+                               showTitle="true" type="sequence" metaCaption="$Label(value)$"
+                               caption="Competency Definition"
+                               css="color:green ;font-size:12;font-family:Tahoma;font-weight:bold"/>
+                    <translation lang="es" caption="Definición de Aptitud"/>
+                    <translation lang="fr" caption="Définition des compétences"/>
+                </jupiter>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="CompetencyDefinitionType"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="CompetencyDefinitionType">
+        <xs:sequence>
+            <xs:element name="Label" type="xs:string">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jupiter>
+                            <component type="text" caption="Label" multiline="true"/>
+                            <translation lang="ru" caption="Метка"/>
+                            <property name="text.text"/>
+                        </jupiter>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Description" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jupiter>
+                            <component type="text" caption="Description" multiline="true"/>
+                            <translation lang="es" caption="Descripción"/>
+                            <translation lang="fr" caption="Description"/>
+                            <property name="text.text"/>
+                        </jupiter>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="RegisteredCompetency" type="xs:boolean" use="optional">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jupiter>
+                        <component type="implicit" caption="Registered Competency"/>
+                        <property name="value"/>
+                    </jupiter>
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:element name="AchievedCompetencies">
+        <xs:annotation>
+            <xs:appinfo>
+                <jupiter>
+                    <component type="sequence" caption="Achieved Competencies"/>
+                    <translation lang="es" caption="Aptitudes Adquiridas"/>
+                    <translation lang="fr" caption="Compétences acquises"/>
+                </jupiter>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="CompetencyDefinition" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Competencies">
+        <xs:annotation>
+            <xs:appinfo>
+                <jupiter>
+                    <component type="sequence" caption="Competencies"
+                               css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;"/>
+                    <translation lang="es" caption="Aptitudes"/>
+                    <translation lang="fr" caption="Compétences"/>
+                </jupiter>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="AchievedCompetencies"/>
+                <xs:element ref="PrerequisiteCompetencies" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="PrerequisiteCompetencies">
+        <xs:annotation>
+            <xs:appinfo>
+                <jupiter>
+                    <component type="sequence" caption="Prerequisite Competencies"/>
+                    <translation lang="es" caption="Aptitudes Prerrequeridas"/>
+                    <translation lang="fr" caption="Compétences Préalables"/>
+                </jupiter>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="CompetencyDefinition" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

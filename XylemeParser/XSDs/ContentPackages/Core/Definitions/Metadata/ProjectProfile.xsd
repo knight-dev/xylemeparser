@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="ProjectProfile"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="OutputProfile.xsd"/>
+	<xs:include schemaLocation="SubstitutionProfiles.xsd"/>
+	<xs:element name="ProjectProfile">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/ProjectProfileDef.xml"/>
+					<component type="sequence" caption="Project Profile" metaCaption="$ProfileName(text.text)$"/>
+					<translation lang="es" caption="Perfil del Proyecto"/>
+					<translation lang="fr" caption="Profil du Projet"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ProfileName"/>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="OutputProfile"/>
+					<xs:element ref="OutputProfileGroup"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ProfileName" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="text" caption="Profile Name"/>
+					<translation lang="es" caption="Nombre del Perfil"/>
+					<translation lang="fr" caption="Nom du Profil"/>
+					<property name="text.text"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="OutputProfileGroup">
+		<xs:annotation>
+			<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/Metadata/OutputProfileGroupDef.xml"/>
+								<component caption="Output Profile Group" metaCaption="$name(text.text)$" type="sequence"/>
+								<translation caption="Grupo de Perfil de Salida" lang="es"/>
+								<translation caption="Groupe de Profil de Sortie" lang="fr"/>
+							</jupiter>
+						</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="OutputProfile" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute ref="name" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

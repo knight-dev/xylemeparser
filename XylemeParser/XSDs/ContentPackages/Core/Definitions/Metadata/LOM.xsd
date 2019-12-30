@@ -1,0 +1,776 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<!--==========This defines the root element for the sDoc Editor=========-->
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="LOM"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<!--==========To make the root element reusable, add a Link Definition=========-->
+	<xs:element name="LOM">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/LOMDef.xml"/>
+					<component caption="LOM" panelIcon="Core/Definitions/Media/DesignData-24x24-a.png" propertyPanel="true" showTitle="true" type="sequence"/>
+					<translation caption="LOM" lang="es"/>
+					<translation caption="LOM" lang="fr"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="General" minOccurs="0"/>
+				<xs:element ref="LifeCycle" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Technical" minOccurs="0"/>
+				<xs:element ref="Educational" minOccurs="0"/>
+				<xs:element ref="Rights" minOccurs="0"/>
+				<xs:element ref="Relation" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Classification" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element maxOccurs="unbounded" minOccurs="0" ref="AttributeGroup"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AssessmentItemDetails">
+		<xs:annotation>
+			<xs:appinfo><jupiter>
+<component caption="Assessment Item Details" type="sequence"/>
+</jupiter></xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="PredictedFacilityValue" type="xs:string"/>
+				<xs:element name="PredictedDiscriminationIndex" type="xs:string"/>
+				<xs:element name="ItemState" type="xs:string">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component caption="Item State" collectionGUID="50000df4-f79c-4d75-8382-4352d1ac5e83" propertyPanel="true" type="mmlchoice"/>
+								<property name="choice.value"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Contribution">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Contributor"/>
+					<translation lang="es" caption="Colaborador"/>
+					<translation lang="fr" caption="Collaborateur"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Role">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="Author"/>
+							<xs:enumeration value="Publisher"/>
+							<xs:enumeration value="Editor"/>
+							<xs:enumeration value="Examiner"/>
+							<xs:enumeration value="Archivist"/>
+							<xs:enumeration value="Portfolio Manager"/>
+							<xs:enumeration value="Development Manager"/>
+							<xs:enumeration value="Assessment Manager"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element name="Person" type="xs:string"/>
+					<xs:element name="Organization" type="xs:string"/>
+				</xs:choice>
+				<xs:element name="Date" type="xs:date"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Keyword" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/KeywordDef.xml"/>
+					<component type="text" caption="Keyword"/>
+					<translation lang="es" caption="Palabra Clave"/>
+					<translation lang="fr" caption="Mot-Clé"/>
+					<property name="text.text"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Taxon">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/TaxonDef.xml"/>
+					<component caption="Taxon" type="sequence"/>
+					<translation caption="Taxon" lang="es"/>
+					<translation caption="Taxon" lang="fr"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ID" type="xs:string" minOccurs="0"/>
+				<xs:element name="Entry" type="xs:string">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="text" caption="Entry"/>
+								<property name="text.text"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="Taxon" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CatalogEntry">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Catalog Entry"/>
+					<translation lang="es" caption="Entrada de Catálogo"/>
+					<translation lang="fr" caption="Entrée de Catalogue"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Catalog" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="text" caption="Catalog Name" metaCaption="Content Catalog: $Content Catalog(text.text)$"/>
+								<translation lang="es" caption="Nombre del Catálogo"/>
+								<translation lang="fr" caption="Nom du Catalogue"/>
+								<property name="text.text" default="Studio Content Repository"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Entry" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="text" caption="Catalog Entry"/>
+								<translation lang="es" caption="Entrada de Catálogo"/>
+								<translation lang="fr" caption="Entrée de Catalogue"/>
+								<property name="text.text" default="$SDocGuid$"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TaxonPath">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Taxon Path" editor="classification"/>
+					<translation lang="es" caption="Ruta Taxon"/>
+					<translation lang="fr" caption="Route Taxon"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Source" type="xs:string" minOccurs="0"/>
+				<xs:element ref="Taxon"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="VocabTaxonPath">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/VocabTaxonPathDef.xml"/>
+					<component caption="Classification Vocabularies" editor="classificationeditable" metaCaption="$Source(value)$" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Source" type="xs:string" minOccurs="0"/>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="VocabTaxon"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="VocabTaxon">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/VocabTaxonDef.xml"/>
+					<component caption="Vocab Taxon" metaCaption="$Label(text.text)$" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Label" type="xs:string">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component caption="Label" type="text"/>
+								<property name="text.text"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element maxOccurs="unbounded" minOccurs="0" ref="VocabTaxon"/>
+			</xs:sequence>
+			<xs:attribute name="vocabType" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="competency"/>
+						<xs:enumeration value="general"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="vocabID" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="General">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/GeneralDef.xml"/>
+					<component type="sequence" caption="General"/>
+					<translation lang="es" caption="General"/>
+					<translation lang="fr" caption="Général"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="LOMTitle" type="xs:string" minOccurs="0"/>
+				<xs:element ref="CatalogEntry" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="Language" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="Description" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Keyword" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="Coverage" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="Structure" minOccurs="0" type="xs:string">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="list" caption="Structure" values="Collection Mixed Linear Hierarchical Networked Branched Parceled Atomic" labels="Collection Mixed Linear Hierarchical Networked Branched Parceled Atomic"/>
+								<translation lang="es" caption="Estructura" labels="Colección Mixto Lineal Jerárquico Red Ramificado Parcelado Atómico"/>
+								<translation lang="fr" caption="Structure" labels="Collection Mixte Linéaire Hiérarchique Réseau Ramifié Morcelé Atomique"/>
+								<property name="choice.value"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AggregationLevel" minOccurs="0" type="xs:string">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="list" caption="Aggregation Level" values=" 1-atomic, 2-page-level, 3-collection, 4-course-level" labels=" 1-atomic, 2-page-level, 3-collection, 4-course-level" delim=","/>
+								<translation lang="es" caption="Nivel de Agregación" labels=" 1-atómico, 2-nivel-página, 3-colección, 4-nivel-curso" delim=","/>
+								<translation lang="fr" caption="Niveau d'agrégation" labels=" 1-atomique, 2-niveau-page, 3-collection, 4-niveau-cours" delim=","/>
+								<property name="choice.value"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LifeCycle">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Lifecycle"/>
+					<link def="Core/Definitions/Metadata/LifeCycleDef.xml"/>
+					<translation lang="es" caption="Ciclo de Vida"/>
+					<translation lang="fr" caption="Cycle de vie"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Version" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/Metadata/VersionDef.xml"/>
+								<component type="text" caption="Version"/>
+								<translation lang="es" caption="Versión"/>
+								<translation lang="fr" caption="Version"/>
+								<property name="text.text"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Status" default="draft" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/Metadata/StatusDef.xml"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="draft"/>
+							<xs:enumeration value="final"/>
+							<xs:enumeration value="updated"/>
+							<xs:enumeration value="in-use"/>
+							<xs:enumeration value="review"/>
+							<xs:enumeration value="obsolete"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element ref="Contribution" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Technical">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Technical"/>
+					<translation lang="es" caption="Técnico"/>
+					<translation lang="fr" caption="Technique"/>
+					<link def="Core/Definitions/Metadata/TechnicalDef.xml"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Format" minOccurs="0" type="xs:string" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="list" caption="Format" values="sDoc, Image, Video, Flash, Toolbook, Esim, Audio, MS Office Document, PDF" labels="sDoc, Image, Video, Flash, Toolbook, Esim, Audio, MS Office Document, PDF" delim=","/>
+								<translation lang="es" caption="Formato" labels="sDoc, Imagen, Vídeo, Flash, Toolbook, Esim, Audio, Documento MS Office, PDF" delim=","/>
+								<translation lang="fr" caption="Format" labels="sDoc, Image, Vidéo, Flash, Toolbook, Esim, Audio, Document MS Office, PDF" delim=","/>
+								<property name="choice.value"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Size" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="text" caption="File Size"/>
+								<translation lang="es" caption="Tamaño del Archivo"/>
+								<translation lang="fr" caption="Taille du fichier"/>
+								<property name="text.text" default="$AssetFileSize$"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Location" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="text" caption="Asset Location"/>
+								<translation lang="es" caption="Ubicación del Contenido"/>
+								<translation lang="fr" caption="Localisation du Contenu"/>
+								<property name="text.text" default="$AssetURI$"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Requirement" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Requirements"/>
+								<translation lang="es" caption="Requisitos"/>
+								<translation lang="fr" caption="Exigences"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Type" type="xs:string" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="list" caption="Type" values="Operating System, Browser" labels="Operating System, Browser" delim=","/>
+											<translation lang="es" caption="Tipo" labels="Sistema Operativo, Navegador" delim=","/>
+											<translation lang="fr" caption="Type" labels="Système Opératif, Navigateur" delim=","/>
+											<property name="choice.value"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Name" type="xs:string" minOccurs="0"/>
+							<xs:element name="MinVersion" type="xs:string" minOccurs="0"/>
+							<xs:element name="MaxVersion" type="xs:string" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="InstallationRemarks" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="text" multiline="true" caption="Installation Remarks"/>
+								<translation lang="es" caption="Observaciones de Instalación"/>
+								<translation lang="fr" caption="Remarques d'installation"/>
+								<property name="text.text"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OtherPlatformRequirments" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="text" multiline="true" caption="Other Platform Requirements"/>
+								<translation lang="es" caption="Requerimientos para Otras Plataformas"/>
+								<translation lang="fr" caption="Exigences pour autres plate-formes"/>
+								<property name="text.text"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Duration" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Media Duration"/>
+								<translation lang="es" caption="Duración del Multimedia"/>
+								<translation lang="fr" caption="Durée du Média"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Time" type="xs:dateTime"/>
+							<xs:element name="Description" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Educational">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Educational"/>
+					<link def="Core/Definitions/Metadata/EducationalDef.xml"/>
+					<translation lang="es" caption="Educacional"/>
+					<translation lang="fr" caption="Pédagogique"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="InteractivityType" minOccurs="0" type="xs:string">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/Metadata/InteractivityTypeDef.xml"/>
+								<component type="list" caption="Interactivity Type" values="Active,Expositive,Mixed,Undefined" labels="Active, Expositive, Mixed, Undefined" delim=","/>
+								<translation lang="es" caption="Tipo de Interactividad" labels="Activo,Expositivo,Mixto,Indefinido" delim=","/>
+								<translation lang="fr" caption="Type d'interactivité" labels="Actif,Expositif,Mixte,Indefini" delim=","/>
+								<property name="choice.value"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="LearningResourceType" minOccurs="0" maxOccurs="unbounded"
+					type="xs:string">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/Metadata/LearningResourceTypeDef.xml"/>
+								<component type="list" caption="Learning Resource Type" values="Discussion,Syllabus,Assignment,Exercise,Simulation,Questionnaire,Hands-on Activity,Article,Video,Diagram,Figure,Graph,Index,Slide,Table,Exam,Experiment,ProblemStatement,SelfAssesment,Lecture" labels="Discussion,Syllabus,Assignment,Exercise,Simulation,Questionnaire,Hands-on Activity,Article,Video,Diagram,Figure,Graph,Index,Slide,Table,Exam,Experiment,ProblemStatement,SelfAssesment,Lecture" delim=","/>
+								<translation lang="es" caption="Tipo de Recurso de Aprendizaje" labels="Discusión,Plan de estudio,Tarea,Ejercicio,Simulación,Cuestionario,Actividad Práctica,Artículo,Vídeo,Diagrama, Figura,Gráfico,Índice,Slide,Tabla,Examen,Experimento,Planteamiento del Problema,AutoEvaluación, Lectura" delim=","/>
+								<property name="choice.value"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="InteractivityLevel" minOccurs="0" type="xs:string">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/Metadata/InteractivityLevelDef.xml"/>
+								<component type="list" caption="Interactivity Level" values="very low,low,medium,high,very high" labels="very low, low, medium, high, very high" delim=","/>
+								<translation lang="es" caption="Nivel de Interactividad" labels="muy bajo,bajo,medio,alto,muy alto" delim=","/>
+								<translation lang="fr" caption="Niveau d'Interactivité" labels="très faible,faible,moyen,élevé,très élevé" delim=","/>
+								<property name="choice.value"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="SemanticDensity" minOccurs="0" type="xs:string">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="list" caption="Semantic Density" values="very low,low,medium,high,very high" labels="very low,low,medium,high,very high" delim=","/>
+								<translation lang="es" caption="Densidad Semántica" labels="muy bajo,bajo,medio,alto,muy alto" delim=","/>
+								<translation lang="fr" caption="Densité sémantique" labels="très faible,faible,moyen,élevé,très élevé" delim=","/>
+								<property name="choice.value"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="IntendedUserRole" minOccurs="0" maxOccurs="unbounded"
+					type="xs:string">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/Metadata/IntendedUserRoleDef.xml"/>
+								<component type="list" caption="Intended User Role" values="Teacher, Author, Learner, Manager" labels="Teacher, Author, Learner, Manager" delim=","/>
+								<translation lang="es" caption="Rol de Usuario Previsto" labels="Profesor, Autor, Alumno, Director" delim=","/>
+								<translation lang="fr" caption="Rôle d'Utilisateur Prévu" labels="Enseignant, Auteur, Apprenant, Directeur" delim=","/>
+								<property name="choice.value"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Context" minOccurs="0" maxOccurs="unbounded" type="xs:string">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/Metadata/ContextDef.xml"/>
+								<component type="list" caption="Context" values="Primary Education, Secondary Education, Higher Education, University First Cycle, University Second Cycle, University Postgrade, Technical School First Cycle, Technical School Second Cycle, Professional Formation, Continuous Formation, Vocational Training" labels="Primary Education, Secondary Education, Higher Education, University First Cycle, University Second Cycle, University Postgrade, Technical School First Cycle, Technical School Second Cycle, Professional Formation, Continuous Formation, Vocational Training" delim=","/>
+								<translation lang="es" caption="Contexto" labels="Educación Primaria, Educación Secundaria, Educación Superior, Primer Ciclo Universitario, Segundo Ciclo Universitario, Posgrado Universitario, Primer Ciclo Escuela Técnica, Segundo Ciclo Escuela Técnica, Formación Profesional, Formación Contínua, Entrenamiento Vocacional" delim=","/>
+								<translation lang="fr" caption="Contexte" labels="Enseignement Primaire, Enseignement Secondaire, Enseignement Supérieur, Premier Cycle Universitaire, Deuxième Cycle Universitaire, Diplôme Universitaire, Premier Cycle d'Enseignement Technique, Deuxième Cycle d'Enseignement Technique, Formation Professionnelle, Formation Continue, École Professionnelle" delim=","/>
+								<property name="choice.value"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="TypicalAgeRange" type="xs:string" minOccurs="0"
+					maxOccurs="unbounded"/>
+				<xs:element name="Difficulty" minOccurs="0" type="xs:string">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/Metadata/DifficultyDef.xml"/>
+								<component type="list" caption="Difficulty" values="L1-low, L2-medium, L3-difficult" labels="L1-low, L2-medium, L3-difficult" delim=","/>
+								<translation lang="es" caption="Dificultad" labels="N1-bajo, N2-medio, N3-difícil" delim=","/>
+								<translation lang="fr" caption="Difficulté" labels="N1-bas, N2-moyen, N3-difficile" delim=","/>
+								<property name="choice.value"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="TypicalLearningTime" type="xs:integer" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/Metadata/TypicalLearningTimeDef.xml"/>
+								<component type="text" caption="Typical Learning Time"/>
+								<translation lang="es" caption="Tiempo de Aprendizaje Típico"/>
+								<translation lang="fr" caption="Temps d'apprentissage typique"/>
+								<property name="text.text"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Description" type="xs:string" minOccurs="0"/>
+				<xs:element name="Language" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Rights">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Rights"/>
+					<link def="Core/Definitions/Metadata/RightsDef.xml"/>
+					<translation lang="es" caption="Derechos"/>
+					<translation lang="fr" caption="Droits"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Cost" type="xs:boolean" minOccurs="0"/>
+				<xs:element name="Copyright" type="xs:string" minOccurs="0"/>
+				<xs:element name="CopyrightOwner" type="xs:string">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/Metadata/CopyrightOwnerDef.xml"/>
+								<component type="text" caption="Copyright Owner"/>
+								<property name="text.text"/>
+								<translation lang="es" caption="Propietario de los Derechos de Autor"/>
+								<translation lang="fr" caption="Propriétaire des Droits d'Auteur"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="CopyrightRestrictions" type="xs:boolean">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/Metadata/CopyrightRestrictionsDef.xml"/>
+								<component type="text" caption="Copyright Restrictions"/>
+								<property name="text.text"/>
+								<translation lang="es" caption="Restricciones de los Derechos de Autor"/>
+								<translation lang="fr" caption="Restrictions des Droits d'Auteur"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Description" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Relation">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Relation"/>
+					<translation lang="es" caption="Relación"/>
+					<translation lang="fr" caption="Relation"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Kind" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="IsPartOf"/>
+							<xs:enumeration value="HasPart"/>
+							<xs:enumeration value="IsVersionOf"/>
+							<xs:enumeration value="HasVersion"/>
+							<xs:enumeration value="IsFormatOf"/>
+							<xs:enumeration value="HasFormat"/>
+							<xs:enumeration value="References"/>
+							<xs:enumeration value="IsReferencedBy"/>
+							<xs:enumeration value="IsBasedOn"/>
+							<xs:enumeration value="IsBasisFor"/>
+							<xs:enumeration value="Requires"/>
+							<xs:enumeration value="IsRequiredBy"/>
+							<xs:enumeration value="IsEnemyOf"/>
+							<xs:enumeration value="IsFriendOf"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Resource" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Resource"/>
+								<translation lang="es" caption="Recurso"/>
+								<translation lang="fr" caption="Ressource"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Identifier" type="xs:string" minOccurs="0"/>
+							<xs:element name="Description" type="xs:string" minOccurs="0"/>
+							<xs:element ref="CatalogEntry" maxOccurs="unbounded" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Classification">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Classification"/>
+					<link def="Core/Definitions/Metadata/ClassificationDef.xml"/>
+					<translation lang="es" caption="Clasificación"/>
+					<translation lang="fr" caption="Classification"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Purpose" minOccurs="0" type="xs:string">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/Metadata/PurposeDef.xml"/>
+								<component type="text" caption="Purpose"/>
+								<translation lang="es" caption="Propósito"/>
+								<translation lang="fr" caption="But"/>
+								<property name="text.text"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" ref="TaxonPath"/>
+				<xs:element ref="Keyword" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="Description" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="Attribute">
+		<xs:annotation>
+			<xs:appinfo><jupiter>
+<link def="Core/Definitions/Metadata/AttributeDef.xml"/>
+<component caption="Attribute" metaCaption="$Name(text.text)$" type="sequence"/>
+</jupiter></xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Name"/>
+				<xs:choice>
+					<xs:element name="String" type="xs:string"/>
+					<xs:element name="Date" type="xs:date"/>
+					<xs:element name="Integer" type="xs:integer"/>
+					<xs:element name="Boolean" type="xs:boolean"/>
+					<xs:element ref="TaxonPath"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Name" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo><jupiter>
+<component caption="Name" type="text"/>
+<property name="text.text"/>
+</jupiter></xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="AttributeGroup">
+		<xs:annotation>
+			<xs:appinfo><jupiter>
+<link def="Core/Definitions/Metadata/AttributeGroupDef.xml"/>
+<component caption="Attribute Group" metaCaption="$Name(text.text)$" type="sequence"/>
+</jupiter>
+</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" ref="Name"/>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="Attribute"/>
+					<xs:element ref="AttributeGroup"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

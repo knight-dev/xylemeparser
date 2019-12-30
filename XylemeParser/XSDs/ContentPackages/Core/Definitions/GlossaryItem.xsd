@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp1 U (http://www.altova.com) by Jeffrey Katzman (Xyleme Inc) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="GlossaryItem"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="ParaComponents.xsd"/>
+	<xs:element name="GlossaryItem">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/GlossaryItemDef.xml"/>
+					<component type="sequence" widget-type="glossaryitem" caption="Glossary Item" metaCaption="$Term(text.xml)$" css="color:green;font-size:12;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Ítem de Glosario"/>
+					<translation lang="fr" caption="Item du Glossaire"/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-contents-group"/>
+						<widget-icon iconClass="glossary-item"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Term" type="TitleType">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="wysiwyg" caption="Term" css2="background-image:'Core/definitions/media/def';font-size:12;font-weight:bold;" menuUseParent="true"/>
+								<translation lang="es" caption="Término"/>
+								<translation lang="fr" caption="Terme"/>
+								<property name="text.text"/>
+								<widget-properties>
+									<property name="data-canCopyElement" value="false"/>
+								</widget-properties>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Definition">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Definition"/>
+								<translation lang="es" caption="Definición"/>
+								<translation lang="fr" caption="Définition"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice maxOccurs="unbounded">
+							<xs:element ref="RichText"/>
+							<xs:element ref="List"/>
+							<xs:element ref="Figure"/>
+							<xs:element ref="Code"/>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="Audio" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

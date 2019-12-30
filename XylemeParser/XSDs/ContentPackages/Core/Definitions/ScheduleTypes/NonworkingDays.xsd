@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="NonworkingDays"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="NonworkingDays">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/ScheduleTypes/NonworkingDaysDef.xml"/>
+					<component type="sequence" caption="Nonworking Days" metaCaption="$Title(text.text)$" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Días No Laborables"/>
+					<translation lang="fr" caption="Jours Non Ouvrables"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Year" type="xs:int">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<setting css2="font-size:14;font-family:Tahoma;"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Holiday" minOccurs="1" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Name" type="xs:string"/>
+							<xs:element name="Date" type="xs:date"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

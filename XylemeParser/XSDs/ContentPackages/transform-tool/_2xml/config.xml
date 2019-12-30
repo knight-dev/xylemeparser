@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+	
+	Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+	All rights reserved.
+	
+	This file and related documentation are protected by copyright and
+	are distributed under licenses regarding their use, copying, distribution,
+	and decompilation. No part of this product or related documentation may
+	be reproduced or transmitted in any form or by any means, electronic or
+	mechanical, for any purpose, without the express written permission of
+	Xyleme, Inc.
+	
+-->
+
+<config>
+	<!-- general -->
+	<ListPreamble text=":$"/>
+	<merge-Titled>
+		<Topic text=" \(continued\)$"/>
+		<TitledBlock text=" \(continued\)$"/>
+	</merge-Titled>
+	<merge-InLine>
+		<Emph />
+		<Italic />
+		<EmphItalic />
+		<Underline />
+		<DoubleUnderline />
+		<Sup />
+		<Sub />
+		<InLineKeyboard />
+		<InLineTypeThis />
+	</merge-InLine>
+	<!-- whitespaces for html2xml -->
+	<whitespace> </whitespace>
+	<whitespace>&#9;</whitespace>
+	<whitespace>&#10;</whitespace>
+	<whitespace>&#13;</whitespace>
+	<!-- colors for doc2xml -->
+	<color value="^([0-9a-e][0-9a-f])\1\1$" name="grey"/>
+	<color value="^ff0000$" name="red"/>
+	<color value="^00ff00$" name="green"/>
+	<color value="^0000ff$" name="blue"/>
+	<color value="^f[0-9a-f]f[0-9a-f]f[0-9a-f]$" name="none"/> <!-- white -->
+	<color value="^$" name="none" />
+	<!-- roman numbers -->
+	<roman-number search="i" replace="1" />
+	<roman-number search="ii" replace="2" />
+	<roman-number search="iii" replace="3" />
+	<roman-number search="iiii" replace="4" comment="there is no limit to user stupidity" />
+	<roman-number search="iv" replace="4" />
+	<roman-number search="v" replace="5" />
+	<roman-number search="vi" replace="6" />
+	<roman-number search="vii" replace="7" />
+	<roman-number search="viii" replace="8" />
+	<roman-number search="ix" replace="9" />
+	<roman-number search="x" replace="10" />	
+	<roman-number search="xi" replace="11" />
+	<roman-number search="xii" replace="12" />
+	<roman-number search="xiii" replace="13" />
+	<roman-number search="xiv" replace="14" />
+	<roman-number search="xv" replace="15" />
+	<roman-number search="xvi" replace="16" />
+	<roman-number search="xvii" replace="17" />
+	<roman-number search="xviii" replace="18" />
+	<roman-number search="xix" replace="19" />
+	<roman-number search="xx" replace="20" />	
+	<roman-number search="xxi" replace="21" />
+	<roman-number search="xxii" replace="22" />
+	<roman-number search="xxiii" replace="23" />
+	<roman-number search="xxiv" replace="24" />
+	<roman-number search="xxv" replace="25" />
+	<roman-number search="xxvi" replace="26" />
+	<roman-number search="xxvii" replace="27" />
+	<roman-number search="xxviii" replace="28" />
+	<roman-number search="xxix" replace="29" />
+	<roman-number search="xxx" replace="30" />
+</config>

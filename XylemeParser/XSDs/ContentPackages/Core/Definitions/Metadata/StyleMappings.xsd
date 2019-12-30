@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp1 U (http://www.altova.com) by Jeffrey Katzman (Xyleme Inc) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="StyleMappings"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="StyleMappings">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/StyleMappingsDef.xml"/>
+					<component caption="Style Mappings" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CoverPage_" minOccurs="0"/>
+				<xs:element ref="Lessons_" minOccurs="0"/>
+				<xs:element ref="Module_" minOccurs="0"/>
+				<xs:element ref="Lesson_" minOccurs="0"/>
+				<xs:element ref="Topic_" minOccurs="0"/>
+				<xs:element ref="TitledBlock_" minOccurs="0"/>
+				<xs:element ref="ParaBlock_" minOccurs="0"/>
+				<xs:element ref="RichText_" minOccurs="0"/>
+				<xs:element ref="EducationalObjective_" minOccurs="0"/>
+				<xs:element ref="CustomNote_" minOccurs="0"/>
+				<xs:element ref="Chapter_" minOccurs="0"/>
+				<xs:element ref="QuestionBlock_" minOccurs="0"/>
+			</xs:sequence>
+			<!--xs:choice>
+			</xs:choice-->
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CoverPage_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="CoverPage" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title_" minOccurs="0"/>
+				<xs:element ref="SubTitle_" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Title_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="Title" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Match" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SubTitle_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="SubTitle" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Match" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Lessons_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="Lessons" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Lesson_" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Module_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="Module" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title_" minOccurs="0"/>
+				<xs:element ref="SubTitle_" minOccurs="0"/>
+				<xs:element ref="Lesson_" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Lesson_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="Lesson" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title_" minOccurs="0"/>
+				<xs:element ref="SubTitle_" minOccurs="0"/>
+				<xs:element ref="Topic_" minOccurs="0"/>
+				<xs:element ref="Procedure_" minOccurs="0"/>
+				<xs:element ref="IntroBlock_" minOccurs="0"/>
+				<xs:element ref="Glossary_" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Topic_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="Topic" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title_" minOccurs="0"/>
+				<xs:element ref="SubTitle_" minOccurs="0"/>
+				<xs:element ref="Topic_" minOccurs="0"/>
+				<xs:element ref="ParaBlock_" minOccurs="0"/>
+				<xs:element ref="TitledBlock_" minOccurs="0"/>
+				<xs:element ref="Procedure_" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ParaBlock_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="ParaBlock" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="RichText_" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TitledBlock_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="TitledBlock" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title_" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="IntroBlock_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="IntroBlock" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title_" minOccurs="0"/>
+				<xs:element ref="ParaBlock_" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RichText_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="RichText" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Match" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Procedure_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="Procedure" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title_" minOccurs="0"/>
+				<xs:element ref="SubTitle_" minOccurs="0"/>
+				<xs:element ref="ParaBlock_" minOccurs="0"/>
+				<xs:element ref="TitledBlock_" minOccurs="0"/>
+				<xs:element ref="StepGroup_" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="StepGroup_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="Steps" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Step_" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Step_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="Step" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="UserAction_" minOccurs="0"/>
+				<xs:element ref="ParaBlock_" minOccurs="0"/>
+				<xs:element ref="SystemResponse_" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="UserAction_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="ActionBlock" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ActionDescription_" minOccurs="0"/>
+				<xs:element ref="RichText_" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ActionDescription_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="ActionText" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Match" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SystemResponse_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="Reponse Block" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ResponseDescription_" minOccurs="0"/>
+				<xs:element ref="Example_" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ResponseDescription_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="Response text" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Match" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Example_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="Example" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="RichText_" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="EducationalObjective_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="EducationalObjective" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Match" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CustomNote_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="CustomNote" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Match" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Chapter_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="Chapter" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title_" minOccurs="0"/>
+				<xs:element ref="ParaBlock_" minOccurs="0"/>
+				<xs:element ref="Topic_" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Glossary_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="Glossary" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title_" minOccurs="0"/>
+				<xs:element ref="GlossaryItemGroup_" minOccurs="0"/>
+				<xs:element ref="GlossaryItem_" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GlossaryItemGroup_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="GlossaryItemGroup" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title_" minOccurs="0"/>
+				<xs:element ref="GlossaryItem_" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GlossaryItem_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="GlossaryItem" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Term_" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Term_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="Term" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Match" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="QuestionBlock_" type="QuestionBlockType_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="Question Block" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="QuestionBlockType_">
+		<xs:sequence>
+			<xs:element ref="Title_" minOccurs="0"/>
+			<xs:element ref="ParaBlock_" minOccurs="0"/>
+			<xs:element ref="MultipleChoice_" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="MultipleChoice_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="Multiple Choice Content" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="QuestionStem_" minOccurs="1">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Question Stem"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="RichText_" minOccurs="0"/>
+							<xs:element ref="Figure_" minOccurs="0"/>
+							<xs:element ref="Table_" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Option_" type="OptionType_" minOccurs="1">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Option"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OptionIsCorrect_" type="OptionType_" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Option[IsCorrect]"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="OptionType_">
+		<xs:sequence>
+			<xs:element name="Distractor_" minOccurs="1">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="sequence" caption="Distractor"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="RichText_" minOccurs="0"/>
+						<xs:element ref="Figure_" minOccurs="0"/>
+						<xs:element ref="Table_" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Figure_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="Figure" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Match" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Table_">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="Table" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Match" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Match">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="Match" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Style" type="xs:string" minOccurs="1" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="text" caption="Style"/>
+								<property name="text.text"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

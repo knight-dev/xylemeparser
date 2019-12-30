@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+    <xs:annotation>
+        <xs:appinfo>
+            <jupiter>
+                <root name="FillInBlank"/>
+            </jupiter>
+        </xs:appinfo>
+    </xs:annotation>
+    <xs:include schemaLocation="QuestionComponentLib.xsd"/>
+    <xs:element name="FillInBlank">
+        <xs:annotation>
+            <xs:appinfo>
+                <jupiter>
+                    <link def="Core/Definitions/QuestionTypes/FillInBlankDef.xml"/>
+                    <component propertyPanel="true" panelIcon="Core/Definitions/Media/Q-24x24-b.png" type="sequence" caption="Fill-in Activity" metaCaption="$name(text.text)$"/>
+                    <translation lang="es" caption="Actividad - Completar Espacios"/>
+                    <translation lang="fr" caption="Activité - Remplir les Blancs"/>
+                    <widget-properties>
+                        <toolbar-item group_id="toolbar-question-general-group"/>
+                        <widget-icon iconClass="fill-in"/>
+                    </widget-properties>
+                </jupiter>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="QuestionStem" minOccurs="0"/>
+                <xs:element ref="Variables" minOccurs="0"/>
+                <xs:element name="FillInContent">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <jupiter>
+                                <component type="sequence" caption="Fill-in-content"/>
+                                <translation lang="es" caption="Contenido a Completar"/>
+                                <translation lang="fr" caption="Contenu à remplir"/>
+                            </jupiter>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:choice maxOccurs="unbounded">
+                            <xs:element name="Text">
+                                <xs:annotation>
+                                    <xs:appinfo>
+                                        <jupiter>
+                                            <component showThrough="true" type="text" multiline="true" caption="Fill-in Text"/>
+                                            <translation lang="es" caption="Texto a Completar"/>
+                                            <translation lang="fr" caption="Texte à remplir"/>
+                                            <property name="text.text"/>
+                                        </jupiter>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:complexType mixed="true">
+                                    <xs:choice minOccurs="0" maxOccurs="unbounded">
+                                        <xs:element ref="Formula"/>
+                                    </xs:choice>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element ref="Figure"/>
+                            <xs:element name="Blank">
+                                <xs:annotation>
+                                    <xs:appinfo>
+                                        <jupiter>
+                                            <component type="sequence" caption="Blank"/>
+                                            <translation lang="es" caption="Espacio en Blanco"/>
+                                            <translation lang="fr" caption="Caisse vide"/>
+	                                        <property-owner/>
+											<widget-properties>
+												<property name="container" value="true"/>
+											</widget-properties>
+                                        </jupiter>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:choice>
+                                            <xs:element ref="TextMatches"/>
+                                            <xs:element name="NumberMatch">
+                                                <xs:annotation>
+                                                    <xs:appinfo>
+                                                        <jupiter>
+                                                            <component type="sequence" caption="Number Range"/>
+                                                            <translation lang="es" caption="Rango de Números"/>
+                                                        </jupiter>
+                                                    </xs:appinfo>
+                                                </xs:annotation>
+                                                <xs:complexType>
+                                                    <xs:attribute name="Min" type="xs:float" use="required">
+                                                        <xs:annotation>
+                                                            <xs:appinfo>
+                                                                <jupiter>
+                                                                    <component type="implicit" caption="Min"/>
+                                                                    <property name="value"/>
+                                                                </jupiter>
+                                                            </xs:appinfo>
+                                                        </xs:annotation>
+                                                    </xs:attribute>
+
+                                                    <xs:attribute name="Max" type="xs:float" use="required">
+                                                        <xs:annotation>
+                                                            <xs:appinfo>
+                                                                <jupiter>
+                                                                    <component type="implicit" caption="Max"/>
+                                                                    <property name="value"/>
+                                                                </jupiter>
+                                                            </xs:appinfo>
+                                                        </xs:annotation>
+                                                    </xs:attribute>
+
+                                                    <xs:attribute ref="FieldCharLimit">
+                                                        <xs:annotation>
+                                                            <xs:appinfo>
+                                                                <jupiter>
+                                                                    <component type="implicit" caption="Field char limit"/>
+                                                                    <property name="value"/>
+                                                                </jupiter>
+                                                            </xs:appinfo>
+                                                        </xs:annotation>
+                                                    </xs:attribute>
+
+                                                    <xs:attribute ref="FieldCharSize">
+                                                        <xs:annotation>
+                                                            <xs:appinfo>
+                                                                <jupiter>
+                                                                    <component type="implicit" caption="Field char size"/>
+                                                                    <property name="value"/>
+                                                                </jupiter>
+                                                            </xs:appinfo>
+                                                        </xs:annotation>
+                                                    </xs:attribute>
+
+                                                </xs:complexType>
+                                            </xs:element>
+                                            <xs:element ref="Formula"/>
+                                            <xs:element name="DropDownList">
+                                                <xs:annotation>
+                                                    <xs:appinfo>
+                                                        <jupiter>
+                                                            <component type="sequence" caption="Drop Down List"/>
+                                                            <translation lang="es" caption="Lista Desplegable"/>
+                                                        </jupiter>
+                                                    </xs:appinfo>
+                                                </xs:annotation>
+                                                <xs:complexType>
+                                                    <xs:sequence>
+                                                        <xs:element name="width" type="xs:integer" minOccurs="0">
+	                                                        <xs:annotation>
+		                                                        <xs:appinfo>
+			                                                        <jupiter>
+				                                                        <component type="implicit" caption="Width of DropDown List" />
+				                                                        <property name="value"/>
+				                                                        <widget-properties>
+				                                                            <property name="option-property" value="true"/>
+				                                                        </widget-properties>
+			                                                        </jupiter>
+		                                                        </xs:appinfo>
+	                                                        </xs:annotation>
+                                                        </xs:element>
+                                                        <xs:element name="Choice" minOccurs="2" maxOccurs="unbounded">
+                                                            <xs:annotation>
+                                                                <xs:appinfo>
+                                                                    <jupiter>
+                                                                        <component type="sequence" caption="Choice"/>
+                                                                    </jupiter>
+                                                                </xs:appinfo>
+                                                            </xs:annotation>
+                                                            <xs:complexType mixed="true">
+                                                                <xs:attribute name="Text" type="xs:string">
+                                                                    <xs:annotation>
+                                                                        <xs:appinfo>
+                                                                            <jupiter>
+                                                                                <component type="implicit" caption="DropDownList option"/>
+                                                                                <property name="value"/>
+                                                                            </jupiter>
+                                                                        </xs:appinfo>
+                                                                    </xs:annotation>
+                                                                </xs:attribute>
+                                                                <xs:attribute ref="IsCorrect">
+	                                                                <xs:annotation>
+		                                                                <xs:appinfo>
+			                                                                <jupiter>
+				                                                                <component type="implicit" caption="Specify boolean"/>
+				                                                                <property name="value"/>
+			                                                                </jupiter>
+		                                                                </xs:appinfo>
+	                                                                </xs:annotation>
+                                                                </xs:attribute>
+                                                            </xs:complexType>
+                                                        </xs:element>
+                                                    </xs:sequence>
+                                                </xs:complexType>
+                                            </xs:element>
+                                            <xs:element name="Date" type="xs:date">
+                                                <xs:annotation>
+                                                    <xs:appinfo>
+                                                        <jupiter>
+                                                            <component type="implicit"  propertyPanel="true" caption="Fill-In blank Date"/>
+                                                            <property name="value"/>
+                                                        </jupiter>
+                                                    </xs:appinfo>
+                                                </xs:annotation>
+                                            </xs:element>
+                                        </xs:choice>
+                                    </xs:sequence>
+                                    <xs:attribute name="Tolerance" type="xs:float" use="optional">
+                                        <xs:annotation>
+                                            <xs:appinfo>
+                                                <jupiter>
+                                                    <component type="implicit" caption="Tolerance"/>
+                                                    <property name="value"/>
+                                                    <widget-properties>
+                                                        <property name="option-property" value="true"/>
+                                                    </widget-properties>
+                                                </jupiter>
+                                            </xs:appinfo>
+                                        </xs:annotation>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="LineBreak">
+                                <xs:annotation>
+                                    <xs:appinfo>
+                                        <jupiter>
+                                            <component type="sequence" caption="Line Break"/>
+                                            <translation lang="es" caption="Salto de Línea"/>
+                                            <translation lang="fr" caption="Saut de Ligne"/>
+                                        </jupiter>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                            </xs:element>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element ref="Hint" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element ref="Feedback" minOccurs="0"/>
+                <xs:element ref="Advice" minOccurs="0"/>
+                <xs:element ref="LOM" minOccurs="0"/>
+                <xs:element ref="CompetencyDefinition" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element minOccurs="0" ref="AssessmentItemDetails"/>
+            </xs:sequence>
+            <xs:attribute ref="name" use="optional"/>
+            <xs:attribute ref="Weight"/>
+            <xs:attribute ref="CognitionLevel" use="optional"/>
+            <xs:attribute name="PresoStyle">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jupiter>
+                            <component type="implicit" caption="PresoStyle"/>
+                            <property name="value"/>
+                            <widget-properties>
+                                <property name="option-property" value="true"/>
+                            </widget-properties>
+                        </jupiter>
+                    </xs:appinfo>
+                </xs:annotation>
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="TypeInText"/>
+                        <xs:enumeration value="TypeInColumns"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+
+
+<xml_lat_definition name="Categories" schema="Paragraph.xsd">
+	<property name="name" value="Categorías" lang="es"/>
+	<map name="xsl">
+		<item name="web" value="Core/Transforms/MediaActivities/Categories.xsl"/>
+        <item name="web_mobile" value="Core/Transforms/MediaActivities/Categories.xsl"/>
+		<item name="web_frameset" value="Core/Transforms/MediaActivities/Categories.xsl"/>
+		<item name="OnlineStoryboard" value="Core/Transforms/MediaActivities/Categories.xsl"/>
+		<item name="ProductionReport" value="IA/Transforms/ProductionReport.xsl"/>
+		<!--<item name="print" value="Core/Transforms/Print/Principle.xsl"/>-->
+	</map>
+	<map name="targets">
+		<item name="web" value="html"/>
+        <item name="web_mobile" value="html"/>
+		<item name="web_frameset" value="html"/>
+		<item name="print" value="pdf"/>
+		<item name="OnlineStoryboard" value="web"/>
+		<item name="ProductionReport" value="html"/>
+	</map>
+	<property name="ss" value="false"/>
+	
+	<map name="publishUINames">
+		<item name="ProductionReport" value="Production Report"/>
+	</map>
+	<map name="publishUINames" lang="es">
+		<item name="ProductionReport" value="Reporte de Producción"/>
+	</map>
+	<map name="publishUINames" lang="fr">
+		<item name="ProductionReport" value="Rapport de Production"/>
+	</map>
+	<map name="filters">
+		<item name="OT" value="components/Filter-OT.xsl"/>
+	</map>
+	
+	<list name="groups">
+		<item value="content"/>
+	</list>
+	<list name="menu">
+		<item value="Interactive Types"/>
+	</list>
+	<list name="menu" lang="es">
+		<item value="Tipos de Interactivos"/>
+	</list>
+    <list name="menu" lang="fr">
+        <item value="Types d'Interactifs"/>
+    </list>
+</xml_lat_definition>

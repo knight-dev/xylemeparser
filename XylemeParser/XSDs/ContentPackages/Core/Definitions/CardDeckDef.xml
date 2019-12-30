@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+
+
+<!-- edited with XMLSPY v5 rel. 3 U (http://www.xmlspy.com) by Registred (Registred) -->
+<!-- edited with XML Spy v4.4 U (http://www.xmlspy.com) by Jeff Katzman (Avaltus) -->
+<xml_lat_definition name="Card Deck" schema="CardDeck.xsd">
+	<property name="name" value="Set de Tarjetas" lang="es"/>
+	<map name="xsl">
+		<item name="print" value="Core/Transforms/Print/CardDeck.xsl"/>
+		<!--item name="web" value="Core/Transforms/SlideDeck.xsl"/>
+		<item name="ppt" value="Core/Transforms/PPT/SlideDeck.xsl"/-->
+	</map>
+	<map name="targets">
+		<item name="print" value="print"/>
+		<!--item name="web" value="html"/>
+		<item name="ppt" value="ppt"/-->
+	</map>
+	<property name="ss" value="mixed"/>
+	<map name="publishUINames">
+        <!--item name="ppt" value="Powerpoint Presentation"/-->
+        <!--<item name="print" value="Card Deck"/>-->
+	</map>	
+	<map name="publishUINames" lang="es">
+		<!--<item name="print" value="Set de Tarjetas"/>-->
+	</map>	
+        <map name="publishUINames" lang="fr">
+                <!--<item name="print" value="Jeu de Cartes"/>-->
+        </map>
+	<list name="groups">
+		<item value="content"/>
+	</list>
+	<list name="menu">
+		<item value="Publications"/>
+	</list>
+	<list name="menu" lang="es">
+		<item value="Publicaciones"/>
+	</list>
+        <list name="menu" lang="fr">
+		<item value="Publications"/>
+	</list>
+	<list name="newMenu">
+		<item value="Publications"/>
+	</list>
+	<list name="newMenu" lang="es">
+		<item value="Publicaciones"/>
+	</list>
+        <list name="newMenu" lang="fr">
+            <item value="Publications"/>
+        </list>
+	<property name="showInNewMenu" value="false"/>
+</xml_lat_definition>

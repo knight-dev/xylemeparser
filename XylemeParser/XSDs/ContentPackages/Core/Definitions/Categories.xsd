@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp1 U (http://www.altova.com) by Jeffrey Katzman (Xyleme Inc) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="Categories"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="NoteTypes.xsd"/>
+	<xs:element name="Categories">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/CategoriesDef.xml"/>
+					<component type="sequence" caption="Categories" metaCaption="$Title(text.xml)$" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Categorías"/>
+					<translation lang="fr" caption="Categories"/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-contents-group"/>
+						<widget-icon iconClass="categories"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title" minOccurs="0"/>
+				<xs:element name="Properties">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Properties" propertyPanel="true" panelIcon="Core/Definitions/Media/Tabs-24x24-b.png"/>
+								<translation lang="es" caption="Propiedades"/>
+								<translation lang="fr" caption="Propietés"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="ContentALabel" type="xs:string" use="optional" default="Detail">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="implicit" caption="Content A Label"/>
+										<property name="value"/>
+										<widget-properties>
+											<property name="option-property" value="true"/>
+										</widget-properties>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="ContentBLabel" type="xs:string" use="optional" default="Description">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="implicit" caption="Content B Label"/>
+										<property name="value"/>
+										<widget-properties>
+											<property name="option-property" value="true"/>
+										</widget-properties>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="FlashWebDisplay" type="xs:boolean" use="optional" default="true">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="implicit" caption="Flash Web Display"/>
+										<property name="value"/>
+										<widget-properties>
+											<property name="option-property" value="true"/>
+										</widget-properties>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="FlashPlayerType">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="implicit" caption="Flash Player Type"/>
+										<property name="value"/>
+										<widget-properties>
+											<property name="option-property" value="true"/>
+										</widget-properties>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="SideTabs"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="width" type="xs:integer" use="optional">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="implicit" caption="Width"/>
+										<property name="value"/>
+										<widget-properties>
+											<property name="option-property" value="true"/>
+										</widget-properties>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="height" type="xs:integer" use="optional">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="implicit" caption="Height"/>
+										<property name="value"/>
+										<widget-properties>
+											<property name="option-property" value="true"/>
+										</widget-properties>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Instructions" type="RichTextType" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="wysiwyg" caption="Instructions"/>
+								<translation lang="es" caption="Instrucciones"/>
+								<translation lang="fr" caption="Instructions"/>
+								<property name="text.text"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Item" type="ItemType" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="item"/>
+								<translation lang="es" caption="ítem"/>
+								<translation lang="fr" caption="item"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="ItemType">
+		<xs:sequence>
+			<xs:element name="Label" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" menuUseParent="true" css2="background-image:'Core/definitions/media/bullet';font-weight:bold; |SubItem=background-image:'Core/definitions/media/bullet2';font-weight:bold; margin-left=3px;" caption="Label"/>
+							<translation lang="es" caption="Etiqueta"/>
+							<property name="value"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ContentA">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="sequence" caption="Content A"/>
+							<translation lang="es" caption="Contenido A"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:choice maxOccurs="unbounded">
+						<xs:element ref="RichText"/>
+						<xs:element ref="List"/>
+						<xs:element ref="Figure"/>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ContentB" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="sequence" caption="Content B"/>
+							<translation lang="es" caption="Contenido B"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:choice maxOccurs="unbounded">
+						<xs:element ref="RichText"/>
+						<xs:element ref="List"/>
+						<xs:element ref="Figure"/>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

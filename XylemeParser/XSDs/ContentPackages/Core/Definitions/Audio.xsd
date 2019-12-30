@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp1 U (http://www.altova.com) by Jeffrey Katzman (Xyleme Inc) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+    <xs:annotation>
+        <xs:appinfo>
+            <jupiter>
+                <root name="Audio"/>
+            </jupiter>
+        </xs:appinfo>
+    </xs:annotation>
+    <xs:include schemaLocation="Paragraph.xsd"/>
+    <xs:element name="Audio">
+        <xs:annotation>
+            <xs:appinfo>
+                <jupiter>
+                    <link def="Core/Definitions/AudioDef.xml"/>
+                    <component type="sequence" widget-type="audio" caption="Audio" propertyPanel="true" showTitle="true"
+                               panelIcon="Core/Definitions/Media/Audio-24x24-a.png" metaCaption="$Title(text.xml)$"/>
+                    <property-owner/>
+                    <translation lang="es" caption="Audio"/>
+                    <translation lang="fr" caption="Audio"/>
+                    <widget-properties>
+                        <toolbar-item group_id="toolbar-media-group"/>
+                        <widget-icon iconClass="audio"/>
+                    </widget-properties>
+                </jupiter>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Title" minOccurs="0"/>
+                <xs:element name="AudioFile" type="xs:anyURI">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <jupiter>
+                                <component allowedFileFormats=".mp3, .wav, .m4a, .mid" caption="Audio File"
+                                           showThrough="true" type="media"/>
+                                <translation caption="Archivo de Audio" lang="es"/>
+                                <translation caption="Fichier Audio" lang="fr"/>
+                                <property name="media.uri"/>
+                                <widget-properties>
+                                    <property name="option-property" tabName="Basic" value="true"/>
+                                    <translation lang="ru" tabName="Основные"/>
+                                    <property name="property-layout-index" value="1"/>
+                                    <property name="property-layout-span" value="full"/>
+                                </widget-properties>
+                            </jupiter>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element ref="AVscript" minOccurs="0">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <jupiter>
+                                <property-owner/>
+                            </jupiter>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element ref="AltText" minOccurs="0"/>
+                <xs:element ref="Caption" minOccurs="0"/>
+                <xs:element ref="LOM" minOccurs="0"/>
+            </xs:sequence>
+            <xs:attribute name="height-pixel" type="xs:integer" use="optional">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jupiter>
+                            <component type="implicit" propertyPanel="true" caption="Height in pixels"/>
+                            <translation lang="ru" caption="Высота в пикселях"/>
+                            <property name="value"/>
+                            <widget-properties>
+                                <property name="option-property" tabName="Basic" value="true"/>
+                                <translation lang="ru" tabName="Основные"/>
+                                <property name="property-layout-index" value="2"/>
+                            </widget-properties>
+                        </jupiter>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="width-pixel" type="xs:integer" use="optional">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jupiter>
+                            <component type="implicit" propertyPanel="true" caption="Width in pixels"/>
+                            <translation lang="ru" caption="Ширина в пикселях"/>
+                            <property name="value"/>
+                            <widget-properties>
+                                <property name="option-property" tabName="Basic" value="true"/>
+                                <translation lang="ru" tabName="Основные"/>
+                                <property name="property-layout-index" value="3"/>
+                            </widget-properties>
+                        </jupiter>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="StartOnLoad" type="xs:boolean" use="optional" default="false">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jupiter>
+                            <component type="implicit" propertyPanel="true" caption="Start on load"/>
+                            <translation lang="ru" caption="Стартовать при загрузке"/>
+                            <property name="value"/>
+                            <widget-properties>
+                                <property name="option-property" tabName="Basic" value="true"/>
+                                <translation lang="ru" tabName="Основные"/>
+                                <property name="property-layout-index" value="4"/>
+                            </widget-properties>
+                        </jupiter>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="ShowControls" type="xs:boolean" use="optional" default="true">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jupiter>
+                            <component type="implicit" propertyPanel="true" caption="Show controls"/>
+                            <translation lang="ru" caption="Показывать элементы управления"/>
+                            <property name="value"/>
+                            <widget-properties>
+                                <property name="option-property" tabName="Basic" value="true"/>
+                                <translation lang="ru" tabName="Основные"/>
+                                <property name="property-layout-index" value="5"/>
+                            </widget-properties>
+                        </jupiter>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="MustBeCompleted" type="xs:boolean" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

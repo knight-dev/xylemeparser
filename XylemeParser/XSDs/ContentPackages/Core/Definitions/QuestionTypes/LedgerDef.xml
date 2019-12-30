@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+
+
+<xml_lat_definition name="Ledger" schema="Ledger.xsd">
+	<property name="name" value="Libro Mayor" lang="es"/>
+	<map name="xsl">
+		<!--item name="web" value="Core/Transforms/Audio.xsl"/-->
+		<!--item name="print" value="Core/Transforms/Print/Audio.xsl"/-->
+		<!--item name="production_report" value="Core/Transforms/ProductionReport.xsl"/-->
+		<item name="web" value="Core/Transforms/ActivityComponents/Ledger.xsl"/>
+		<item name="xml" value="components/Filter-XML.xsl"/>
+		<item name="media" value="Core/Transforms/MediaList.xsl"/>
+	</map>
+	<map name="targets">
+		<item name="web" value="html"/>
+		<!--item name="print" value="pdf"/>
+		<item name="production_report" value="html"/-->
+		<item name="xml" value="manifest"/>
+		<item name="media" value="manifest"/>
+	</map>
+	<property name="ss" value="false"/>
+	<list name="groups">
+		<item value="content"/>
+	</list>
+	<list name="menu">
+		<item value="Question Types"/>
+	</list>
+	<list name="menu" lang="es">
+		<item value="Tipos de Pregunta"/>
+	</list>
+	<property name="learningObject" value="mixed"/>
+</xml_lat_definition>

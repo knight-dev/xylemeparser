@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp1 U (http://www.altova.com) by Jeffrey Katzman (Xyleme Inc) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="FlashCards"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="Paragraph.xsd"/>
+	<xs:include schemaLocation="QuestionTypes/FillInBlank.xsd"/>
+	<xs:element name="FlashCards">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/FlashCardsDef.xml"/>
+					<component type="sequence" caption="Flash Cards" metaCaption="$Title(text.xml)$" css="color:rgb(30, 21,196);font-size:14;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Tarjetas Flash"/>
+					<translation lang="fr" caption="Cartes Flash"/>
+					<property-owner/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-container-group"/>
+						<widget-icon iconClass="flashcards"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title"/>
+				<xs:element maxOccurs="unbounded" ref="FlashCard"/>
+				<xs:element name="Watermarks" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" propertyPanel="true" caption="WaterMarks"/>
+								<translation lang="es" caption="Marcas de Agua"/>
+								<translation lang="fr" caption="Filigranes"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Front" type="ImageType">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="Card Front Watermark"/>
+											<translation lang="es" caption="Marca de Agua - Tarjeta Frente"/>
+											<translation lang="fr" caption="Filigrane - Carte Face"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Back" type="ImageType">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="Card Back Watermark"/>
+											<translation lang="es" caption="Marca de Agua - Tarjeta Atrás"/>
+											<translation lang="fr" caption="Filigrane - Carte Dos"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element minOccurs="0" name="Gameboard" type="ImageType">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component caption="Gameboard Background" type="sequence"/>
+											<translation caption="Fondo - Tablero de juego" lang="es"/>
+											<translation caption="Fond - Plateau de jeu" lang="fr"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="Size" default="3.5 x 5">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit"/>
+							<property name="value"/>
+							<widget-properties>
+								<property name="option-property" value="true"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="3.5 x 5"/>
+						<xs:enumeration value="4 x 6"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Modes" use="optional" default="All">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Learn"/>
+						<xs:enumeration value="Practice"/>
+						<xs:enumeration value="Learn and Practice"/>
+						<xs:enumeration value="All"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="MustBeCompleted" type="xs:boolean" use="optional">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit"/>
+							<property name="value"/>
+							<widget-properties>
+								<property name="option-property" value="true"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="RandomizeCards" type="xs:boolean" use="optional" default="false">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit"/>
+							<property name="value"/>
+							<widget-properties>
+								<property name="option-property" value="true"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FlashCard">
+		<xs:annotation>
+			<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/FlashCardDef.xml"/>
+								<component type="sequence" propertyPanel="true" caption="Flash Card" metaCaption="$Title(text.xml)$" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;"/>
+								<translation lang="es" caption="Tarjeta Flash"/>
+								<translation lang="fr" caption="Carte Flash"/>
+							</jupiter>
+						</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="CardFront">
+					<xs:annotation>
+						<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="Card Front"/>
+											<translation lang="es" caption="Tarjeta - Frente"/>
+											<translation lang="fr" caption="Carte - Face"/>
+										</jupiter>
+									</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:choice maxOccurs="unbounded">
+								<xs:element ref="RichText"/>
+								<xs:element ref="Figure"/>
+							</xs:choice>
+							<xs:element name="CardFontSize" type="xs:integer" minOccurs="0"
+								default="22">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="implicit"/>
+											<property name="value"/>
+											<widget-properties>
+												<property name="option-property" value="true"/>
+											</widget-properties>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="CardBack">
+					<xs:annotation>
+						<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="Card Back"/>
+											<translation lang="es" caption="Tarjeta - Atrás"/>
+											<translation lang="fr" caption="Carte - Dos"/>
+										</jupiter>
+									</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:choice>
+								<xs:element ref="TextMatches"/>
+								<xs:element ref="RichText"/>
+							</xs:choice>
+							<xs:element name="CardFontSize" type="xs:integer" minOccurs="0"
+								default="22">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="implicit"/>
+											<property name="value"/>
+											<widget-properties>
+												<property name="option-property" value="true"/>
+											</widget-properties>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="AudioAdvice" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="Audio Advice"/>
+											<translation lang="es" caption="Consejo - Audio"/>
+											<translation lang="fr" caption="Conseil - Audio"/>
+										</jupiter>
+									</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="Audio"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

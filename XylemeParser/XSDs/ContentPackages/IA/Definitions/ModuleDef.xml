@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+
+
+<xml_lat_definition name="ISD Module Template" schema="IA.xsd">
+	<property name="name" value="Plantilla de Módulo ISD" lang="es"/>
+
+	<map name="xsl">
+		<item name="ProductionReport" value="IA/Transforms/ProductionReport.xsl"/>
+		<item name="design_doc" value="IA/Transforms/IA_DesignDoc.xsl"/>
+		<item name="Guide" value="IA/Transforms/Print/IA_Guide_Module.xsl"/>
+		<item name="ActivitiesGuide" value="IA/Transforms/Print/IA_ActivitiesGuide_Module.xsl"/>
+		<item name="SupportMaterials" value="IA/Transforms/Print/IA_SupportMaterials.xsl"/>
+		<item name="Handouts" value="IA/Transforms/Print/IA_HandoutPack.xsl"/>
+		<item name="OnlineCourse" value="IA/Transforms/IA_Lesson_Manifest.xsl"/>
+		<item name="PerformanceSupport(HTML)" value="IA/Transforms/IA_Frameset.xsl"/>
+		<item name="manifest" value="IA/Transforms/IA_Lesson_Manifest.xsl"/>
+		<item name="static2004_manifest" value="IA/Transforms/IA_Lesson_Manifest.xsl"/>
+		<item name="ia_fstree" value="IA/Transforms/IA_Frameset.xsl"/>
+		<item name="offline-edit" value="transform-tool/xml2doc/template3.xslt" />
+		<item name="ios_toc" value="IA/Transforms/iOS/IA_Lesson_TOC.xsl"/>
+		<item name="QuizMe" value="IA/Transforms/iOS/IA_Quiz.xsl"/>		
+		<item name="ipad_toc" value="IA/Transforms/iPad/IA_Lesson_TOC.xsl"/>
+		<item name="ipad_quizme" value="IA/Transforms/iPad/IA_Quiz.xsl"/>
+		<item name="container" value="IA/Transforms/IA_Container.xsl"/>
+		<item name="xml" value="components/Filter-XML.xsl"/>
+		<item name="media" value="Core/Transforms/MediaList.xsl"/>
+		<item name="Assessment" value="IA/Transforms/IA_Lesson_Assessment.xsl"/>
+		<item name="assessment_manifest" value="IA/Transforms/IA_Lesson_Assessment.xsl"/>
+        <item name="web" value="IA/Transforms/IA_Container.xsl"/>
+	</map>
+	<map name="targets">
+		<item name="web" value="web"/>
+		<item name="web_mobile" value="web"/>
+		<item name="web_frameset" value="web"/>
+		<item name="Guide" value="print"/>
+		<item name="ActivitiesGuide" value="print"/>
+		<item name="SupportMaterials" value="print"/>
+		<item name="Handouts" value="print"/>
+		<item name="ProductionReport" value="html"/>
+		<item name="design_doc" value="html"/>
+		<item name="OnlineCourse" value="web"/>
+		<item name="PerformanceSupport(HTML)" value="web"/>
+		<item name="manifest" value="manifest"/>
+		<item name="ia_fstree" value="html"/>
+		<item name="offline-edit" value="wordml2003" />
+		<item name="ios_toc" value="manifest"/>
+		<item name="QuizMe" value="manifest"/>		
+		<item name="ipad_toc" value="html"/>
+		<item name="ipad_quizme" value="html"/>
+		<item name="container" value="html"/>
+		<item name="xml" value="manifest"/>
+		<item name="media" value="manifest"/>
+		<item name="Assessment" value="web"/>
+		<item name="assessment_manifest" value="manifest"/>
+	</map>
+	<!--<map name="publishUINames">
+		<item name="ProductionReport" value="Production Report"/>
+		<item name="design_doc" value="Design Document"/>
+		<item name="ia_ig_m" value="Instructor Guide Module"/>
+		<item name="ia_sg_m" value="Student Guide Module"/>
+		<item name="ia_webcourse" value="Online Course (SCORM)"/>
+		<item name="PerformanceSupport(HTML)" value="Performance Support (HTML)"/>
+		<item name="offline-edit" value="Offline Edit (Word 2003)" />
+	</map>-->
+	<!-- map name="publishUINames" lang="es">
+		<item name="ProductionReport" value="Reporte de Producción"/>
+		<item name="design_doc" value="Documento de Diseño"/>
+		<item name="ia_ig_m" value="Módulo Guía del Instructor"/>
+		<item name="ia_sg_m" value="Módulo Guía de Estudiante"/>
+		<item name="ia_webcourse" value="Curso Web (SCORM)"/>
+		<item name="PerformanceSupport(HTML)" value="Apoyo al Desempeño (HTML)"/>
+		<item name="offline-edit" value="Edición Offline (Word 2003)" />
+	</map -->
+
+	<property name="ss" value="mixed"/>
+	<property name="profile" value="086be6ba-00c6-45fa-9c4f-8ae3255b2e7b"/>
+	
+	<map name="filters">
+		<item name="epub" value="components/Filter-EPUB.xsl"/>
+	</map>
+	
+	<list name="groups">
+		<item value="content"/>
+	</list>
+	<list name="menu">
+		<item value="IA Components"/>
+	</list>
+	<list name="menu" lang="es">
+		<item value="Componentes de IA"/>
+	</list>
+	<list name="menu" lang="fr">
+		<item value="Composants IA"/>
+	</list>
+	<property name="expand-level" value="0"/>
+	<property name="learningObject" value="true"/>
+	<property name="isDeployable" value="true"/>
+
+</xml_lat_definition>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="EssayActivity"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="QuestionComponentLib.xsd"/>
+	<xs:element name="EssayActivity">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/QuestionTypes/EssayActivityDef.xml"/>
+					<component type="sequence" propertyPanel="true" panelIcon="Core/Definitions/Media/Q-24x24-b.png" caption="EssayActivity" metaCaption="$name(value)$"/>
+					<translation lang="es" caption="Actividad - Ensayo"/>
+					<translation lang="fr" caption="Activité - Essai"/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-question-general-group"/>
+						<widget-icon iconClass="essay"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="QuestionStem"/>
+				<xs:element name="ResponseLines" default="4">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="implicit" caption="Response Lines"/>
+								<property name="value"/>
+								<widget-properties>
+									<property name="option-property" value="true"/>
+								</widget-properties>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:integer">
+							<xs:enumeration value="0"/>
+							<xs:enumeration value="1"/>
+							<xs:enumeration value="2"/>
+							<xs:enumeration value="3"/>
+							<xs:enumeration value="4"/>
+							<xs:enumeration value="5"/>
+							<xs:enumeration value="6"/>
+							<xs:enumeration value="7"/>
+							<xs:enumeration value="8"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="Solution" type="SimpleBlockType" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Solution"/>
+								<translation lang="es" caption="Solución"/>
+								<translation lang="fr" caption="Solution"/>
+								<property-owner/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="MailToInstructor" type="xs:string" minOccurs="0"/>
+				<xs:element ref="LOM" minOccurs="0"/>
+				<xs:element ref="CompetencyDefinition" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element minOccurs="0" ref="AssessmentItemDetails"/>
+			</xs:sequence>
+			<xs:attribute ref="name" use="optional">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="Name"/>
+							<property name="value"/>
+							<widget-properties>
+								<property name="option-property" tabName="Basic" value="true"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute ref="Weight" use="optional"/>
+			<xs:attribute ref="CognitionLevel" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

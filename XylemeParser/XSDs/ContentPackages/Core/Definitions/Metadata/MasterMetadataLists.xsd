@@ -1,0 +1,744 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="MasterMetadataLists"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="TargetOutputs.xsd"/>
+	<xs:include schemaLocation="ElementProfileMap.xsd"/>
+	<xs:include schemaLocation="StyleMappings.xsd"/>
+	<xs:element name="TargetAudiences">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/TargetAudiencesDef.xml"/>
+					<component type="sequence" caption="Target Audience" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Audiencia Meta"/>
+					<translation lang="fr" caption="Audience Cible"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="TargetAudience" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TargetAudience" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/TargetAudienceDef.xml"/>
+					<component type="text" caption="Target Audience" metaCaption="$TargetAudience(text.text)$"/>
+					<translation lang="es" caption="Audiencia Meta"/>
+					<translation lang="fr" caption="Audience Cible"/>
+					<property name="text.text"/>
+					<widget-properties>
+						<property name="option-property" value="true"/>
+                        <property name="property-group-editor-type" value="basic-group" />
+                        <property name="property-group-editor-name" value="properties.group.filtermetadata" />
+                        <property name="property-group-editor-item-key" value="properties.filter.targetAudiences" />
+                        <property name="property-layout-index" value="1000"/>
+
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="MasterMetadataLists">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/MasterMetadataListsDef.xml"/>
+					<component type="sequence" caption="Master Lists" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Listas Maestras"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ElementProfileMap" minOccurs="0"/>
+				<xs:element minOccurs="0" ref="WordImportProfiles"/>
+				<xs:element minOccurs="0" ref="PowerPointImportProfiles"/>
+				<xs:element ref="ProfileData" minOccurs="0"/>
+				<xs:element ref="TargetOutputs" minOccurs="0"/>
+				<xs:element ref="SupplementTypes" minOccurs="0"/>
+				<xs:element ref="TargetAudiences" minOccurs="0"/>
+				<xs:element ref="TaskResourceTypes" minOccurs="0"/>
+				<xs:element ref="TypeOfTaskTypes" minOccurs="0"/>
+				<xs:element ref="ProjectTypeTypes" minOccurs="0"/>
+				<xs:element ref="BusinessAreaTypes" minOccurs="0"/>
+				<xs:element ref="ProductionScheduleStatusTypes" minOccurs="0"/>
+				<xs:element ref="VocabTaxonPath" minOccurs="0"/>
+				<xs:element ref="ReuseReportVocabs" minOccurs="0"/>
+				<xs:element ref="AssessmentTypes" minOccurs="0"/>
+				<xs:element minOccurs="0" ref="SlideThemes"> </xs:element>
+				<xs:element minOccurs="0" ref="CustomNoteThemes"/>
+				<xs:element minOccurs="0" ref="TableThemes"/>
+				<xs:element minOccurs="0" ref="BorderTypes"/>
+				<xs:element minOccurs="0" ref="ItemStates"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ProfileData">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/ProfileDataDef.xml"/>
+					<component type="sequence" caption="Profile Data" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Datos del Perfil"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ElementTypes" minOccurs="0"/>
+				<xs:element ref="DocTypeStyles" minOccurs="0"/>
+				<xs:element ref="ProductRangeStyles" minOccurs="0"/>
+				<xs:element ref="Skins" minOccurs="0"/>
+				<xs:element ref="Langs" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ElementTypes">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/ElementTypesDef.xml"/>
+					<component type="sequence" caption="Element Types" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Tipos de Elemento"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ElementType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ElementType" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/ElementTypeDef.xml"/>
+					<component type="text" caption="Element Type" metaCaption="$ElementType(text.text)$"/>
+					<translation lang="es" caption="Tipo de Elemento"/>
+					<property name="text.text"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ProductRangeStyles">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/ProductRangeStylesDef.xml"/>
+					<component type="sequence" caption="Product Range Styles" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Estilos de Rango del Producto"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ProductRangeStyle" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ProductRangeStyle" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/ProductRangeStyleDef.xml"/>
+					<component type="text" caption="Product Range Style" metaCaption="$ProductRangeStyle(text.text)$"/>
+					<translation lang="es" caption="Estilo de Rango del Producto"/>
+					<property name="text.text"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DocTypeStyles">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/DocTypeStylesDef.xml"/>
+					<component type="sequence" caption="Doc Type Styles" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Estilos de Tipo de Doc"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DocTypeStyle" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DocTypeStyle" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/DocTypeStyleDef.xml"/>
+					<component type="text" caption="Doc Type Style" metaCaption="$DocTypeStyle(text.text)$"/>
+					<translation lang="es" caption="Estilo de Tipo de Doc"/>
+					<property name="text.text"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Skins">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/SkinsDef.xml"/>
+					<component type="sequence" caption="Skins" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;"/>
+
+					<translation lang="es" caption="Carátulas"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Skin" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Skin" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/SkinDef.xml"/>
+					<component type="text" caption="Skin" metaCaption="$Skin(text.text)$"/>
+					<translation lang="es" caption="Carátula"/>
+					<property name="text.text"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Langs">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/LangsDef.xml"/>
+					<component type="sequence" caption="Langs" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Idiomas"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Lang" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Lang" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/LangDef.xml"/>
+					<component type="text" caption="Lang" metaCaption="$Lang(text.text)$"/>
+					<translation lang="es" caption="Idioma"/>
+					<property name="text.text"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="SupplementTypes">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/SupplementTypesDef.xml"/>
+					<component type="sequence" caption="Supplement Types" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Tipos de Suplemento"/>
+					<translation lang="fr" caption="Types de Supplément"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="SupplementType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SupplementType" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/SupplementTypeDef.xml"/>
+					<component type="text" caption="Supplement Type" metaCaption="$SupplementType(text.text)$"/>
+					<translation lang="es" caption="Tipo de Suplemento"/>
+					<translation lang="fr" caption="Type de Supplément"/>
+					<property name="text.text"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="LangStringsMap">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Lang" maxOccurs="unbounded">
+					<xs:complexType mixed="true">
+						<xs:attribute name="GUID" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TaskResourceTypes">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/TaskResourceTypesDef.xml"/>
+					<component type="sequence" caption="TaskResource Types" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Tipos de Recurso de Tarea"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="TaskResourceType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TaskResourceType" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/TaskResourceTypeDef.xml"/>
+					<component type="text" caption="TaskResource Type" metaCaption="$TaskResourceType(text.text)$"/>
+					<translation lang="es" caption="Tipo de Recurso de Tarea"/>
+					<property name="text.text"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="TypeOfTaskTypes">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/TypeOfTaskTypesDef.xml"/>
+					<component type="sequence" caption="TaskType Types" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="TaskType Types"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="TypeOfTaskType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TypeOfTaskType" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/TypeOfTaskTypeDef.xml"/>
+					<component type="text" caption="TaskType Type" metaCaption="$TypeOfTaskType(text.text)$"/>
+					<translation lang="es" caption="TaskType Type"/>
+					<property name="text.text"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ProjectTypeTypes">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/ProjectTypeTypesDef.xml"/>
+					<component caption="ProjectType Types" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;" type="sequence"/>
+					<translation caption="Tipos de Tipo-de-Proyecto" lang="es"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ProjectTypeType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ProjectTypeType" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/ProjectTypeTypeDef.xml"/>
+					<component type="text" caption="ProjectType Type" metaCaption="$ProjectTypeType(text.text)$"/>
+					<translation lang="es" caption="Tipo de Tipo-de-Proyecto"/>
+					<property name="text.text"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="BusinessAreaTypes">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/BusinessAreaTypesDef.xml"/>
+					<component caption="BusinessArea Types" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;" type="sequence"/>
+					<translation caption="Tipos de Área del Negocio" lang="es"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="BusinessAreaType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BusinessAreaType" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/BusinessAreaTypeDef.xml"/>
+					<component caption="BusinessArea Type" metaCaption="$BusinessAreaType(text.text)$" type="text"/>
+					<translation caption="Tipo de Área del Negocio" lang="es"/>
+					<property name="text.text"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="AssessmentTypes">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/AssessmentTypesDef.xml"/>
+					<component caption="Assessment Types" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;" type="sequence"/>
+					<translation caption="Tipos de evaluación" lang="es"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="AssessmentType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AssessmentType" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/AssessmentTypeDef.xml"/>
+					<component caption="Assessment Type" metaCaption="$AssessmentType(text.text)$" type="text"/>
+					<translation caption="Tipo de evaluación" lang="es"/>
+					<property name="text.text"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ProductionScheduleStatusTypes">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/ProductionScheduleStatusTypesDef.xml"/>
+					<component caption="ProductionScheduleStatus Types" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;" type="sequence"/>
+					<translation caption="Tipos de Estado del Calendario de Producción" lang="es"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ProductionScheduleStatusType" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ProductionScheduleStatusType" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/ProductionScheduleStatusTypeDef.xml"/>
+					<component caption="ProductionScheduleStatus Type" metaCaption="$ProductionScheduleStatusType(text.text)$" type="text"/>
+					<translation caption="Tipo de Estado del Calendario de Producción" lang="es"/>
+					<property name="text.text"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ReuseReportVocabs">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/ReuseReportVocabsDef.xml"/>
+					<component type="sequence" caption="Reuse Report Vocabularies"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VocabGUID" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<settings caption="Vocabulary GUID"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="SlideThemes">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/SlideThemesDef.xml"/>
+					<component caption="Slide Layouts" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="SlideTheme" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SlideTheme" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/SlideThemeDef.xml"/>
+					<component caption="Slide Layout" metaCaption="$SlideTheme(text.text)$" type="text"/>
+					<property name="text.text"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="TableThemes">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/TableThemesDef.xml"/>
+					<component caption="Table Themes" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="TableTheme" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TableTheme" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/TableThemeDef.xml"/>
+					<component caption="Table Theme" metaCaption="$TableTheme(text.text)$" type="text"/>
+					<property name="text.text"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="CustomNoteThemes">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/CustomNoteThemesDef.xml"/>
+					<component caption="Custom Note Themes" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CustomNoteTheme" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CustomNoteTheme" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/CustomNoteThemeDef.xml"/>
+					<component caption="Custom Note Theme" metaCaption="$CustomNoteTheme(text.text)$" type="text"/>
+					<property name="text.text"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="BorderTypes">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/BorderTypesDef.xml"/>
+					<component caption="Border Types" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="BorderType" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BorderType" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/BorderTypeDef.xml"/>
+					<component caption="Border Type" metaCaption="$BorderType(text.text)$" type="text"/>
+					<property name="text.text"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="WordImportProfiles">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/WordImportProfilesDef.xml"/>
+					<component caption="Word Import Profiles" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="WordImportProfile" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="WordImportProfile">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/WordImportProfileDef.xml"/>
+					<component type="sequence" caption="Word Import Profile" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;" metaCaption="$Name(text.text)$"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Name"/>
+				<xs:element name="XSLPostprocessingFile" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="media" showThrough="true" caption="XSL Post-processing File" allowedFileFormats=".xsl, .xslt"/>
+								<property name="media.uri"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="StyleMappings" minOccurs="0"/>
+				<xs:element name="SkipEmptyParagraphs" type="xs:boolean" minOccurs="0" maxOccurs="1"
+				/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="PowerPointImportProfiles">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/PowerPointImportProfilesDef.xml"/>
+					<component caption="PowerPoint Import Profiles" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PowerPointImportProfile" minOccurs="1" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="PowerPointImportProfile">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/PowerPointImportProfileDef.xml"/>
+					<component type="sequence" caption="PowerPoint Import Profile" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;" metaCaption="$Name(text.text)$"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Name"/>
+				<xs:element name="XSLPostprocessingFile" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="media" showThrough="true" caption="XSL Post-processing File" allowedFileFormats=".xsl, .xslt"/>
+								<property name="media.uri"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="SlideImportMode" minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="implicit" caption="Slide Import Mode"/>
+								<property name="value"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="Xml"/>
+							<xs:enumeration value="Ppt"/>
+							<xs:enumeration value="XmlPpt"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ItemStates">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/ItemStatesDef.xml"/>
+					<component caption="Item States" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ItemState" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/Metadata/ItemStateDef.xml"/>
+								<component caption="Item State" metaCaption="$ItemStateText(text.text)$" type="sequence"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ItemStateText" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component caption="Item State Text" type="text"/>
+											<property name="text.text"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

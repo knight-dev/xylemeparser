@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="DragDrop"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="Remediation.xsd"/>
+	<xs:include schemaLocation="QuestionComponentLib.xsd"/>
+	<xs:element name="DragDrop">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/QuestionTypes/DragDropDef.xml"/>
+					<component propertyPanel="true" panelIcon="Core/Definitions/Media/Q-24x24-b.png" type="sequence" caption="DragDrop" widget-type="dragdrop" metaCaption="$name(value)$"/>
+					<translation lang="es" caption="Arrastrar y Soltar"/>
+					<translation lang="fr" caption="Glisser et Déposer"/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-question-web-group"/>
+						<property name="data-includeAvailableChildren" value="QuestionStem"/>
+						<widget-icon iconClass="drag-and-drop"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component showThrough="true" type="wysiwyg" caption="Title"/>
+								<translation lang="es" caption="Título"/>
+								<translation lang="fr" caption="Titre"/>
+								<property name="text.xml"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Instructions" type="RichTextType" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<property-owner/>
+								<component type="wysiwyg" caption="Instructions"/>
+								<translation lang="es" caption="Instrucciones"/>
+								<translation lang="fr" caption="Instructions"/>
+								<property name="text.xml"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="QuestionStem" minOccurs="0"/>
+				<xs:element ref="BaseImage"/>
+				<xs:element ref="DragObjects"/>
+				<xs:element ref="Feedback" minOccurs="0"/>
+				<xs:element ref="Advice" minOccurs="0"/>
+				<xs:element ref="LOM" minOccurs="0"/>
+				<xs:element ref="CompetencyDefinition" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element minOccurs="0" ref="AssessmentItemDetails"/>
+			</xs:sequence>
+			<xs:attribute ref="name" use="optional">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<!-- is Studio 3 ok with the redefinition of component type? -->
+							<component type="implicit" caption="Name"/>
+							<property name="value"/>
+							<widget-properties>
+								<!-- name already is annotated to be a property - this doubles the configuration and is a workaround for some transformation engine issue :-/ -->
+								<property name="option-property" tabName="Basic" value="true"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Weight" type="xs:decimal" use="optional" default="1.0">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="Weight"/>
+							<property name="value"/>
+							<widget-properties>
+								<property name="option-property" tabName="Basic" value="true"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute ref="CognitionLevel"/>
+			<xs:attribute name="HighlightDropArea" type="xs:boolean" use="optional" default="true">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="Highlight Drop Area"/>
+							<property name="value"/>
+							<widget-properties>
+								<property name="option-property" value="true"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="DropAreaColor" use="optional" default="black">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="Drop Area Color"/>
+							<property name="value" default="black"/>
+							<widget-properties>
+								<property name="option-property" tabName="Basic" value="true"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="black"/>
+						<xs:enumeration value="white"/>
+						<xs:enumeration value="red"/>
+						<xs:enumeration value="green"/>
+						<xs:enumeration value="blue"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="TargetSensitityPercent" type="xs:integer" use="optional" default="100">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="Drop Target Sensitity Percent"/>
+							<property name="value"/>
+							<widget-properties>
+								<property name="option-property" tabName="Basic" value="true"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DragDropBehavior">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="DragDrop Behavior"/>
+					<translation lang="es" caption="Arrastrar y Soltar - Comportamiento"/>
+					<translation lang="fr" caption="Glisser et Déposer - Comportement"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CompetencyDefinition"/>
+			</xs:sequence>
+			<xs:attribute name="Mode" use="optional" default="Assessment">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Practice"/>
+						<xs:enumeration value="Assessment"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="AttemptLimit" type="xs:integer" use="optional" default="1"/>
+			<xs:attribute name="OverlayFeedback" type="xs:boolean" use="optional" default="true"/>
+			<xs:attribute name="ShowSolution" type="xs:boolean" use="optional" default="true"/>
+			<xs:attribute name="ShowTarget" type="xs:boolean" use="optional" default="true"/>
+			<xs:attribute name="LeaveCorrectBetweenAttempts" type="xs:boolean" use="optional"
+				default="false"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DragType">
+		<xs:complexType>
+			<xs:choice>
+				<xs:element ref="DragImage"/>
+				<xs:element ref="DistractorImage"/>
+				<xs:element ref="DragText"/>
+				<xs:element ref="DistractorText"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DragObject">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Drag Object"/>
+					<translation lang="es" caption="Arrastrar Objeto"/>
+					<translation lang="fr" caption="Glisser Objet"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DragType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DragImage">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Drag Image" />
+					<translation lang="es" caption="Arrastrar Imagen"/>
+					<translation lang="fr" caption="Traînée Image"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="URI" type="xs:anyURI" use="required">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="media"/>
+							<property name="media.uri"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="top" type="xs:integer" use="required"/>
+			<xs:attribute name="left" type="xs:integer" use="required"/>
+			<xs:attribute name="width" type="xs:integer" use="required"/>
+			<xs:attribute name="height" type="xs:integer" use="required"/>
+			<xs:attribute name="targetTop" type="xs:integer"/>
+			<xs:attribute name="targetLeft" type="xs:integer"/>
+			<xs:attribute name="TargetID" type="xs:string" use="optional"/>
+			<xs:attribute name="AltText" type="xs:string"/>
+			<xs:attribute name="ObjectLabel" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DragText">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Drag Text"/>
+					<translation lang="es" caption="Arrastrar Texto"/>
+					<translation lang="fr" caption="Glisser Texte"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="text" type="xs:string" use="required"/>
+			<xs:attribute name="startTop" type="xs:integer" use="required"/>
+			<xs:attribute name="startLeft" type="xs:integer" use="required"/>
+			<xs:attribute name="targetTop" type="xs:integer"/>
+			<xs:attribute name="targetLeft" type="xs:integer"/>
+			<xs:attribute name="TargetID" type="xs:string" use="optional"/>
+			<xs:attribute name="font" type="xs:string" use="required"/>
+			<xs:attribute name="font-size" type="xs:integer" use="required"/>
+			<xs:attribute name="font-color" type="xs:string" use="required"/>
+			<xs:attribute name="ObjectLabel" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DistractorImage">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Distractor Image" />
+					<translation lang="es" caption="Distractor Imagen"/>
+					<translation lang="fr" caption="Distractor Image"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="URI" type="xs:anyURI" use="required">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="media"/>
+							<property name="media.uri"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="top" type="xs:integer" use="required"/>
+			<xs:attribute name="left" type="xs:integer" use="required"/>
+			<xs:attribute name="width" type="xs:integer" use="required"/>
+			<xs:attribute name="height" type="xs:integer" use="required"/>
+			<xs:attribute name="AltText" type="xs:string" use="optional"/>
+			<xs:attribute name="ObjectLabel" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DistractorText">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Distractor Text"/>
+					<translation lang="es" caption="Texto Distractor"/>
+					<translation lang="fr" caption="Texte Distracteur"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="text" type="xs:string" use="required"/>
+			<xs:attribute name="startTop" type="xs:integer" use="required"/>
+			<xs:attribute name="startLeft" type="xs:integer" use="required"/>
+			<xs:attribute name="font" type="xs:string" use="required"/>
+			<xs:attribute name="font-size" type="xs:integer" use="required"/>
+			<xs:attribute name="font-color" type="xs:string" use="required"/>
+			<xs:attribute name="ObjectLabel" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DragObjects">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" editor="dragdrop" caption="Drag and Drop Objects"/>
+					<translation lang="es" caption="Arrastrar y Soltar Objetos"/>
+					<translation lang="fr" caption="Glisser et Déposer Objets"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="DragObject" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

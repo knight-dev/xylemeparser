@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp1 U (http://www.altova.com) by Jeffrey Katzman (Xyleme Inc) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="FrequentlyAskedQuestions"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="Paragraph.xsd"/>
+	<xs:include schemaLocation="TopicTypes/Procedure.xsd"/>
+	<xs:include schemaLocation="TopicTypes/Topic.xsd"/>
+	<xs:element name="FrequentlyAskedQuestions">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/FrequentlyAskedQuestionsDef.xml"/>
+					<component type="sequence" caption="FAQs" metaCaption="$Title(text.xml)$" css="color:rgb(30, 21,196);font-size:18;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Preguntas Frecuentes"/>
+					<widget-properties>
+						<property name="container" value="true"/>
+						<property name="quick-insert" value="true"/>
+						<widget-icon iconClass="faq"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="wysiwyg" caption="Title" css2="font-size:16;font-family:Tahoma;"/>
+								<translation lang="es" caption="Título"/>
+								<translation lang="fr" caption="Titre"/>
+								<property name="text.xml"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="Faq_Category"/>
+					<xs:element ref="FAQ"/>
+				</xs:choice>
+				<xs:element ref="FilterMetadata" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="FAQ">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/FAQDef.xml"/>
+					<component caption="FAQ" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;" metaCaption="$Question(text.text)$" type="sequence"/>
+					<translation caption="Pregunta Frecuente" lang="es"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Question" type="xs:string">
+					<xs:annotation>
+						<xs:appinfo><jupiter>
+<component caption="Question" type="text"/>
+<property name="text.text"/>
+</jupiter></xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ShortAnswer">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Short Answer"/>
+								<translation lang="es" caption="Respuesta Corta"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="ParaBlock"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:choice minOccurs="0" maxOccurs="unbounded">
+					<xs:element ref="Topic"/>
+					<xs:element ref="Procedure"/>
+					<xs:element ref="InternalLink"/>
+					<xs:element ref="ExternalLink"/>
+				</xs:choice>
+				<xs:element minOccurs="0" ref="LOM"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Faq_Category">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/FAQCategoryDef.xml"/>
+					<component type="sequence" caption="FAQ Category" metaCaption="$Title(text.xml)$" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Categoría de Pregunta Frecuente"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="wysiwyg" caption="Title" css2="font-size:14;font-family:Tahoma;"/>
+								<translation lang="es" caption="Título"/>
+								<translation lang="fr" caption="Titre"/>
+								<property name="text.xml"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="FAQ"/>
+					<xs:element ref="Faq_Category"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

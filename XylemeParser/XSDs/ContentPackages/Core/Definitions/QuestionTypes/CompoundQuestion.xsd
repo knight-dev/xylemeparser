@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:include schemaLocation="../Paragraph.xsd"/>
+    <xs:include schemaLocation="../Metadata/DesignData.xsd"/>
+	<xs:element name="CompoundQuestion">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/QuestionTypes/CompoundQuestionDef.xml"/>
+					<component caption="Compound Question" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element minOccurs="0" ref="Title"/>
+				<xs:element ref="DesignData" minOccurs="0"/>
+				<xs:element minOccurs="0" ref="Instructions"/>
+				<xs:element ref="Passage"/>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="MultipleChoice"/>
+					<xs:element ref="EssayActivity"/>
+					<xs:element ref="FillInBlank"/>
+				</xs:choice>
+				<xs:element name="Scoring" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component caption="Scoring" type="sequence"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="PartialScore">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component caption="Partial Score" type="sequence"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="FullScore">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component caption="Full Score" type="sequence"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="MinPassingScorePercent" type="xs:integer"
+											default="100"/>
+										<xs:element name="RollupScore" type="xs:integer"
+											minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+						<xs:attribute name="ShowScore" type="xs:boolean" use="optional"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element minOccurs="0" ref="LOM"/>
+				<xs:element minOccurs="0" ref="AssessmentItemDetails"/>
+			</xs:sequence>
+			<xs:attribute ref="name" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Passage">
+		<xs:annotation>
+			<xs:appinfo><jupiter>
+<link def="Core/Definitions/QuestionTypes/PassageDef.xml"/>
+<component caption="Passage" type="sequence"/>
+</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element name="Line-Left" type="RichTextType">
+						<xs:annotation>
+							<xs:appinfo>
+								<jupiter>
+									<component caption="Line-Left" type="wysiwyg"/>
+									<property name="text.text"/>
+								</jupiter>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Line-Center" type="RichTextType">
+						<xs:annotation>
+							<xs:appinfo>
+								<jupiter>
+									<component caption="Line-Center" type="wysiwyg"/>
+									<property name="text.text"/>
+								</jupiter>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Line-Right" type="RichTextType">
+						<xs:annotation>
+							<xs:appinfo>
+								<jupiter>
+									<component caption="Line-Right" type="wysiwyg"/>
+									<property name="text.text"/>
+								</jupiter>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="List"/>
+					<xs:element ref="Figure"/>
+					<xs:element ref="Table"/>
+					<xs:element name="UncountedLine" type="RichTextType">
+						<xs:annotation>
+							<xs:appinfo>
+								<jupiter>
+									<component caption="Uncounted Line" type="wysiwyg"/>
+									<property name="text.xml"/>
+								</jupiter>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="Equation"/>
+				</xs:choice>
+				<xs:element minOccurs="0" name="PassageCitation" type="RichTextType">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component caption="Passage Citation" type="wysiwyg"/>
+								<property name="text.text"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element minOccurs="0" ref="LOM"/>
+			</xs:sequence>
+			<xs:attribute name="lineNumberInterval" type="xs:integer" use="optional"/>
+			<xs:attribute name="linesToDisplay" type="xs:integer" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

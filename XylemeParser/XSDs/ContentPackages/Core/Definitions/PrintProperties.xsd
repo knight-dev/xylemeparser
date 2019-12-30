@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="Figure.xsd"/>
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="PrintProperties"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="PrintProperties">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/PrintPropertiesDef.xml"/>
+					<component type="sequence" caption="Print Properties" propertyPanel="true"/>
+					<translation lang="es" caption="Propiedades de Impresión"/>
+					<translation lang="fr" caption="Propriétés d'impression"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Watermarks" minOccurs="0"/>
+				<xs:element name="PrintResolution" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="hi-res"/>
+							<xs:enumeration value="low-res"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="PrintMode" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="pdf"/>
+							<xs:enumeration value="docx"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="DocumentSecurity" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Document Security"/>
+								<translation lang="es" caption="Seguridad del Documento"/>
+								<translation lang="fr" caption="Sécurité du Document"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="EditCopy" type="xs:boolean"/>
+						<xs:attribute name="Print" type="xs:boolean"/>
+						<xs:attribute name="Password" type="xs:string" use="optional"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="PublishingOptions"/>
+				<xs:element ref="Logo" minOccurs="0"/>
+				<xs:element ref="Icon" minOccurs="0"/>
+				<xs:element ref="BarCode" minOccurs="0"/>
+				<xs:element ref="CoverArt" minOccurs="0"/>
+				<xs:element name="OfficeColorScheme" type="xs:string"  minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="media" showThrough="true" caption="Office Color Scheme File" allowedFileFormats=".xml"/>
+								<property name="media.uri"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CoverArt">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="CoverArt"/>
+					<translation lang="es" caption="Arte de Portada"/>
+					<translation lang="fr" caption="Art de Couverture"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ImageType"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PublishingOptions">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" propertyPanel="true" showTitle="true" caption="Publishing Options"/>
+					<translation lang="es" caption="Opciones de Publicación"/>
+					<translation lang="fr" caption="Options de publication"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="GenerateTOC" type="xs:boolean" use="optional" default="true"/>
+			<xs:attribute name="TOC_HierarchyDepth" use="optional" default="3">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="1"/>
+						<xs:maxInclusive value="4"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="GenerateGlossary" type="xs:boolean" use="optional" default="true"/>
+			<xs:attribute name="GlossaryStyle" use="optional" default="Both">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="ModuleOnly"/>
+						<xs:enumeration value="AppendixOnly"/>
+						<xs:enumeration value="Both"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="GenerateIndex" type="xs:boolean" use="optional" default="true"/>
+			<xs:attribute name="CoverPageStyle" use="optional" default="CenteredTitleStyle">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="VerticalTitleStyle"/>
+						<xs:enumeration value="CenteredTitleStyle"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="BodyPageStyle" use="optional" default="StandardMarginBodyPage">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="NarrowMarginBodyPage"/>
+						<xs:enumeration value="StandardMarginBodyPage"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="GenerateExamsInGuides" type="xs:boolean" use="optional" default="true"/>
+			<xs:attribute name="PageSize" use="optional" default="Letter">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Letter"/>
+						<xs:enumeration value="A4"/>
+						<xs:enumeration value="Custom"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="ShowCover" type="xs:boolean" use="optional" default="true"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LeftBodyPage">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Left Page Watermark"/>
+					<translation lang="es" caption="Marca de Agua - Página Izquierda"/>
+					<translation lang="fr" caption="Filigrane - Page de Gauche"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ImageType">
+					<xs:sequence>
+						<xs:element ref="FilterMetadata" minOccurs="0"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RightBodyPage">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Right Page Watermark"/>
+					<translation lang="es" caption="Marca de Agua - Página Derecha"/>
+					<translation lang="fr" caption="Filigrane - Page de Droite"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ImageType">
+					<xs:sequence>
+						<xs:element ref="FilterMetadata" minOccurs="0"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TOCPage">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="TOC Page Watermark"/>
+					<translation lang="es" caption="Marca de Agua - TDC"/>
+					<translation lang="fr" caption="Filigrane - TDM"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ImageType">
+					<xs:sequence>
+						<xs:element ref="FilterMetadata" minOccurs="0"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="BackCoverPage">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Back Cover Watermark"/>
+					<translation lang="es" caption="Marca de Agua - Contraportada"/>
+					<translation lang="fr" caption="Filigrane - Dos"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ImageType">
+					<xs:sequence>
+						<xs:element ref="FilterMetadata" minOccurs="0"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Watermarks">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Watermarks"/>
+					<translation lang="es" caption="Marcas de Agua"/>
+					<translation lang="fr" caption="Filigranes"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="CoverPage" minOccurs="0" maxOccurs="1">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Coverpage Watermark"/>
+								<translation lang="es" caption="Marca de Agua - Portada"/>
+								<translation lang="fr" caption="Filigrane - Page de Couverture"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="ImageType">
+								<xs:sequence>
+									<xs:element ref="FilterMetadata" minOccurs="0"/>
+								</xs:sequence>
+							</xs:extension>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="TOCPage" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="TOC Watermark"/>
+								<translation lang="es" caption="Marca de Agua - TDC"/>
+								<translation lang="fr" caption="Filigrane - TDM"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="LeftBodyPage" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Left Body Watermark"/>
+								<translation lang="es" caption="Marca de Agua - Contenido Izquierdo"/>
+								<translation lang="fr" caption="Filigrane - Contenu Gauche"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="RightBodyPage" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Right Body Watermark"/>
+								<translation lang="es" caption="Marca de Agua - Contenido Derecho"/>
+								<translation lang="fr" caption="Filigrane - Contenu Droite"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="BackCoverPage" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="BackCover Watermark"/>
+								<translation lang="es" caption="Marca de Agua - Contraportada"/>
+								<translation lang="fr" caption="Filigrane - Dos"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="SlideCoverPage" minOccurs="0"/>
+				<xs:element ref="SlideBodyPage" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SlideCoverPage">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Slide Cover Watermark"/>
+					<translation lang="es" caption="Marca de Agua - Portada de Diapositivas"/>
+					<translation lang="fr" caption="Filigrane - Page de Couverture des Diapositives"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ImageType">
+					<xs:sequence>
+						<xs:element ref="FilterMetadata" minOccurs="0"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SlideBodyPage">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Slide Body Watermark"/>
+					<translation lang="es" caption="Marca de Agua - Contenido de Diapositivas"/>
+					<translation lang="fr" caption="Filigrane - Contenu des Diapositives"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ImageType">
+					<xs:sequence>
+						<xs:element ref="FilterMetadata" minOccurs="0"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="WebPublishingProperties">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/WebPublishingPropertiesDef.xml"/>
+					<component type="sequence" caption="WebCourse Properties" propertyPanel="true" showTitle="true"/>
+					<translation lang="es" caption="Propiedades del Curso Web"/>
+					<translation lang="fr" caption="Propietés du Cours Web"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Watermarks" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Watermarks"/>
+								<translation lang="es" caption="Marcas de Agua"/>
+								<translation lang="fr" caption="Filigranes"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="IntroductionWatermark" type="ImageType" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="Intro Page Watermark"/>
+											<translation lang="es" caption="Marca de Agua - Página Intro"/>
+											<translation lang="fr" caption="Filigrane - Page Intro"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="SummaryWatermark" type="ImageType" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="Summary Page Watermark"/>
+											<translation lang="es" caption="Marca de Agua - Página Resumen"/>
+											<translation lang="fr" caption="Filigrane - Page Sommaire"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="BodyPageWatermark" type="ImageType" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="Body Page Watermark"/>
+											<translation lang="es" caption="Marca de Agua - Página de Contenido"/>
+											<translation lang="fr" caption="Filigrane - Page de Contenu"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="QuestionPageWatermark" type="ImageType" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="Question Page Watermark"/>
+											<translation lang="es" caption="Marca de Agua - Página de Pregunta"/>
+											<translation lang="fr" caption="Filigrane - Page de Question"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element ref="SlideCoverPage" minOccurs="0"/>
+							<xs:element ref="SlideBodyPage" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Messages" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Message Text"/>
+								<translation lang="es" caption="Mensaje de Texto"/>
+								<translation lang="fr" caption="Message de Texte"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="CheckPointInstructions" type="xs:string" default="The following questions are designed to check your knowledge on the content of this lesson. Each question has a predefined number of allowed attempts listed next to the Submit button. Questions can be skipped, and you can return to them later. Pay attention to hints and advice as each gives clues to the correct answers."/>
+							<xs:element name="DefaultPositiveFeedBack" type="xs:string" default="Correct!"/>
+							<xs:element name="DefaultNegativeFeedBack" type="xs:string" default="Incorrect."/>
+							<xs:element name="RetryText" type="xs:string" default="Try Again."/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="WebCourseOptions">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="WebCourse Options"/>
+								<translation lang="es" caption="Opciones de Curso Web"/>
+								<translation lang="fr" caption="Options du Cours Web"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="ShowMarginNotes" type="xs:boolean"/>
+						<xs:attribute name="RandomizeChoices" type="xs:boolean"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+            <xs:attribute name="EnableProctoring" type="xs:boolean" use="optional">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jupiter>
+                            <component type="implicit" caption="Enable BCP Proctoring"/>
+                            <property name="value"/>
+                        </jupiter>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

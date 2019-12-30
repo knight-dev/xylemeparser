@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp1 U (http://www.altova.com) by Jeffrey Katzman (Xyleme Inc) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="Applet"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="ParaComponents.xsd"/>
+	<xs:element name="Applet">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/AppletDef.xml"/>
+					<component propertyPanel="true" panelIcon="Core/Definitions/Media/Applet-24x24-a.png" type="sequence" caption="Applet" metaCaption="$Title(text.xml)$" isvisible="false" hidden="true" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Applet"/>
+					<translation lang="fr" caption="Applet"/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-contents-group"/>
+						<widget-icon iconClass="applet"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title"/>
+				<xs:element name="Instructions" type="RichTextType" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="wysiwyg" caption="Applet Instructions"/>
+								<translation lang="es" caption="Instrucciones del Applet"/>
+								<translation lang="fr" caption="Instructions de l'Applet"/>
+								<property name="text.text"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="CodeBase" type="xs:string" minOccurs="0"/>
+				<xs:element name="Code" type="xs:string" minOccurs="0"/>
+				<xs:element name="Name" type="xs:string" minOccurs="0"/>
+				<xs:element name="Archive" type="xs:string" minOccurs="0"/>
+				<xs:element name="Width" type="xs:integer" minOccurs="0"/>
+				<xs:element name="Height" type="xs:integer" minOccurs="0"/>
+				<xs:element name="Hspace" type="xs:integer" minOccurs="0"/>
+				<xs:element name="Vspace" type="xs:integer" minOccurs="0"/>
+				<xs:element name="Align" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="middle"/>
+							<xs:enumeration value="left"/>
+							<xs:enumeration value="right"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element ref="AltText" minOccurs="0"/>
+				<xs:element name="Param" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Applet Params"/>
+								<translation lang="es" caption="Parámetros del Applet"/>
+								<translation lang="fr" caption="Paramètres de l'Applet"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="name" type="xs:string"/>
+						<xs:attribute name="value" type="xs:string"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="Keywords" minOccurs="0"/>
+				<xs:element ref="Caption" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

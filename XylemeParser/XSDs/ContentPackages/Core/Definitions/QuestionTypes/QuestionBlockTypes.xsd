@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="QuestionBlock"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="FillInBlank.xsd"/>
+	<xs:include schemaLocation="DragDrop.xsd"/>
+	<xs:include schemaLocation="MatchingQuestion.xsd"/>
+	<xs:include schemaLocation="SequenceActivity.xsd"/>
+	<xs:include schemaLocation="MultipleChoiceQuestion.xsd"/>
+	<xs:include schemaLocation="EssayActivity.xsd"/>
+	<xs:include schemaLocation="ImageMapAssessment.xsd"/>
+	<xs:include schemaLocation="NonScoredActivity.xsd"/>
+	<xs:include schemaLocation="Matrix.xsd"/>
+	<xs:include schemaLocation="BinDrop.xsd"/>
+	<xs:include schemaLocation="BranchingSim.xsd"/>
+	<xs:include schemaLocation="VideoAssessment.xsd"/>
+	<xs:include schemaLocation="ImageMapQuiz.xsd"/>
+	<xs:include schemaLocation="Gameshow.xsd"/>
+	<xs:include schemaLocation="SelectHotText.xsd"/>
+	<xs:include schemaLocation="SelfAssessment.xsd"/>
+	<xs:include schemaLocation="Ledger.xsd"/>
+	<xs:include schemaLocation="CompoundQuestion.xsd"/>
+	<xs:element name="QuestionBlock" type="QuestionBlockType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/QuestionTypes/QuestionBlockDef.xml"/>
+					<component type="sequence" caption="QuestionBlock"/>
+					<translation lang="es" caption="Bloque de Pregunta"/>
+					<translation lang="fr" caption="Blo de Question"/>
+					<widget-properties>
+						<property name="container" value="true"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="QuestionBlockType">
+		<xs:sequence>
+			<xs:element ref="WebActivityBehavior" minOccurs="0"/>
+			<xs:element ref="Title" minOccurs="0"/>
+			<xs:element ref="ParaBlock" minOccurs="0">
+			</xs:element>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="MultipleChoice"/>
+				<xs:element ref="FillInBlank"/>
+				<xs:element ref="SequenceActivity"/>
+				<xs:element ref="MatchingActivity"/>
+				<xs:element ref="Matrix"/>
+				<xs:element ref="EssayActivity"/>
+				<xs:element ref="BinDrop"/>
+				<xs:element ref="DragDrop"/>
+				<xs:element ref="Ledger"/>
+				<xs:element ref="CompoundQuestion"/>
+				<xs:element ref="ImageMapAssessment"/>
+				<xs:element ref="BranchingSim"/>
+				<xs:element ref="Gameshow"/>
+				<xs:element ref="ImageMapQuiz"/>
+				<xs:element ref="VideoAssesment"/>
+				<xs:element ref="SelectHotText"/>
+			</xs:choice>
+			<xs:element ref="FilterMetadata" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

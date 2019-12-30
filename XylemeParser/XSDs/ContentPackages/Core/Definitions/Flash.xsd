@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp1 U (http://www.altova.com) by Jeffrey Katzman (Xyleme Inc) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="Flash"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="Paragraph.xsd"/>
+	<xs:element name="Flash">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/FlashDef.xml"/>
+					<component type="sequence" caption="Flash Object" propertyPanel="true" showTitle="false" panelIcon="Core/Definitions/Media/Flash-24x24-b.png" metaCaption="$Title(text.xml)$"/>
+					<property-owner/>
+					<translation lang="es" caption="Objeto Flash"/>
+					<translation lang="fr" caption="Objet Flash"/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-media-group"/>
+						<widget-icon iconClass="flash"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="wysiwyg" caption="Title" css2="background-image:'Core/definitions/media/Flash-24x24-b.png';font-size:20;font-family:'Times New Roman';" menuUseParent="true"/>
+								<translation lang="es" caption="Título"/>
+								<translation lang="fr" caption="Titre"/>
+								<property name="text.xml"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="ParaBlock" minOccurs="0"/>
+				<xs:element name="LaunchFlashFile" type="xs:anyURI">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="media" showThrough="true" placeholder="Core/Definitions/Media/Flash-600x450-b.png"  caption="Launch Flash File" allowedFileFormats=".swf, .mp3, .flv"/>
+								<translation lang="es" caption="Lanzar Archivo Flah"/>
+								<translation lang="fr" caption="Lancer Fichier Flash"/>
+								<property name="media.uri"/>
+								<widget-properties>
+									<property name="option-property" tabName="Basic" value="true"/>
+									<property name="property-layout-index" value="1"/>
+									<property name="property-layout-span" value="full"/>
+								</widget-properties>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="AltText" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="implicit" caption="Alt Text"/>
+								<property name="value"/>
+								<widget-properties>
+									<property name="option-property" tabName="Basic" value="true"/>
+									<property name="property-layout-index" value="6"/>
+									<property name="property-layout-span" value="full"/>
+								</widget-properties>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="StoryBoardImage" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Storyboard Image"/>
+								<property-owner/>
+								<translation lang="es" caption="Imagen - Guión Gráfico"/>
+								<translation lang="fr" caption="Image - Storyboard"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="AVscript" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<property-owner/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="FilterMetadata" minOccurs="0"/>
+				<xs:element ref="Caption" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="implicit" caption="Caption"/>
+								<property name="value"/>
+								<widget-properties>
+									<property name="option-property" tabName="Basic" value="true"/>
+									<property name="property-layout-index" value="7"/>
+									<property name="property-layout-span" value="full"/>
+								</widget-properties>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="LOM" minOccurs="0"/>
+				<xs:element ref="asset" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="assetFolder" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="height" type="xs:integer">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="Height"/>
+							<property name="value"/>
+							<widget-properties>
+								<property name="option-property" tabName="Basic" value="true"/>
+								<property name="property-layout-index" value="9"/>
+								<property name="property-layout-span" value="full"/>
+								<property name="property-group-editor-type" value="dimension" />
+								<property name="property-group-editor-name" value="properties.group.dimensions" />
+								<property name="property-group-editor-item-key" value="properties.dimension.height" />
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="width" type="xs:integer">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="Width"/>
+							<property name="value"/>
+							<widget-properties>
+								<property name="option-property" tabName="Basic" value="true"/>
+								<property name="property-layout-index" value="8"/>
+								<property name="property-layout-span" value="full"/>
+								<property name="property-group-editor-type" value="dimension" />
+								<property name="property-group-editor-name" value="properties.group.dimensions" />
+								<property name="property-group-editor-item-key" value="properties.dimension.width" />
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="wrap" use="optional">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="WrapText"/>
+							<property name="value"/>
+							<widget-properties>
+								<property name="option-property" tabName="Basic" value="true"/>
+								<property name="property-layout-index" value="5"/>
+								<property name="property-layout-span" value="full"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="left"/>
+						<xs:enumeration value="right"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="StartOnLoad" type="xs:boolean" use="optional" default="true">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="Start on load"/>
+							<property name="value"/>
+							<widget-properties>
+								<property name="option-property" tabName="Basic" value="true"/>
+								<property name="property-layout-index" value="2"/>
+								<property name="property-layout-span" value="full"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="ShowControls" type="xs:boolean" use="optional" default="true">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="Show Controls"/>
+							<property name="value"/>
+							<widget-properties>
+								<property name="option-property" tabName="Basic" value="true"/>
+								<property name="property-layout-index" value="3"/>
+								<property name="property-layout-span" value="full"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="MustBeCompleted" type="xs:boolean" use="optional">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="Must Be Completed"/>
+							<property name="value"/>
+							<widget-properties>
+								<property name="option-property" tabName="Basic" value="true"/>
+								<property name="property-layout-index" value="4"/>
+								<property name="property-layout-span" value="full"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

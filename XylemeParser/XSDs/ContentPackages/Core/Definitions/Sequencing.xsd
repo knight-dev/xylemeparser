@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp2 U (http://www.altova.com) by Jeffrey Katzman (Xyleme Inc) -->
+<!-- edited with XML Spy v4.0.1 U (http://www.xmlspy.com) by Jeff Katzman (Avaltus) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="CompetencyDefinition.xsd"/>
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="Sequencing"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="Sequencing" type="SequencingType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component propertyPanel="true" showTitle="true" type="sequence" caption="Sequencing Rules"/>
+					<translation lang="es" caption="Reglas de Secuencia"/>
+					<translation lang="fr" caption="Règles de Séquence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="SequencingType">
+		<xs:sequence>
+			<xs:element ref="NavigationStyle" minOccurs="0"/>
+			<xs:element ref="RandomizationControls" minOccurs="0"/>
+			<xs:element ref="RollupRules" minOccurs="0"/>
+			<xs:element ref="SequencingRule" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="LimitConditions" minOccurs="0"/>
+			<xs:element ref="Objectives" minOccurs="0"/>
+			<xs:element ref="MeasureSatisfactionIfActive" minOccurs="0"/>
+			<xs:element ref="DeliveryControls" minOccurs="0"/>
+			<xs:element ref="VisibilityControls" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="RollupWeight" type="WeightType" default="1.0"/>
+	<xs:element name="MeasureSatisfactionIfActive" type="BooleanType" default="true"/>
+	<xs:element name="LimitConditions">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Limit Conditions"/>
+					<translation lang="es" caption="Condiciones límite"/>
+					<translation lang="fr" caption="Conditions limite"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="attemptLimit" type="xs:integer" use="optional" default="1"/>
+			<xs:attribute name="hoursLimit" type="xs:integer" use="optional" default="0"/>
+			<xs:attribute name="minutesLimit" type="xs:integer" use="optional" default="0"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RandomizationControls">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Randomize Controls"/>
+					<translation lang="es" caption="Controles Aleatorios"/>
+					<translation lang="fr" caption="Randomiser les Contrôles"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="ReorderChildren" type="xs:boolean" use="required"/>
+			<xs:attribute name="SelectCount" type="xs:integer" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NavigationStyle">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Navigation Style" showBorder="true"/>
+					<translation lang="es" caption="Estilo de Navegación"/>
+					<translation lang="fr" caption="Style de Navigation"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Flow" type="BooleanType" default="true"/>
+				<xs:element name="Choice" type="BooleanType" default="true"/>
+				<xs:element name="ChoiceExit" type="BooleanType" default="true" minOccurs="0"/>
+				<xs:element name="ForwardOnly" type="BooleanType" default="false"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SetObjective">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Set Objective" showBorder="true"/>
+					<translation lang="es" caption="Establecer Objetivo"/>
+					<translation lang="fr" caption="Établir Objectif"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CompetencyDefinition"/>
+				<xs:element name="MinimumPassingMeasure">
+					<xs:simpleType>
+						<xs:restriction base="xs:float">
+							<xs:minInclusive value="0"/>
+							<xs:maxInclusive value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Objectives">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Read/Write Objectives" showBorder="true"/>
+					<translation lang="es" caption="Objetivos Lectura/Escritura"/>
+					<translation lang="fr" caption="Objectifs de Lecture/Écriture"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="SetObjective"/>
+				<xs:element ref="MapObjective"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MapObjective">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Map Objective" showBorder="true"/>
+					<translation lang="es" caption="Trazar Objetivo"/>
+					<translation lang="fr" caption="Tracer Objectif"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="TargetObjective">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Target Objective"/>
+								<translation lang="es" caption="Objetivo Meta"/>
+								<translation lang="fr" caption="Objectif Cible"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="CompetencyDefinition"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ReadObjectiveSatisfiedStatus" type="BooleanType" default="true"/>
+				<xs:element name="WriteObjectiveStatisfiedStatus" type="BooleanType" default="true"/>
+				<xs:element name="ReadObjectiveMeasure" type="BooleanType" default="true"/>
+				<xs:element name="WriteObjectiveMeasure" type="BooleanType" default="true"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SequencingRule">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Sequencing Rule"/>
+					<translation lang="es" caption="Regla de Secuencia"/>
+					<translation lang="fr" caption="Règle de Séquence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ConditionCombination" type="ConditionCombinationType" default="any"/>
+				<xs:element name="RuleAction" type="RuleActionType"/>
+				<xs:element name="ObjectiveSatisfiedStatus" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Objective Status"/>
+								<translation lang="es" caption="Estado del Objetivo"/>
+								<translation lang="fr" caption="État de l'Objectif"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="CompetencyDefinition"/>
+							<xs:element name="Value" type="ObjectiveStatusType"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ObjectiveMeasureKnown" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Objective Measure Known"/>
+								<translation lang="es" caption="Medida de Objetivo Conocida"/>
+								<translation lang="fr" caption="Mesure de Objectif Connue"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="CompetencyDefinition"/>
+							<xs:element name="Value" type="ObjectiveMeasureStatusType"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="MeasureLessThan" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Objective measure less than"/>
+								<translation lang="es" caption="Medida de Objetivo menor que"/>
+								<translation lang="fr" caption="Mesure d'objectif inférieur �"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="CompetencyDefinition"/>
+							<xs:element name="Value" type="ObjectiveMeasureType"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="MeasureGreaterThan" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Objective Measure greater than"/>
+								<translation lang="es" caption="Medida de Objetivo mayor que"/>
+								<translation lang="fr" caption="Mesure d'objectif supérieur à"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="CompetencyDefinition"/>
+							<xs:element name="Value" type="ObjectiveMeasureType"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Completed" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Completed"/>
+								<translation lang="es" caption="Terminado"/>
+								<translation lang="fr" caption="Terminé"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Value" type="BooleanType" default="true"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Attempted" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Attempted"/>
+								<translation lang="es" caption="Intento"/>
+								<translation lang="fr" caption="Tentative"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Value" type="BooleanType" default="true"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Always" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Always"/>
+								<translation lang="es" caption="Siempre"/>
+								<translation lang="fr" caption="Toujours"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Value" type="BooleanType" default="true"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DeliveryControls">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Delivery Controls"/>
+					<translation lang="es" caption="Controles de Entrega"/>
+					<translation lang="fr" caption="Contrôles de livraison"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="tracked" type="xs:boolean" default="true" minOccurs="0"/>
+				<xs:element name="completionSetByContent" type="xs:boolean" default="false" minOccurs="0"/>
+				<xs:element name="objectiveSetByContent" type="xs:boolean" default="false" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="VisibilityControls">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Visibility Controls"/>
+					<translation lang="es" caption="Controles de visibilidad"/>
+					<translation lang="fr" caption="Contrôles de visibilité"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="IsVisible" type="BooleanType" default="true" minOccurs="0"/>
+				<xs:element name="HideChildren" type="BooleanType" default="false" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RollupRules">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Rollup Rules"/>
+					<translation lang="es" caption="Reglas de Conteo"/>
+					<translation lang="fr" caption="Règles de Comptes"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="RollupRule" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Rollup Rule"/>
+								<translation lang="es" caption="Regla de Conteo"/>
+								<translation lang="fr" caption="Règles de Comptes"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="rollupObjectiveSatisfied" type="xs:boolean" default="true"/>
+			<xs:attribute name="rollupProgressCompletion" type="xs:boolean" default="true"/>
+			<xs:attribute name="objectiveMeasureWeight" type="WeightType" default="1.0"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RollupRule">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="RollupConditions">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Rollup Conditions"/>
+								<translation lang="es" caption="Condiciones de Conteo"/>
+								<translation lang="fr" caption="Conditions des Comptes"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="RollupCondition" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="Condition"/>
+											<translation lang="es" caption="Condición"/>
+											<translation lang="fr" caption="Condition"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="operator" type="ConditionOperatorType" default="noOp"/>
+									<xs:attribute name="condition" type="RollupRuleConditionType" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="ConditionCombination" type="ConditionCombinationType" default="all"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="RollupAction">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Rollup Action"/>
+								<translation lang="es" caption="Acción de Conteo"/>
+								<translation lang="fr" caption="Action de Comptes"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="Action" type="RollupActionType" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="childActivitySet" type="ChildActivityType" default="all"/>
+			<xs:attribute name="minimumCount" type="xs:nonNegativeInteger"/>
+			<xs:attribute name="minimumPercent" type="xs:decimal"/>
+		</xs:complexType>
+	</xs:element>
+	<!-- ===================================================== -->
+	<!-- Common simple types used in rules -->
+	<!-- ===================================================== -->
+	<xs:simpleType name="ConditionCombinationType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="all"/>
+			<xs:enumeration value="any"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RandomizeChildrenType">
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+	<xs:simpleType name="BooleanType">
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+	<xs:simpleType name="RuleActionType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="skip"/>
+			<xs:enumeration value="disabled"/>
+			<xs:enumeration value="hiddenFromChoice"/>
+			<xs:enumeration value="retry"/>
+			<xs:enumeration value="exitParent"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ObjectiveMeasureStatusType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="known"/>
+			<xs:enumeration value="not known"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ObjectiveMeasureType">
+		<xs:restriction base="xs:float">
+			<xs:maxInclusive value="1"/>
+			<xs:minInclusive value="-1"/>
+			<xs:enumeration value="1.0"/>
+			<xs:enumeration value="0.9"/>
+			<xs:enumeration value="0.8"/>
+			<xs:enumeration value="0.7"/>
+			<xs:enumeration value="0.6"/>
+			<xs:enumeration value="0.5"/>
+			<xs:enumeration value="0.4"/>
+			<xs:enumeration value="0.3"/>
+			<xs:enumeration value="0.2"/>
+			<xs:enumeration value="0.1"/>
+			<xs:enumeration value="0.0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ObjectiveIdAttrType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ObjectiveStatusType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="satisfied"/>
+			<xs:enumeration value="notSatisfied"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="WeightType">
+		<xs:restriction base="xs:float">
+			<xs:maxInclusive value="1"/>
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CompletionStatusType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="complete"/>
+			<xs:enumeration value="incomplete"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ChildActivityType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="all"/>
+			<xs:enumeration value="any"/>
+			<xs:enumeration value="none"/>
+			<xs:enumeration value="atLeastCount"/>
+			<xs:enumeration value="atLeastPercent"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ConditionOperatorType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="not"/>
+			<xs:enumeration value="noOp"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RollupRuleConditionType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="satisfied"/>
+			<xs:enumeration value="objectiveStatusKnown"/>
+			<xs:enumeration value="objectiveMeasureKnown"/>
+			<xs:enumeration value="completed"/>
+			<xs:enumeration value="activityProgressKnown"/>
+			<xs:enumeration value="attempted"/>
+			<xs:enumeration value="attemptLimitExceeded"/>
+			<xs:enumeration value="timeLimitExceeded"/>
+			<xs:enumeration value="outsideAvailableTimeRange"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="RollupActionType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="satisfied"/>
+			<xs:enumeration value="notSatisfied"/>
+			<xs:enumeration value="completed"/>
+			<xs:enumeration value="incomplete"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

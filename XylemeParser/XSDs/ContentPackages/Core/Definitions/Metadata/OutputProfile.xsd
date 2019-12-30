@@ -1,0 +1,821 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="OutputProfile"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="FilterMetadata.xsd"/>
+	<xs:include schemaLocation="../PrintProperties.xsd"/>
+	<xs:include schemaLocation="../QuestionTypes/WebActvityBehavior.xsd"/>
+	<xs:element name="OutputProfile">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/OutputProfileDef.xml"/>
+					<component type="sequence" caption="Output Profile" metaCaption="$FileName(text.text)$"/>
+					<translation lang="es" caption="Perfil de Salida"/>
+					<translation lang="fr" caption="Profil de Sortie"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="FileName" type="xs:string">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="text" caption="File Name"/>
+								<translation lang="es" caption="Nombre del Archivo"/>
+								<translation lang="fr" caption="Nom du Fichier"/>
+								<property name="text.text"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="GeneralPublishingType" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="implicit" caption="General Publishing Type"/>
+								<translation lang="es" caption="Tipo General de la Publicación"/>
+								<translation lang="fr" caption="Type Général de la Publication"/>
+								<property name="value"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="web"/>
+							<xs:enumeration value="print"/>
+							<xs:enumeration value="docx"/>
+							<xs:enumeration value="pptx"/>
+							<xs:enumeration value="pdfhtml"/>
+							<xs:enumeration value="XPEService"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="SaveFormat" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="implicit" caption="Save Format"/>
+								<translation lang="es" caption="Salvar Formato"/>
+								<translation lang="fr" caption="Format d'Enregistrement"/>
+								<property name="value"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="original"/>
+							<xs:enumeration value="pdf"/>
+							<!--xs:enumeration value="rtf"/-->
+							<!--xs:enumeration value="xps"/-->
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="SplitBy" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="implicit" caption="Split by"/>
+								<translation lang="es" caption="Dividir por"/>
+								<translation lang="fr" caption="Divisé par"/>
+								<property name="value"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<!--xs:enumeration value="Module"/-->
+							<xs:enumeration value="Lesson"/>
+							<!--xs:enumeration value="Topic"/-->
+							<!--xs:enumeration value="Procedure"/-->
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element ref="DocTypeStyles">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/Metadata/DocTypeStylesDef.xml"/>
+								<component type="sequence" collectionGUID="487f64dd-dfb0-4e49-9f7d-6dc375f52720" editor="collectionsinglechoice" propertyPanel="true" showTitle="true" caption="Doc Type Style" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+								<translation lang="es" caption="Estilo del Tipo de Doc"/>
+								<translation lang="fr" caption="Style du Type de Doc"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="ProductRangeStyles" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/Metadata/ProductRangeStylesDef.xml"/>
+								<component type="sequence" collectionGUID="d7ef3719-b96b-4e80-91c3-299c677c2749" editor="collectionsinglechoice" propertyPanel="true" showTitle="true" caption="Product Range Style" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+								<translation lang="es" caption="Estilo del Rango de Producto"/>
+								<translation lang="fr" caption="Style de la Gamme de Produits"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="TargetOutputs">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/Metadata/TargetOutputsDef.xml"/>
+								<component type="sequence" collectionGUID="c0a82c1e-112d9e3c-8d611-2d9e-3c8dd99e0feb602d" editor="collectionsinglechoice" propertyPanel="true" panelIcon="Core/Definitions/Media/TargetOutput-24x24-b.png" showTitle="true" caption="Target Output" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+								<translation lang="es" caption="Publicaciones Meta"/>
+								<translation lang="fr" caption="Publications Cible"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="TargetAudiences" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/Metadata/TargetAudiencesDef.xml"/>
+								<component type="sequence" collectionGUID="c0a80f65-11c10bb2-45711-c10b-b245fc5ba4a63f57" editor="collectionchoice" propertyPanel="true" showTitle="true" panelIcon="Core/Definitions/Media/UsersGroup.png" caption="Target Audiences" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+								<translation lang="es" caption="Audiencia Meta"/>
+								<translation lang="fr" caption="Audience Cible"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="AssessmentTypes" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/Metadata/AssessmentTypesDef.xml"/>
+								<component type="sequence" collectionGUID="c681da00-183c-47ca-ad53-51a34b12ee08" editor="collectionchoice" propertyPanel="true" showTitle="true" caption="Assessment Types" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+								<translation lang="es" caption="Tipos de evaluación"/>
+								<translation lang="fr" caption="Types d'évaluation"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="OfficeTemplateFile" type="xs:string"  minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="media" showThrough="true" caption="Office Template File" allowedFileFormats=".docx, .pptx, .xml"/>
+								<property name="media.uri"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="SlideThumbnailsTemplateFile" type="xs:string"  minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="media" showThrough="true" caption="Slide Thumbnails Template File" allowedFileFormats=".pptx, .xml"/>
+								<property name="media.uri"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="XSLPreprocessingFile" type="xs:string"  minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="media" showThrough="true" caption="XSL Preprocessing File" allowedFileFormats=".xsl, .xslt"/>
+								<property name="media.uri"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:choice minOccurs="0">
+					<xs:element name="PackageType">
+						<xs:annotation>
+							<xs:appinfo>
+								<jupiter>
+									<component type="sequence" caption="Package Type"/>
+									<translation lang="es" caption="Tipo de Paquete"/>
+									<property name="text.text"/>
+								</jupiter>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:choice>
+								<xs:element name="StaticPackage">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="sequence" caption="SCORM"/>
+												<translation lang="es" caption="SCORM"/>
+												<property name="text.text"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element ref="PlayerType"/>
+											<xs:element ref="Skins">
+												<xs:annotation>
+													<xs:appinfo>
+														<jupiter>
+															<link def="Core/Definitions/Metadata/SkinsDef.xml"/>
+															<component type="sequence" collectionGUID="c4b3ba8c-8701-4b53-87bc-da1bec9502df" editor="collectionsinglechoice" propertyPanel="true" showTitle="true" caption="Skin" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+															<translation lang="es" caption="Carátula"/>
+														</jupiter>
+													</xs:appinfo>
+												</xs:annotation>
+											</xs:element>
+											<xs:element ref="WebPublishingProperties"/>
+										</xs:sequence>
+										<xs:attribute name="PackageType">
+											<xs:annotation>
+												<xs:appinfo>
+													<jupiter>
+														<component type="implicit" caption="Package Type"/>
+														<translation lang="es" caption="Tipo de Paquete"/>
+														<property name="value"/>
+													</jupiter>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:enumeration value="Static SCORM 1.2"/>
+													<xs:enumeration value="Static SCORM 1.2 (multi-SCO)"/>
+													<xs:enumeration value="Static SCORM 2004 (with skin)"/>
+													<xs:enumeration value="Static SCORM 2004 (no skin)"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="DynamicPackage">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="sequence" caption="SCORM Manifest"/>
+												<translation lang="es" caption="Manifiesto SCORM"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:complexType/>
+								</xs:element>
+								<xs:element name="ProxySCORM12">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="sequence" caption="Proxy SCORM 1.2" isvisible="false"/>
+												<translation lang="es" caption="Proxy SCORM 1.2"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:complexType/>
+								</xs:element>
+								<xs:element name="EPub">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="sequence" caption="ePub"/>
+												<translation lang="es" caption="ePub"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="Title" type="xs:string" minOccurs="0"/>
+											<xs:element name="UniqueId" type="xs:string" minOccurs="0"/>
+											<xs:element name="Creator" type="xs:string" minOccurs="0"/>
+											<xs:element name="Publisher" type="xs:string" minOccurs="0"/>
+											<xs:element name="Copyright" type="xs:string" minOccurs="0"/>
+											<xs:element name="Date" type="xs:date" minOccurs="0"/>
+											<xs:element name="CoverArt" type="xs:string"  minOccurs="0">
+												<xs:annotation>
+													<xs:appinfo>
+														<jupiter>
+															<component type="media" showThrough="true" caption="Cover Art" allowedFileFormats=".jpeg, .jpg, .png, .gif, .tif, .tiff, .eps, .wmf, .emf, .wmz, .emz"/>
+															<property name="media.uri"/>
+														</jupiter>
+													</xs:appinfo>
+												</xs:annotation>
+											</xs:element>
+										</xs:sequence>
+										<xs:attribute name="EPubPackageType" use="optional">
+											<xs:annotation>
+												<xs:appinfo>
+													<jupiter>
+														<component type="implicit" caption="Package Type"/>
+														<translation lang="es" caption="Tipo de Paquete"/>
+														<property name="value"/>
+													</jupiter>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<!--xs:enumeration value="EPUB 3 (with JavaScript)"/>
+													<xs:enumeration value="EPUB 3 (without JavaScript)"/-->
+													<xs:enumeration value="EPUB 3"/>
+													<!--xs:enumeration value="EPUB 2"/-->
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:attribute>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="JavaHelp">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="sequence" caption="Java Help"/>
+												<translation lang="es" caption="Java Help"/>
+
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:complexType/>
+								</xs:element>
+								<xs:element name="MediaPackaging">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="sequence" caption="Media Collection"/>
+												<translation lang="es" caption="Colección de Media"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:complexType/>
+								</xs:element>
+								<xs:element name="OnPoint">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="sequence" caption="OnPoint Package" isvisible="false"/>
+												<translation lang="es" caption="Paquete OnPoint"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:complexType/>
+								</xs:element>
+								<xs:element name="AICC">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="sequence" caption="AICC"/>
+												<translation lang="es" caption="AICC"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:sequence>
+											<xs:choice>
+												<xs:element name="Static-manifest">
+													<xs:annotation>
+														<xs:appinfo>
+															<jupiter>
+																<component type="sequence" caption="Static AICC manifest" />
+																<translation lang="es" caption="Manifiesto AICC Estático"/>
+															</jupiter>
+														</xs:appinfo>
+													</xs:annotation>
+												<xs:complexType />
+												</xs:element>
+												<xs:element name="Dynamic-manifest">
+													<xs:annotation>
+														<xs:appinfo>
+															<jupiter>
+																<component type="sequence" caption="Dynamic AICC manifest"/>
+																<translation lang="es" caption="Manifiesto AICC Dinámico"/>
+
+															</jupiter>
+														</xs:appinfo>
+													</xs:annotation>
+													<xs:complexType>
+														<xs:attribute name="Server-URL" type="xs:string"/>
+													</xs:complexType>
+												</xs:element>
+											</xs:choice>
+											<xs:element ref="PlayerType" minOccurs="0"/>
+											<xs:element ref="Skins">
+												<xs:annotation>
+													<xs:appinfo>
+														<jupiter>
+															<link def="Core/Definitions/Metadata/SkinsDef.xml"/>
+															<component type="sequence" collectionGUID="c4b3ba8c-8701-4b53-87bc-da1bec9502df" editor="collectionsinglechoice" propertyPanel="true" showTitle="true" caption="Skin" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+															<translation lang="es" caption="Carátula"/>
+														</jupiter>
+													</xs:appinfo>
+												</xs:annotation>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="DigitalResourcePack">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="sequence" caption="Digital Resource Pack"/>
+												<translation lang="es" caption="Paquete de Recursos Digitales"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="TargetAudienceFilter">
+												<xs:annotation>
+													<xs:appinfo>
+														<jupiter>
+															<component type="sequence" caption="Target Audience Filter"/>
+															<translation lang="es" caption="Filtro de Audiencia Meta"/>
+														</jupiter>
+													</xs:appinfo>
+												</xs:annotation>
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element ref="TargetOutputs" minOccurs="0">
+															<xs:annotation>
+																<xs:appinfo>
+																	<jupiter>
+																		<link def="Core/Definitions/Metadata/TargetOutputsDef.xml"/>
+																		<component type="sequence" collectionGUID="c0a82c1e-112d9e3c-8d611-2d9e-3c8dd99e0feb602d" editor="collectionchoice" propertyPanel="true" panelIcon="Core/Definitions/Media/TargetOutput-24x24-b.png" showTitle="true" caption="Target Output" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+																		<translation lang="es" caption="Publicaciones Meta"/>
+																	</jupiter>
+																</xs:appinfo>
+															</xs:annotation>
+														</xs:element>
+														<xs:element ref="TargetAudiences" minOccurs="0">
+															<xs:annotation>
+																<xs:appinfo>
+																	<jupiter>
+																		<link def="Core/Definitions/Metadata/TargetAudiencesDef.xml"/>
+																		<component type="sequence" collectionGUID="c0a80f65-11c10bb2-45711-c10b-b245fc5ba4a63f57" editor="collectionchoice" propertyPanel="true" panelIcon="Core/Definitions/Media/UsersGroup.png" showTitle="true" caption="Target Audiences" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+																		<translation lang="es" caption="Audiencia Meta"/>
+																	</jupiter>
+																</xs:appinfo>
+															</xs:annotation>
+														</xs:element>
+														<xs:element ref="AssessmentTypes" minOccurs="0">
+															<xs:annotation>
+																<xs:appinfo>
+																	<jupiter>
+																		<link def="Core/Definitions/Metadata/AssessmentTypesDef.xml"/>
+																		<component type="sequence" collectionGUID="c681da00-183c-47ca-ad53-51a34b12ee08" editor="collectionchoice" propertyPanel="true" showTitle="true" caption="Assessment Types" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+																		<translation lang="es" caption="Tipos de evaluación"/>
+																		<translation lang="fr" caption="Types d'évaluation"/>
+																	</jupiter>
+																</xs:appinfo>
+															</xs:annotation>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element ref="iPadAppPackage"/>
+								<xs:element name="PerformanceSupportHTML">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="sequence" caption="Performance Support (HTML)"/>
+												<translation lang="es" caption="Apoyo al Desempeño (HTML)"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element ref="Icon" minOccurs="0"/>
+											<xs:element ref="Skins">
+												<xs:annotation>
+													<xs:appinfo>
+														<jupiter>
+															<link def="Core/Definitions/Metadata/SkinsDef.xml"/>
+															<component type="sequence" collectionGUID="c4b3ba8c-8701-4b53-87bc-da1bec9502df" editor="collectionsinglechoice" propertyPanel="true" showTitle="true" caption="Skin" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+															<translation lang="es" caption="Carátula"/>
+														</jupiter>
+													</xs:appinfo>
+												</xs:annotation>
+											</xs:element>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="IMS_CommonCartridge">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="sequence" caption="CDS Common Cartridge"/>
+												<translation lang="es" caption="CDS Common Cartridge "/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:complexType/>
+								</xs:element>
+								<xs:element name="IMS_QTI">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="sequence" caption="IMS QTI"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:complexType/>
+								</xs:element>
+								<xs:element name="IMS_SCORM">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="sequence" caption="CDS SCORM"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element ref="Skins" minOccurs="0">
+												<xs:annotation>
+													<xs:appinfo>
+														<jupiter>
+															<link def="Core/Definitions/Metadata/SkinsDef.xml"/>
+															<component type="sequence" collectionGUID="c4b3ba8c-8701-4b53-87bc-da1bec9502df" editor="collectionsinglechoice" propertyPanel="true" showTitle="true" caption="Skin" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+															<translation lang="es" caption="Caratula"/>
+														</jupiter>
+													</xs:appinfo>
+												</xs:annotation>
+											</xs:element>
+										</xs:sequence>
+										<xs:attribute ref="BCPversion" use="optional"/>
+									</xs:complexType>
+								</xs:element>
+								<xs:element name="CommonCartridgePackage">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="sequence" caption="Common Cartridge"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:complexType/>
+								</xs:element>
+							</xs:choice>
+							<xs:attribute name="LMS" use="optional">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="implicit" caption="LMS"/>
+											<translation lang="es" caption="LMS"/>
+											<property name="value"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:simpleType>
+									<xs:restriction base="xs:string">
+										<xs:enumeration value="Default"/>
+										<xs:enumeration value="SABA"/>
+										<xs:enumeration value="GL"/>
+										<xs:enumeration value="SF"/>
+									</xs:restriction>
+								</xs:simpleType>
+							</xs:attribute>
+						</xs:complexType>
+					</xs:element>
+					<xs:element ref="PrintProperties"/>
+				</xs:choice>
+				<xs:element ref="Langs" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/Metadata/LangsDef.xml"/>
+								<component type="sequence" collectionGUID="1c78e4b6-bceb-41b1-acf4-1af228b4f6ce" editor="collectionsinglechoice" propertyPanel="true" showTitle="true" caption="Lang" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+								<translation lang="es" caption="Idioma"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="SubstitutionProfile" minOccurs="0"/>
+				<xs:element ref="LOM" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="iPadAppPackage">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Xyleme BookReader"/>
+					<translation lang="es" caption="Xyleme BookReader"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Title" type="xs:string" minOccurs="0"/>
+				<xs:element name="Copyright" type="xs:string" minOccurs="0"/>
+				<xs:element name="Author" type="xs:string" minOccurs="0"/>
+				<xs:element name="Publisher" type="xs:string" minOccurs="0"/>
+				<xs:element name="UniqueBookIdentifier" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="text" caption="Unique Book Identifier"/>
+								<property name="text.text"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="Icon" minOccurs="0"/>
+				<xs:element ref="Skins">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/Metadata/SkinsDef.xml"/>
+								<component type="sequence" collectionGUID="c4b3ba8c-8701-4b53-87bc-da1bec9502df" editor="collectionsinglechoice" propertyPanel="true" showTitle="true" caption="Skin" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+								<translation lang="es" caption="Carátula"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ReadMeFilters">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Read Me Filters"/>
+								<translation lang="es" caption="Filtros Léeme"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="TargetOutputs" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<link def="Core/Definitions/Metadata/TargetOutputsDef.xml"/>
+											<component type="sequence" collectionGUID="c0a82c1e-112d9e3c-8d611-2d9e-3c8dd99e0feb602d" editor="collectionchoice" propertyPanel="true" panelIcon="Core/Definitions/Media/TargetOutput-24x24-b.png" showTitle="true" caption="Target Output" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+											<translation lang="es" caption="Publicaciones Meta"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element ref="TargetAudiences" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<link def="Core/Definitions/Metadata/TargetAudiencesDef.xml"/>
+											<component type="sequence" collectionGUID="c0a80f65-11c10bb2-45711-c10b-b245fc5ba4a63f57" editor="collectionchoice" propertyPanel="true" panelIcon="Core/Definitions/Media/UsersGroup.png" showTitle="true" caption="Target Audiences" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+											<translation lang="es" caption="Audiencia Meta"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element ref="AssessmentTypes" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<link def="Core/Definitions/Metadata/AssessmentTypesDef.xml"/>
+											<component type="sequence" collectionGUID="c681da00-183c-47ca-ad53-51a34b12ee08" editor="collectionchoice" propertyPanel="true" showTitle="true" caption="Assessment Types" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+											<translation lang="es" caption="Tipos de evaluación"/>
+											<translation lang="fr" caption="Types d'évaluation"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ShowMeFilters">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Show Me Filters"/>
+								<translation lang="es" caption="Filtros Muéstrame"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="TargetOutputs" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<link def="Core/Definitions/Metadata/TargetOutputsDef.xml"/>
+											<component type="sequence" collectionGUID="c0a82c1e-112d9e3c-8d611-2d9e-3c8dd99e0feb602d" editor="collectionchoice" propertyPanel="true" showTitle="true" caption="Target Output" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+											<translation lang="es" caption="Publicaciones Meta"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element ref="TargetAudiences" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<link def="Core/Definitions/Metadata/TargetAudiencesDef.xml"/>
+											<component type="sequence" collectionGUID="c0a80f65-11c10bb2-45711-c10b-b245fc5ba4a63f57" editor="collectionchoice" propertyPanel="true" showTitle="true" caption="Target Audiences" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+											<translation lang="es" caption="Audiencia Meta"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element ref="AssessmentTypes" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<link def="Core/Definitions/Metadata/AssessmentTypesDef.xml"/>
+											<component type="sequence" collectionGUID="c681da00-183c-47ca-ad53-51a34b12ee08" editor="collectionchoice" propertyPanel="true" showTitle="true" caption="Assessment Types" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+											<translation lang="es" caption="Tipos de evaluación"/>
+											<translation lang="fr" caption="Types d'évaluation"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PlayerType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Player Type"/>
+					<translation lang="es" caption="Tipo de Reproductor"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="Javascript">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="JLP"/>
+								<translation lang="es" caption="JLP"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType/>
+				</xs:element>
+				<xs:element name="Client-side">   <!-- DEPRECATED -->
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="JSA"/>
+								<translation lang="es" caption="JSA"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType/>
+				</xs:element>
+				<xs:element name="Server-side">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Cloud Player"/>
+								<translation lang="es" caption="Cloud Player"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute ref="BCPversion" use="optional"/>
+						<xs:attribute name="SCORMPlayerAddress" type="xs:string" use="optional"/>
+						<xs:attribute name="PlayerCommunicationMode" use="optional">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="implicit" caption="Communication Mode"/>
+										<translation lang="es" caption="Modo de comunicacion"/>
+										<property name="value"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="Socket"/>
+									<xs:enumeration value="HTTP/HTTPS"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:attribute name="BCPversion" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="extlist" caption="Cloud Player version"/>
+					<property name="choice.value"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+</xs:schema>

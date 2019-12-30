@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="ImageMapAssessment"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="../ImageMap.xsd"/>
+	<xs:include schemaLocation="QuestionComponentLib.xsd"/>
+	<xs:element name="ImageMapAssessment">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/QuestionTypes/ImageMapAssessmentDef.xml"/>
+					<component propertyPanel="true" panelIcon="Core/Definitions/Media/Q-24x24-b.png" type="sequence" widget-type="imagemapassessment" caption="ImageMap Assessment" metaCaption="$name(text.text)$" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Evaluación - Mapa de Imagen"/>
+					<translation lang="fr" caption="Evaluation - Carte d'Image"/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-question-web-group"/>
+						<widget-icon iconClass="image-map-assessment"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title" minOccurs="0"/>
+				<xs:element ref="QuestionStem"/>
+				<xs:element ref="BaseImage"/>
+				<xs:element name="HotSpotChoices">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" editor="imagemapassess" caption="HotSpot Choice"/>
+								<translation lang="es" caption="Opción Hotspot"/>
+								<translation lang="fr" caption="Option Hotspot"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="HotSpotChoice" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="HotSpot Choice"/>
+											<translation lang="es" caption="Opción HotSpot"/>
+											<translation lang="fr" caption="Option HotSpot"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="isCorrect" type="xs:boolean"/>
+										<xs:element ref="HotSpotType"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="Hint" minOccurs="0"/>
+				<xs:element ref="Feedback" minOccurs="0"/>
+				<xs:element ref="Advice" minOccurs="0"/>
+				<xs:element ref="LOM" minOccurs="0"/>
+				<xs:element ref="CompetencyDefinition" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element minOccurs="0" ref="AssessmentItemDetails"/>
+			</xs:sequence>
+			<xs:attribute ref="name" use="optional"/>
+			<xs:attribute ref="Weight"/>
+			<xs:attribute ref="CognitionLevel" use="optional"/>
+			<xs:attribute name="ShowHotSpotOutlines" use="optional">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="Show HotSpot Outlines"/>
+							<property name="value"/>
+							<widget-properties>
+								<property name="option-property" tabName="Basic" value="true"/>
+								<property name="property-layout-index" value="2"/>
+								<property name="property-group-editor-type" value="basic-group"/>
+								<property name="property-group-editor-name" value="properties.group.hotspot"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="OnLoad"/>
+						<xs:enumeration value="Mouseover"/>
+						<xs:enumeration value="Click"/>
+						<xs:enumeration value="Never"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="OutlineColor" default="transparent">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="Hotspot Outline Color"/>
+							<property name="value"/>
+							<widget-properties>
+								<property name="option-property" tabName="Basic" value="true"/>
+								<property name="property-layout-index" value="1"/>
+								<property name="property-group-editor-type" value="basic-group"/>
+								<property name="property-group-editor-name" value="properties.group.hotspot"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="transparent"/>
+						<xs:enumeration value="yellow"/>
+						<xs:enumeration value="red"/>
+						<xs:enumeration value="black"/>
+						<xs:enumeration value="white"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

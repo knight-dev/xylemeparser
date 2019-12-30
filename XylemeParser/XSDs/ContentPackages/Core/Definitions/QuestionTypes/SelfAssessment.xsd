@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp1 U (http://www.altova.com) by Jeffrey Katzman (Xyleme Inc) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="QuestionComponentLib.xsd"/>
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="SelfAssessment"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="SelfAssessment">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/QuestionTypes/SelfAssessmentDef.xml"/>
+					<component propertyPanel="true" panelIcon="Core/Definitions/Media/Q-24x24-b.png" type="sequence" caption="Self Assessment"/>
+					<translation lang="es" caption="AutoEvaluación"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="QuestionStem"/>
+				<xs:element name="ColumnHeaders">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Column Headers"/>
+								<translation lang="es" caption="Encabezados de Columna"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ColumnHeader" type="xs:string" minOccurs="2" maxOccurs="5"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="StatementBlock" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Statement Block"/>
+								<translation lang="es" caption="Bloque de Sentencias"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="CompetencyDefinition"/>
+							<xs:element name="Statement" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="Statement"/>
+											<translation lang="es" caption="Sentencia"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="RichText"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Results">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Results"/>
+								<translation lang="es" caption="Resultados"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="Instructions"/>
+							<xs:element name="ResultsBlock" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="Result Block"/>
+											<translation lang="es" caption="Bloque de Resultados"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="CompetencyDefinition"/>
+										<xs:element name="RangeFeedback" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:appinfo>
+													<jupiter>
+														<component type="sequence" caption="Range Feedback"/>
+														<translation lang="es" caption="Rango de Realimentación"/>
+													</jupiter>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="ThresholdRange">
+														<xs:annotation>
+															<xs:appinfo>
+																<jupiter>
+																	<component type="sequence" caption="Threshold range"/>
+																	<translation lang="es" caption="Rango de Umbral"/>
+																</jupiter>
+															</xs:appinfo>
+														</xs:annotation>
+														<xs:complexType>
+															<xs:sequence>
+																<xs:element name="Min" type="xs:integer"/>
+																<xs:element name="Max" type="xs:integer"/>
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<xs:element ref="SimpleBlock"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="randomizeStatements" type="xs:boolean"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

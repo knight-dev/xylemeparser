@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="CompetencyMap"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="CompetencyDefinition.xsd"/>
+	<xs:include schemaLocation="Paragraph.xsd"/>
+	<xs:element name="CompetencyMap">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/CompetencyMapDef.xml"/>
+					<component type="sequence" caption="Competency Map" metaCaption="CompMap:$Title(text.xml)$" css="color:rgb(30, 21,196);font-size:20;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Mapa de Aptitudes"/>
+					<translation lang="fr" caption="Carte des compétences"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="wysiwyg" caption="Title" css2="border-top-width:2px;border-bottom-width:2px;font-size:20;font-family:'Times New Roman';font-weight:bold;" menuUseParent="true"/>
+								<translation lang="es" caption="Título"/>
+								<translation lang="fr" caption="Titre"/>
+								<property name="text.xml"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element name="JobRole">
+						<xs:annotation>
+							<xs:appinfo>
+								<jupiter>
+									<component type="sequence" caption="Job Role" metaCaption="Job Role: $Title(text.xml)$" indent="10" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+									<translation lang="es" caption="Rol de Trabajo"/>
+									<translation lang="fr" caption="Rôle d'emploi"/>
+								</jupiter>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="Title">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="wysiwyg" caption="Title" css2="color:rgb(30, 21,196);font-size:16;font-family:'Times New Roman';font-style:italic;" menuUseParent="true"/>
+												<translation lang="es" caption="Título"/>
+												<translation lang="fr" caption="Titre"/>
+												<property name="text.xml"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="JobFunction" maxOccurs="unbounded">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="sequence" caption="Function" metaCaption="Function: $Title(text.xml)$" indent="10" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;"/>
+												<translation lang="es" caption="Función"/>
+												<translation lang="fr" caption="Fonction"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element ref="Title">
+												<xs:annotation>
+													<xs:appinfo>
+														<jupiter>
+															<component type="wysiwyg" caption="Title" css2="border-bottom-width:1px;font-size:12;font-family:'Times New Roman';" menuUseParent="true"/>
+															<translation lang="es" caption="Título"/>
+															<translation lang="fr" caption="Titre"/>
+															<property name="text.xml"/>
+														</jupiter>
+													</xs:appinfo>
+												</xs:annotation>
+											</xs:element>
+											<xs:element ref="CompetencyDefinition" maxOccurs="unbounded"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element ref="CompetencyGroup"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CompetencyGroup">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/CompetencyGroupDef.xml"/>
+					<component type="sequence" caption="Competency Group" metaCaption="$Title(text.xml)$" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Grupo de Aptitudes"/>
+					<translation lang="fr" caption="Groupe des compétences"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title"/>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="CompetencyDefinition"/>
+					<xs:element ref="CompetencyGroup"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+	
+	Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+	All rights reserved.
+	
+	This file and related documentation are protected by copyright and
+	are distributed under licenses regarding their use, copying, distribution,
+	and decompilation. No part of this product or related documentation may
+	be reproduced or transmitted in any form or by any means, electronic or
+	mechanical, for any purpose, without the express written permission of
+	Xyleme, Inc.
+	
+-->
+
+<config>
+	<sub search="0" replace="&#x2080;" />
+	<sub search="1" replace="&#x2081;" />
+	<sub search="2" replace="&#x2082;" />
+	<sub search="3" replace="&#x2083;" />
+	<sub search="4" replace="&#x2084;" />
+	<sub search="5" replace="&#x2085;" />
+	<sub search="6" replace="&#x2086;" />
+	<sub search="7" replace="&#x2087;" />
+	<sub search="8" replace="&#x2088;" />
+	<sub search="9" replace="&#x2089;" />
+	<sub search="+" replace="&#x208A;" />
+	<sub search="-" replace="&#x208B;" />
+	<sub search="–" replace="&#x208B;" />		
+	<sub search="=" replace="&#x208C;" />
+	<sub search="(" replace="&#x208D;" />
+	<sub search=")" replace="&#x208E;" />
+</config>

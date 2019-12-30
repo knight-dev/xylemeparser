@@ -1,0 +1,848 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!-- edited with XML Spy v4.0.1 U (http://www.xmlspy.com) by Jeff Katzman (Avaltus) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="Slide"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="Paragraph.xsd"/>
+	<xs:include schemaLocation="Stage.xsd"/>
+	<xs:element name="Slide" type="SlideType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/SlideDef.xml"/>
+					<component type="sequence" caption="XML Slide" indent="60" metaCaption="$Title(text.xml)$" css="color:rgb(30, 21,196);font-size:18;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Diapositiva XML"/>
+					<translation lang="fr" caption="Diapositive XML"/>
+					<structural>
+						<shortDesc>Short description of "Slide"</shortDesc>
+						<longDesc>Long description of "Slide"</longDesc>
+					</structural>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-container-group"/>
+						<widget-icon iconClass="xml-slide"/>
+						<property name="data-includeAvailableChildren" value="Body"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="SlideType">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="Transition">
+				<xs:annotation>
+					<xs:appinfo><jupiter>
+						<component caption="Transition" type="sequence"/>
+						<widget-properties>
+							<property name="data-includeAvailableChildren" value="Body"/>
+						</widget-properties>
+					</jupiter></xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:choice maxOccurs="1">
+						<xs:element name="Cut">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+<component caption="Cut" type="sequence"/>
+</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="None"/>
+											<xs:enumeration value="ThroughBlack"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="0.5"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Fade">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+<component caption="Fade" type="sequence"/>
+</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="FadeSmoothly"/>
+											<xs:enumeration value="ThroughBlack"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="1"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Push">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+<component caption="Push" type="sequence"/>
+</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="FromBottom"/>
+											<xs:enumeration value="FromTop"/>
+											<xs:enumeration value="FromLeft"/>
+											<xs:enumeration value="FromRight"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="1"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Wipe">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+<component caption="Wipe" type="sequence"/>
+</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="FromRight"/>
+											<xs:enumeration value="FromTop"/>
+											<xs:enumeration value="FromLeft"/>
+											<xs:enumeration value="FromBottom"/>
+											<xs:enumeration value="FromTopRight"/>
+											<xs:enumeration value="FromBottomRight"/>
+											<xs:enumeration value="FromTopLeft"/>
+											<xs:enumeration value="FromBottomLeft"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="1"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Split">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+<component caption="Split" type="sequence"/>
+</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="VerticalOut"/>
+											<xs:enumeration value="HorizontalIn"/>
+											<xs:enumeration value="HorizontalOut"/>
+											<xs:enumeration value="VerticalIn"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="1.5"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Reveal">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+<component caption="Reveal" type="sequence"/>
+</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="SmoothlyFromRight"/>
+											<xs:enumeration value="SmoothlyFromLeft"/>
+											<xs:enumeration value="ThroughBlackFromRight"/>
+											<xs:enumeration value="ThroughBlackFromLeft"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="3.4"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="RandomBars">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+<component caption="Random Bars" type="sequence"/>
+</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="Vertical"/>
+											<xs:enumeration value="Horizontal"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="1"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Shape">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+<component caption="Shape" type="sequence"/>
+</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="Circle"/>
+											<xs:enumeration value="Diamond"/>
+											<xs:enumeration value="Plus"/>
+											<xs:enumeration value="In"/>
+											<xs:enumeration value="Out"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="1"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Uncover">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+<component caption="Uncover" type="sequence"/>
+</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="FromRight"/>
+											<xs:enumeration value="FromTop"/>
+											<xs:enumeration value="FromLeft"/>
+											<xs:enumeration value="FromBottom"/>
+											<xs:enumeration value="FromTopRight"/>
+											<xs:enumeration value="FromBottomRight"/>
+											<xs:enumeration value="FromTopLeft"/>
+											<xs:enumeration value="FromBottomLeft"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="1"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Cover">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+<component caption="Cover" type="sequence"/>
+</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="FromRight"/>
+											<xs:enumeration value="FromTop"/>
+											<xs:enumeration value="FromLeft"/>
+											<xs:enumeration value="FromBottom"/>
+											<xs:enumeration value="FromTopRight"/>
+											<xs:enumeration value="FromBottomRight"/>
+											<xs:enumeration value="FromTopLeft"/>
+											<xs:enumeration value="FromBottomLeft"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="1"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Flash">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+<component caption="Flash" type="sequence"/>
+</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="None"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="1"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Dissolve">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+<component caption="Dissolve" type="sequence"/>
+</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="None"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="1.2"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Checkerboard">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+<component caption="Checkerboard" type="sequence"/>
+</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="FromLeft"/>
+											<xs:enumeration value="FromTop"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="2.5"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Blinds">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+<component caption="Blinds" type="sequence"/>
+</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="Vertical"/>
+											<xs:enumeration value="Horizontal"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="1.6"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Clock">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+<component caption="Clock" type="sequence"/>
+</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="Clockwise"/>
+											<xs:enumeration value="CounterClockwise"/>
+											<xs:enumeration value="Wedge"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="1"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Ripple">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+<component caption="Ripple" type="sequence"/>
+</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="Center"/>
+											<xs:enumeration value="FromBottomLeft"/>
+											<xs:enumeration value="FromBottomRight"/>
+											<xs:enumeration value="FromTopRight"/>
+											<xs:enumeration value="FromTopLeft"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="1.5"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Honeycomb">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+<component caption="Honeycomb" type="sequence"/>
+</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="None"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="4.4"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Glitter">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+<component caption="Glitter" type="sequence"/>
+</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="HexagonsFromLeft"/>
+											<xs:enumeration value="HexagonsFromTop"/>
+											<xs:enumeration value="HexagonsFromRight"/>
+											<xs:enumeration value="HexagonsFromBottom"/>
+											<xs:enumeration value="DiamondsFromLeft"/>
+											<xs:enumeration value="DiamondsFromTop"/>
+											<xs:enumeration value="DiamondsFromRight"/>
+											<xs:enumeration value="DiamondsFromBottom"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="3.9"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Vortex">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+<component caption="Vortex" type="sequence"/>
+</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="FromLeft"/>
+											<xs:enumeration value="FromTop"/>
+											<xs:enumeration value="FromRight"/>
+											<xs:enumeration value="FromBottom"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="4"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Shred">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+<component caption="Shred" type="sequence"/>
+</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="StripsIn"/>
+											<xs:enumeration value="StripsOut"/>
+											<xs:enumeration value="ParticlesIn"/>
+											<xs:enumeration value="ParticlesOut"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="3"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Switch">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+<component caption="Switch" type="sequence"/>
+</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="Right"/>
+											<xs:enumeration value="Left"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="1.1"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Flip">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+<component caption="Flip" type="sequence"/>
+</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="Right"/>
+											<xs:enumeration value="Left"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="1.2"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Gallery">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+<component caption="Gallery" type="sequence"/>
+</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="FromRight"/>
+											<xs:enumeration value="FromLeft"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="1.6"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Cube">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+									<component caption="Cube" type="sequence"/>
+								</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="FromRight"/>
+											<xs:enumeration value="FromBottom"/>
+											<xs:enumeration value="FromLeft"/>
+											<xs:enumeration value="FromTop"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="1.2"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Doors">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+									<component caption="Doors" type="sequence"/>
+								</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="Vertical"/>
+											<xs:enumeration value="Horizontal"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="1.4"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Box">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+									<component caption="Box" type="sequence"/>
+								</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="FromRight"/>
+											<xs:enumeration value="FromTop"/>
+											<xs:enumeration value="FromLeft"/>
+											<xs:enumeration value="FromBottom"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="1.6"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Zoom">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+									<component caption="Zoom" type="sequence"/>
+								</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="In"/>
+											<xs:enumeration value="Out"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="0.9"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Pan">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+									<component caption="Pan" type="sequence"/>
+								</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="FromBottom"/>
+											<xs:enumeration value="FromLeft"/>
+											<xs:enumeration value="FromRight"/>
+											<xs:enumeration value="FromTop"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="1.3"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="FerrisWheel">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+									<component caption="Ferris Wheel" type="sequence"/>
+								</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="FromRight"/>
+											<xs:enumeration value="FromLeft"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="2"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Conveyor">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+									<component caption="Conveyor" type="sequence"/>
+								</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="FromRight"/>
+											<xs:enumeration value="FromLeft"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="1.6"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Rotate">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+									<component caption="Rotate" type="sequence"/>
+								</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="FromRight"/>
+											<xs:enumeration value="FromTop"/>
+											<xs:enumeration value="FromLeft"/>
+											<xs:enumeration value="FromBottom"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="2"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Window">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+									<component caption="Window" type="sequence"/>
+								</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="Vertical"/>
+											<xs:enumeration value="Horizontal"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="1.5"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Orbit">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+									<component caption="Orbit" type="sequence"/>
+								</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="FromRight"/>
+											<xs:enumeration value="FromBottom"/>
+											<xs:enumeration value="FromLeft"/>
+											<xs:enumeration value="FromTop"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="1.6"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="FlyThrough">
+							<xs:annotation>
+								<xs:appinfo><jupiter>
+									<component caption="Fly Through" type="sequence"/>
+								</jupiter></xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="option" use="required">
+									<xs:simpleType>
+										<xs:restriction base="xs:string">
+											<xs:enumeration value="In"/>
+											<xs:enumeration value="Out"/>
+											<xs:enumeration value="InWithBounce"/>
+											<xs:enumeration value="OutWithBounce"/>
+										</xs:restriction>
+									</xs:simpleType>
+								</xs:attribute>
+								<xs:attribute name="duration" type="xs:decimal" use="optional"
+									default="0.8"/>
+							</xs:complexType>
+						</xs:element>
+					</xs:choice>
+					<xs:attribute name="advanceTime" type="xs:decimal" use="optional"/>
+					<xs:attribute default="true" name="advanceOnClick" type="xs:boolean"
+						use="optional"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:choice>
+				<xs:sequence>
+					<xs:annotation>
+						<xs:appinfo>
+						<jupiter>
+							<component type="sequence" caption="Slide Content"/>
+							<translation lang="es" caption="Contenido de Diapositiva"/>
+						</jupiter>
+					</xs:appinfo>
+					</xs:annotation>
+					<xs:element ref="Title">
+						<xs:annotation>
+							<xs:appinfo>
+						<jupiter>
+							<component type="wysiwyg" caption="Slide Title" css2="font-size:18;font-family:'Times New Roman';font-weight:bold;" menuUseParent="true"/>
+							<translation lang="es" caption="Título de Diapositiva"/>
+							<translation lang="fr" caption="Titre de Diapositive"/>
+							<property name="text.xml"/>
+						</jupiter>
+					</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+                    <xs:element ref="SubTitle" minOccurs="0"/>
+					<xs:element name="Body">
+						<xs:annotation>
+							<xs:appinfo>
+								<jupiter>
+									<component type="sequence" caption="XML Slide Body" isvisible="true"/>
+									<translation lang="es" caption="Contenido de Diapositiva XML"/>
+								</jupiter>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:choice maxOccurs="unbounded">
+								<xs:element ref="List"/>
+								<xs:element ref="MediaObject"/>
+								<xs:element ref="Figure"/>
+								<xs:element ref="RichText"/>
+								<xs:element ref="Table"/>
+								<xs:element ref="CustomNote"/>
+								<xs:element ref="Movie"/>
+								<xs:element ref="Flash"/>
+								<xs:element ref="EducationalObjective"/>
+								<xs:element ref="Stage"/>
+								<xs:element ref="Code"/>
+							</xs:choice>
+						</xs:complexType>
+					</xs:element>
+					<xs:element ref="FilterMetadata" minOccurs="0"/>
+					<xs:element ref="AltText" minOccurs="0"/>
+					<xs:element ref="LongDesc" minOccurs="0"/>
+					<xs:element ref="LOM" minOccurs="0"/>
+				</xs:sequence>
+				<xs:element ref="Stage"/>
+			</xs:choice>
+			<xs:element minOccurs="0" name="SlideNote">
+				<xs:annotation>
+					<xs:appinfo><jupiter>
+<component caption="Slide Note" type="sequence"/>
+</jupiter></xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:choice maxOccurs="unbounded">
+						<xs:element ref="RichText"/>
+						<xs:element ref="List"/>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="slideTheme" type="xs:string">
+			<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component caption="Slide Theme" collectionGUID="4e0a5ec2-ac13-40bd-936f-d27515de1cb3" type="mmlchoice"/>
+					<property name="choice.value"/>
+			                <widget-properties>
+                        			<property name="option-property" value="true"/>
+			                        <property name="property-layout-index" value="1"/>
+			                </widget-properties>
+				</jupiter>
+			</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

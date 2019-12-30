@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!-- edited with XML Spy v4.0.1 U (http://www.xmlspy.com) by Jeff Katzman (Avaltus) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<!-- Specify the root element -->
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="WebCourse"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<!--Include component sDocs-->
+	<xs:include schemaLocation="Glossary.xsd"/>
+	<xs:include schemaLocation="Sequencing.xsd"/>
+	<xs:include schemaLocation="SharedComponents.xsd"/>
+	<xs:include schemaLocation="Stage.xsd"/>
+	<xs:element name="WebCourse">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/WebCourseDef.xml"/>
+					<component type="sequence" caption="Web Course" metaCaption="$Title(text.xml)$" css="color:rgb(30, 21,196);font-size:20;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Curso Web"/>
+					<translation lang="fr" caption="Cours Web"/>
+					<structural showInDocTree="false">
+						<shortDesc>Short description of "Web Course"</shortDesc>
+						<longDesc>Long description of "Web Course"</longDesc>
+					</structural>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="wysiwyg" caption="Title" css2="border-top-width:2px;border-bottom-width:2px;font-size:24;font-family:'Times New Roman';font-weight:bold;"/>
+								<translation lang="es" caption="Título"/>
+								<translation lang="fr" caption="Titre"/>
+								<property name="text.xml"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="Sequencing" minOccurs="0"/>
+				<xs:element ref="WebActivityBehavior" minOccurs="0"/>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="Container"/>
+					<xs:element ref="Page"/>
+					<xs:element ref="Stage"/>
+					<xs:element ref="HtmlPage"/>
+					<xs:element ref="ScoreCard"/>
+				</xs:choice>
+				<xs:element ref="Glossary" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="DesignData" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ScoreCard">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/ScoreCardDef.xml"/>
+					<component type="sequence" caption="Score Card"/>
+					<translation lang="es" caption="Tarjeta de Puntuación"/>
+					<translation lang="fr" caption="Carte de pointage"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType/>
+	</xs:element>
+	<xs:element name="Page" type="PageType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/PageDef.xml"/>
+					<component type="sequence" border="1" caption="Page" metaCaption="$Title(text.xml)$" indent="10" css="color:rgb(30, 21,196);font-size:18;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Página"/>
+					<translation lang="fr" caption="Page"/>
+					<structural>
+						<shortDesc>Short description of "Page"</shortDesc>
+						<longDesc>Long description of "Page"</longDesc>
+					</structural>
+					<widget-properties>
+						<property name="container" value="true"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="PageType">
+		<xs:sequence>
+			<xs:element ref="Sequencing" minOccurs="0"/>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="Topic"/>
+				<xs:element ref="Procedure"/>
+				<xs:element ref="QuestionBlock"/>
+				<xs:element ref="ContentBlock"/>
+			</xs:choice>
+			<xs:element ref="DesignData" minOccurs="0"/>
+			<xs:element ref="FilterMetadata" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Container" type="ContainerType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/ContainerDef.xml"/>
+					<component type="sequence" caption="Container" metaCaption="$Title(text.xml)$" indent="10" css="color:rgb(30, 21,196);font-size:18;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Contenedor"/>
+					<translation lang="fr" caption="Conteneur"/>
+					<structural>
+						<shortDesc>Short description of "Container"</shortDesc>
+						<longDesc>Long description of "Container"</longDesc>
+					</structural>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ContainerType">
+		<xs:sequence>
+			<xs:element ref="Title">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="wysiwyg" caption="Title" css2="color:rgb(30, 21,196);font-size:21;font-family:'Times New Roman';font-style:italic;" menuUseParent="true"/>
+							<translation lang="es" caption="Título"/>
+							<translation lang="fr" caption="Titre"/>
+							<property name="text.xml"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Sequencing" minOccurs="0"/>
+			<xs:element ref="WebActivityBehavior" minOccurs="0"/>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="Container"/>
+				<xs:element ref="Page"/>
+				<xs:element ref="HtmlPage"/>
+				<xs:element ref="Stage"/>
+				<xs:element ref="ScoreCard"/>
+			</xs:choice>
+			<xs:element ref="DesignData" minOccurs="0"/>
+			<xs:element ref="FilterMetadata" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="HtmlPage">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/HtmlPageDef.xml"/>
+					<component type="sequence" caption="HTML Page" metaCaption="$Title(text.xml)$"/>
+					<translation lang="es" caption="Página HTML"/>
+					<translation lang="fr" caption="Page HTML"/>
+					<structural>
+						<shortDesc>Short description of "HTML Page"</shortDesc>
+						<longDesc>Long description of "HTML Page"</longDesc>
+					</structural>
+					<widget-properties>
+						<widget-icon iconClass="html-page"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title"/>
+				<xs:element minOccurs="0" ref="DesignData"/>
+				<xs:element ref="asset" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="assetFolder" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="HTML_URL" use="required">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="media" caption="HTML URI" allowedFileFormats=".html, .htm"/>
+							<translation lang="es" caption="HTML URI"/>
+							<translation lang="fr" caption="HTML URI"/>
+							<property name="media.uri"/>
+							<widget-properties>
+								<property name="option-property" tabName="Basic" value="true"/>
+								<property name="property-layout-index" value="1"/>
+								<property name="property-layout-span" value="full"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

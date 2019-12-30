@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="review-session">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="SYSTEM/review-docs/ReviewSessionDef.xml"/>
+					<component caption="Review Session" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="review-root-fragment-guid" type="xs:string"/>
+				<xs:element name="review-format" type="xs:string"/>
+				<xs:element name="date" type="xs:string"/>
+				<xs:element name="remind-dates">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element maxOccurs="unbounded" name="remind-date" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="end-date" type="xs:string"/>
+				<xs:element name="assigned-by" type="xs:string"/>
+				<xs:element name="assigned-to">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element maxOccurs="unbounded" minOccurs="1" name="user-id" type="xs:string"/>
+							<xs:element maxOccurs="unbounded" minOccurs="0" name="group-id" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="note" type="xs:string"/>
+				<xs:element name="closed" type="xs:string"/>
+				<xs:element name="comment-counter" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

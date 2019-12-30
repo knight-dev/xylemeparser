@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+	
+	Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+	All rights reserved.
+	
+	This file and related documentation are protected by copyright and
+	are distributed under licenses regarding their use, copying, distribution,
+	and decompilation. No part of this product or related documentation may
+	be reproduced or transmitted in any form or by any means, electronic or
+	mechanical, for any purpose, without the express written permission of
+	Xyleme, Inc.
+	
+-->
+
+<!-- edited with XMLSpy v2007 sp1 (http://www.altova.com) by Tanasije Gjorgoski (x) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!--xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="ImageOverlay"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="Figure.xsd"/>
+	<xs:element name="ImageOverlay">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/ImageOverlayDef.xml"/>
+					<component propertyPanel="true" panelIcon="Core/Definitions/Media/ImageOverlay-24x24-a.png" type="sequence" caption="Image Overlay" metaCaption="$Title(text.xml)$" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component showThrough="true" type="wysiwyg" caption="Title"/>
+								<property name="text.xml"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="BaseImage"/>
+				<xs:element ref="OverlayObjects"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element-->
+	<xs:element name="OverlayObjects">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" editor="imageoverlay" caption="Overlay Objects"/>
+					<translation lang="es" caption="Objetos Superpuestos"/>
+					<translation lang="fr" caption="Objets Superposés"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="OverlayObject" minOccurs="0" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Overlay Object"/>
+								<translation lang="es" caption="Objetos Superpuestos"/>
+								<translation lang="fr" caption="Objets Superposés"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="OverlayType">
+								<xs:complexType>
+									<xs:choice>
+										<xs:element name="OverlayImage">
+											<xs:complexType>
+												<xs:attribute name="URI" type="xs:anyURI" use="required">
+													<xs:annotation>
+														<xs:appinfo>
+															<jupiter>
+																<component type="media"/>
+																<property name="media.uri"/>
+															</jupiter>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:attribute>
+												<xs:attribute name="top" type="xs:integer" use="required"/>
+												<xs:attribute name="left" type="xs:integer" use="required"/>
+												<xs:attribute name="width" type="xs:integer" use="required"/>
+												<xs:attribute name="height" type="xs:integer" use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Rect">
+											<xs:complexType>
+												<xs:attribute name="width" type="xs:integer" use="required"/>
+												<xs:attribute name="height" type="xs:integer" use="required"/>
+												<xs:attribute name="top" type="xs:integer" use="required"/>
+												<xs:attribute name="left" type="xs:integer" use="required"/>
+												<xs:attribute name="color" type="xs:string" use="required"/>
+												<xs:attribute name="line-width" type="xs:string" use="required"/>
+												<xs:attribute name="fill-color" type="xs:string" use="optional"/>
+												<xs:attribute name="fill-transparency" type="xs:string" use="optional"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Line">
+											<xs:complexType>
+												<xs:attribute name="start-top" type="xs:string" use="required"/>
+												<xs:attribute name="start-left" type="xs:string" use="required"/>
+												<xs:attribute name="end-top" type="xs:string" use="required"/>
+												<xs:attribute name="end-left" type="xs:string" use="required"/>
+												<xs:attribute name="color" type="xs:string" use="required"/>
+												<xs:attribute name="line-width" type="xs:string" use="required"/>
+												<xs:attribute name="arrows" type="xs:string" use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="BoundedText">
+											<xs:annotation>
+												<xs:appinfo>
+													<jupiter>
+														<component type="sequence" caption="Text Overlay"/>
+														<translation lang="es" caption="Texto Superpuesto"/>
+														<translation lang="fr" caption="Texte Superposé"/>
+													</jupiter>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:attribute name="text" type="xs:string" use="required"/>
+												<xs:attribute name="startTop" type="xs:integer" use="required"/>
+												<xs:attribute name="startLeft" type="xs:integer" use="required"/>
+												<xs:attribute name="font" type="xs:string" use="required"/>
+												<xs:attribute name="font-size" type="xs:integer" use="required"/>
+												<xs:attribute name="font-color" type="xs:string" use="required"/>
+												<xs:attribute name="rectWidth" type="xs:integer" use="required"/>
+												<xs:attribute name="rectHeight" type="xs:integer" use="required"/>
+												<xs:attribute name="horizontal-alignment" type="xs:string" use="optional"/>
+												<xs:attribute name="vertical-alignment" type="xs:string" use="optional"/>
+												<xs:attribute name="color" type="xs:string" use="optional"/>
+												<xs:attribute name="fill-color" type="xs:string" use="optional"/>
+												<xs:attribute name="fill-transparency" type="xs:string" use="optional"/>
+												<xs:attribute name="line-width" type="xs:string" use="optional"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Circle">
+											<xs:complexType>
+												<xs:attribute name="x" type="xs:integer" use="required"/>
+												<xs:attribute name="y" type="xs:integer" use="required"/>
+												<xs:attribute name="diameter" type="xs:integer" use="required"/>
+												<xs:attribute name="color" type="xs:string" use="required"/>
+												<xs:attribute name="line-width" type="xs:string" use="required"/>
+												<xs:attribute name="fill-color" type="xs:string" use="optional"/>
+												<xs:attribute name="fill-transparency" type="xs:string" use="optional"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="Callout">
+											<xs:annotation>
+												<xs:appinfo>
+													<jupiter>
+														<component type="sequence" caption="Callout"/>
+														<translation lang="es" caption="Llamada"/>
+													</jupiter>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="calloutPoints" minOccurs="2" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:attribute name="x" type="xs:integer" use="required"/>
+															<xs:attribute name="y" type="xs:integer" use="required"/>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+												<xs:attribute name="text" type="xs:string" use="required"/>
+												<xs:attribute name="startTop" type="xs:integer" use="required"/>
+												<xs:attribute name="startLeft" type="xs:integer" use="required"/>
+												<xs:attribute name="font" type="xs:string" use="required"/>
+												<xs:attribute name="font-size" type="xs:integer" use="required"/>
+												<xs:attribute name="font-color" type="xs:string" use="required"/>
+												<xs:attribute name="rectWidth" type="xs:integer" use="required"/>
+												<xs:attribute name="rectHeight" type="xs:integer" use="required"/>
+												<xs:attribute name="horizontal-alignment" type="xs:string" use="optional"/>
+												<xs:attribute name="vertical-alignment" type="xs:string" use="optional"/>
+												<xs:attribute name="color" type="xs:string" use="optional"/>
+												<xs:attribute name="fill-color" type="xs:string" use="optional"/>
+												<xs:attribute name="fill-transparency" type="xs:string" use="optional"/>
+												<xs:attribute name="line-width" type="xs:string" use="optional"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="total-width" type="xs:integer" use="optional">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="total-width"/>
+							<property name="value"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+
+			<xs:attribute name="total-height" type="xs:integer" use="optional">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="total-height"/>
+							<property name="value"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+
+			<xs:attribute name="origin-x" type="xs:integer" use="optional"/>
+			<xs:attribute name="origin-y" type="xs:integer" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

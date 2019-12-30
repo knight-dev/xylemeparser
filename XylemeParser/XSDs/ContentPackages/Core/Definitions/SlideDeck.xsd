@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp1 U (http://www.altova.com) by Jeffrey Katzman (Xyleme Inc) -->
+<!-- edited with XML Spy v4.0.1 U (http://www.xmlspy.com) by Jeff Katzman (Avaltus) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="SlideDeck"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="PrintProperties.xsd"/>
+	<xs:include schemaLocation="Slide.xsd"/>
+	<xs:include schemaLocation="NativePPT.xsd"/>
+	<xs:element name="SlideDeck">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/SlideDeckDef.xml"/>
+					<component type="sequence" caption="Slide Deck" metaCaption="$Title(text.xml)$"/>
+					<translation lang="es" caption="Paquete de Diapositivas"/>
+					<translation lang="fr" caption="Paquet de Diapositives"/>
+					<structural>
+						<shortDesc>Short description of "Slide Deck"</shortDesc>
+						<longDesc>Long description of "Slide Deck"</longDesc>
+					</structural>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="wysiwyg" caption="Slide Deck Title" css2="font-size:24;font-family:'Times New Roman';font-weight:bold;" menuUseParent="true"/>
+								<translation lang="es" caption="Título del Paquete de Diapositivas"/>
+								<translation lang="fr" caption="Titre du Paquet de Diapositives"/>
+								<property name="text.xml"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="DeckWatermarks">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Deck Watermarks"/>
+								<translation lang="es" caption="Marcas de Agua del Paquete"/>
+								<translation lang="fr" caption="Filigranes du Paquet"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="SlideCoverPage" minOccurs="0"/>
+							<xs:element ref="SlideBodyPage" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="Slide"/>
+					<xs:element ref="PPTSlide"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

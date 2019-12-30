@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<!--
+	This schema is our Psuedo IMS content packaging schema.  It's based on
+  IMS CP schema but simplified and changed a little to suite our needs.
+	XML documents that validate against this schema are transformed by
+	imscp.xsl to be turned into "real" IMS CP manifests.
+-->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" version="IMS CP 1.1.2">
+	<!--
+		Must specify the root element to sDoc framework.  Note this must be done
+		before any includes.
+	-->
+	<xsd:annotation>
+		<xsd:appinfo>
+			<jupiter>
+				<root name="manifest"/>
+			</jupiter>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<!-- Include the IMS SS XSD -->
+	<xsd:include schemaLocation="imsss_v1p0.xsd"/>
+	<!-- ************************** -->
+	<!-- ** Element Declarations ** -->
+	<!-- ************************** -->
+	<xsd:element name="manifest" type="manifestType"/>
+	<xsd:element name="organizations" type="organizationsType"/>
+	<xsd:element name="item" type="itemType"/>
+	<xsd:element name="organization" type="organizationType"/>
+	<xsd:element name="title" type="titleType"/>
+	<xsd:element name="resource" type="resourceType"/>
+	<!-- ******************* -->
+	<!-- ** Complex Types ** -->
+	<!-- ******************* -->
+	<!-- ********** -->
+	<!-- ** item ** -->
+	<!-- ********** -->
+	<xsd:complexType name="itemType">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Item"/>
+					<translation lang="es" caption="Ítem"/>
+					<translation lang="fr" caption="Item"/>
+				</jupiter>
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element ref="title" minOccurs="0"/>
+			<xsd:element ref="sequencing" minOccurs="0"/>
+			<xsd:choice>
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jupiter>
+							<component type="choice" caption="Choose resource or item(s)"/>
+							<translation lang="es" caption="Seleccione recurso o ítem(s)"/>
+							<translation lang="fr" caption="Choisissez ressources ou item(s)"/>
+						</jupiter>
+					</xsd:appinfo>
+				</xsd:annotation>
+				<xsd:element ref="resource"/>
+				<xsd:element ref="item" maxOccurs="unbounded"/>
+			</xsd:choice>
+			<!-- Here is the IMS SS Info -->
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- ************** -->
+	<!-- ** manifest ** -->
+	<!-- ************** -->
+	<xsd:complexType name="manifestType">
+		<xsd:sequence>
+			<xsd:element ref="organizations"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- ******************* -->
+	<!-- ** organizations ** -->
+	<!-- ******************* -->
+	<xsd:complexType name="organizationsType">
+		<xsd:sequence>
+			<xsd:element ref="organization">
+				<xsd:annotation>
+					<xsd:appinfo>
+						<jupiter>
+							<component type="sequence" caption="Organization"/>
+							<translation lang="es" caption="Organización"/>
+							<translation lang="fr" caption="Organisation"/>
+						</jupiter>
+					</xsd:appinfo>
+				</xsd:annotation>
+			</xsd:element>
+			<!--
+				I'm restricting the number of organizations to 1, it's
+				minOccurs=0, maxOccurs="unbounded" in the real IMS CP schema
+ 			-->
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- ****************** -->
+	<!-- ** organization ** -->
+	<!-- ****************** -->
+	<xsd:complexType name="organizationType">
+		<xsd:sequence>
+			<xsd:element ref="title" minOccurs="0"/>
+			<xsd:element ref="item" maxOccurs="unbounded"/>
+			<xsd:element ref="sequencing" minOccurs="0"/>
+			<!--
+				I'm requiring at least one item, even though in the IMS CP spec
+				items are optional.
+			-->
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- *************** -->
+	<!-- ** resources ** -->
+	<!-- *************** -->
+	<xsd:complexType name="resourcesType">
+		<xsd:sequence>
+			<xsd:element ref="resource" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- ************** -->
+	<!-- ** resource ** -->
+	<!-- ************** -->
+	<xsd:complexType name="resourceType">
+		<xsd:annotation>
+			<xsd:appinfo>
+				<jupiter>
+					<component type="reference" caption="Resource"/>
+					<translation lang="es" caption="Recurso"/>
+					<translation lang="fr" caption="Ressource"/>
+				</jupiter>
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:sequence/>
+		<xsd:attribute name="guid" type="xsd:string" use="required">
+			<xsd:annotation>
+				<xsd:appinfo>
+					<jupiter>
+						<property name="ref.guid"/>
+					</jupiter>
+				</xsd:appinfo>
+			</xsd:annotation>
+		</xsd:attribute>
+		<!-- Replacing href attribute with guid attribute -->
+	</xsd:complexType>
+	<!-- *********** -->
+	<!-- ** Title ** -->
+	<!-- *********** -->
+	<xsd:simpleType name="titleType">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="200"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

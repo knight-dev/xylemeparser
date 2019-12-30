@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="Tabs"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="NoteTypes.xsd"/>
+	<xs:element name="Tabs">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/TabsDef.xml"/>
+					<component type="sequence" caption="Tabs" metaCaption="$Title(text.xml)$" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Pestañas"/>
+					<translation lang="fr" caption="Languettes"/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-container-group"/>
+						<widget-icon iconClass="tabs"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title" minOccurs="0"/>
+				<xs:element name="Properties">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Properties" propertyPanel="true" panelIcon="Core/Definitions/Media/Tabs-24x24-b.png" />
+								<translation lang="es" caption="Propiedades"/>
+								<translation lang="fr" caption="Propietés"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+      					<xs:attribute name="Orientation" default="Horizontal">
+       						<xs:annotation>
+    							<xs:appinfo>
+     								<jupiter>
+      									<component type="implicit" caption='' />
+      									<property name="value"/>
+      									<widget-properties>
+       										<property name="option-property" value="true"/>
+      									</widget-properties>
+     								</jupiter>
+    							</xs:appinfo>
+   							</xs:annotation>
+					       	<xs:simpleType>
+					        	<xs:restriction base="xs:string">
+					         		<xs:enumeration value="Horizontal"/>
+					         		<xs:enumeration value="Vertical"/>
+					        	</xs:restriction>
+					       	</xs:simpleType>
+      					</xs:attribute>
+						<xs:attribute name="width" type="xs:float" use="optional">
+ 							<xs:annotation>
+								<xs:appinfo>
+				                    <jupiter>
+				                        <component type="implicit" caption="width"/>
+				                        <translation lang="es" caption="Ancho"/>
+				                        <property name="value"/>
+				                        <widget-properties>
+				                            <property name="option-property" tabName="Basic" value="true"/>
+				                            <property name="property-group-editor-type" value="dimension" />
+				                            <property name="property-group-editor-name" value="properties.group.dimensions" />
+				                            <property name="property-group-editor-item-key" value="properties.dimension.width" />
+				                            <property name="property-layout-index" value="3"/>
+				                        </widget-properties>
+				                    </jupiter>
+				                </xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="height" type="xs:float" use="optional">
+							<xs:annotation>
+								<xs:appinfo>
+				                    <jupiter>
+				                        <component type="implicit" caption="height"/>
+				                        <translation lang="es" caption="Alto"/>
+				                        <property name="value"/>
+				                        <widget-properties>
+				                            <property name="option-property" tabName="Basic" value="true"/>
+				                            <property name="property-group-editor-type" value="dimension" />
+				                            <property name="property-group-editor-name" value="properties.group.dimensions" />
+				                            <property name="property-group-editor-item-key" value="properties.dimension.height" />
+				                            <property name="property-layout-index" value="4"/>
+				                        </widget-properties>
+				                    </jupiter>
+				                </xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Instructions" type="RichTextType" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="wysiwyg" caption="Instructions"/>
+								<translation lang="es" caption="Instrucciones"/>
+								<translation lang="fr" caption="Instructions"/>
+								<property name="text.text"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Tab" type="TabType" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Tab"/>
+								<translation lang="es" caption="Pestaña"/>
+								<translation lang="fr" caption="Languette"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="MustBeCompleted" type="xs:boolean" use="optional">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit"/>
+							<property name="value"/>
+							<widget-properties>
+								<property name="option-property" value="true"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="TabType">
+		<xs:sequence>
+			<xs:element name="Label" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" menuUseParent="true" css2="background-image:'Core/definitions/media/bullet';font-weight:bold; |SubItem=background-image:'Core/definitions/media/bullet2';font-weight:bold; margin-left=3px;" caption="Label"/>
+							<translation lang="es" caption="Etiqueta"/>
+							<translation lang="fr" caption="Étiquette"/>
+							<property name="value"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Content">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="sequence" caption="Content"/>
+							<translation lang="es" caption="Contenido"/>
+							<translation lang="fr" caption="Contenu"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:choice maxOccurs="unbounded">
+						<xs:element ref="RichText"/>
+						<xs:element ref="List"/>
+						<xs:element ref="Figure"/>
+						<xs:element ref="Table"/>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

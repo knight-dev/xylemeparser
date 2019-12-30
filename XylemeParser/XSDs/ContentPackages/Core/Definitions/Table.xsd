@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="Table"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="ParaComponents.xsd"/>
+	<xs:element name="Table" type="TableType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/TableDef.xml"/>
+					<component type="sequence" propertyPanel="true" showTitle="false" panelIcon="Core/Definitions/Media/table.png" caption="Table" shortcutkey="t" metaCaption="$TblTitle(text.xml)$"/>
+					<property-owner/>
+					<translation lang="es" caption="Tabla"/>
+					<translation lang="fr" caption="Table"/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-contents-group"/>
+						<widget-icon iconClass="table"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="TableType">
+		<xs:sequence>
+			<xs:element name="TblTitle" type="TitleType" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="wysiwyg" caption="TableTitle"/>
+							<translation lang="es" caption="TítuloTabla"/>
+							<translation lang="fr" caption="TitreTable"/>
+							<property name="text.text"/>
+                            <widget-properties>
+                                <widget-icon iconClass="table-title"/>
+                            </widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TblGroup">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="sequence" showThrough="true" editor="table" caption="Table Data"/>
+							<translation lang="es" caption="Datos de la Tabla"/>
+							<translation lang="fr" caption="Données de la Table"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="TblCol" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="sequence" caption="Column Width Percent"/>
+										<translation lang="es" caption="Porcentaje Ancho Columna"/>
+										<translation lang="fr" caption="Pourcentage Largeur Colonne"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:attribute name="width" type="xs:string" use="required"/>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="TblHeader">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="sequence" caption="Header"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element ref="TableRow" minOccurs="0" maxOccurs="unbounded"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="TblBody">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="sequence" caption="Body"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element ref="TableRow" maxOccurs="unbounded"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="TblFooter">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="sequence" caption="Footer"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element ref="TableRow" minOccurs="0" maxOccurs="unbounded"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Caption" type="TitleType" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component showThrough="true" align="center" css2="margin-left:200;font-weight:bold;" type="wysiwyg" caption="Table Caption"/>
+							<translation lang="es" caption="Título de la Tabla"/>
+							<translation lang="fr" caption="Titre de la Table"/>
+							<property name="text.text"/>
+                            <widget-properties>
+                                <widget-icon iconClass="table-caption"/>
+                            </widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="FilterMetadata" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="align">
+			<xs:annotation>
+				<xs:appinfo>
+					<jupiter>
+						<component type="implicit" caption="Align"/>
+						<property name="value"/>
+						<widget-properties>
+							<property name="option-property" tabName="Basic" value="true"/>
+							<translation lang="ru" tabName="Основные"/>
+                            <property name="property-layout-index" value="4"/>
+						</widget-properties>
+					</jupiter>
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="left"/>
+					<xs:enumeration value="center"/>
+					<xs:enumeration value="right"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="width">
+			<xs:annotation>
+				<xs:appinfo>
+					<jupiter>
+						<component type="implicit" caption="Width"/>
+						<property name="value"/>
+						<widget-properties>
+							<property name="option-property" tabName="Basic" value="true"/>
+                            <property name="property-validator-type" value="properties.validator.number" />
+							<translation lang="ru" tabName="Основные"/>
+                            <property name="property-layout-index" value="3"/>
+						</widget-properties>
+					</jupiter>
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="1"/>
+					<xs:maxInclusive value="150"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="border" type="xs:boolean" default="true">
+			<xs:annotation>
+				<xs:appinfo>
+					<jupiter>
+						<component type="implicit" caption="Border"/>
+						<property name="value"/>
+						<widget-properties>
+							<property name="option-property" tabName="Basic" value="true"/>
+							<translation lang="ru" tabName="Основные"/>
+                            <property name="property-layout-index" value="2"/>
+						</widget-properties>
+					</jupiter>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="orientation" use="optional">
+			<xs:annotation>
+				<xs:appinfo>
+					<jupiter>
+						<component type="implicit" caption="Orientation"/>
+						<property name="value"/>
+						<widget-properties>
+							<property name="option-property" tabName="Basic" value="true"/>
+							<translation lang="ru" tabName="Основные"/>
+                            <property name="property-layout-index" value="1"/>
+						</widget-properties>
+					</jupiter>
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Landscape"/>
+					<xs:enumeration value="Portrait"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="tableTheme" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:appinfo><jupiter>
+				<component caption="Table Theme" collectionGUID="58da1ff9-de9e-4f32-9857-2d4d85fd0b9c" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;" propertyPanel="true" showTitle="true" type="mmlchoice"/>
+				<property name="choice.value"/>
+				<widget-properties>
+					<property name="option-property" tabName="Basic" value="true"/>
+					<property name="property-layout-index" value="3"/>
+				</widget-properties>
+				</jupiter></xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="altText" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:appinfo>
+					<jupiter>
+						<component type="implicit" caption="altText"/>
+						<translation lang="es" caption="Texto Alt"/>
+						<property name="value"/>
+						<widget-properties>
+							<property name="option-property" tabName="Basic" value="true"/>
+                            <property name="property-layout-span" value="full"/>
+                            <property name="property-layout-index" value="5"/>
+						</widget-properties>
+					</jupiter>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="CellType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings overrideDelete="true"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:choice maxOccurs="unbounded">
+			<xs:element ref="RichText"/>
+			<xs:element ref="List"/>
+			<xs:element ref="MediaObject"/>
+			<xs:element ref="Code"/>
+			<xs:element ref="Figure"/>
+			<xs:element ref="HorizontalRuleLines"/>
+		</xs:choice>
+		<xs:attribute name="colspan" type="xs:integer" use="required">
+			<xs:annotation>
+				<xs:appinfo>
+					<jupiter>
+						<component type="implicit" caption="Column Span" hidden="true"/>
+						<translation lang="es" caption="Extensión de Columnas"/>
+						<translation lang="fr" caption="Extension des Colonnes"/>
+						<property name="value" default="1"/>
+					</jupiter>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="rowspan" type="xs:integer" use="required">
+			<xs:annotation>
+				<xs:appinfo>
+					<jupiter>
+						<component type="implicit" caption="Row  Span" hidden="true"/>
+						<translation lang="es" caption="Extensión de Filas"/>
+						<translation lang="fr" caption="Extension des Rangées"/>
+						<property name="value" default="1"/>
+					</jupiter>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="align" use="required">
+			<xs:simpleType>
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="Alignment"/>
+							<translation lang="es" caption="Alineación"/>
+							<translation lang="fr" caption="Alignement"/>
+							<property name="value" default="left"/>
+							<widget-properties>
+								<property name="option-property" tabName="Basic" value="true"/>
+								<property name="property-layout-index" value="1"/>
+								<translation lang="ru" tabName="Основные"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="left"/>
+					<xs:enumeration value="center"/>
+					<xs:enumeration value="right"/>
+					<xs:enumeration value="decimal"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="cell-bg" use="required">
+			<xs:annotation>
+				<xs:appinfo>
+					<jupiter>
+						<component type="implicit" caption="Background color"/>
+						<translation lang="es" caption="Color de Fondo"/>
+						<translation lang="fr" caption="Couleur de fond"/>
+						<property name="value" default="none"/>
+						<widget-properties>
+							<property name="option-property" tabName="Basic" value="true"/>
+							<property name="property-layout-index" value="1"/>
+							<translation lang="ru" tabName="Основные"/>
+						</widget-properties>
+					</jupiter>
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="none"/>
+					<xs:enumeration value="grey"/>
+					<xs:enumeration value="blue"/>
+					<xs:enumeration value="yellow"/>
+					<xs:enumeration value="red"/>
+					<xs:enumeration value="green"/>
+					<xs:enumeration value="white"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="isInHeaderColumn" type="xs:integer" use="required">
+			<xs:annotation>
+				<xs:appinfo>
+					<jupiter>
+						<component type="implicit" caption="Is In Header Column" hidden="true"/>
+						<translation lang="es" caption="Está en Encabezado de Columna"/>
+						<translation lang="fr" caption="Est en-tête de colonne"/>
+						<property name="value" default="0"/>
+					</jupiter>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="left-border" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:appinfo>
+					<jupiter>
+						<component type="implicit" caption="Left Border" hidden="true"/>
+						<translation lang="es" caption="Borde Izquierdo"/>
+						<translation lang="fr" caption="Bordure Gauche"/>
+						<property name="value" default=""/>
+						<widget-properties>
+							<property name="option-property" tabName="Border" value="true"/>
+							<property name="property-layout-index" value="2"/>
+							<property name="property-validator-type" value="properties.validator.number" />
+						</widget-properties>
+					</jupiter>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="right-border" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:appinfo>
+					<jupiter>
+						<component type="implicit" caption="Right Border" hidden="true"/>
+						<translation lang="es" caption="Borde Derecho"/>
+						<translation lang="fr" caption="Bordure Droite"/>
+						<property name="value" default=""/>
+						<widget-properties>
+							<property name="option-property" tabName="Border" value="true"/>
+							<property name="property-layout-index" value="2"/>
+							<property name="property-validator-type" value="properties.validator.number" />
+						</widget-properties>
+					</jupiter>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="top-border" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:appinfo>
+					<jupiter>
+						<component type="implicit" caption="Top Border" hidden="true"/>
+						<translation lang="es" caption="Borde Superior"/>
+						<translation lang="fr" caption="Bordure Supérieure"/>
+						<property name="value" default=""/>
+						<widget-properties>
+							<property name="option-property" tabName="Border" value="true"/>
+							<property name="property-layout-index" value="3"/>
+							<property name="property-validator-type" value="properties.validator.number" />
+						</widget-properties>
+					</jupiter>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="bottom-border" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:appinfo>
+					<jupiter>
+						<component type="implicit" caption="Bottom Border" hidden="true"/>
+						<translation lang="es" caption="Borde Inferior"/>
+						<translation lang="fr" caption="Bordure Inférieure"/>
+						<property name="value" default=""/>
+						<widget-properties>
+							<property name="option-property" tabName="Border" value="true"/>
+							<property name="property-layout-index" value="3"/>
+							<property name="property-validator-type" value="properties.validator.number" />
+						</widget-properties>
+					</jupiter>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="Cell" type="CellType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Cell"/>
+					<property-owner/>
+					<translation lang="es" caption="Celda"/>
+					<translation lang="fr" caption="Cellule"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="TableRow">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Row"/>
+					<property-owner/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:sequence maxOccurs="unbounded">
+					<xs:element ref="Cell"/>
+				</xs:sequence>
+				<xs:element ref="FilterMetadata" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+
+
+<xml_lat_definition name="Chapter" schema="IA.xsd">
+	<property name="name" value="Capítulo" lang="es"/>
+
+	<map name="xsl">
+		<item name="ActivitiesGuide" value="IA/Transforms/Print/IA_ActivitiesGuide_Chapter.xsl"/>
+		<item name="Guide" value="IA/Transforms/Print/IA_Guide_Chapter.xsl"/>
+		<item name="SupportMaterials" value="IA/Transforms/Print/IA_SupportMaterials.xsl"/>
+		<item name="Handouts" value="IA/Transforms/Print/IA_HandoutPack.xsl"/>
+		<item name="ProductionReport" value="IA/Transforms/ProductionReport.xsl"/>
+		<item name="container" value="IA/Transforms/IA_Container.xsl"/>
+        <item name="web" value="IA/Transforms/IA_Container.xsl"/>
+	</map>
+	<map name="targets">
+		<item name="Guide" value="print"/>
+		<item name="ActivitiesGuide" value="print"/>
+		<item name="SupportMaterials" value="print"/>
+		<item name="Handouts" value="print"/>
+		<item name="ProductionReport" value="html"/>
+		<item name="container" value="html"/>
+        <item name="web" value="web"/>
+	</map>
+	<property name="ss" value="mixed"/>
+	<property name="profile" value="f888fadd-5939-4775-80c1-5370e28984f4"/>
+	<list name="groups">
+		<item value="content"/>
+	</list>
+	<list name="menu">
+		<item value="IA Components"/>
+	</list>
+	<list name="menu" lang="es">
+		<item value="Componentes de IA"/>
+	</list>
+	<list name="menu" lang="fr">
+		<item value="Composants IA"/>
+	</list>
+</xml_lat_definition>

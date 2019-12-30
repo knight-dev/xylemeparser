@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+
+
+<xml_lat_definition name="Glossary Item" schema="GlossaryItem.xsd">
+	<property name="name" value="Elemento de Glosario" lang="es"/>
+	<map name="xsl">
+		<item name="ios" value="Core/Transforms/iOS/GlossaryItem.xsl"/>
+	</map>
+	<map name="xsltargets">
+		<item name="web" value="html"/>
+		<item name="print" value="pdf"/>
+		<item name="ios" value="html"/>
+	</map>
+	<property name="ss" value="false"/>
+	<list name="menu">
+		<item value="Shared Objects"/>
+	</list>
+	<list name="menu" lang="es">
+		<item value="Objetos Compartidos"/>
+	</list>
+    <list name="menu" lang="fr">
+		<item value="Objets Partagés"/>
+	</list>
+	<list name="groups">
+		<item value="content"/>
+	</list>
+</xml_lat_definition>

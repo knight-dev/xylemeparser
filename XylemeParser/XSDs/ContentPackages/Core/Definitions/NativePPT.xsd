@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="NativePPT"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="Paragraph.xsd"/>
+	<xs:element name="NativePPT">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/NativePPTDef.xml"/>
+					<component type="sequence" caption="PPT Slide Deck" metaCaption="$Title(text.xml)$" css="color:rgb(30, 21,196);font-size:18;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="PPT Nativo"/>
+					<translation lang="fr" caption="PPT Native"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title"/>
+				<xs:element ref="PPTSlide" maxOccurs="unbounded"/>
+				<xs:element name="SlideMasters" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Slide Masters"/>
+								<translation lang="es" caption="Masters de Diapositivas"/>
+								<translation lang="fr" caption="Masters des Diapositives"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="SlideMaster" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SlideMaster" type="ImageType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="PPT Slide Master"/>
+					<translation lang="es" caption="Master de Diapositiva PPT"/>
+					<translation lang="fr" caption="Masters de Diapositive PPT"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="PPTSlide">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/PPTSlideDef.xml"/>
+					<component type="sequence" propertyPanel="true" caption="PPT Slide" metaCaption="$Title(text.xml)$" css="color:rgb(30, 21,196);font-size:18;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Diapositiva PPT"/>
+					<translation lang="fr" caption="Diapositive PPT"/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-container-group"/>
+						<widget-icon iconClass="powerpoint-slide"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<settings showThrough="true"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="PptSource">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="PPT Source"/>
+								<translation lang="es" caption="Fuente del PPT"/>
+								<translation lang="fr" caption="Source du PPT"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="LOM" minOccurs="0"/>
+						</xs:sequence>
+						<xs:attribute name="name" type="xs:string" use="optional"/>
+						<xs:attribute name="uri" type="xs:anyURI" use="required">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="media" showThrough="true" caption="Image File" width="$../width(value)$" height="$../height(value)$" allowedFileFormats=".jpeg, .jpg, .png, .gif, .tif, .tiff, .eps, .wmf, .emf, .wmz, .emz, .sldx"/>
+										<translation lang="es" caption="Archivo de Imagen"/>
+										<translation lang="fr" caption="Fichier d'Image"/>
+										<property name="media.uri"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="measureType" use="optional" type="xs:string"/>
+						<xs:attribute name="width" type="xs:float" use="optional"/>
+						<xs:attribute name="height" type="xs:float" use="optional"/>
+						<xs:attribute name="altText" type="xs:string" use="optional"/>
+						<xs:attribute name="longDesc" type="xs:string" use="optional"/>
+						<xs:attribute name="ProductionNote" type="xs:string" use="optional"/>
+						<xs:attribute name="origWidth" type="xs:integer" use="optional">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="implicit" isvisible="false"/>
+										<property name="value"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="origHeight" type="xs:integer" use="optional">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="implicit" isvisible="false"/>
+										<property name="value"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="thumbHeight" type="xs:integer" use="optional"/>
+						<xs:attribute name="thumbWidth" type="xs:integer" use="optional"
+							default="50"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Thumbnail">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="PPT Thumbnail"/>
+								<translation lang="es" caption="PPT - Miniatura"/>
+								<translation lang="fr" caption="PPT - Miniature"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="LOM" minOccurs="0"/>
+						</xs:sequence>
+						<xs:attribute name="name" type="xs:string" use="optional"/>
+						<xs:attribute name="uri" type="xs:anyURI" use="required">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="media" showThrough="true" caption="Image File" width="$../width(value)$" height="$../height(value)$" allowedFileFormats=".jpeg, .jpg, .png, .gif, .tif, .tiff, .eps, .wmf, .emf, .wmz, .emz, .pdf"/>
+										<translation lang="es" caption="Archivo de Imagen"/>
+										<translation lang="fr" caption="Fichier d'Image"/>
+										<property name="media.uri"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="measureType" use="optional" type="xs:string"/>
+						<xs:attribute name="width" type="xs:float" use="optional"/>
+						<xs:attribute name="height" type="xs:float" use="optional"/>
+						<xs:attribute name="altText" type="xs:string" use="optional"/>
+						<xs:attribute name="longDesc" type="xs:string" use="optional"/>
+						<xs:attribute name="ProductionNote" type="xs:string" use="optional"/>
+						<xs:attribute name="origWidth" type="xs:integer" use="optional">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="implicit" isvisible="false"/>
+										<property name="value"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="origHeight" type="xs:integer" use="optional">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="implicit" isvisible="false"/>
+										<property name="value"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="thumbHeight" type="xs:integer" use="optional"/>
+						<xs:attribute name="thumbWidth" type="xs:integer" use="optional"
+							default="50"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="PptFlash">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="PPT Flash Rendition"/>
+								<translation lang="es" caption="PPT - Reproducción en Flash"/>
+								<translation lang="fr" caption="PPT   Reproduire en Flash"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="LOM" minOccurs="0"/>
+						</xs:sequence>
+						<xs:attribute name="name" type="xs:string" use="optional"/>
+						<xs:attribute name="uri" type="xs:anyURI" use="required">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="media" showThrough="true" caption="Image File" width="$../width(value)$" height="$../height(value)$" allowedFileFormats=".jpeg, .jpg, .png, .gif, .tif, .tiff, .eps, .wmf, .emf, .wmz, .emz, .flv"/>
+										<translation lang="es" caption="Archivo de Imagen"/>
+										<translation lang="fr" caption="Fichier d'Image"/>
+										<property name="media.uri"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="measureType" use="optional" type="xs:string"/>
+						<xs:attribute name="width" type="xs:float" use="optional"/>
+						<xs:attribute name="height" type="xs:float" use="optional"/>
+						<xs:attribute name="altText" type="xs:string" use="optional"/>
+						<xs:attribute name="longDesc" type="xs:string" use="optional"/>
+						<xs:attribute name="ProductionNote" type="xs:string" use="optional"/>
+						<xs:attribute name="origWidth" type="xs:integer" use="optional">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="implicit" isvisible="false"/>
+										<property name="value"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="origHeight" type="xs:integer" use="optional">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="implicit" isvisible="false"/>
+										<property name="value"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="thumbHeight" type="xs:integer" use="optional"/>
+						<xs:attribute name="thumbWidth" type="xs:integer" use="optional"
+							default="50"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="SlideMaster" minOccurs="0"/>
+				<xs:element ref="AltText" minOccurs="0"/>
+				<xs:element ref="LongDesc" minOccurs="0"/>
+				<xs:element minOccurs="0" ref="FilterMetadata"/>
+				<xs:element ref="LOM" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="SequenceActivity"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="QuestionComponentLib.xsd"/>
+	<xs:element name="SequenceActivity">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/QuestionTypes/SequenceActivityDef.xml"/>
+					<component type="sequence" propertyPanel="true" panelIcon="Core/Definitions/Media/Q-24x24-b.png" caption="Sequencing Activity Content" metaCaption="$name(text.text)$"/>
+					<translation lang="es" caption="Actividad de Secuencia - Contenido"/>
+					<translation lang="fr" caption="Activité de Séquence - Contenu"/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-question-general-group"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="QuestionStem"/>
+				<xs:element name="SequenceStep" minOccurs="2" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Sequence Step"/>
+								<translation lang="es" caption="Paso de Secuencia"/>
+								<translation lang="fr" caption="Pas de Séquence"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice maxOccurs="unbounded">
+							<xs:element ref="RichText"/>
+							<xs:element ref="MediaObject"/>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="Hint" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Feedback" minOccurs="0"/>
+				<xs:element ref="Advice" minOccurs="0"/>
+				<xs:element ref="LOM" minOccurs="0"/>
+				<xs:element ref="CompetencyDefinition" minOccurs="0"/>
+				<xs:element minOccurs="0" ref="AssessmentItemDetails"/>
+			</xs:sequence>
+			<xs:attribute ref="name" use="optional"/>
+			<xs:attribute ref="Weight"/>
+			<xs:attribute ref="CognitionLevel" use="optional"/>
+			<xs:attribute name="WebPresentationStyle" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Select Sequence Number"/>
+						<xs:enumeration value="Drag and Drop"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

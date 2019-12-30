@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+	
+	Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+	All rights reserved.
+	
+	This file and related documentation are protected by copyright and
+	are distributed under licenses regarding their use, copying, distribution,
+	and decompilation. No part of this product or related documentation may
+	be reproduced or transmitted in any form or by any means, electronic or
+	mechanical, for any purpose, without the express written permission of
+	Xyleme, Inc.
+	
+-->
+
+<config>
+	<!-- text lists w/o tab @ end -->
+	<!-- bullet -->
+	<RichText text="^ {0,2}[&#x2022;&#x25CF;&#8729;] {0,2}&#9;?">
+		<ListItem ListMarker="Bullet" ListLevel="0">
+			<ItemPara>
+				<placeholder />
+			</ItemPara>
+		</ListItem>
+	</RichText>
+	<!-- square -->
+	<RichText text="^[&#9632;&#9726;&#9724;&#11035;] {0,2}&#9;?">
+		<ListItem ListMarker="Bullet" ListLevel="0">
+			<ItemPara>
+				<placeholder />
+			</ItemPara>
+		</ListItem>
+	</RichText>
+	<!-- checkmark -->	
+	<RichText text="^&#10003; {0,2}&#9;?">
+		<ListItem ListMarker="Checkmark" ListLevel="0">
+			<ItemPara>
+				<placeholder />
+			</ItemPara>
+		</ListItem>
+	</RichText>
+	<RichText text="^&#9;&#10003; {0,2}&#9;?">
+		<ListItem ListMarker="Checkmark" ListLevel="1">
+			<ItemPara>
+				<placeholder />
+			</ItemPara>
+		</ListItem>
+	</RichText>
+	<!-- 1.,1) but not 1<tab> -->
+	<RichText text="^ {0,2}[0-9]{1,2}[\.\)] {0,2}&#9;?">
+		<ListItem ListMarker="Numeric" ListLevel="0">
+			<ItemPara>
+				<placeholder />
+			</ItemPara>
+		</ListItem>
+	</RichText>
+	<RichText text="^&#9;[0-9]{1,2}[\.\)] {0,2}&#9;?">
+		<ListItem ListMarker="Numeric" ListLevel="1">
+			<ItemPara>
+				<placeholder />
+			</ItemPara>
+		</ListItem>
+	</RichText>
+	<RichText text="^&#9;&#9;[0-9]{1,2}[\.\)] {0,2}&#9;?">
+		<ListItem ListMarker="Numeric" ListLevel="2">
+			<ItemPara>
+				<placeholder />
+			</ItemPara>
+		</ListItem>
+	</RichText>
+	<!-- a.,a) but not a<tab> -->
+	<RichText text="^[a-z][\.\)] {0,2}&#9;?">
+		<ListItem ListMarker="LowercaseAlpha" ListLevel="0">
+			<ItemPara>
+				<placeholder />
+			</ItemPara>
+		</ListItem>
+	</RichText>
+	<RichText text="^&#9;[a-z][\.\)] {0,2}&#9;?">
+		<ListItem ListMarker="LowercaseAlpha" ListLevel="1">
+			<ItemPara>
+				<placeholder />
+			</ItemPara>
+		</ListItem>
+	</RichText>
+	<RichText text="^&#9;&#9;[a-z][\.\)] {0,2}&#9;?">
+		<ListItem ListMarker="LowercaseAlpha" ListLevel="2">
+			<ItemPara>
+				<placeholder />
+			</ItemPara>
+		</ListItem>
+	</RichText>
+	<!-- A.,A) but not A<tab> -->
+	<RichText text="^[A-Z][\.\)] {0,2}&#9;?">
+		<ListItem ListMarker="UppercaseAlpha" ListLevel="0">
+			<ItemPara>
+				<placeholder />
+			</ItemPara>
+		</ListItem>
+	</RichText>
+	<!-- i.,i) but not i<tab> -->
+	<RichText text="^[ivx]{1,4}[\.\)] {0,2}&#9;?" priority="1.1">
+		<ListItem ListMarker="LowercaseRoman" ListLevel="0">
+			<ItemPara>
+				<placeholder />
+			</ItemPara>
+		</ListItem>
+	</RichText>
+	<!-- I.,I) but not I<tab> -->
+	<RichText text="^[IVX]{1,4}[\.\)][ &#160;]{0,3}&#9;?" priority="1.1">
+		<ListItem ListMarker="UppercaseRoman" ListLevel="0">
+			<ItemPara>
+				<placeholder />
+			</ItemPara>
+		</ListItem>
+	</RichText>
+	<!-- n-dash -->
+	<RichText text="^&#x2013; {0,2}&#9;?">
+		<ListItem ListMarker="nDash" ListLevel="0">
+			<ItemPara>
+				<placeholder />
+			</ItemPara>
+		</ListItem>
+	</RichText>
+	<!-- m-dash -->
+	<RichText text="^&#x2014; {0,2}&#9;?">
+		<ListItem ListMarker="mDash" ListLevel="0">
+			<ItemPara>
+				<placeholder />
+			</ItemPara>
+		</ListItem>
+	</RichText>
+</config>

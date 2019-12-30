@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29503.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XylemeParser", "XylemeParser\XylemeParser.csproj", "{F6400141-FF01-4F7B-A78C-AEF14B27FCA4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F6400141-FF01-4F7B-A78C-AEF14B27FCA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6400141-FF01-4F7B-A78C-AEF14B27FCA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6400141-FF01-4F7B-A78C-AEF14B27FCA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6400141-FF01-4F7B-A78C-AEF14B27FCA4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C82101CC-1A90-4A5C-BF45-A633AAC0F18E}
+	EndGlobalSection
+EndGlobal

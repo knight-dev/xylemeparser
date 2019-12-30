@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+	
+	Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+	All rights reserved.
+	
+	This file and related documentation are protected by copyright and
+	are distributed under licenses regarding their use, copying, distribution,
+	and decompilation. No part of this product or related documentation may
+	be reproduced or transmitted in any form or by any means, electronic or
+	mechanical, for any purpose, without the express written permission of
+	Xyleme, Inc.
+	
+-->
+
+<config>
+	<!-- text lists w/ tab @ end -->
+	<!-- bullet -->
+	<RichText text="^[&#x2022;&#x25CF;&#8729;] {0,2}&#9;">
+		<ListItem ListMarker="Bullet">
+			<ItemPara>
+				<placeholder />
+			</ItemPara>
+		</ListItem>
+	</RichText>
+	<!-- square -->
+	<RichText text="^[&#9632;&#9726;&#9724;&#11035;] {0,2}&#9;">
+		<ListItem ListMarker="Bullet">
+			<ItemPara>
+				<placeholder />
+			</ItemPara>
+		</ListItem>
+	</RichText>
+	<!-- checkmark -->	
+	<RichText text="^&#10003; {0,2}&#9;">
+		<ListItem ListMarker="Checkmark">
+			<ItemPara>
+				<placeholder />
+			</ItemPara>
+		</ListItem>
+	</RichText>
+	<!-- 1.,1) but not 1<tab> -->
+	<RichText text="^[0-9]{1,2}[\.\)] {0,2}&#9;">
+		<ListItem ListMarker="Numeric">
+			<ItemPara>
+				<placeholder />
+			</ItemPara>
+		</ListItem>
+	</RichText>
+	<!-- a.,a) but not a<tab> -->
+	<RichText text="^[a-z][\.\)] {0,2}&#9;">
+		<ListItem ListMarker="LowercaseAlpha">
+			<ItemPara>
+				<placeholder />
+			</ItemPara>
+		</ListItem>
+	</RichText>
+	<!-- A.,A) but not A<tab> -->
+	<RichText text="^[A-Z][\.\)] {0,2}&#9;">
+		<ListItem ListMarker="UppercaseAlpha">
+			<ItemPara>
+				<placeholder />
+			</ItemPara>
+		</ListItem>
+	</RichText>
+	<!-- i.,i) but not i<tab> -->
+	<RichText text="^[ivx]{1,4}[\.\)] {0,2}&#9;" priority="1.1">
+		<ListItem ListMarker="LowercaseRoman">
+			<ItemPara>
+				<placeholder />
+			</ItemPara>
+		</ListItem>
+	</RichText>
+	<!-- I.,I) but not I<tab> -->
+	<RichText text="^[IVX]{1,4}[\.\)] {0,2}&#9;" priority="1.1">
+		<ListItem ListMarker="UppercaseRoman">
+			<ItemPara>
+				<placeholder />
+			</ItemPara>
+		</ListItem>
+	</RichText>
+	<!-- n-dash -->
+	<RichText text="^&#x2013; {0,2}&#9;">
+		<ListItem ListMarker="nDash">
+			<ItemPara>
+				<placeholder />
+			</ItemPara>
+		</ListItem>
+	</RichText>
+	<!-- m-dash -->
+	<RichText text="^&#x2014; {0,2}&#9;">
+		<ListItem ListMarker="mDash">
+			<ItemPara>
+				<placeholder />
+			</ItemPara>
+		</ListItem>
+	</RichText>
+</config>

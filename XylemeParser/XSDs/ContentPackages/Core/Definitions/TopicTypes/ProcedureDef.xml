@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+
+
+<xml_lat_definition name="Procedure" schema="Procedure.xsd">
+	<property name="name" value="Procedimiento" lang="es"/>
+	<map name="xsl">
+		<item name="web" value="Core/Transforms/Procedure.xsl"/>
+        <item name="web_mobile" value="Core/Transforms/Procedure.xsl"/>
+		<item name="web_frameset" value="Core/Transforms/Procedure.xsl"/>
+		<item name="Guide" value="Core/Transforms/Print/Procedure.xsl"/>
+		<item name="OnlineStoryboard" value="Core/Transforms/Procedure.xsl"/>
+		<item name="ProductionReport" value="IA/Transforms/ProductionReport.xsl"/>
+		<item name="resources" value="Core/Transforms/WebCourseRes.xsl"/>
+		<item name="container" value="Core/Transforms/Procedure.xsl"/>
+		<item name="xml" value="components/Filter-XML.xsl"/>
+		<item name="media" value="Core/Transforms/MediaList.xsl"/>
+	</map>
+	<map name="targets">
+		<item name="web" value="html"/>
+        <item name="web_mobile" value="html"/>
+		<item name="web_frameset" value="html"/>
+		<item name="resources" value="html"/>
+		<item name="Guide" value="print"/>
+		<item name="OnlineStoryboard" value="web"/>
+		<item name="ProductionReport" value="html"/>
+		<item name="container" value="html"/>
+		<item name="xml" value="manifest"/>
+		<item name="media" value="manifest"/>
+	</map>
+	<property name="ss" value="false"/>
+	<property name="profile" value="18afb491-1b79-44bf-a3ea-d088614c1bdf"/>
+	
+	<!-- map name="publishUINames">
+		<item name="ProductionReport" value="Production Report"/>
+	</map>
+	<map name="publishUINames" lang="es">
+		<item name="ProductionReport" value="Reporte de Producción"/>
+	</map>
+	<map name="publishUINames" lang="fr">
+		<item name="ProductionReport" value="Rapport de Production"/>
+	</map -->
+	
+	<map name="filters">
+		<item name="OT" value="components/Filter-OT.xsl"/>
+		<item name="epub" value="components/Filter-EPUB.xsl"/>
+	</map>
+	
+	<list name="groups">
+		<item value="content"/>
+	</list>
+	<list name="menu">
+		<item value="Topic Types"/>
+	</list>
+	<list name="menu" lang="es">
+		<item value="Tipos de Tópico"/>
+	</list>
+	<list name="menu" lang="fr">
+		<item value="Types de Sujet"/>
+	</list>
+	<list name="newMenu">
+		<item value="Topic Types"/>
+	</list>
+	<list name="newMenu" lang="es">
+		<item value="Tipos de Tópico"/>
+	</list>
+	<list name="newMenu" lang="fr">
+		<item value="Types de Sujet"/>
+	</list>
+	<property name="showInNewMenu" value="true"/>
+	<property name="learningObject" value="mixed"/>
+	<property name="isDeployable" value="true"/>
+</xml_lat_definition>

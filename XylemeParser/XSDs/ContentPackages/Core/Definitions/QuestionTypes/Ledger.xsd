@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	
+	Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+	All rights reserved.
+	
+	This file and related documentation are protected by copyright and
+	are distributed under licenses regarding their use, copying, distribution,
+	and decompilation. No part of this product or related documentation may
+	be reproduced or transmitted in any form or by any means, electronic or
+	mechanical, for any purpose, without the express written permission of
+	Xyleme, Inc.
+	
+-->
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="Ledger"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="QuestionComponentLib.xsd"/>
+	<xs:element name="Ledger">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/QuestionTypes/LedgerDef.xml"/>
+					<component type="sequence" caption="Ledger" propertyPanel="true" panelIcon="Core/Definitions/Media/Q-24x24-b.png" metaCaption="$name(text.text)$"/>
+					<translation lang="es" caption="Libro Mayor"/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-question-web-group"/>
+						<widget-icon iconClass="ledger"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="QuestionStem"/>
+				<xs:element name="ColumnHeaders" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Column Headers"/>
+								<translation lang="es" caption="Encabezados de Columna"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Header" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="Header"/>
+											<translation lang="es" caption="Encabezado"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="ColumnText" type="xs:string"/>
+										<xs:choice>
+											<xs:element name="Fill-in">
+												<xs:complexType>
+												<xs:attribute name="DataType">
+												<xs:simpleType>
+												<xs:restriction base="xs:string">
+												<xs:enumeration value="Numbers"/>
+												<xs:enumeration value="String"/>
+												<xs:enumeration value="Date"/>
+												</xs:restriction>
+												</xs:simpleType>
+												</xs:attribute>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="RadioButton">
+												<xs:annotation>
+												<xs:appinfo>
+														<jupiter>
+															<component type="sequence" caption="Radio Button"/>
+															<translation lang="es" caption="Botón de radio"/>
+														</jupiter>
+													</xs:appinfo>
+												</xs:annotation>
+												<xs:complexType/>
+											</xs:element>
+											<xs:element name="Text">
+												<xs:annotation>
+												<xs:appinfo>
+														<jupiter>
+															<component type="sequence" caption="Text"/>
+															<translation lang="es" caption="Texto"/>
+														</jupiter>
+													</xs:appinfo>
+												</xs:annotation>
+												<xs:complexType/>
+											</xs:element>
+											<xs:element name="DropDownList">
+												<xs:annotation>
+												<xs:appinfo>
+														<jupiter>
+															<component type="sequence" caption="Drop Down List"/>
+															<translation lang="es" caption="Lista Desplegable"/>
+														</jupiter>
+													</xs:appinfo>
+												</xs:annotation>
+												<xs:complexType>
+												<xs:sequence>
+												<xs:element name="Item" type="xs:string"
+												maxOccurs="unbounded"/>
+												</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+										</xs:choice>
+									</xs:sequence>
+									<xs:attribute name="Colspan" type="xs:integer" use="optional"/>
+									<xs:attribute name="width" type="xs:integer" use="optional"/>
+									<xs:attribute name="align" use="optional">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="left"/>
+												<xs:enumeration value="right"/>
+												<xs:enumeration value="center"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Row" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Row"/>
+								<translation lang="es" caption="Fila"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Cell" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="Cell"/>
+											<translation lang="es" caption="Celda"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:choice>
+											<xs:element name="Text" type="xs:string"/>
+											<xs:element name="Number" type="xs:float"/>
+											<xs:element name="Formula">
+												<xs:annotation>
+												<xs:appinfo>
+														<jupiter>
+															<component type="sequence" caption="Formula"/>
+															<translation lang="es" caption="Fórmula"/>
+														</jupiter>
+													</xs:appinfo>
+												</xs:annotation>
+												<xs:complexType>
+												<xs:sequence>
+												<xs:element name="Text" type="xs:string">
+												<xs:annotation>
+												<xs:appinfo>
+																	<jupiter>
+																		<settings css="font-style:italic;color:blue;" caption="Text"/>
+																		<translation lang="es" caption="Texto"/>
+																	</jupiter>
+																</xs:appinfo>
+												</xs:annotation>
+												</xs:element>
+												</xs:sequence>
+												<xs:attribute name="FormulaType" use="optional">
+												<xs:simpleType>
+												<xs:restriction base="xs:string">
+												<xs:enumeration value="blank"/>
+												<xs:enumeration value="text"/>
+												</xs:restriction>
+												</xs:simpleType>
+												</xs:attribute>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="DropDownChoice">
+												<xs:annotation>
+												<xs:appinfo>
+														<jupiter>
+															<component type="sequence" caption="DropDownChoice"/>
+															<translation lang="es" caption="Opción Desplegable"/>
+														</jupiter>
+													</xs:appinfo>
+												</xs:annotation>
+												<xs:complexType>
+												<xs:sequence>
+												<xs:element name="CorrectText" type="xs:string"/>
+												<xs:element name="DropDownList" minOccurs="0">
+												<xs:annotation>
+												<xs:appinfo>
+																	<jupiter>
+																		<component type="sequence" caption="Drop Down List"/>
+																		<translation lang="es" caption="Lista Desplegable"/>
+																	</jupiter>
+																</xs:appinfo>
+												</xs:annotation>
+												<xs:complexType>
+												<xs:sequence>
+												<xs:element name="Item" type="xs:string"
+												maxOccurs="unbounded"/>
+												</xs:sequence>
+												</xs:complexType>
+												</xs:element>
+												</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="ChoiceSelector">
+												<xs:annotation>
+												<xs:appinfo>
+														<jupiter>
+															<component type="sequence" caption="Choice Selector"/>
+															<translation lang="es" caption="Selector de Opciones"/>
+														</jupiter>
+													</xs:appinfo>
+												</xs:annotation>
+												<xs:complexType>
+												<xs:attribute name="IsCorrect" type="xs:boolean"/>
+												<xs:attribute name="GroupNumber" type="xs:integer"
+												use="optional"/>
+												</xs:complexType>
+											</xs:element>
+											<xs:element name="Blank" type="xs:string"/>
+											<xs:element name="RadioNumber">
+												<xs:annotation>
+												<xs:appinfo>
+														<jupiter>
+															<component type="sequence" caption="RadioNumber"/>
+															<translation lang="es" caption="Número de Radio"/>
+														</jupiter>
+													</xs:appinfo>
+												</xs:annotation>
+												<xs:complexType>
+												<xs:sequence>
+												<xs:element name="RadioNumber" type="xs:float"/>
+												<xs:element name="RadioGroup" type="xs:integer"/>
+												</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+											<xs:element ref="Equation"/>
+										</xs:choice>
+										<xs:element name="Border" minOccurs="0">
+											<xs:complexType>
+												<xs:sequence/>
+												<xs:attribute name="left" use="optional"
+												default="single">
+												<xs:simpleType>
+												<xs:restriction base="xs:string">
+												<xs:enumeration value="single"/>
+												<xs:enumeration value="double"/>
+												<xs:enumeration value="none"/>
+												</xs:restriction>
+												</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="right" use="optional"
+												default="single">
+												<xs:simpleType>
+												<xs:restriction base="xs:string">
+												<xs:enumeration value="single"/>
+												<xs:enumeration value="double"/>
+												<xs:enumeration value="none"/>
+												</xs:restriction>
+												</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="top" use="optional"
+												default="single">
+												<xs:simpleType>
+												<xs:restriction base="xs:string">
+												<xs:enumeration value="single"/>
+												<xs:enumeration value="double"/>
+												<xs:enumeration value="none"/>
+												</xs:restriction>
+												</xs:simpleType>
+												</xs:attribute>
+												<xs:attribute name="bottom" use="optional"
+												default="single">
+												<xs:simpleType>
+												<xs:restriction base="xs:string">
+												<xs:enumeration value="single"/>
+												<xs:enumeration value="double"/>
+												<xs:enumeration value="none"/>
+												</xs:restriction>
+												</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute name="align" use="optional">
+										<xs:simpleType>
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="left"/>
+												<xs:enumeration value="right"/>
+												<xs:enumeration value="center"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="formulaType" type="xs:boolean"
+										use="optional"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="DebtCredit" type="xs:boolean" use="optional"/>
+						<xs:attribute name="rowHeight" type="xs:integer" use="optional"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="Feedback" minOccurs="0"/>
+				<xs:element ref="Advice" minOccurs="0"/>
+				<xs:element ref="LOM" minOccurs="0"/>
+				<xs:element ref="CompetencyDefinition" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element minOccurs="0" ref="AssessmentItemDetails"/>
+			</xs:sequence>
+			<xs:attribute ref="name" use="optional"/>
+			<xs:attribute ref="Weight" use="optional"/>
+			<xs:attribute ref="CognitionLevel" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

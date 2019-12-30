@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+
+
+<xml_lat_definition name="Page" schema="WebCourse.xsd">
+	<property name="name" value="Página" lang="es"/>
+	<map name="xsl">
+		<item name="web" value="Core/Transforms/Page.xsl"/>
+		<item name="OnlineStoryboard" value="Core/Transforms/Page.xsl"/>
+		<item name="web_frameset" value="Core/Transforms/Page.xsl"/>
+		<item name="resources" value="Core/Transforms/WebCourseRes.xsl"/>
+		<item name="ia_fstree" value="IA/Transforms/IA_Frameset.xsl"/>
+		<item name="PerformanceSupport(HTML)" value="IA/Transforms/IA_Frameset.xsl"/>
+		<item name="PerformanceSupport(Mobile)" value="IA/Transforms/IA_Mobile_Frameset.xsl"/>
+		<item name="mobile" value="IA/Transforms/IA_Mobile_Frameset.xsl"/>
+		<item name="xml" value="components/Filter-XML.xsl"/>
+		<item name="media" value="Core/Transforms/MediaList.xsl"/>
+	</map>
+	<map name="targets">
+		<item name="web" value="html"/>
+		<item name="web_frameset" value="html"/>
+		<item name="resources" value="html"/>
+		<item name="OnlineStoryboard" value="html"/>
+		<item name="ia_fstree" value="html"/>
+		<item name="PerformanceSupport(HTML)" value="html"/>
+		<item name="PerformanceSupport(Mobile)" value="html"/>
+		<item name="mobile" value="html"/>
+		<item name="xml" value="manifest"/>
+		<item name="media" value="manifest"/>
+	</map>
+	<property name="ss" value="mixed"/>
+	<list name="groups">
+		<item value="bookparts"/>
+		<item value="content"/>
+	</list>
+	<list name="menu">
+		<item value="Web Course Components"/>
+	</list>
+	<list name="menu" lang="es">
+		<item value="Componentes del Curso Web"/>
+	</list>
+	<list name="menu" lang="fr">
+		<item value="Composants du Cours Web"/>
+	</list>
+	<property name="learningObject" value="mixed"/>
+	<property name="isSmartUpdateAvailable" value="true"/>
+	<property name="isDeployable" value="true"/>
+</xml_lat_definition>

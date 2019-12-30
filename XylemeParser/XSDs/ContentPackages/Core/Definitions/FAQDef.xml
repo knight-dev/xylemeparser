@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xml_lat_definition name="FAQ" schema="FAQ.xsd">
+	<property name="name" value="Pregunta Frecuente" lang="es"/>
+	<map name="xsl">
+		<item name="web" value="Core/Transforms/FAQ.xsl"/>
+		<item name="print" value="Core/Transforms/Print/FAQ.xsl"/>
+	</map>
+	<map name="targets">
+		<item name="web" value="web"/>
+		<item name="print" value="print"/>
+	</map>
+	<property name="ss" value="mixed"/>
+	<map name="publishUINames">
+		<!--item name="ProductionReport" value="Production Report"/-->
+		<!-- temporarily disable offline-edit per Mark's request -->
+		<!-- item name="offline-edit" value="Offline Edit (Word 2003)" /-->
+	</map>
+	<map name="filters">
+		<!--item name="OT" value="components/Filter-OT.xsl"/-->
+	</map>
+	<list name="groups">
+		<item value="content"/>
+	</list>
+	<list name="menu">
+		<item value="Topic Types"/>
+	</list>
+	<list name="menu" lang="es">
+		<item value="Tipos de Tópico"/>
+	</list>
+	<list name="menu" lang="fr">
+		<item value="Types de Sujet"/>
+	</list>
+	<!--list name="newMenu">
+		<item value="Topic Types"/>
+	</list-->
+	<property name="showInMenu" value="true"/>
+	<property name="showInNewMenu" value="false"/>
+</xml_lat_definition>

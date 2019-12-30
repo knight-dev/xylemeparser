@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp1 U (http://www.altova.com) by Jeffrey Katzman (Xyleme Inc) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="CardDeck"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="ParaComponents.xsd"/>
+	<xs:element name="CardDeck">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/CardDeckDef.xml"/>
+					<component type="sequence" caption="Card Deck" metaCaption="$Title(text.xml)$"/>
+					<translation lang="es" caption="Set de Tarjetas"/>
+					<translation lang="fr" caption="Jeu de Cartes"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Watermarks" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Card Watermarks"/>
+								<translation lang="es" caption="Marcas de Agua - Tarjetas"/>
+								<translation lang="fr" caption="Filigranes - Cartes"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="OddPageWaterMark" type="ImageType">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="Odd Page Watermark"/>
+											<translation lang="es" caption="Marcas de Agua - Páginas Impares"/>
+											<translation lang="fr" caption="Filigranes - Page impaire"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="EvenPageWaterMark" type="ImageType">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="Even Watermark"/>
+											<translation lang="es" caption="Marcas de Agua - Páginas Pares"/>
+											<translation lang="fr" caption="Filigranes - Page paire"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="Title"/>
+				<xs:element name="Card" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component caption="Card" type="sequence"/>
+								<translation caption="Tarjeta" lang="es"/>
+								<translation caption="Carte" lang="fr"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice>
+							<xs:sequence>
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="Card Content"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:choice maxOccurs="unbounded">
+									<xs:element ref="RichText"/>
+									<xs:element ref="List"/>
+									<xs:element ref="Table"/>
+									<xs:element ref="Figure"/>
+								</xs:choice>
+								<xs:element minOccurs="0" ref="FilterMetadata"/>
+							</xs:sequence>
+							<xs:element ref="Stage"/>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="format">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="3x5"/>
+						<xs:enumeration value="8.5x5.5"/>
+						<xs:enumeration value="2x3.5"/>
+						<xs:enumeration value="4x6"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

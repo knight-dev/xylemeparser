@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+    
+    Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+    All rights reserved.
+    
+    This file and related documentation are protected by copyright and
+    are distributed under licenses regarding their use, copying, distribution,
+    and decompilation. No part of this product or related documentation may
+    be reproduced or transmitted in any form or by any means, electronic or
+    mechanical, for any purpose, without the express written permission of
+    Xyleme, Inc.
+    
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="SelectHotText"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="QuestionComponentLib.xsd"/>
+	<xs:element name="SelectHotText">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/QuestionTypes/SelectHotTextDef.xml"/>
+					<component caption="Select Hot Text" type="sequence"/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-question-general-group"/>
+						<widget-icon iconClass="hot-text"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="QuestionStem"/>
+				<xs:element name="SelectText">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component caption="Select Text" type="wysiwyg"/>
+								<property name="text.text"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType mixed="true">
+						<xs:choice maxOccurs="unbounded" minOccurs="0">
+							<xs:element name="OptionChoice">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<settings css="font-family:Monospaced; font-weight:bold;color:blue;text-decoration:italic"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType mixed="true">
+									<xs:attribute ref="IsCorrect"/>
+									<xs:attribute name="ResponseFeedback" type="xs:string" use="optional"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element maxOccurs="unbounded" minOccurs="0" ref="Hint"/>
+				<xs:element minOccurs="0" ref="Feedback"/>
+				<xs:element minOccurs="0" ref="Advice"/>
+				<xs:element minOccurs="0" ref="LOM"/>
+				<xs:element maxOccurs="unbounded" minOccurs="0" ref="CompetencyDefinition"/>
+				<xs:element minOccurs="0" ref="AssessmentItemDetails"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

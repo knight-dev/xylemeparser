@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="Metadata/DesignData.xsd"/>
+	<xs:include schemaLocation="GlossaryItem.xsd"/>
+	<xs:include schemaLocation="Paragraph.xsd"/>
+	<xs:include schemaLocation="MultiMediaTypes.xsd"/>
+	<xs:include schemaLocation="ImageMap.xsd"/>
+	<xs:include schemaLocation="NoteTypes.xsd"/>
+	<xs:include schemaLocation="Table.xsd"/>
+	<xs:include schemaLocation="Metadata/FilterMetadata.xsd"/>
+	<xs:include schemaLocation="List.xsd"/>
+	<xs:include schemaLocation="Figure.xsd"/>
+	<xs:include schemaLocation="Title.xsd"/>
+	<xs:include schemaLocation="Instructions.xsd"/>
+	<xs:include schemaLocation="Categories.xsd"/>
+	<xs:include schemaLocation="Keywords.xsd"/>
+	<xs:include schemaLocation="QuoteBlock.xsd"/>
+	<xs:include schemaLocation="FlashXML.xsd"/>
+	<xs:include schemaLocation="Tabs.xsd"/>
+	<xs:include schemaLocation="NativePPT.xsd"/>
+	<xs:include schemaLocation="FlashCard.xsd"/>
+	<xs:element name="HorizontalRuleLines">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Rule Lines"/>
+					<property-owner/>
+					<translation lang="es" caption="Líneas de Regla"/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-contents-group"/>
+                        <widget-icon iconClass="rule-lines"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="NumberOfLines" type="xs:integer" default="3">
+				<xs:annotation> 
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="Number Of Lines"/>
+							<property name="value"/>
+							<widget-properties>
+								<property name="option-property" tabName="Basic" value="true"/>
+										<translation lang="ru" tabName="Основные"/>
+						  </widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

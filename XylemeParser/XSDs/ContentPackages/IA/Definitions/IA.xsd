@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!-- edited with XML Spy v4.0.1 U (http://www.xmlspy.com) by Jeff Katzman (Avaltus) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="IA"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="IaComponents.xsd"/>
+	<xs:include schemaLocation="../../Core/Definitions/WebCourse.xsd"/>
+	<xs:include schemaLocation="../../Core/Definitions/Glossary.xsd"/>
+	<xs:element name="IA">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="IA/Definitions/IADef.xml"/>
+					<component type="sequence" caption="Single Source Project" metaCaption="$Title(text.xml)$" css="color:rgb(30, 21,196);font-size:18;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Proyecto de Fuente Única"/>
+					<translation lang="fr" caption="Projet de Source Unique"/>
+					<structural showInDocTree="false">
+						<shortDesc>Short description of "IA"</shortDesc>
+						<longDesc>Long description of "IA"</longDesc>
+					</structural>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CoverPage"/>
+				<xs:element name="Scoring" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component propertyPanel="true" type="sequence" caption="Scoring for WebCourse"/>
+								<translation lang="es" caption="Puntuación para Curso Web"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice>
+							<xs:element name="Percentage">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="Percentage"/>
+											<translation lang="es" caption="Porcentaje"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute ref="MinPassingScore"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="QuizzesPassed">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="Quizzes Passed"/>
+											<translation lang="es" caption="Pruebas Cortas Aprobadas"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute ref="MinPassingScore"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="Credits" minOccurs="0"/>
+				<xs:element ref="FrontMatter" minOccurs="0"/>
+				<xs:choice>
+					<xs:element name="Lessons">
+						<xs:annotation>
+							<xs:appinfo>
+								<jupiter>
+									<component type="sequence" caption="Lessons"/>
+									<translation lang="es" caption="Lecciones"/>
+									<translation lang="fr" caption="Leçons"/>
+									<structural showInDocTree="false">
+										<shortDesc>Short description of "Lessons"</shortDesc>
+										<longDesc>Long description of "Lessons"</longDesc>
+									</structural>
+								</jupiter>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="Lesson" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="Modules">
+						<xs:annotation>
+							<xs:appinfo>
+								<jupiter>
+									<component type="sequence" caption="Modules"/>
+									<translation lang="es" caption="Módulos"/>
+									<translation lang="fr" caption="Modules"/>
+									<structural showInDocTree="false">
+										<shortDesc>Short description of "Modules"</shortDesc>
+										<longDesc>Long description of "Modules"</longDesc>
+									</structural>
+								</jupiter>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="Module" maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+				<xs:element ref="Appendixes" minOccurs="0"/>
+				<xs:element ref="DesignData" minOccurs="0"/>
+				<xs:element ref="Glossary" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="ModuleType">
+		<xs:sequence>
+			<xs:element ref="Title">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="wysiwyg" caption="Title" css2="color:rgb(30, 21,196);font-size:21;font-family:'Times New Roman';font-style:italic;" menuUseParent="true"/>
+							<translation lang="es" caption="Título"/>
+							<translation lang="fr" caption="Titre"/>
+							<property name="text.xml"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="SubTitle" minOccurs="0"/>
+			<xs:element ref="IntroBlock" minOccurs="0"/>
+			<xs:element ref="Lesson" maxOccurs="unbounded"/>
+			<xs:element ref="SummaryBlock" minOccurs="0"/>
+			<xs:element ref="DesignData" minOccurs="0"/>
+			<xs:element ref="FilterMetadata" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Module" type="ModuleType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="IA/Definitions/ModuleDef.xml"/>
+					<component type="sequence" caption="Module" metaCaption="$Title(text.xml)$" indent="10" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Módulo"/>
+					<translation lang="fr" caption="Module"/>
+					<structural>
+						<shortDesc>Short description of "Module"</shortDesc>
+						<longDesc>Long description of "Module"</longDesc>
+					</structural>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ContentGroup">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="IA/Definitions/ContentGroupDef.xml"/>
+					<component type="sequence" caption="Content Group" metaCaption="$name(text.text)$" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Grupo de Contenido"/>
+					<structural>
+						<shortDesc>Short description of "ContentGroup"</shortDesc>
+						<longDesc>Long description of "ContentGroup"</longDesc>
+					</structural>
+					<widget-properties>
+						<widget-icon iconClass="content-group"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="Topic"/>
+					<xs:element ref="Procedure"/>
+					<xs:element ref="Stage"/>
+				</xs:choice>
+				<xs:element ref="DesignData" minOccurs="0"/>
+				<xs:element ref="FilterMetadata" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="name" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="text" caption="name"/>
+							<translation lang="es" caption="nombre"/>
+							<translation lang="fr" caption="nom"/>
+							<property name="text.text"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Lesson">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="IA/Definitions/LessonDef.xml"/>
+					<component type="sequence" caption="Lesson" indent="10" metaCaption="$Title(text.xml)$" css="color:rgb(30, 21,196);font-size:14;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Lección"/>
+					<translation lang="fr" caption="Leçon"/>
+					<structural>
+						<shortDesc>Short description of "Lesson"</shortDesc>
+						<longDesc>Long description of "Lesson"</longDesc>
+						<explicitNewEntries>
+							<entry>IntroBlock</entry>
+							<entry>Assessments</entry>
+						</explicitNewEntries>
+					</structural>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="wysiwyg" caption="Title" css2="border-bottom-width:1px;font-size:21;font-family:'Times New Roman';" menuUseParent="true"/>
+								<property-owner/>
+								<translation lang="es" caption="Título"/>
+								<translation lang="fr" caption="Titre"/>
+								<property name="text.xml"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+                <xs:element ref="SubTitle" minOccurs="0"/>
+				<xs:element ref="Glossary" minOccurs="0"/>
+				<xs:element ref="IntroBlock" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="Assessments" minOccurs="0"/>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="Topic"/>
+					<xs:element ref="Procedure"/>
+					<xs:element ref="ContentGroup"/>
+					<xs:element ref="Stage"/>
+					<xs:element ref="HtmlPage"/>
+				</xs:choice>
+				<xs:element ref="SummaryBlock" minOccurs="0"/>
+				<xs:element ref="DesignData" minOccurs="0"/>
+				<xs:element ref="FilterMetadata" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

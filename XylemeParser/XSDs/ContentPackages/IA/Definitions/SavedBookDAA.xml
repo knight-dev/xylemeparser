@@ -1,0 +1,26 @@
+<root>
+	<entry name="Design Document.zip" sok="Design Document (HTML)" deploy=" "/>	
+	<entry name="Design Document.pdf" sok="Design Document (PDF)"/>
+	<entry name="Production Report.zip" sok="Production Report" deploy=" " />	
+	<entry name="Online Storyboard.zip" sok="Online Storyboard" deploy=" "/>
+	<entry name="Online Course.zip" sok="Online Course (SCORM)" deploy=" "/>
+	<entry name="Instructor Guide.pdf" sok="Instructor Guide"/>
+	<entry name="Student Guide.pdf" sok="Student Guide"/>
+	<entry name="Handout Pack.pdf" sok="Handout Pack"/>
+	<entry name="Activities Guide.pdf" sok="Activities Guide"/>
+	<entry name="Program Support Materials.pdf" sok="SupportMaterials"/>
+	<entry name="Slide Deck.pdf" sok="Slide Deck (PDF)"/>
+	<entry name="Slide Deck.pptx" sok="Slide Deck (PowerPoint)"/>
+	<entry name="Card Deck.pdf" sok="Card Deck (PDF)"/>
+	<entry name="Online Certification Exam.zip" sok="Online Certification Exam" deploy=" " />	
+	<entry name="Printed Exam.pdf" sok="Printed Exam" />
+	<entry name="Printed Exam Key.pdf" sok="Printed Exam Key" />
+	<entry name="Reference Guide.pdf" sok="Reference Guide"/>
+	<entry name="Performance Support (HTML).zip" sok="Performance Support (HTML)" deploy="ia" />
+	<entry name="Performance Support (Mobile).zip" sok="Performance Support (Mobile)" deploy="mobile" />
+	<entry name="Online Course XML Manifest.zip" sok="Online Course XML Manifest"/>
+	<entry name="Online Certification Exam XML Manifest.zip" sok="Online Certification Exam XML Manifest"/>
+	<entry name="Pastiche (iPad).xyarch" sok="Pastiche (iPad)" deploy="ia" />
+	<entry name="Digital Resource Pack - Instructor.zip" sok="Digital Resource Pack - Instructor" deploy="ia" />
+	<entry name="Digital Resource Pack - Student.zip" sok="Digital Resource Pack - Student" deploy="ia" />
+</root>

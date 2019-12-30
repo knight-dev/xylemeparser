@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="QuestionComponentLib.xsd"/>
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="ClassificationArray"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="Matrix">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/QuestionTypes/MatrixDef.xml"/>
+					<component propertyPanel="true" panelIcon="Core/Definitions/Media/Q-24x24-b.png" type="sequence" widget-type="matrix" caption="Matrix" metaCaption="$name(value)$"/>
+					<translation lang="es" caption="Matriz"/>
+					<translation lang="fr" caption="Matrice"/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-question-general-group"/>
+						<widget-icon iconClass="matrix"/>
+						<property name="data-includeAvailableChildren" value="QuestionStem,Statements,ColumnHeaders"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="QuestionStem"/>
+				<xs:element name="ColumnHeaders">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Column Headers"/>
+								<translation lang="es" caption="Encabezados de Columna"/>
+								<translation lang="fr" caption="En-tête de colonne"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ColumnHeader" type="xs:string" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="implicit" caption="Column Header"/>
+											<property name="value"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Statements">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Statements"/>
+								<translation lang="es" caption="Enunciados"/>
+								<translation lang="fr" caption="Déclarations"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Statement" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="Statement"/>
+											<property-owner/>
+											<translation lang="es" caption="Enunciado"/>
+											<translation lang="fr" caption="Déclaration"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:choice maxOccurs="unbounded">
+											<xs:element ref="RichText"/>
+											<xs:element ref="Figure"/>
+										</xs:choice>
+										<xs:element name="CorrectColumn" type="xs:integer" maxOccurs="unbounded">
+											<xs:annotation>
+												<xs:appinfo>
+													<jupiter>
+														<component type="text" caption="Correct Column Number"/>
+														<translation lang="es" caption="Número de columna correcto"/>
+														<translation lang="fr" caption="Nombre colonne correcte"/>
+														<property name="text.text"/>
+													</jupiter>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="ResponseFeedback" type="xs:string" minOccurs="0">
+											<xs:annotation>
+												<xs:appinfo>
+													<jupiter>
+														<component type="implicit" caption="Response Feedback"/>
+														<property name="value"/>
+														<widget-properties>
+															<property name="option-property" value="true"/>
+														</widget-properties>
+													</jupiter>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="Feedback" minOccurs="0"/>
+				<xs:element ref="Advice" minOccurs="0"/>
+				<xs:element ref="LOM" minOccurs="0"/>
+				<xs:element ref="CompetencyDefinition" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute ref="name" use="optional">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<!-- is Studio 3 ok with the redefinition of component type? -->
+							<component type="implicit" caption="Name"/>
+							<property name="value"/>
+							<widget-properties>
+								<!-- name already is annotated to be a property - this doubles the configuration and is a workaround for some transformation engine issue :-/ -->
+								<property name="option-property" tabName="Basic" value="true"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute ref="Weight"/>
+			<xs:attribute ref="CognitionLevel" use="optional"/>
+            <xs:attribute name="PreserveChoiceOrder" type="xs:boolean" use="optional">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jupiter>
+                            <component type="implicit" caption="Preserve Choice Order"/>
+                            <property name="value"/>
+                            <widget-properties>
+                                <property name="option-property" tabName="Basic" value="true"/>
+                                <translation lang="ru" tabName="Основные"/>
+                            </widget-properties>
+                        </jupiter>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

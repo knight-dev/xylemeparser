@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp1 U (http://www.altova.com) by Jeffrey Katzman (Xyleme Inc) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="Topic"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="../CoreComponents.xsd"/>
+	<xs:include schemaLocation="TopicTypes.xsd"/>
+	<xs:include schemaLocation="../MultiMediaTypes.xsd"/>
+	<xs:include schemaLocation="../Metadata/DesignData.xsd"/>
+	<xs:include schemaLocation="../FAQ.xsd"/>
+	<xs:element name="Topic" type="TopicType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/TopicTypes/TopicDef.xml"/>
+					<component type="sequence" indent="20" caption="Topic" metaCaption="$Title(text.xml)$" css="color:rgb(30, 21,196);font-size:14;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Tema"/>
+					<translation lang="fr" caption="Sujet"/>
+					<structural>
+						<shortDesc>Short description of "Topic"</shortDesc>
+						<longDesc>Long description of "Topic"</longDesc>
+						<explicitNewEntries>
+							<entry>ParaBlock</entry>
+							<entry>QuestionBlock</entry>
+						</explicitNewEntries>
+					</structural>
+					<widget-properties>
+						<property name="quick-insert" value="true"/>
+						<property name="default-child" value="RichText"/>
+						<widget-icon largeIcon="Core/Definitions/Media/icons/topic-large.png" smallIcon="Core/Definitions/Media/icons/topic-small.png"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="TopicType">
+		<xs:sequence>
+			<xs:element ref="Icon" minOccurs="0"/>
+			<xs:element ref="Title">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="wysiwyg" caption="Title" css2="Topic/Topic/Topic=font-size:16;font-family:'Times New Roman'|Topic/Topic=font-size:18;font-family:'Times New Roman'|font-size:20;font-family:'Times New Roman';" menuUseParent="true"/>
+							<property-owner/>
+							<translation lang="es" caption="Título"/>
+							<translation lang="fr" caption="Titre"/>
+							<property name="text.xml"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="SubTitle" minOccurs="0"/>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element ref="ParaBlock"/>
+				<xs:element ref="Introduction"/>
+				<xs:element ref="TitledBlock"/>
+				<xs:element ref="Topic"/>
+				<xs:element ref="EducationalObjective"/>
+				<xs:element ref="Procedure"/>
+				<xs:element ref="FrequentlyAskedQuestions"/>
+				<xs:element ref="QuestionBlock"/>
+			</xs:choice>
+			<xs:element ref="DesignData" minOccurs="0"/>
+			<xs:element ref="FilterMetadata" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

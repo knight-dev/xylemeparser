@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="Title"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="InLineElementsLib.xsd"/>
+	<xs:element name="Title" type="TitleType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="wysiwyg" caption="Title"/>
+					<property-owner/>
+					<translation lang="es" caption="Título"/>
+					<translation lang="fr" caption="Titre"/>
+					<property name="text.xml"/>
+					<widget-properties>
+						<widget-icon iconClass="title"/>
+						<property name="delegate-to-parent" value="1"/>
+						<property name="data-canCopyElement" value="false"/>
+					</widget-properties>
+
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="TitleType" mixed="true">
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element ref="Emph"/>
+			<xs:element ref="IndexMarker"/>
+			<xs:element ref="InLineCode"/>
+			<xs:element ref="AutoNumberToken"/>
+			<xs:element ref="InLineKeyword"/>
+			<xs:element ref="Sub"/>
+			<xs:element ref="Sup"/>
+			<xs:element ref="InLineVariableText"/>
+			<xs:element name="Metadata">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<property-owner/>
+							<settings image="/Core/Definitions/Media/MD.gif" caption="Filter Metadata"/>
+							<translation lang="es" caption="Filtrar Metadatos"/>
+							<translation lang="fr" caption="Filtrer Métadonnées"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType mixed="false">
+					<xs:sequence>
+						<xs:element ref="FilterMetadata"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="Footnote"/>
+			<xs:element ref="CommandName"/>
+			<xs:element ref="InLineWindowName"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="SubTitle" type="TitleType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="text" caption="SubTitle"/>
+					<translation lang="es" caption="SubTítulo"/>
+					<translation lang="fr" caption="SubTitre"/>
+					<property name="text.text"/>
+					<widget-properties>
+						<widget-icon iconClass="subtitle"/>
+						<property name="data-canCopyElement" value="false"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

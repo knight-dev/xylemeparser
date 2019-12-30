@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp1 U (http://www.altova.com) by Jeffrey Katzman (Xyleme Inc) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:include schemaLocation="NoteTypes.xsd"/>
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="CustomNote"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="CustomNote">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/CustomNoteDef.xml"/>
+					<component type="sequence" widget-type="customnote" caption="Custom Note"/>
+					<translation lang="es" caption="Nota Personalizada"/>
+					<translation lang="fr" caption="Note personnalisée"/>
+                    <property-owner/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-contents-group"/>
+						<widget-icon iconClass="custom-note"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Icon" minOccurs="0"/>
+				<xs:choice>
+					<xs:element ref="SimpleBlock"/>
+					<xs:element ref="RichMediaBlock"/>
+				</xs:choice>
+				<xs:element ref="FilterMetadata" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="Popup"/>
+			<xs:attribute name="customNoteTheme" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:appinfo><jupiter>
+					<component caption="Custom Note Theme" collectionGUID="8a4cb347-ea1d-4d1b-a121-3cb012f39519" type="mmlchoice" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;" propertyPanel="true" showTitle="true"/>
+					<property name="choice.value"/>
+                    <widget-properties>
+                        <property name="option-property" tabName="Basic" value="true"/>
+                        <property name="property-layout-index" value="1"/>
+                    </widget-properties>
+					</jupiter></xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

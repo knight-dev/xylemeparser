@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="BinDrop"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="Remediation.xsd"/>
+	<xs:include schemaLocation="DragDrop.xsd"/>
+	<xs:include schemaLocation="../ImageMap.xsd"/>
+	<xs:element name="BinDrop">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/QuestionTypes/BinDropDef.xml"/>
+					<component propertyPanel="true" panelIcon="Core/Definitions/Media/Q-24x24-b.png" type="sequence" caption="Bin Drop" widget-type="bindrop" metaCaption="$name(value)$"/>
+					<translation lang="es" caption="Recipiente"/>
+					<translation lang="fr" caption="Récipient"/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-question-web-group"/>
+                        <widget-icon iconClass="bin-drop"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component showThrough="true" type="wysiwyg" caption="Title"/>
+								<translation lang="es" caption="Título"/>
+								<translation lang="fr" caption="Titre"/>
+								<property name="text.xml"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Instructions" type="RichTextType" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<property-owner/>
+								<component type="wysiwyg" caption="Instructions"/>
+								<translation lang="es" caption="Instrucciones"/>
+								<translation lang="fr" caption="Instructions"/>
+								<property name="text.xml"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="QuestionStem" minOccurs="0"/>
+				<xs:element ref="BaseImage"/>
+				<xs:element name="Bins">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" editor="bindrop" caption="Bins"/>
+								<translation lang="es" caption="Recipientes"/>
+								<translation lang="fr" caption="Récipients"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Bin" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="Bin"/>
+											<translation lang="es" caption="Recipiente"/>
+											<translation lang="fr" caption="Récipient"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="BinRegion">
+											<xs:complexType>
+												<xs:sequence>
+												<xs:choice>
+												<xs:element ref="Rect"/>
+												<xs:element ref="Circle"/>
+												<xs:element ref="Polygon"/>
+												</xs:choice>
+												<xs:element name="Description" type="RichTextType"
+												minOccurs="0">
+													<xs:annotation>
+														<xs:appinfo>
+															<jupiter>
+																<property-owner/>
+																<component type="wysiwyg" caption="Description"/>
+																<translation lang="es" caption="Descripción"/>
+																<translation lang="fr" caption="Description"/>
+																<property name="text.xml"/>
+															</jupiter>
+														</xs:appinfo>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="BinShape" type="HotSpotTypeType"
+												/>
+												</xs:sequence>
+												<xs:attribute name="TargetID" type="xs:string"
+												use="required"/>
+												<xs:attribute name="Name" type="xs:string"
+												use="required"/>
+												<xs:attribute name="AltText" type="xs:string"
+												use="optional"/>
+												<xs:attribute name="SpotAreasCount" type="xs:int"
+												use="optional"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element ref="DragObjects"/>
+										<xs:element ref="DisplayArea" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="Feedback" minOccurs="0"/>
+				<xs:element ref="Advice" minOccurs="0"/>
+				<xs:element ref="LOM" minOccurs="0"/>
+				<xs:element ref="CompetencyDefinition" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element minOccurs="0" ref="AssessmentItemDetails"/>
+			</xs:sequence>
+			<xs:attribute ref="name" use="optional">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<!-- is Studio 3 ok with the redefinition of component type? -->
+							<component type="implicit" caption="Name"/>
+							<property name="value"/>
+							<widget-properties>
+								<!-- name already is annotated to be a property - this doubles the configuration and is a workaround for some transformation engine issue :-/ -->
+								<property name="option-property" tabName="Basic" value="true"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Weight" type="xs:decimal" use="optional" default="1.0">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="Weight"/>
+							<property name="value"/>
+							<widget-properties>
+								<property name="option-property" tabName="Basic" value="true"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute ref="CognitionLevel" use="optional"/>
+			<xs:attribute name="DropAreaColor" use="optional" default="black">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="Drop Area Color"/>
+							<property name="value" default="black"/>
+							<widget-properties>
+								<property name="option-property" tabName="Basic" value="true"/>
+							</widget-properties>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="black"/>
+						<xs:enumeration value="white"/>
+						<xs:enumeration value="red"/>
+						<xs:enumeration value="green"/>
+						<xs:enumeration value="blue"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+
+
+<!-- edited with XML Spy v4.0.1 U (http://www.xmlspy.com) by Jeff Katzman (Avaltus) -->
+<xml_lat_definition name="Intro Block" schema="SharedComponents.xsd">
+	<property name="name" value="Bloque de Introducción" lang="es"/>
+	<map name="xsl">
+		<item name="web" value="Core/Transforms/IntroBlock.xsl"/>
+		<item name="web_mobile" value="Core/Transforms/IntroBlock.xsl"/>
+		<item name="web_frameset" value="Core/Transforms/IntroBlock.xsl"/>
+		<item name="OnlineStoryboard" value="Core/Transforms/IntroBlock.xsl"/>
+		<item name="resources" value="Core/Transforms/WebCourseRes.xsl"/>
+		<item name="xml" value="components/Filter-XML.xsl"/>
+		<item name="media" value="Core/Transforms/MediaList.xsl"/>
+	</map>
+	<map name="xsltargets">
+		<item name="web" value="html"/>
+		<item name="web_mobile" value="html"/>
+		<item name="web_frameset" value="html"/>
+		<item name="print" value="pdf"/>
+		<item name="OnlineStoryboard" value="web"/>
+		<item name="resources" value="html"/>
+		<item name="xml" value="manifest"/>
+		<item name="media" value="manifest"/>
+	</map>
+	<map name="filters">
+		<item name="OT" value="components/Filter-OT.xsl"/>
+	</map>
+	<property name="ss" value="false"/>
+	<list name="groups">
+		<item value="content"/>
+	</list>
+	<list name="menu">
+		<item value="Shared Objects"/>
+	</list>
+	<list name="menu" lang="es">
+		<item value="Objetos Compartidos"/>
+	</list>
+	<property name="learningObject" value="mixed"/>
+</xml_lat_definition>

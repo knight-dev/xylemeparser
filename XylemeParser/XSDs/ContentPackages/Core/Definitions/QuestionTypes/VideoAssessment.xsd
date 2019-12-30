@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="VideoAssesment"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="QuestionComponentLib.xsd"/>
+	<xs:element name="VideoAssesment">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/QuestionTypes/VideoAssessmentDef.xml"/>
+					<component propertyPanel="true" panelIcon="Core/Definitions/Media/Q-24x24-b.png" type="sequence" caption="Video Assessment" metaCaption="$name(text.text)$" isvisible="false" hidden="true"/>
+					<translation lang="es" caption="Evaluación de Vídeo"/>
+					<translation lang="fr" caption="Évaluation Vidéo"/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-question-web-group"/>
+						<widget-icon iconClass="movie"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Instructions"/>
+				<xs:element ref="Movie"/>
+				<xs:element name="VideoAssessmentObjects">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" editor="videoassessment" caption="Video Assessment Objects"/>
+								<translation lang="es" caption="Objetos de Evaluación de Vídeo"/>
+								<translation lang="fr" caption="Objets de l'Évaluation Vidéo"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="VideoSegment" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="LOM" minOccurs="0"/>
+				<xs:element ref="CompetencyDefinition" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element minOccurs="0" ref="AssessmentItemDetails"/>
+			</xs:sequence>
+			<xs:attribute ref="name" use="optional"/>
+			<xs:attribute ref="Weight" use="optional"/>
+			<xs:attribute ref="CognitionLevel" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="VideoSegment">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Video Segment"/>
+					<translation lang="es" caption="Segmento de Vídeo"/>
+					<translation lang="fr" caption="Segment de Vidéo"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Stem" type="xs:string">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="text" caption="Question Stem" multiline="true"/>
+								<translation lang="es" caption="Pregunta"/>
+								<translation lang="fr" caption="Question"/>
+								<property name="text.text"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="CorrectTimeRange">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Correct Time Range"/>
+								<translation lang="es" caption="Intervalo de Tiempo Correcto"/>
+								<translation lang="fr" caption="Intervalle de Temps Correcte"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:attribute name="InCuePoint" type="xs:integer"/>
+						<xs:attribute name="OutCuePoint" type="xs:integer"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="Feedback"/>
+			</xs:sequence>
+			<xs:attribute name="CuePoint" type="xs:integer" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="Contributor"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="Contributor">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/ContributorDef.xml"/>
+					<component type="sequence" caption="Contributor" metaCaption="$Role(value)$: $Name(text.text)$"/>
+					<translation lang="es" caption="Colaborador"/>
+					<translation lang="fr" caption="Collaborateur"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Role" type="xs:string">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="list" caption="Role" values="Instructional Design Project Manager,Subject Matter Expert,Publisher,Author,Technical Reviewer,Technical Writer,Technical Editor,Technical Proofreader,Illustrator,Copy Editor,Proofreader,Cover Designer,Instructional Designer,External SME,Internal SME,Programmer,Alternative Contact,Graphic Artist,QA Reviewer,Instructor" labels="Instructional Design Project Manager,Subject Matter Expert,Publisher,Author,Technical Reviewer,Technical Writer,Technical Editor,Technical Proofreader,Illustrator,Copy Editor,Proofreader,Cover Designer,Instructional Designer,External SME,Internal SME,Programmer,Alternative Contact,Graphic Artist,QA Reviewer,Instructor" delim=","/>
+								<translation lang="es" caption="Rol" labels="Administrador de Proyectos de Diseño Instruccional,Experto en la Materia,Editor,Autor,Revisor Técnico,Escritor Técnico,Editor Técnico,Corrector Técnico,Ilustrador,Editor de Texto,Corrector,Diseñador de Portada,Diseñador Instruccional,SME Externo,SME Interno,Programador,Contacto Alternativo,Artista Gráfico,Revisor de Control de Calidad,Instructor" delim="," />
+								<property name="choice.value"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Name" type="xs:string">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="implicit" caption="Name"/>
+								<translation lang="es" caption="Nombre"/>
+								<translation lang="fr" caption="Nom"/>
+								<property name="value"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Email" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="implicit" caption="Email"/>
+								<translation lang="es" caption="E-mail"/>
+								<translation lang="fr" caption="E-mail"/>
+								<property name="value"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Phone" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="implicit" caption="Phone"/>
+								<translation lang="es" caption="Teléfono"/>
+								<translation lang="fr" caption="Téléphone"/>
+								<property name="value"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Fax" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="implicit" caption="Fax"/>
+								<translation lang="es" caption="Fax"/>
+								<translation lang="fr" caption="Fax"/>
+								<property name="value"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Address" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="implicit" caption="Address"/>
+								<translation lang="es" caption="Dirección"/>
+								<translation lang="fr" caption="Adresse"/>
+								<property name="value"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Website" type="xs:string" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="implicit" caption="Website"/>
+								<translation lang="es" caption="Sitio web"/>
+								<translation lang="fr" caption="Site web"/>
+								<property name="value"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="Procedure"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="TopicTypes.xsd"/>
+	<xs:include schemaLocation="../NativePPT.xsd"/>
+	<xs:include schemaLocation="Example.xsd"/>
+	<xs:element name="Procedure">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/TopicTypes/ProcedureDef.xml"/>
+					<component type="sequence" caption="Procedure" metaCaption="$Title(text.xml)$" css="color:rgb(30, 21,196);font-size:14;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Procedimiento"/>
+					<translation lang="fr" caption="Procédure"/>
+					<structural showInDocTree="true">
+						<shortDesc>Short description of "Procedure"</shortDesc>
+						<longDesc>Long description of "Procedure"</longDesc>
+					</structural>
+					<widget-properties>
+						<property name="quick-insert" value="true"/>
+						<widget-icon largeIcon="Core/Definitions/Media/icons/procedure.jpg" smallIcon="Core/Definitions/Media/icons/procedure.jpg"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Icon" minOccurs="0"/>
+				<xs:element ref="Title">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="wysiwyg" caption="Title" css2="font-size:20;font-family:'Times New Roman';Lesson/Procedure=font-size:18;font-family:'Times New Roman'|font-size:18;font-family:'Times New Roman';"/>
+								<translation lang="es" caption="Título"/>
+								<translation lang="fr" caption="Titre"/>
+								<property name="text.xml"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+                <xs:element ref="SubTitle" minOccurs="0"/>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="Introduction"/>
+					<xs:element ref="TitledBlock"/>
+					<xs:element ref="StepGroup"/>
+					<xs:element name="Demonstration" type="TitledBlockType">
+						<xs:annotation>
+							<xs:appinfo>
+								<jupiter>
+									<component type="sequence" caption="Demonstration" metaCaption="$Title(text.xml)$"/>
+									<translation lang="es" caption="Demostración"/>
+									<translation lang="fr" caption="Démonstration"/>
+								</jupiter>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<xs:element ref="Resources"/>
+					<xs:element ref="ParaBlock"/>
+				</xs:choice>
+				<xs:element ref="DesignData" minOccurs="0"/>
+				<xs:element ref="FilterMetadata" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="StepGroup" type="StepGroupType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/TopicTypes/StepGroupDef.xml"/>
+					<component type="sequence" caption="Steps" metaCaption="$Title(text.xml)$"/>
+					<translation lang="es" caption="Pasos"/>
+					<translation lang="fr" caption="Étapes"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="StepGroupType">
+		<xs:sequence>
+			<xs:element ref="Title" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="wysiwyg" caption="Session Title" css2="font-size:14;font-family:'Times New Roman';" menuUseParent="true"/>
+							<translation lang="es" caption="Título"/>
+							<translation lang="fr" caption="Titre"/>
+							<property name="text.xml"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="Step"/>
+				<xs:element ref="ParaBlock"/>
+			</xs:choice>
+			<xs:element ref="FilterMetadata" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="numberedSteps" type="xs:boolean" use="optional">
+			<xs:annotation>
+				<xs:appinfo>
+					<jupiter>
+						<settings propertyPanel="true"/>
+						<component type="implicit" caption="Numbered Steps"/>
+						<property name="value"/>
+						<widget-properties>
+							<property name="option-property" tabName="Basic" value="true"/>
+							<property name="property-layout-index" value="1"/>
+						</widget-properties>
+					</jupiter>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="animated" type="xs:boolean" use="optional">
+			<xs:annotation>
+				<xs:appinfo>
+					<jupiter>
+						<settings propertyPanel="true"/>
+						<component type="implicit" caption="Animated"/>
+						<property name="value"/>
+						<widget-properties>
+							<property name="property-layout-index" value="2"/>
+							<property name="option-property" tabName="Basic" value="true"/>
+						</widget-properties>
+					</jupiter>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="Step" type="StepType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/TopicTypes/StepDef.xml"/>
+					<component type="sequence" caption="Step" indent="20" metaCaption="$ActionDescription(text.xml)$" appendPoint="true"/>
+					<translation lang="es" caption="Paso"/>
+					<translation lang="fr" caption="Étape"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="StepType">
+		<xs:sequence>
+			<xs:element name="UserAction">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="sequence" caption="Action Block"/>
+							<translation lang="es" caption="Bloque de Acción"/>
+							<translation lang="fr" caption="Bloc d'Action"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="Icon" minOccurs="0"/>
+						<xs:element name="ActionDescription" type="RichTextType">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="wysiwyg" caption="Action text" css2="Substep/Substep/UserAction=background-image:'Core/definitions/media/bullet3';|Substep/UserAction=background-image:'Core/definitions/media/bullet2';|background-image:'Core/definitions/media/bullet';"/>
+										<translation lang="es" caption="Texto de Acción"/>
+										<translation lang="fr" caption="Texte d'Action"/>
+										<property name="text.text"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:choice minOccurs="0" maxOccurs="unbounded">
+							<xs:element ref="RichText"/>
+							<xs:element ref="List"/>
+							<xs:element ref="Table"/>
+							<xs:element ref="Figure"/>
+						</xs:choice>
+						<xs:element ref="Example" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="SystemResponse">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component indent="20" type="sequence" caption="Response Block"/>
+								<translation lang="es" caption="Bloque de Respuesta"/>
+								<translation lang="fr" caption="Bloc de Réponse"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ResponseDescription" type="RichTextType">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="wysiwyg" caption="Response text" css2="font-family:monospace;"/>
+											<translation lang="es" caption="Texto de Respuesta"/>
+											<translation lang="fr" caption="Texte de Réponse"/>
+											<property name="text.text"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element ref="Example" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Substep" type="StepType">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" indent="20" caption="SubStep"/>
+								<translation lang="es" caption="SubPaso"/>
+								<translation lang="fr" caption="Sous-étape"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="ParaBlock"/>
+			</xs:choice>
+			<xs:element ref="FilterMetadata" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

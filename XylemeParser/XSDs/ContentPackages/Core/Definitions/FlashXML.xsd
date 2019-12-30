@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:include schemaLocation="Paragraph.xsd"/>
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="FlashXML"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="FlashXML">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/FlashXMLDef.xml"/>
+					<component type="sequence" caption="Flash XML - deprecated" propertyPanel="true" showTitle="true" panelIcon="Core/Definitions/Media/FlashXML-24x24-a.png" metaCaption="$Title(text.xml)$"/>
+					<translation lang="es" caption="Flash XML - deprecated"/>
+					<translation lang="fr" caption="Flash XML - deprecated"/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-container-group"/>
+                        <widget-icon iconClass="flash-xml"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title"/>
+				<xs:element name="FlashEngine">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="media" showThrough="true" placeholder="Core/Definitions/Media/Flash-600x450-b.png" caption="Flash Engine" width="$../width(value)$" height="$../height(value)$" allowedFileFormats=".swf"/>
+								<translation lang="es" caption="Motor Flash"/>
+								<translation lang="fr" caption="Motor Flash"/>
+								<property name="media.uri"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="XML_data"/>
+				<xs:element name="RelatedFiles" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Related Files"/>
+								<translation lang="es" caption="Archivos relacionados"/>
+								<translation lang="fr" caption="Fichiers associés"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="File" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="File"/>
+											<translation lang="es" caption="File"/>
+											<translation lang="fr" caption="Fichier"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:attribute name="path" type="xs:anyURI">
+										<xs:annotation>
+											<xs:appinfo>
+												<jupiter>
+													<component type="media"/>
+													<property name="media.uri"/>
+												</jupiter>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:attribute>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="AltText" minOccurs="0"/>
+				<xs:element ref="AVscript" minOccurs="0"/>
+				<xs:element ref="LOM" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="height" type="xs:integer"/>
+			<xs:attribute name="width" type="xs:integer"/>
+			<xs:attribute ref="wrap" use="optional"/>
+			<xs:attribute name="name" type="xs:string" use="optional"/>
+			<xs:attribute name="MustBeCompleted" type="xs:boolean" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NameValuePair">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="NameValuePair"/>
+					<translation lang="es" caption="Par Nombre-Valor"/>
+					<translation lang="fr" caption="Paire Nom-Valeur"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="value" type="xs:string" use="required"/>
+			<xs:attribute ref="description" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NameMediaPair">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="NameMediaPair"/>
+					<translation lang="es" caption="Par Nombre-Media"/>
+					<translation lang="fr" caption="Paire Nom-Média"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="name" type="xs:string" use="required"/>
+			<xs:attribute name="value" type="xs:anyURI" use="required">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="media"/>
+							<property name="media.uri"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute ref="description" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="XML_data">
+		<xs:annotation>
+			<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="XML Data"/>
+								<translation lang="es" caption="Datos XML"/>
+								<translation lang="fr" caption="Données XML"/>
+							</jupiter>
+						</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="NameValuePair"/>
+				<xs:element ref="NameMediaPair"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:attribute name="description" type="xs:string"/>
+</xs:schema>

@@ -1,0 +1,5 @@
+<formatter-config>
+	<!-- PDF v1.5 is required for NativePPT -->
+	<!-- Do not change embed-all-fonts. It must be "base14" or you will run into platform-specific issues. -->
+	<pdf-settings pdf-version="PDF1.5" embed-all-fonts="base14"  tagged-pdf ="true"/>
+</formatter-config>

@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../../Core/Definitions/Glossary.xsd"/>
+	<xs:include schemaLocation="../../Core/Definitions/PrintProperties.xsd"/>
+	<xs:include schemaLocation="../../Core/Definitions/SharedComponents.xsd"/>
+	<xs:include schemaLocation="../../Core/Definitions/Stage.xsd"/>
+	<xs:include schemaLocation="../../Core/Definitions/Contributor.xsd"/>
+	<xs:include schemaLocation="../../Core/Definitions/CoverPage.xsd"/>
+	<xs:include schemaLocation="Credits.xsd"/>
+	<xs:element name="FrontMatter">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Front Matter" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Texto Preliminar"/>
+					<translation lang="fr" caption="Texte Préliminaire"/>
+					<structural>
+						<shortDesc>Short description of "FrontMatter"</shortDesc>
+						<longDesc>Long description of "FrontMatter"</longDesc>
+					</structural>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Chapter" maxOccurs="unbounded"/>
+				<xs:element ref="FilterMetadata" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Chapter">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="IA/Definitions/ChapterDef.xml"/>
+					<component type="sequence" indent="10" caption="Chapter" metaCaption="$Title(text.xml)$" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Capítulo"/>
+					<translation lang="fr" caption="Chapitre"/>
+					<structural>
+						<shortDesc>Short description of "Chapter"</shortDesc>
+						<longDesc>Long description of "Chapter"</longDesc>
+						<explicitNewEntries>
+							<entry>ParaBlock</entry>
+						</explicitNewEntries>
+					</structural>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="wysiwyg" caption="Title" css2="border-bottom-width:1px;font-size:22;font-style:italic;font-family:'Times New Roman';" menuUseParent="true"/>
+								<property-owner/>
+								<translation lang="es" caption="Título"/>
+								<translation lang="fr" caption="Titre"/>
+								<property name="text.xml"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="ParaBlock" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<property-owner/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="Topic"/>
+					<xs:element ref="Stage"/>
+					<xs:element ref="TopicGroup"/>
+				</xs:choice>
+				<xs:element ref="FilterMetadata" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Assessments">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Assessments" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;"/>
+					<property-owner/>
+					<translation lang="es" caption="Evaluaciones"/>
+					<translation lang="fr" caption="Évaluations"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ElearningItems" minOccurs="0"/>
+				<xs:element ref="LessonItems" minOccurs="0"/>
+				<xs:element ref="ModuleItems" minOccurs="0"/>
+				<xs:element ref="CourseItems" minOccurs="0"/>
+				<xs:element ref="CertificationItems" minOccurs="0"/>
+				<xs:element ref="InstructorItems" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ElearningItems">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="IA/Definitions/ElearningItemsDef.xml"/>
+					<component type="sequence" caption="eLearning Items"/>
+					<translation lang="es" caption="Artículos de eLearning"/>
+					<translation lang="fr" caption="Articles eLearning"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="QuestionBlockType"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CertificationItems">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="IA/Definitions/CertificationItemsDef.xml"/>
+					<component type="sequence" caption="Exam Items"/>
+					<translation lang="es" caption="Ítems - Examen"/>
+					<translation lang="fr" caption="Articles d'Examen"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="QuestionBlockType">
+					<xs:attribute ref="MinPassingScore"/>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LessonItems" type="QuestionBlockType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="IA/Definitions/LessonItemsDef.xml"/>
+					<component type="sequence" caption="Guide Lesson Items"/>
+					<translation lang="es" caption="Ítems - Lección Guía"/>
+					<translation lang="fr" caption="Articles - Leçon Guide"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ModuleItems" type="QuestionBlockType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="IA/Definitions/ModuleItemsDef.xml"/>
+					<component type="sequence" caption="Module Quiz Items"/>
+					<translation lang="es" caption="Ítems -  Módulo Prueba Corta"/>
+					<translation lang="fr" caption="Articles - Module Quiz"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="InstructorItems" type="QuestionBlockType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="IA/Definitions/InstructorItemsDef.xml"/>
+					<component type="sequence" caption="Instructor Items"/>
+					<translation lang="es" caption="Ítems -  Instructor"/>
+					<translation lang="fr" caption="Articles -Instructor"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="CourseItems" type="QuestionBlockType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="IA/Definitions/CourseItemsDef.xml"/>
+					<component type="sequence" caption="Course Quiz Items"/>
+					<translation lang="es" caption="Ítems - Prueba Corta Curso"/>
+					<translation lang="fr" caption="Articles - Quiz Cours"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Appendixes">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Appendices"/>
+					<translation lang="es" caption="Apéndices"/>
+					<translation lang="fr" caption="Annexes"/>
+					<structural>
+						<shortDesc>Short description of "Appendixes"</shortDesc>
+						<longDesc>Long description of "Appendixes"</longDesc>
+					</structural>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title"/>
+				<xs:element ref="ParaBlock" minOccurs="0"/>
+				<xs:element ref="Chapter" maxOccurs="unbounded"/>
+				<xs:element ref="FilterMetadata" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="TopicGroup">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" indent="10" caption="Topic Group" metaCaption="$Title(text.xml)$" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Grupo de Temas"/>
+					<translation lang="fr" caption="Grupo de Sujets"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="wysiwyg" caption="Title" css2="border-bottom-width:1px;font-size:21;font-family:'Times New Roman';" menuUseParent="true"/>
+								<translation lang="es" caption="Título"/>
+								<translation lang="fr" caption="Titre"/>
+								<property name="text.xml"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="ParaBlock" minOccurs="0"/>
+				<xs:choice maxOccurs="unbounded">
+					<xs:element ref="Topic"/>
+					<xs:element ref="Procedure"/>
+					<xs:element ref="Stage"/>
+				</xs:choice>
+				<xs:element minOccurs="0" ref="FilterMetadata"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:attribute name="MinPassingScore" type="xs:integer"/>
+</xs:schema>

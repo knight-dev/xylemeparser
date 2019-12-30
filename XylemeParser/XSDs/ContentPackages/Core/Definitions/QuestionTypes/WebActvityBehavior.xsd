@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../CompetencyDefinition.xsd"/>
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="WebActivityBehavior"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="WebActivityBehavior">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/QuestionTypes/WebActivityBehaviorDef.xml"/>
+					<component type="sequence" panelIcon="Core/Definitions/Media/Q-24x24-b.png" caption="Web-based Interactivity Behaviors" propertyPanel="true" css="color:green;font-size:12;font-family:Tahoma;font-style:italic;"/>
+					<translation lang="es" caption="Comportamientos de Interactividad Web"/>
+					<translation lang="fr" caption="Comportements d'Interactivité Web"/>
+					<widget-properties>
+						<widget-icon iconClass="web-based-interactivity-behaviors"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="WebActivityBehaviorType"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="WebActivityBehaviorType">
+		<xs:sequence>
+			<xs:annotation>
+				<xs:appinfo>
+					<jupiter>
+						<component type="sequence" caption="Behavior options"/>
+						<translation lang="es" caption="Opciones de Comportamiento"/>
+						<translation lang="fr" caption="Options de Comportement"/>
+					</jupiter>
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:element ref="CompetencyDefinition" minOccurs="0"/>
+			<xs:element minOccurs="0" ref="EnhancedScorecard"/>
+		</xs:sequence>
+		<xs:attribute name="RandomizeQuestions" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="MinPassingThreshold" type="xs:integer" use="optional"/>
+		<xs:attribute name="ForwardNavigationOnly" type="xs:boolean" use="optional"/>
+		<xs:attribute name="AllowAssessmentExit" type="xs:boolean" use="optional"/>
+		<xs:attribute name="QuestionWeight">
+			<xs:simpleType>
+				<xs:restriction base="xs:float">
+					<xs:minInclusive value="0"/>
+					<xs:maxInclusive value="1"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="AttemptLimit" type="xs:integer" use="optional" default="1"/>
+		<xs:attribute name="ShowHint" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="ShowFeedback" use="optional" default="true">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="true"/>
+					<xs:enumeration value="false"/>
+					<xs:enumeration value="General Feedback Only"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ShowAdvice" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="LeaveCorrectBetweenAttempts" type="xs:boolean" use="optional" default="false"/>
+		<xs:attribute name="MCQ_RandomizeChoices" type="xs:boolean" use="optional">
+		<xs:annotation>
+				<xs:appinfo>
+					<jupiter>
+						<component type="implicit" caption="Randomize Choices"/>
+						<property name="value" default="false"/>
+					</jupiter>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Dnd_Mode" use="optional" default="Assessment">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Practice"/>
+					<xs:enumeration value="Assessment"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="DnD_ShowSolution" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="DnD_ShowTarget" type="xs:boolean" use="optional" default="true"/>
+		<xs:attribute name="ReorderChildren" type="xs:boolean" use="optional">   <!-- deprecated attribute, should be removed in future -->
+			<xs:annotation>
+				<xs:appinfo>
+					<jupiter>
+						<component type="implicit" isvisible="false" hidden="true"/>
+						<property name="value"/>
+					</jupiter>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="SelectCount" type="xs:integer" use="optional"/>
+		<xs:attribute name="EnableFlagging" type="xs:boolean" use="optional"/>
+		<xs:attribute name="SubmitMode" use="optional">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="OneByOne"/>
+					<xs:enumeration value="AllAtOnce"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+        <xs:attribute name="AssessmentTimeLimit" type="xs:integer" use="optional">
+            <xs:annotation>
+              <xs:appinfo>
+                 <jupiter>
+                    <component type="implicit" propertyPanel="true" caption="Completion Time Limit (minutes)"/>
+                    <property name="value"/>
+                 </jupiter>
+              </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+	</xs:complexType>
+	<xs:element name="EnhancedScorecard">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/QuestionTypes/EnhancedScoreCardDef.xml"/>
+					<component caption="Enhanced Score Card" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="0" name="ScoreRange">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component caption="Score Range" type="sequence"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Message" type="xs:string" minOccurs="1" maxOccurs="1">							
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="text" caption="Score Message"/>
+											<property name="text.text"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="min">
+							<xs:simpleType>
+								<xs:restriction base="xs:integer">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="100"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="max">
+							<xs:simpleType>
+								<xs:restriction base="xs:integer">
+									<xs:minInclusive value="0"/>
+									<xs:maxInclusive value="100"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="RetryLimit" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:minInclusive value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Bookmark" use="optional" default="Resume">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Resume"/>
+						<xs:enumeration value="Retake"/>
+						<xs:enumeration value="Review"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="ShowQuestionList" type="xs:boolean"/>
+			<xs:attribute name="ReviewQuestions" type="xs:boolean"/>
+			<xs:attribute name="MaskQuestionStatus" type="xs:boolean" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

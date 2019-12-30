@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="ProductionSchedule"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="TaskResource.xsd"/>
+	<xs:include schemaLocation="TypeOfTask.xsd"/>
+	<xs:include schemaLocation="BusinessArea.xsd"/>
+	<xs:include schemaLocation="ProjectType.xsd"/>
+	<xs:include schemaLocation="ProductionScheduleStatus.xsd"/>
+	<xs:element name="ProductionSchedule">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/ScheduleTypes/ProductionScheduleDef.xml"/>
+					<component type="sequence" caption="Production Schedule" metaCaption="$Title(text.text)$" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Calendario de Producción"/>
+					<translation lang="fr" caption="Calendrier de Production"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Title">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="text" caption="Title" css2="font-size:14;font-family:Tahoma;"/>
+								<property name="text.text"/>
+								<translation lang="es" caption="Título"/>
+								<translation lang="fr" caption="Titre"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ISBN">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="text" caption="ISBN" css2="font-size:14;font-family:Tahoma;"/>
+								<property name="text.text"/>
+								<translation lang="es" caption="ISBN"/>
+								<translation lang="fr" caption="ISBN"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="BusinessArea"/>
+				<xs:element ref="ProjectType"/>
+				<xs:element ref="ProductionScheduleStatus"/>
+				<xs:element name="TargetStartDate" type="xs:date">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<settings caption="Target Start Date" nonworkingdays="false"/>
+								<translation lang="es" caption="Fecha de Inicio Meta"/>
+								<translation lang="fr" caption="Date de Début Cible"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="LEStartDate" type="xs:date">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<settings caption="LE Start Date" nonworkingdays="false"/>
+								<translation lang="es" caption="Fecha de Inicio LE"/>
+								<translation lang="fr" caption="Date de Début LE"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="Workflow"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Workflow">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/ScheduleTypes/WorkflowDef.xml"/>
+					<component type="sequence" editor="tabular" styledOnly="true" caption="Workflow" metaCaption="$Title(text.text)$" />
+					<translation lang="es" caption="Flujo de Trabajo"/>
+					<translation lang="fr" caption="Flux de Travail"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Title">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="text" caption="Title" css2="font-size:14;font-family:Tahoma;"/>
+								<property name="text.text"/>
+								<translation lang="es" caption="Título"/>
+								<translation lang="fr" caption="Titre"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="SequentialSubTasks">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Tasks"/>
+								<translation lang="es" caption="Tareas"/>
+								<translation lang="fr" caption="Tâches"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="TaskType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<setting caption="Task" indent="20" autonumber="true" tabularRow="true" metaCaption="$Name(value)$"/>
+					<link def="Core/Definitions/ScheduleTypes/ProductionScheduleTaskDef.xml"/>
+					<translation lang="es" caption="Tarea"/>
+					<translation lang="fr" caption="Tâche"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Name" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<settings tabularColumn="true" caption="Name" autonumberappend="true" css2="SequentialSubTasks/SubTask=background-image:'Core/definitions/ScheduleTypes/sequence';|ParallelSubTasks/SubTask=background-image:'Core/Definitions/ScheduleTypes/parallel';"/>
+							<translation lang="es" caption="Nombre"/>
+							<translation lang="fr" caption="Nom"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:element name="TaskData">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Simple Task"/>
+								<translation lang="es" caption="Tarea Simple"/>
+								<translation lang="fr" caption="Tâche Simple"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+						<xs:element name="TargetDuration" type="xs:int">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<settings tabularColumn="true" caption="Target Duration"/>
+										<translation lang="es" caption="Duración Meta"/>
+										<translation lang="fr" caption="Durée Cible"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="LEDuration" type="xs:int">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<settings tabularColumn="true" caption="LE Duration" hiddenInTemplate="true"/>
+										<translation lang="es" caption="Duración LE"/>
+										<translation lang="fr" caption="Durée LE"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element ref="TypeOfTask" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<settings tabularColumn="true" caption="Task Type"/>
+										<translation lang="es" caption="Task Type"/>
+										<translation lang="fr" caption="Task Type"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>						
+						<xs:element ref="TaskResource">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<settings tabularColumn="true"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="LinkedDocument"  maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<settings caption="Linked Document" modal="false"/>
+										<translation lang="es" caption="Documento Vinculado"/>
+										<translation lang="fr" caption="Document Lié"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:simpleContent>
+									<xs:extension base="xs:string">
+										<xs:attribute name="DocumentItem" type="xs:string" use="required">
+											<xs:annotation>
+												<xs:appinfo>
+													<jupiter>
+														<component type="reference" caption="Linked Document" hiddenInTemplate="true"/>
+														<property name="ref.guid"/>
+														<translation lang="es" caption="Documento Vinculado"/>
+														<translation lang="fr" caption="Document Lié"/>
+													</jupiter>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:attribute>
+									</xs:extension>
+								</xs:simpleContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="AssignmentData">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="sequence" indent="20"
+											caption="Assignment Data" placement="3000" hiddenInTemplate="true"/>
+										<link def="Core/Definitions/ScheduleTypes/AssignmentDataDef.xml" />
+										<translation lang="es" caption="Datos de la Tarea"/>
+										<translation lang="fr" caption="Données du Devoir"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="ActualStartingDate" type="xs:dateTime">
+										<xs:annotation>
+											<xs:appinfo>
+												<jupiter>
+													<settings tabularColumn="true" caption="Actual Start Date" hiddenInTemplate="true" nonworkingdays="false"/>
+													<translation lang="es" caption="Fecha de Inicio Real"/>
+													<translation lang="fr" caption="Date de Début Réelle"/>
+												</jupiter>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="ActualEndDate" type="xs:dateTime">
+										<xs:annotation>
+											<xs:appinfo>
+												<jupiter>
+													<settings tabularColumn="true" caption="Actual End Date"  hiddenInTemplate="true" nonworkingdays="false"/>
+													<translation lang="es" caption="Fecha de Fin Real"/>
+													<translation lang="fr" caption="Date de Fin Réelle"/>
+												</jupiter>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="ActualTimeSpent" type="xs:string">
+										<xs:annotation>
+											<xs:appinfo>
+												<jupiter>
+													<settings tabularColumn="true" caption="Actual Time Spent" hiddenInTemplate="true"/>
+													<translation lang="es" caption="Tiempo Real Empleado"/>
+													<translation lang="fr" caption="Temps Réel Dépensé"/>
+												</jupiter>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="TaskNotes" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<settings tabularColumn="true" caption="Notes"/>
+										<translation lang="es" caption="Notes"/>
+										<translation lang="fr" caption="Notes"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>						
+						</xs:sequence>					
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="SequentialSubTasks"/>
+				<xs:element name="ParallelSubTasks">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" indent="20"
+									caption="Task Container (Parallel)" placement="2000"/>
+								<translation lang="es" caption="Contenedor de Tareas (Paralelo)"/>
+								<translation lang="fr" caption="Conteneur de Tâches (Parallèle)"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="SubTask" type="TaskType"  maxOccurs="unbounded" minOccurs="1">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<link def="Core/Definitions/ScheduleTypes/ProductionScheduleTaskDef.xml"/>
+											<settings caption="Task" indent="20" autonumber="true" tabularRow="true" metaCaption="$Name(value)$"/>
+											<translation lang="es" caption="Tarea"/>
+											<translation lang="fr" caption="Tâche"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>				
+				</xs:element>
+			</xs:choice>
+			<xs:element name="Target">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="sequence" caption="Target" hiddenInTemplate="true"/>
+							<translation lang="es" caption="Meta"/>
+							<translation lang="fr" caption="Cible"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="TargetStartDate"
+							type="xs:date">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<settings tabularColumn="true" caption="Target Start Date" hiddenInTemplate="true" nonworkingdays="false"/>
+										<translation lang="es" caption="Fecha de Inicio Meta"/>
+										<translation lang="fr" caption="Date de Début Cible"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="TargetEndDate"
+							type="xs:date">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<settings tabularColumn="true" caption="Target End Date"  hiddenInTemplate="true" nonworkingdays="false"/>
+										<translation lang="es" caption="Fecha de Fin Meta"/>
+										<translation lang="fr" caption="Date de Fin Cible"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="LatestEstimate">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="sequence"
+								caption="Latest Estimate" hiddenInTemplate="true"/>
+							<translation lang="es" caption="Última estimación"/>
+							<translation lang="fr" caption="Dernière Estimation"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="LEStartDate" type="xs:date">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<settings tabularColumn="true" caption="LE Start Date"  hiddenInTemplate="true" nonworkingdays="false"/>
+										<translation lang="es" caption="Fecha de Inicio LE"/>
+										<translation lang="fr" caption="Date de Début LE"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="LEEndDate" type="xs:date">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<settings tabularColumn="true" caption="LE End Date"  hiddenInTemplate="true" nonworkingdays="false"/>
+										<translation lang="es" caption="Fecha de Fin LE"/>
+										<translation lang="fr" caption="Date de Fin LE"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="SequentialSubTasks">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" indent="20"
+						caption="Task Container (Sequential)" placement="2000"/>
+					<translation lang="es" caption="Contenedor de Tareas (Secuencial)"/>
+					<translation lang="fr" caption="Conteneur de Tâches (Séquentiel)"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SubTask" type="TaskType" maxOccurs="unbounded" minOccurs="1">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/ScheduleTypes/ProductionScheduleTaskDef.xml"/>				
+								<settings caption="Task" indent="20" autonumber="true" tabularRow="true" metaCaption="$Name(value)$"/>
+								<translation lang="es" caption="Tarea"/>
+								<translation lang="fr" caption="Tâche"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+</xs:schema>

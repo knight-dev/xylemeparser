@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="MultipleChoice"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="QuestionComponentLib.xsd"/>
+	<xs:element name="MultipleChoice">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/QuestionTypes/MultipleChoiceDef.xml"/>
+					<component propertyPanel="true" panelIcon="Core/Definitions/Media/Q-24x24-b.png" type="sequence" caption="Multiple Choice Content" metaCaption="$name(value)$"/>
+					<translation lang="es" caption="Opción Múltiple - Contenido"/>
+					<translation lang="fr" caption="Choix multiples - Contenu"/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-question-general-group"/>
+						<widget-icon iconClass="multiple-choice"/>
+						<property name="data-includeAvailableChildren" value="QuestionStem"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="MultipleChoiceType"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="MultipleChoiceType">
+		<xs:sequence>
+			<xs:element ref="QuestionStem"/>
+			<xs:element ref="Option" minOccurs="2" maxOccurs="unbounded"/>
+			<xs:element ref="Hint" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Feedback" minOccurs="0"/>
+			<xs:element ref="Advice" minOccurs="0"/>
+			<xs:element ref="LOM" minOccurs="0"/>
+			<xs:element ref="CompetencyDefinition" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element minOccurs="0" ref="AssessmentItemDetails"/>
+		</xs:sequence>
+		<xs:attribute ref="name" use="optional">
+			<xs:annotation>
+				<xs:appinfo>
+					<jupiter>
+						<component type="implicit" caption="Name"/>
+						<property name="value"/>
+						<widget-properties>
+							<property name="option-property" tabName="Basic" value="true"/>
+					                <translation lang="ru" tabName="Основные"/>
+							<property name="property-layout-index" value="3"/>
+					      </widget-properties>
+					</jupiter>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute ref="Weight" use="optional">
+			<xs:annotation>
+				<xs:appinfo>
+					<jupiter>
+						<component type="implicit" caption="Weight"/>
+						<property name="value"/>
+						<widget-properties>
+							<property name="option-property" tabName="Basic" value="true"/>
+							<translation lang="ru" tabName="Основные"/>
+							<property name="property-layout-index" value="4"/>
+					      </widget-properties>
+					</jupiter>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute ref="CognitionLevel" use="optional">
+			<xs:annotation>
+				<xs:appinfo>
+					<jupiter>
+						<component type="implicit" caption="Cognition Level"/>
+						<property name="value"/>
+						<widget-properties>
+							<property name="option-property" tabName="Basic" value="true"/>
+							<translation lang="ru" tabName="Основные"/>
+                            <property name="property-layout-index" value="5"/>
+						</widget-properties>
+					</jupiter>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="PreserveChoiceOrder" type="xs:boolean" use="optional">
+			<xs:annotation>
+				<xs:appinfo>
+					<jupiter>
+						<component type="implicit" caption="Preserve Choice Order"/>
+						<property name="value"/>
+						<widget-properties>
+							<property name="option-property" tabName="Basic" value="true"/>
+				            <translation lang="ru" tabName="Основные"/>
+                            <property name="property-layout-index" value="6"/>
+                        </widget-properties>
+					</jupiter>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="Option">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<!--<component type="sequence" caption="Question Option"/>-->
+                    <component propertyPanel="true" type="sequence" caption="Question Option" metaCaption="$name(text.text)$"/>
+					<property-owner/>
+					<translation lang="ru" caption="Вариант ответа"/>
+                    <property name="value"/>
+                    <widget-properties>
+                        <!--<property name="option-property" tabName="Basic" value="true"/>
+                        <translation lang="ru" tabName="Основные"/>-->
+						<toolbar-item group_id="toolbar-question-content-group"/>
+                    </widget-properties>
+                </jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Distractor" type="SimpleBlockType">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Distractor"/>
+								<property-owner/>
+								<translation lang="es" caption="Distractor"/>
+								<translation lang="fr" caption="Distracteur"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Feedback" type="RichTextType" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="wysiwyg" caption="Response Specific Feedback"/>
+								<translation lang="es" caption="Reacción a Respuesta Específica"/>
+								<translation lang="es" caption="Reaction a Réponse Spécifique"/>
+								<property name="text.text"/>
+                                <widget-properties>
+                                    <property name="option-property" tabName="Basic" value="true"/>
+                                    <translation lang="ru" tabName="Основные"/>
+                                </widget-properties>
+                            </jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute ref="IsCorrect" use="optional" default="false">
+				<xs:annotation>
+					<xs:appinfo>
+                        <jupiter>
+                            <component type="implicit" caption="Is correct"/>
+                            <property name="value"/>
+                            <widget-properties>
+                                <property name="option-property" tabName="Basic" value="true"/>
+                                <translation lang="ru" tabName="Основные"/>
+                            </widget-properties>
+                        </jupiter>
+                    </xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

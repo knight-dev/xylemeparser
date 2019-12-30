@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+
+
+<xml_lat_definition name="Branching Sim Option" schema="BranchingSim.xsd">
+	<property name="name" value="Opción de Sim Ramificación" lang="es"/>
+	<map name="xsl">
+		<!--<item name="web" value="Core/Transforms/ActivityComponents/WebMultipleChoice.xsl"/>-->
+		<!--<item name="print" value="Core/Transforms/Print/ActivityComponents/WebMultipleChoice.xsl"/>-->
+		<!--<item name="qti" value="Core/Transforms/ActivityComponents/QTI/WebMultipleChoice.xsl"/>-->
+		<!--<item name="OnlineStoryboard" value="Core/Transforms/ActivityComponents/WebMultipleChoice.xsl"/>-->
+	</map>
+	
+	<map name="targets">
+		<item name="web" value="html"/>
+		<item name="qti" value="manifest"/>
+		<item name="print" value="pdf"/>
+		<item name="OnlineStoryboard" value="web"/>
+	</map>
+	<property name="ss" value="mixed"/>
+	<property name="showInMenu" value="false"/>
+	<list name="menu">
+		<item value="Question Types"/>
+	</list>
+	<list name="menu" lang="es">
+		<item value="Tipos de Pregunta"/>
+	</list>
+	<list name="menu" lang="fr">
+		<item value="Types de Question"/>
+	</list>
+	<list name="groups">
+		<item value="content"/>
+	</list>
+</xml_lat_definition>

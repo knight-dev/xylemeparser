@@ -1,0 +1,817 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:include schemaLocation="GlossaryItem.xsd"/>
+	<xs:include schemaLocation="Equation.xsd"/>
+	<xs:element name="InternalLink">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" css="color:blue;text-decoration:underline;" caption="Internal Link"/>
+					<translation lang="es" caption="Enlace Interno"/>
+					<translation lang="fr" caption="Lien Interne"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:attribute name="name" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component caption="Name" type="implicit"/>
+							<property name="value"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="UrlTarget" type="xs:anyURI" use="required">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component allowedFileFormats=".pdf, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .zip, .rar, .notebook, .dat, .tz" caption="Image File" height="$../height(value)$" showThrough="true" type="media" width="$../width(value)$"/>
+							<translation caption="Archivo de Imagen" lang="es"/>
+							<translation caption="Fichier d'Image" lang="fr"/>
+							<property name="media.uri"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AutoNumberToken">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings image="/Core/Definitions/Media/NumberToken.gif" caption="Autonumber"/>
+					<translation lang="es" caption="AutoEnumerar"/>
+					<translation lang="fr" caption="Autonuméro"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="ObjectType" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Table"/>
+						<xs:enumeration value="Figure"/>
+						<xs:enumeration value="Activity"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="RefID" type="xs:string" use="required"/>
+			<xs:attribute name="RefType" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Source"/>
+						<xs:enumeration value="Ref"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PageNumberToken">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings image="/Core/Definitions/Media/NumberToken.gif" caption="Autonumber"/>
+					<translation lang="es" caption="AutoEnumerar"/>
+					<translation lang="fr" caption="Autonuméro"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="RefID" type="xs:string" use="required"/>
+			<xs:attribute name="RefType" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Source"/>
+						<xs:enumeration value="Ref"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CommandName" type="styled-element">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="font-family:Monospaced; font-weight:bold;color:black" caption="CommandName" group="code_syntax" ordinal="21" toolbaricon="/SYSTEM/toolbaricons/cn.png"/>
+					<translation lang="es" caption="NombreComando"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Emph" type="styled-element">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="font-weight:bold;font-family:inherit;font-size:inherit;" caption="Emphasis" shortcut="b" toolbaricon="/SYSTEM/toolbaricons/b.png" ordinal="1"/>
+					<translation lang="es" caption="Énfasis"/>
+					<translation lang="fr" caption="Accent"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="EndTextWrap">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings image="/Core/Definitions/Media/EndWrap.gif" caption="End Wrap"/>
+					<translation lang="es" caption="Fin Envoltura"/>
+					<translation lang="fr" caption="Fin Enveloppe"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="EndWrap" type="xs:boolean" use="optional" default="true"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ExternalLink">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" css="color:blue;text-decoration:underline;" caption="External Link"/>
+					<translation lang="es" caption="Enlace Externo"/>
+					<translation lang="fr" caption="Lien Externe"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:attribute name="UrlTarget" type="xs:anyURI" use="required">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="url" caption="URL Target"/>
+							<property name="url.text"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Name" type="xs:string" use="optional">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" aption="Name"/>
+							<property name="value"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Footnote">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings image="/Core/Definitions/Media/IndexMarker.png" caption="Footnote"/>
+					<translation lang="es" caption="Nota al Pie"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="RichText"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Href">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="color:blue;text-decoration:underline;" caption="URL"/>
+					<translation lang="es" caption="URL"/>
+					<translation lang="fr" caption="URL"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="UrlTarget" type="xs:anyURI" use="required">
+						<xs:annotation>
+							<xs:appinfo>
+								<jupiter>
+									<component type="url" caption="URL"/>
+									<translation lang="es" caption="URL"/>
+									<translation lang="fr" caption="URL"/>
+									<property name="url.text"/>
+								</jupiter>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="InLineApplicationPrompt" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="font-weight:bold;color:brown" caption="Application Message"/>
+					<translation lang="es" caption="Mensaje de Aplicación"/>
+					<translation lang="fr" caption="Message de l'Aplication"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="InLineCode" type="styled-element">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="font-family:Monospaced;font-weight:bold;font-family:inherit;font-size:inherit;color:green;text-decoration:italic;" caption="InLineCode"/>
+					<translation lang="es" caption="Código - Entre Líneas"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="InLineImage">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings caption="InLine Image" image="$mediaUri(media.uri)$"/>
+					<translation lang="es" caption="Imagen entre Líneas"/>
+					<translation lang="fr" caption="Image entre Lignes"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="mediaUri" type="xs:string" use="required">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="media" caption="Image URI" allowedFileFormats=".jpeg, .jpg, .png, .gif"/>
+							<translation lang="es" caption="URI de Imagen"/>
+							<translation lang="fr" caption="URI de l'Image"/>
+							<property name="media.uri"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="UrlTarget" type="xs:anyURI" use="optional"/>
+			<xs:attribute name="AltText" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="InLineEquation">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="color:blue;text-decoration:underline;" caption="Equation" image="/Core/Definitions/Media/equation.gif"/>
+					<translation lang="es" caption="Ecuación"/>
+					<translation lang="fr" caption="Équation"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Equation"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="InLineInstructorNote">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings image="/Core/Definitions/Media/InstructorNote16x16.gif" caption="Inline Instructor Note"/>
+					<translation lang="es" caption="Nota del Instructor Entre Líneas"/>
+					<translation lang="fr" caption="Note de l'Instructeur entre Lignes"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType mixed="false">
+			<xs:attribute name="NoteTitle" type="xs:string" use="required"/>
+			<xs:attribute name="NoteBody" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="InLineInstructorText" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="font-family:Monospaced;color:pink;font-weight:bold;" caption="InLine Instructor Text"/>
+					<translation lang="es" caption="Texto del Instructor - Entre Líneas"/>
+					<translation lang="fr" caption="Texte de l'Instructeur - Entre Lignes"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="InLineKeyboard" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="font-weight:bold;color:red" caption="Keyboard"/>
+					<translation lang="es" caption="Teclado"/>
+					<translation lang="fr" caption="Clavier"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="InLineKeyword" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="font-weight:bold;font-family:inherit;font-size:inherit;color:green" caption="InLineKeyword"/>
+					<translation lang="es" caption="Palabra Clave - Entre Líneas"/>
+					<translation lang="fr" caption="Mot clé - Entre Lignes"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="InLineLabFile" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="font-weight:bold;color:purple" caption="Lab File Name"/>
+					<translation lang="es" caption="Nombre del Archivo Lab"/>
+					<translation lang="fr" caption="Nom du Fichier Lab"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="InLineMenuSelection" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="font-weight:bold;color:green" caption="Menu Selection"/>
+					<translation lang="es" caption="Selección de Menú"/>
+					<translation lang="fr" caption="Sélection du Menu"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="InLineQuote" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="font-family:Monospaced;color:red;text-decoration:italic" caption="InLineQuote"/>
+					<translation lang="es" caption="Cita - Entre Líneas"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Ingredient" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="font-family:Monospaced; font-weight:bold;color:purple;text-decoration:italic"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:attribute name="InsideTargetRef" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="reference" caption="Reference"/>
+					<translation lang="es" caption="Referencia"/>
+					<translation lang="fr" caption="Référence"/>
+					<property name="ref.guid"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:element name="InLineTechTerm">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings image="/Core/Definitions/Media/bullet3.gif.gif" caption="Inline Term"/>
+					<translation lang="es" caption="Término - Entre Líneas"/>
+					<translation lang="fr" caption="Terme - Entre Lignes"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType mixed="false">
+			<xs:attribute name="Term" type="xs:string" use="required"/>
+			<xs:attribute name="Definition" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="InLineTerm">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="color:red;font-weight:bold;" caption="InLineTerm"/>
+					<translation lang="es" caption="Término - Entre Líneas"/>
+					<translation lang="fr" caption="Terme - Entre Lignes"/>
+					<property-owner/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:sequence>
+				<xs:element ref="GlossaryItem"/>
+			</xs:sequence>
+			<xs:attributeGroup ref="Popup"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="InLineTypeThis" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="font-family:Monospaced;color:green;font-weight:bold;" caption="Type This"/>
+					<translation lang="es" caption="Escriba Esto"/>
+					<translation lang="fr" caption="Écrivez ceci"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="InLineUserAction" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="font-family:Monospaced;color:brown font-weight:bold;" caption="User Action"/>
+					<translation lang="es" caption="Acción del Usuario"/>
+					<translation lang="fr" caption="Action de l'utilisateur"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="InLineVariableText" type="styled-element">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="font-family:inherit;font-size:inherit;color:red;text-decoration:underline;text-decoration:italic" caption="Variable Text"/>
+					<translation lang="es" caption="Texto Variable"/>
+					<translation lang="fr" caption="Texte Variable"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="InLineWindowName" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="font-family:Monospaced; font-weight:bold;color:red;text-decoration:italic" caption="InLineWindowName"/>
+					<translation lang="es" caption="Nombre de Ventana - Entre Líneas"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="IndexMarker">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings image="/Core/Definitions/Media/IndexMarker.png" caption="Index Marker"/>
+					<translation lang="es" caption="Marcador de Índice"/>
+					<translation lang="fr" caption="Marqueur d'Indice"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="IndexHeadingLevel1" type="xs:string" use="required"/>
+			<xs:attribute name="IndexHeadingLevel2" type="xs:string" use="optional"/>
+			<xs:attribute name="IndexHeadingLevel3" type="xs:string" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Italic" type="styled-element">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="font-style:italic;" caption="Italic" shortcut="i" toolbaricon="/SYSTEM/toolbaricons/i.png" ordinal="2"/>
+					<translation lang="es" caption="Itálico"/>
+					<translation lang="fr" caption="Italique"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Measure">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings image="/Core/Definitions/Media/Scales.gif" caption="Measure" isvisible="false"/>
+					<translation lang="es" caption="Medida"/>
+					<translation lang="fr" caption="Mesure"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="gram" type="xs:float"/>
+				<xs:element name="ounce" type="xs:float"/>
+				<xs:element name="cm" type="xs:float"/>
+				<xs:element name="inch" type="xs:float"/>
+				<xs:element name="lbs" type="xs:float"/>
+				<xs:element name="kilo" type="xs:float"/>
+				<xs:element name="liter" type="xs:float"/>
+				<xs:element name="gallon" type="xs:float"/>
+				<xs:element name="cc" type="xs:float"/>
+				<xs:element name="cup" type="xs:float"/>
+				<xs:element name="meter" type="xs:float"/>
+				<xs:element name="yard" type="xs:float"/>
+				<xs:element name="fahrenheit" type="xs:float"/>
+				<xs:element name="celsius" type="xs:float"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SmallwareName" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="font-family:Monospaced; font-weight:bold;color:red;text-decoration:italic"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Strike" type="styled-element">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="text-decoration:line-through;" caption="Strike Through" toolbaricon="/SYSTEM/toolbaricons/s.png" ordinal="5"/>
+					<translation lang="es" caption="Tachar"/>
+					<translation lang="fr" caption="Barrer"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Underline" type="styled-element">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="text-decoration:underline;" caption="Underline" shortcut="u" group="underline" toolbaricon="/SYSTEM/toolbaricons/u.png" ordinal="3"/>
+					<translation lang="es" caption="Subrayado"/>
+					<translation lang="fr" caption="Souligner"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="DoubleUnderline" type="styled-element">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="text-decoration:double-underline" caption="Double Underline" group="underline" ordinal="4" toolbaricon="/SYSTEM/toolbaricons/du.png"/>
+					<translation lang="es" caption="Subrayado Doble"/>
+					<translation lang="fr" caption="Souligner Double"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Overline" type="styled-element">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="text-decoration:overline" caption="Overline" toolbaricon="/SYSTEM/toolbaricons/o.png" ordinal="6"/>
+					<translation lang="es" caption="Doble Línea Por Encima"/>
+					<translation lang="fr" caption="Double Ligne Au-Dessus"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="ReviewerText" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="font-weight:bold;color:red" caption="Reviewer Text"/>
+					<translation lang="es" caption="Texto del Revisor"/>
+					<translation lang="fr" caption="Texte du Examinateur"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Sub" type="styled-element">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="vertical-align:sub" caption="Subscript" toolbaricon="/SYSTEM/toolbaricons/sub.png" group="subsup" ordinal="10"/>
+					<translation lang="es" caption="Subíndice"/>
+					<translation lang="fr" caption="Subindice"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Sup" type="styled-element">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="vertical-align:sup" caption="Superscript" toolbaricon="/SYSTEM/toolbaricons/sup.png" group="subsup" ordinal="11"/>
+					<translation lang="es" caption="Superíndice"/>
+					<translation lang="fr" caption="Exposant"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Highlight" type="styled-element">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings  css="background-color:rgb(212,241,43)" caption="Highlight" ordinal="20" toolbaricon="/SYSTEM/toolbaricons/hl2.png"/>
+					<translation lang="es" caption="hilite"/>
+					<translation lang="fr" caption="hilite"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="SelectableText" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="font-family:Monospaced; font-weight:bold;color:blue;text-decoration:italic" caption="SelectableText"/>
+					<translation lang="es" caption="Texto Seleccionable"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="SyntaxArg" type="styled-element">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="font-family:Monospaced; font-weight:bold;color:blue;text-decoration:italic" caption="SyntaxArg" group="code_syntax" ordinal="23" toolbaricon="/SYSTEM/toolbaricons/sa.png"/>
+					<translation lang="es" caption="Sintaxis - Argumento"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="SyntaxKeyword" type="styled-element">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="font-family:Monospaced; font-weight:bold;color:red;text-decoration:italic" caption="SyntaxKeyword" group="code_syntax" ordinal="22" toolbaricon="/SYSTEM/toolbaricons/sk.png"/>
+					<translation lang="es" caption="Sintaxis - Palabra Clave"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:attribute name="UrlTarget" type="xs:anyURI"/>
+	<xs:element name="Xref">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="color:red;text-decoration:underline;" caption="Internal Cross Ref" modal="false"/>
+					<translation lang="es" caption="Referencia Cruzada Interna"/>
+					<translation lang="fr" caption="Référence Interne Croisée"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="InsideTargetRef" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:appinfo>
+								<jupiter>
+									<component type="reference" caption="Cross Ref Target"/>
+									<translation lang="es" caption="Destino de la Referencia Cruzada"/>
+									<translation lang="fr" caption="Destination de la Référence Croisée"/>
+									<property name="ref.guid"/>
+								</jupiter>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="height" type="xs:integer" use="optional"/>
+					<xs:attribute name="width" type="xs:integer" use="optional"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PBR">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/PBRDef.xml"/>
+					<component type="sequence" caption="Page Break"/>
+					<translation lang="es" caption="Salto de Página"/>
+					<translation lang="fr" caption="Saut de Page"/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-contents-group"/>
+						<widget-icon iconClass="page-break"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="FilterMetadata" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PageBreak-old">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings image="/Core/Definitions/Media/IndexMarker.png" caption="Page Break"/>
+					<translation lang="es" caption="Salto de Página"/>
+					<translation lang="fr" caption="Saut de Page"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Type" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="WebBreak"/>
+						<xs:enumeration value="PrintBreak"/>
+						<xs:enumeration value="Both"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Citation">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings css="color:black;text-decoration:underline;" caption="Citation"/>
+					<translation lang="es" caption="Cita"/>
+					<translation lang="fr" caption="Citation"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:string">
+					<xs:attribute name="Citation" type="xs:string" use="required">
+						<xs:annotation>
+							<xs:appinfo>
+								<jupiter>
+									<component type="text" caption="Citation"/>
+									<translation lang="es" caption="Cita"/>
+									<translation lang="fr" caption="Citation"/>
+									<property name="text.text"/>
+								</jupiter>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:attribute>
+					<xs:attribute name="citationType" use="required">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="Bibliography"/>
+								<xs:enumeration value="Case Law"/>
+								<xs:enumeration value="Statute"/>
+								<xs:enumeration value="Treaty"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:attribute>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Formula" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="implicit" caption="Formula" />
+					<settings css="font-style:italic;color:blue;" caption="Formula" shortcut="F" />
+					<translation lang="es" caption="Fórmula" />
+					<translation lang="fr" caption="Fórmula" />
+					<property name="value" />
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:group name="style-elements">
+		<xs:choice>
+			<xs:element ref="Emph" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Italic" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Underline" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="DoubleUnderline" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Overline" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Strike" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Sub" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Sup" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="InLineVariableText" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="Highlight" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="EndTextWrap" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="SyntaxKeyword" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="SyntaxArg" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="CommandName" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="InLineCode" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:choice>
+	</xs:group>
+	<xs:complexType name="styled-element" mixed="true">
+		<xs:group ref="style-elements"/>
+	</xs:complexType>
+	<xs:element name="InLineHotText">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<settings caption="HotText" css="color:blue;font-weight:bold;"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType mixed="true">
+			<xs:sequence>
+				<xs:element ref="SimpleBlock"/>
+			</xs:sequence>
+			<xs:attribute name="trigger" default="click">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="roll-over"/>
+						<xs:enumeration value="click"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="height" type="xs:integer"/>
+			<xs:attribute name="width" type="xs:integer"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

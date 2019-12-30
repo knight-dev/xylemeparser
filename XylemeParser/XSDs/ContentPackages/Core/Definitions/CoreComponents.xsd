@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:include schemaLocation="Paragraph.xsd"/>
+	<xs:include schemaLocation="CompetencyDefinition.xsd"/>
+	<xs:element name="InstructorNotes" type="SimpleBlockType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Instructor Notes"/>
+					<translation lang="es" caption="Notas del Instructor"/>
+					<translation lang="fr" caption="Notes de l'Instructeur"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Introduction" type="TitledBlockType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Introduction"/>
+					<translation lang="es" caption="Introducción"/>
+					<translation lang="fr" caption="Introduction"/>
+					<widget-properties>
+						<widget-icon iconClass="introduction"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Resources">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/ResourcesDef.xml"/>
+					<component type="sequence" caption="Resources"/>
+					<translation lang="es" caption="Recursos"/>
+					<translation lang="fr" caption="Ressources"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="wysiwyg" caption="Title" css2="font-size:14;font-family:Times New Roman;font-weight:bold;"/>
+								<translation lang="es" caption="Título"/>
+								<translation lang="fr" caption="Titre"/>
+								<property name="text.xml"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element maxOccurs="unbounded" ref="Resource"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Resource">
+		<xs:annotation>
+			<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/ResourceDef.xml"/>
+								<component type="sequence" caption="Resource"/>
+								<translation lang="es" caption="Recurso"/>
+								<translation lang="fr" caption="Ressource"/>
+							</jupiter>
+						</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title"/>
+				<xs:element name="Description" type="RichTextType">
+					<xs:annotation>
+						<xs:appinfo>
+										<jupiter>
+											<component type="wysiwyg" caption="Description"/>
+											<translation lang="es" caption="Descripción"/>
+											<translation lang="fr" caption="Description"/>
+											<property name="text.text"/>
+										</jupiter>
+									</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:choice minOccurs="0">
+					<xs:element ref="InternalLink"/>
+					<xs:element ref="ExternalLink"/>
+				</xs:choice>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

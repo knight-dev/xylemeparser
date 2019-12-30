@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="ElementProfileMap"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="ProjectProfile.xsd"/>
+	<xs:element name="ElementProfileMap">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/ElementProfileMapDef.xml"/>
+					<component type="sequence" caption="Element Profile Map"/>
+					<translation lang="es" caption="Mapa del Perfil del Elemento"/>
+					<translation lang="fr" caption="Plan du Profil de l'Élément"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence maxOccurs="1">
+				<xs:element name="ElementTypeProfile" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/Metadata/ElementTypeProfileDef.xml"/>
+								<component type="sequence" caption="Element Type Profile" metaCaption="$ProfileName(text.text)$"/>
+								<translation lang="es" caption="Mapa del Perfil del Elemento"/>
+								<translation lang="fr" caption="Plan du Profil de l'Élément"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="ProfileName"/>
+							<xs:element ref="ElementTypes">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<link def="Core/Definitions/Metadata/ElementTypesDef.xml"/>
+											<component type="sequence" collectionGUID="21f24826-8441-4a6b-a02c-690ed6705080" editor="collectionsinglechoice" propertyPanel="true" showTitle="true" caption="Element Type" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+											<translation lang="es" caption="Tipo de Elemento"/>
+											<translation lang="fr" caption="Type d'Élément"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:choice maxOccurs="unbounded">
+								<xs:element ref="OutputProfile"/>
+								<xs:element ref="OutputProfileGroup"/>
+							</xs:choice>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

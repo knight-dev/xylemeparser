@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+
+<xml_lat_definition name="Single Source Project" schema="IA.xsd">
+	<property name="name" value="Proyecto de Fuente Única" lang="es"/>
+
+	<map name="xsl">
+		<item name="DesignDocHTML" value="IA/Transforms/IA_DesignDoc.xsl"/>
+		<item name="DesignDocPDF" value="IA/Transforms/Print/IA_DesignDoc.xsl"/>
+		<item name="OnlineStoryboard" value="IA/Transforms/IA.xsl"/>
+		<item name="ProductionReport" value="IA/Transforms/ProductionReport.xsl"/>		
+		<item name="OnlineCourse" value="IA/Transforms/IA.xsl"/>
+		<item name="static2004_manifest" value="IA/Transforms/IA.xsl"/>
+		<item name="Guide" value="IA/Transforms/Print/IA_Guide.xsl"/>
+		<item name="ActivitiesGuide" value="IA/Transforms/Print/IA_ActivitiesGuide.xsl"/>
+		<item name="Handouts" value="IA/Transforms/Print/IA_HandoutPack.xsl"/>
+		<item name="SupportMaterials" value="IA/Transforms/Print/IA_SupportMaterials.xsl"/>
+		<item name="CardDeck(PDF)" value="IA/Transforms/Print/IA_CardDeck.xsl"/>	
+		<item name="resources" value="Core/Transforms/WebCourseRes.xsl"/>
+		<item name="SlideDeck(PDF)" value="IA/Transforms/Print/IA_SlideDeck.xsl"/>
+		<item name="WebExam" value="IA/Transforms/IA_Exam.xsl"/>
+		<item name="PrintedExam" value="IA/Transforms/Print/IA_Exam.xsl"/>
+		<item name="iPadAppPackage" value="IA/Transforms/iPad/IA_TOC.xsl"/>
+		<item name="OnPoint" value="IA/Transforms/IA_OnPoint.xsl"/>
+		<item name="Assessment" value="IA/Transforms/IA_Assessment.xsl"/>
+		<item name="assessment_manifest" value="IA/Transforms/IA_Assessment.xsl"/>
+		<item name="PerformanceSupport(HTML)" value="IA/Transforms/IA_Frameset.xsl"/>
+		<item name="ia_fsdeploy" value="IA/Transforms/IA_FramesetDeploy.xsl"/>
+		<item name="ia_fstree" value="IA/Transforms/IA_Frameset.xsl"/>
+		<item name="PerformanceSupport(Mobile)" value="IA/Transforms/IA_Mobile_Frameset.xsl"/>
+		<item name="mobile" value="IA/Transforms/IA_Mobile_Frameset.xsl"/>		
+		<item name="manifest" value="IA/Transforms/IA.xsl"/>
+		<item name="cc" value="IA/Transforms/IA_Cartridge.xsl"/>
+		<item name="cc_manifest" value="IA/Transforms/IA_Cartridge.xsl"/>
+		<item name="qti" value="IA/Transforms/IA_QTICartridge.xsl"/>
+		<item name="qb" value="Core/Transforms/ActivityComponents/QTI/QuestionBank.xsl"/>
+		<item name="webexam_manifest" value="IA/Transforms/IA_Exam.xsl"/>
+    	<item name="SlideDeck(PowerPoint)" value="IA/Transforms/PPT/IA.xsl"/>
+		<item name="glossary" value="Core/Transforms/Glossary.xsl"/>		
+		<item name="ia_coursemap" value="IA/Transforms/IA_Coursemap.xsl"/>
+		<item name="mobile_manifest" value="IA/Transforms/IA.xsl"/>
+		<item name="javaHelp" value="IA/Transforms/IA.xsl"/>
+		<item name="ia_html_search_keywords" value="IA/Transforms/IA_SearchKeywords.xsl"/>
+		<item name="ia_toc_navigation" value="IA/Transforms/IA_TOC_Navigation.xsl"/>
+		<item name="java_help_toc" value="IA/Transforms/IA_JavaHelpTOC.xsl"/>
+		<item name="java_help_map" value="IA/Transforms/IA_JavaHelpMap.xsl"/>
+		<item name="epub2_package" value="IA/Transforms/IA_OPF.xsl"/>
+		<item name="epub2_toc" value="IA/Transforms/IA_NCX.xsl"/>
+		<item name="epub3_package" value="IA/Transforms/IA_ePup_Package.xsl"/>
+		<item name="epub3_toc" value="IA/Transforms/IA_ePup_TOC.xsl"/>
+		<item name="ios_toc" value="IA/Transforms/iOS/IA_TOC.xsl"/>
+		<item name="ios_HelpMe" value="IA/Transforms/iOS/IA_HelpMe.xsl"/>
+		<item name="ios_Glossary" value="IA/Transforms/iOS/Glossary_TOC.xsl"/>
+		<item name="ios_Info" value="IA/Transforms/iOS/Info.xsl"/>
+		<item name="ios_resources" value="IA/Transforms/iOS/IA_Resources.xsl"/>
+		<item name="ipad_toc_all" value="IA/Transforms/iPad/IA_Lesson_TOC.xsl"/>
+		<item name="ipad_toc_media" value="IA/Transforms/iPad/IA_HelpMe.xsl"/>
+		<item name="xml" value="components/Filter-XML.xsl"/>
+		<item name="aicc" value="IA/Transforms/AICC_Course.xsl" />
+		<item name="container" value="IA/Transforms/IA_Container.xsl" />
+		<item name="media" value="Core/Transforms/MediaList.xsl"/>
+		<item name="metadata_course" value="Core/Transforms/MetadataCourse.xsl"/>
+		<!--item name="web" value="IA/Transforms/IA.xsl"/-->
+		<!--item name="print" value="IA/Transforms/Print/IA_InstructorGuide.xsl"/-->
+	</map>
+
+	<map name="targets">
+		<item name="Guide" value="print"/>
+		<item name="ActivitiesGuide" value="print"/>
+		<item name="DesignDocPDF" value="print"/>
+		<item name="SupportMaterials" value="print"/>
+		<item name="Handouts" value="print"/>
+		<item name="resources" value="html"/>
+		<item name="OnlineCourse" value="web"/>
+		<item name="ia_coursemap" value="web"/>
+		<item name="iPadAppPackage" value="web"/>
+		<item name="PerformanceSupport(HTML)" value="web"/>
+		<item name="ia_fstree" value="html"/>
+		<item name="ia_fsdeploy" value="manifest"/>
+		<item name="PerformanceSupport(Mobile)" value="html"/>
+		<item name="mobile" value="html"/>
+		<item name="manifest" value="manifest"/>
+		<item name="cc" value="manifest"/>
+		<item name="cc_manifest" value="manifest"/>
+		<item name="qti" value="manifest"/>
+		<item name="qb" value="manifest"/>
+		<item name="mobile_manifest" value="manifest"/>
+		<item name="javaHelp" value="manifest"/>
+		<item name="WebExam" value="web"/>
+		<item name="webexam_manifest" value="manifest"/>
+		<item name="SlideDeck(PDF)" value="print"/>
+		<item name="PrintedExam" value="print"/>
+		<item name="ia_html_search_keywords" value="text"/>
+		<item name="ia_toc_navigation" value="text"/>
+		<item name="ProductionReport" value="html"/>
+		<item name="java_help_toc" value="manifest"/>
+		<item name="java_help_map" value="manifest"/>
+		<item name="OnlineStoryboard" value="web"/>
+		<item name="DesignDocHTML" value="html"/>
+		<item name="SlideDeck(PowerPoint)" value="zip"/>
+		<item name="epub2_package" value="manifest"/>
+		<item name="epub2_toc" value="manifest"/>
+		<item name="epub3_package" value="manifest"/>
+		<item name="epub3_toc" value="manifest"/>
+		<item name="CardDeck(PDF)" value="print"/>
+		<item name="ios_toc" value="manifest"/>
+		<item name="ios_resources" value="manifest"/>
+		<item name="ios_HelpMe" value="manifest"/>
+		<item name="ios_Glossary" value="manifest"/>
+		<item name="ios_Info" value="manifest"/>
+		<item name="ipad_toc_all" value="html"/>
+		<item name="ipad_toc_media" value="html"/>
+		<item name="OnPoint" value="html"/>
+		<item name="xml" value="manifest"/>
+		<item name="aicc" value="html" />
+		<item name="container" value="html" />
+		<item name="media" value="manifest"/>
+		<item name="metadata_course" value="manifest"/>
+		<item name="Assessment" value="web"/>
+		<item name="assessment_manifest" value="manifest"/>
+		<item name="CardDeck" value="print"/>
+	</map>
+	<!-- map name="publishUINames">
+		<item name="design_doc" value="Design Document (HTML)"/>
+		<item name="ia_dd" value="Design Document (PDF)"/>
+		<item name="OnlineStoryboard" value="Online Storyboard"/>
+		<item name="ProductionReport" value="Production Report"/>
+		<item name="ia_webcourse" value="Online Course (SCORM)"/>
+		<item name="ia_ig" value="Instructor Guide"/>
+		<item name="ia_sg" value="Student Guide"/>
+		<item name="ia_hp" value="Handout Pack"/>
+		<item name="ia_sm" value="Program Support Materials"/>
+		<item name="ia_sd" value="Slide Deck (PDF)"/>
+		<item name="SlideDeck(PowerPoint)" value="Slide Deck (PowerPoint)"/>
+		<item name="ia_webexam" value="Online Certification Exam"/>
+		<item name="ia_exam" value="Printed Exam"/>
+		<item name="ia_answers" value="Printed Exam Key"/>
+		<item name="PerformanceSupport(HTML)" value="Performance Support (HTML)"/>
+		<item name="PerformanceSupport(Mobile)" value="Performance Support (Mobile)"/>
+		<item name="manifest" value="Online Course XML Manifest"/>
+		<item name="ia_webexam_manifest" value="Online Certification Exam XML Manifest"/>
+		<item name="ia_cd" value="Card Deck (PDF)"/>
+	</map -->
+	<!-- map name="publishUINames" lang="es">
+		<item name="design_doc" value="Documento de Diseño (HTML)"/>
+		<item name="ia_dd" value="Documento de Diseño (PDF)"/>
+		<item name="OnlineStoryboard" value="Guión Gráfico Web"/>
+		<item name="ProductionReport" value="Reporte de Producción"/>
+		<item name="ia_webcourse" value="Curso Web(SCORM)"/>
+		<item name="ia_ig" value="Guía del Instructor"/>
+		<item name="ia_sg" value="Guía del Estudiante"/>
+		<item name="ia_hp" value="Paquete de Folletos"/>
+		<item name="ia_sm" value="Materiales de Apoyo al Programa"/>
+		<item name="ia_sd" value="Paquete de Diapositivas (PDF)"/>
+		<item name="SlideDeck(PowerPoint)" value="Paquete de Diapositivas (PowerPoint)"/>
+		<item name="ia_webexam" value="Examen de Certificación Web"/>
+		<item name="ia_exam" value="Examen Impreso"/>
+		<item name="ia_answers" value="Examen Impreso con Soluciones"/>
+		<item name="PerformanceSupport(HTML)" value="Apoyo al Desempeño (HTML)"/>
+		<item name="PerformanceSupport(Mobile)" value="Apoyo al Desempeño (Móvil)"/>
+		<item name="manifest" value="Manifiesto XML del Curso Web"/>
+		<item name="ia_webexam_manifest" value="Manifiesto XML del Examen de Certificación Web"/>
+		<item name="ia_cd" value="Set de Tarjetas (PDF)"/>
+	</map -->
+	
+	<!-- map name="appendToURL">
+		<item name="ia_webcourse" value="ft=OT&amp;pid=c0a82c1e-112d9fa1-6cc11-2d9f-f555ec63e402c9cb"/>
+		<item name="manifest" value="ft=OT&amp;pid=c0a82c1e-112d9fa1-6cc11-2d9f-f555ec63e402c9cb"/>
+		<item name="mobile_manifest" value="ft=OT&amp;pid=c0a82c1e-112d9fa1-6cc11-2da0-1750a9393b44730a"/>
+	</map-->
+	<map name="filters">
+		<item name="OT" value="components/Filter-OT.xsl"/>
+		<item name="epub" value="components/Filter-EPUB.xsl"/>
+		<item name="SlideDeck" value="components/Filter-SlideDeck.xsl"/>
+	</map>
+	<property name="ss" value="true"/>
+	<property name="profile" value="b9bd07b2-2298-42d1-8cba-340d9806628e"/>
+	<list name="groups">
+		<item value="content"/>
+	</list>
+	<list name="menu">
+		<item value="Publications"/>
+	</list>
+	<list name="menu" lang="es">
+		<item value="Publicaciones"/>
+	</list>
+	<list name="menu" lang="fr">
+		<item value="Publications"/>
+	</list>
+	<list name="newMenu">
+		<item value="Information Architectures"/>
+	</list>
+	<list name="newMenu" lang="es">
+		<item value="Arquitecturas de Información"/>
+	</list>
+	<list name="newMenu" lang="fr">
+		<item value="Architectures de l'information"/>
+	</list>
+	<property name="showInNewMenu" value="true"/>
+	<property name="expand-level" value="2"/>
+	<property name="isDeployable" value="true"/>
+	<property name="learningObject" value="true"/>
+</xml_lat_definition>

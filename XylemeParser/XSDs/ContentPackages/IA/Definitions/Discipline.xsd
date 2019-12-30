@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp1 U (http://www.altova.com) by Jeffrey Katzman (Xyleme Inc) -->
+<!-- edited with XML Spy v4.0.1 U (http://www.xmlspy.com) by Jeff Katzman (Avaltus) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="Discipline"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="IA.xsd"/>
+	<xs:element name="Discipline">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="IA/Definitions/DisciplineDef.xml"/>
+					<component type="sequence" caption="Discipline" metaCaption="$DisciplineTitle(text.text)$" css="color:rgb(30, 21,196);font-size:22;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Disciplina"/>
+					<translation lang="fr" caption="Discipline"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="DisciplineTitle" type="xs:string">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component caption="Discipline Title" css2="Discipline/Discipline/Discipline=font-size:16;font-family:'Times New Roman'|Discipline/Discipline=font-size:18;font-family:'Times New Roman'|font-size:20;font-family:'Times New Roman';" menuUseParent="true" type="text"/>
+								<translation caption="Título Disciplina" lang="es"/>
+								<translation caption="Titre Discipline" lang="fr"/>
+								<property name="text.text"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:choice maxOccurs="unbounded" minOccurs="0">
+					<xs:element name="Item">
+						<xs:annotation>
+							<xs:appinfo><jupiter>
+<component caption="Item" type="sequence"/>
+</jupiter></xs:appinfo>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element ref="Xref"/>
+								<xs:element ref="LOM" minOccurs="0"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element ref="Discipline"/>
+				</xs:choice>
+				<xs:element minOccurs="0" ref="LOM"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

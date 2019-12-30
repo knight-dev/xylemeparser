@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp1 U (http://www.altova.com) by Jeffrey Katzman (Xyleme Inc) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="RichText.xsd"/>
+	<xs:element name="EducationalObjective" type="EducationalObjectiveType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/EdObjectiveDef.xml"/>
+					<component type="sequence" caption="Educational Objectives" css="color:green;font-size:12;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Objetivos Educacionales"/>
+					<translation lang="fr" caption="Objectifs Pédagogiques"/>
+					<widget-properties>
+						<widget-icon iconClass="educational-objectives"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="EducationalObjectiveType">
+		<xs:sequence>
+			<xs:element name="ObjectiveIntro" type="RichTextType">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="wysiwyg" caption="Objective Preamble" css2="bottom-border-width:1px;font-size:12;font-style:italic;"/>
+							<translation lang="es" caption="Preámbulo del Objetivo"/>
+							<translation lang="fr" caption="Préambule du Objectif"/>
+							<property name="text.text" default="Upon completion of this activity, you will be able to..."/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="EnablingObjective"/>
+				<xs:element ref="TerminalObjective"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ObjectiveStatementBlockType">
+		<xs:sequence>
+			<xs:element name="ObjectiveStatement" type="RichTextType">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="wysiwyg" caption="ObjectiveStatement" css2="background-image:'Core/Definitions/Media/bullet';font-size:12;"/>
+							<translation lang="es" caption="Enunciado del Objetivo"/>
+							<translation lang="fr" caption="Déclaration de l'Objectif"/>
+							<property name="text.text"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="EnablingObjective" type="ObjectiveStatementBlockType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Enabling Objective" appendPoint="true"/>
+					<translation lang="es" caption="Objetivo Facilitador"/>
+					<translation lang="fr" caption="Objectif Permettant"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="TerminalObjective" type="ObjectiveStatementBlockType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Terminal Objective" appendPoint="true"/>
+					<translation lang="es" caption="Objetivo Terminal"/>
+					<translation lang="fr" caption="Objectif Terminal"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

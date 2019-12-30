@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp1 U (http://www.altova.com) by Jeffrey Katzman (Xyleme Inc) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:element name="Search">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Find" css="color:rgb(0,0,240);font-size:14;font-family:'lucida console',sans-serif;"/>
+					<translation lang="es" caption="Buscar"/>
+					<translation lang="fr" caption="Chercher"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Types">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Document Types (right click to add/remove)" css="color:rgb(125,33,125);font-size:12;font-weight:bold;" isvisible="false"/>
+								<translation lang="es" caption="Tipos de Documento (clic derecho para agregar/eliminar)"/>
+								<translation lang="fr" caption="Types de Documents (clic droit pour ajouter/supprimer)"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="sequence" caption="new Document Type" showBorder="false"/>
+										<translation lang="es" caption="nuevo Tipo de Documento"/>
+										<translation lang="fr" caption="nouveau type de document"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:element name="Type" type="xs:string">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="sdoctype" caption="Documents of type "/>
+											<translation lang="es" caption="Documentos de tipo "/>
+											<translation lang="fr" caption="Documents de type "/>
+											<property name="choose"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="Content"/>
+				<xs:element name="ChildSpec">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Search by Content" css="color:rgb(125,33,125);font-size:12;font-weight:bold;" isvisible="false"/>
+								<translation lang="es" caption="Buscar por Contenido"/>
+								<translation lang="fr" caption="Recherche par contenu"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="sequence" caption="Type" showBorder="false"/>
+										<translation lang="es" caption="Tipo"/>
+										<translation lang="fr" caption="Type"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:element name="Types" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="Document Types (right click to add/remove)" css="color:rgb(125,33,125);font-size:12;font-weight:bold;" showBorder="false"/>
+											<translation lang="es" caption="Tipos de Documento (clic derecho para agregar/eliminar)"/>
+											<translation lang="fr" caption="Types de documents (clic droit pour ajouter/supprimer)"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:annotation>
+											<xs:appinfo>
+												<jupiter>
+													<component type="sequence" caption="new Document Type" showBorder="false"/>
+													<translation lang="es" caption="nuevo Tipo de Documento"/>
+													<translation lang="fr" caption="nouveau type de document"/>
+												</jupiter>
+											</xs:appinfo>
+										</xs:annotation>
+										<xs:element name="Type" type="xs:string">
+											<xs:annotation>
+												<xs:appinfo>
+													<jupiter>
+														<component type="sdoctype" caption="With children of type"/>
+														<translation lang="es" caption="Con hijos de tipo"/>
+														<translation lang="fr" caption="Avec enfants du type"/>
+														<property name="choose"/>
+													</jupiter>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element ref="Content"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:sequence>
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Advanced" css="color:rgb(125,33,125);font-size:12;font-weight:bold;"/>
+								<translation lang="es" caption="Avanzada"/>
+								<translation lang="fr" caption="Avancée"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:element name="RootsOnly" type="xs:boolean" default="false">
+						<xs:annotation>
+							<xs:appinfo>
+								<jupiter>
+									<component type="bistate" caption="Search Only Root Documents"/>
+									<translation lang="es" caption="Buscar Sólo Documentos Raíz"/>
+									<translation lang="fr" caption="Recherche de Documents Racine Seulement"/>
+									<property name="bistate.value"/>
+								</jupiter>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+					<!-- xs:element name="Metadata" type="AllOrAnyWords">
+						<xs:annotation>
+							<xs:appinfo>
+								<jupiter>
+									<component type="sequence" caption="Search by Metadata" css="color:rgb(125,33,125);font-size:12;font-weight:bold;" />
+									<translation lang="es" caption="Buscar por Metadatos"/>
+									<translation lang="fr" caption="Recherche par Métadonnées"/>
+								</jupiter>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element -->
+					<xs:element name="Dates">
+						<xs:annotation>
+							<xs:appinfo>
+								<jupiter>
+									<component type="sequence" caption="Search by Date" css="color:rgb(125,33,125);font-size:12;font-weight:bold;"/>
+									<translation lang="es" caption="Buscar por Fecha"/>
+									<translation lang="fr" caption="Recherche par Date"/>
+								</jupiter>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="ModifiedDate" type="DateRange">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="sequence" caption="By Modification Date (right click to change)"/>
+												<translation lang="es" caption="Por Fecha de Modificación (clic derecho para cambiar)"/>
+												<translation lang="fr" caption="Par Date de Modification (clic droit pour changer)"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="CreateDate" type="DateRange">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="sequence" caption="By Creation Date (right click to change)"/>
+												<translation lang="es" caption="Por Fecha de Creación (clic derecho para cambiar)"/>
+												<translation lang="fr" caption="Par Date de Création (clic droit pour changer)"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="Workflow">
+						<xs:annotation>
+							<xs:appinfo>
+								<jupiter>
+									<component type="sequence" caption="Workflow" css="color:rgb(125,33,125);font-size:12;font-weight:bold;"/>
+									<translation lang="es" caption="Flujo de Trabajo"/>
+									<translation lang="fr" caption="Flux de Travail"/>
+								</jupiter>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="AssignedTo" type="Person">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="sequence" caption="Assigned to... (right click to change)"/>
+												<translation lang="es" caption="Asignado a... (clic derecho para cambiar)"/>
+												<translation lang="fr" caption="Assigné à ... (Clic droit pour changer)"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="AssignedBy" type="Person">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="sequence" caption="Assigned by... (right click to change)"/>
+												<translation lang="es" caption="Asignado por... (clic derecho para cambiar)"/>
+												<translation lang="fr" caption="Assigné par ... (Clic droit pour changer)"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="AssignedDueDate" type="DateRange">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="sequence" caption="Due Date (right click to change)"/>
+												<translation lang="es" caption="Fecha de Entrega (clic derecho para cambiar)"/>
+												<translation lang="fr" caption="Date d'échéance (clic droit pour changer)"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="CreatedBy" type="Person">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="sequence" caption="Owner (Created By)...(right click to change)"/>
+												<translation lang="es" caption="Dueño (Creado Por)... (clic derecho para cambiar)"/>
+												<translation lang="fr" caption="Propriétaire (Creé par)... (clic droit pour changer)"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="CheckedOutBy" type="Person">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="sequence" caption="Checked-out by..."/>
+												<translation lang="es" caption="En edición por..."/>
+												<translation lang="fr" caption="En édition par..."/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="TaskType" type="xs:string" default="Any">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="list" caption="Task type" values="Any,Design,Development,Review,Production,Approval" labels="Any,Design,Development,Review,Production,Approval" delim=","/>
+												<translation lang="es" caption="Tipo de tarea" labels="Cualquiera,Diseño,Desarrollo,Revisión,Producción,Aprobación" delim="," />
+												<translation lang="fr" caption="Type de tâche"/>
+												<property name="choice.value"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="TaskState" type="xs:string" default="Any">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="list" caption="Task state" values="Any,Not Started,In Progress,Complete" labels="Any,Not Started,In Progress,Complete" delim=","/>
+												<translation lang="es" caption="Estado de la tarea" labels="Cualquiera,Sin iniciar,En Progreso,Terminada" delim=","/>
+												<translation lang="fr" caption="État de la tâche"/>
+												<property name="choice.value"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="ApprovedForPublishing" type="xs:string" default="Any">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="list" caption="Approved for Publishing" values="Any,Yes,No" labels="Any,Yes,No" delim="," />
+												<translation lang="es" caption="Aprobado para Publicación" labels="Cualquiera,Sí,No" delim=","/>
+												<translation lang="fr" caption="Approuvé pour Publication"/>
+												<property name="choice.value"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="LifeCycle">
+						<xs:annotation>
+							<xs:appinfo>
+								<jupiter>
+									<component type="sequence" caption="Life Cycle" css="color:rgb(125,33,125);font-size:12;font-weight:bold;"/>
+									<translation lang="es" caption="Ciclo de Vida"/>
+								</jupiter>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="PublishedBy" type="Person">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="sequence" caption="Published by... (right click to change)"/>
+												<translation lang="es" caption="Publicado por...(clic derecho para cambiar)"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="PublishedDate" type="DateRange">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="sequence" caption="Publish Date (right click to change)"/>\
+												<translation lang="es" caption="Fecha de Publicación (clic derecho para cambiar)"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="PublishOutputs" type="xs:string">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="implicit" caption="Published Outputs"/>
+												<translation lang="es" caption="Productos Publicados"/>
+												<property name="value"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="ArchiveDate" type="DateRange">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="sequence" caption="Archive Date (right click to change)"/>
+												<translation lang="es" caption="Fecha del Archivo (clic derecho para cambiar)"/>
+
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="RetentionDate" type="DateRange">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="sequence" caption="Retention Date (right click to change)"/>
+												<translation lang="es" caption="Fecha de Retención (clic derecho para cambiar)"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="ExpiryDate" type="DateRange">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="sequence" caption="Expiry Date (right click to change)"/>
+												<translation lang="es" caption="Fecha de Expiración (clic derecho para cambiar)"/>
+												<translation lang="fr" caption="Date d'expiration (clic droit pour changer)"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="System">
+						<xs:annotation>
+							<xs:appinfo>
+								<jupiter>
+									<component type="sequence" caption="System" css="color:rgb(125,33,125);font-size:12;font-weight:bold;"/>
+									<translation lang="es" caption="Sistema"/>
+									<translation lang="fr" caption="Système"/>
+								</jupiter>
+							</xs:appinfo>
+						</xs:annotation>
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="ShortcutType" type="xs:string" default="Any">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="list" caption="Shortcut Type" values="Any,Link,Template,Link or Template" labels="Any,Link,Template,Link or Template" delim=","/>
+												<translation lang="es" caption="Tipo de Acceso Directo" labels="Cualquiera,Enlace,Plantilla,Enlace o Plantilla" delim=","/>
+												<translation lang="fr" caption="Type de Raccourci"/>
+												<property name="choice.value"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="Guid" type="xs:string">
+									<xs:annotation>
+										<xs:appinfo>
+											<jupiter>
+												<component type="implicit" caption="GUID"/>
+												<translation lang="es" caption="GUID"/>
+												<translation lang="fr" caption="GUID"/>
+												<property name="value"/>
+											</jupiter>
+										</xs:appinfo>
+									</xs:annotation>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="Person">
+		<xs:choice>
+			<xs:element name="Anybody">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="sequence" caption="Anybody"/>
+							<translation lang="es" caption="Cualquiera"/>
+							<translation lang="fr" caption="N'importe qui"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Me">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="sequence" caption="Me"/>
+							<translation lang="es" caption="Mí"/>
+							<translation lang="fr" caption="Moi"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Person" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="Person"/>
+							<translation lang="es" caption="Persona"/>
+							<translation lang="fr" caption="Personne"/>
+							<property name="value"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="AllOrAnyWords">
+		<xs:sequence>
+			<xs:element name="AllOrAnyWord" type="xs:string" default="All of the words">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="list" caption="Containing" values="All of the words,Any of the words" labels="All of the words,Any of the words" delim="," />
+							<translation lang="es" caption="Que contenga" labels="Todas las palabras,Cualquiera de las palabras"  delim=","/>
+							<translation lang="fr" caption="Contenant"/>
+							<property name="choice.value"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Text" type="xs:string">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="Words"/>
+							<translation lang="es" caption="Palabras"/>
+							<translation lang="fr" caption="Paroles"/>
+							<property name="value"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DateRange">
+		<xs:choice>
+			<xs:element name="AnyDate">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="sequence" caption="Any Date"/>
+							<translation lang="es" caption="Cualquier Fecha"/>
+							<translation lang="fr" caption="N'importe quelle date"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StartEnd">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="sequence" caption="By Start and End Date"/>
+							<translation lang="es" caption="Por Fecha de Inicio y Fin"/>
+							<translation lang="fr" caption="Par date de début et date de fin"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="StartDate" type="xs:date">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="implicit" caption="Start Date"/>
+										<translation lang="es" caption="Fecha de Inicio"/>
+										<translation lang="fr" caption="Date de début"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="EndDate" type="xs:date">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="implicit" caption="End Date"/>
+										<translation lang="es" caption="Fecha de Fin"/>
+										<translation lang="fr" caption="Date de fin"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Since" type="xs:date">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="After Date"/>
+							<translation lang="es" caption="Después de la Fecha"/>
+							<translation lang="fr" caption="Après la date"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Before" type="xs:date">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="Before Date"/>
+							<translation lang="es" caption="Antes de la Fecha"/>
+							<translation lang="fr" caption="Avant la date"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LastDays" type="xs:integer">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="Last x Days"/>
+							<translation lang="es" caption="Últimos x Días"/>
+							<translation lang="fr" caption="Derniers x Jours"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NextDays" type="xs:integer">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="Next x Days"/>
+							<translation lang="es" caption="Próximos x Días"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:element name="Content" type="AllOrAnyWords">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Content" css="color:rgb(125,33,125);font-size:12;font-weight:bold;" showBorder="false"/>
+					<translation lang="es" caption="Contenido"/>
+					<translation lang="fr" caption="Contenu"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

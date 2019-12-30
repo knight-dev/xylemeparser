@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+
+
+<!-- edited with XMLSPY v5 rel. 3 U (http://www.xmlspy.com) by Registred (Registred) -->
+<!-- edited with XML Spy v4.4 U (http://www.xmlspy.com) by Jeff Katzman (Avaltus) -->
+<xml_lat_definition name="Slide Deck" schema="SlideDeck.xsd">
+	<property name="name" value="Set de Diapositivas" lang="es"/>
+	<map name="xsl">
+		<item name="web" value="Core/Transforms/SlideDeck.xsl"/>
+		<item name="print" value="Core/Transforms/Print/SlideDeck.xsl"/>
+		<item name="SlideDeck(PowerPoint)" value="IA/Transforms/PPT/IA.xsl"/>
+	</map>
+	<map name="targets">
+		<item name="web" value="html"/>
+		<item name="print" value="pdf"/>
+		<item name="SlideDeck(PowerPoint)" value="zip"/>
+	</map>
+	<property name="ss" value="false"/>
+	<map name="publishUINames">
+		<item name="SlideDeck(PowerPoint)" value="Powerpoint Presentation"/>
+	</map>	
+	<map name="publishUINames" lang="es">
+		<item name="SlideDeck(PowerPoint)" value="Presentación de Powerpoint"/>
+	</map>	
+	<map name="publishUINames" lang="fr">
+		<item name="SlideDeck(PowerPoint)" value="Présentation Powerpoint"/>
+	</map>	
+	<list name="groups">
+		<item value="content"/>
+	</list>
+	<list name="menu">
+		<item value="Publications"/>
+	</list>
+	<list name="menu" lang="es">
+		<item value="Publicaciones"/>
+	</list>
+	<list name="menu" lang="fr">
+		<item value="Publications"/>
+	</list>
+	<list name="newMenu">
+		<item value="Publications"/>
+	</list>
+	<list name="newMenu" lang="es">
+		<item value="Publicaciones"/>
+	</list>
+	<list name="newMenu" lang="fr">
+		<item value="Publications"/>
+	</list>
+	<property name="showInNewMenu" value="true"/>
+</xml_lat_definition>

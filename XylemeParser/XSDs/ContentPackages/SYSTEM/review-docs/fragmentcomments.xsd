@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="fragmentcomment.xsd"/>
+	<xs:element name="comments">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="SYSTEM/review-docs/FragmentCommentsDef.xml"/>
+					<component caption="Fragment Comments" type="sequence"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="comment" maxOccurs="unbounded" minOccurs="0" />
+				<xs:element name="fragment-guid" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp1 U (http://www.altova.com) by Jeffrey Katzman (Xyleme Inc) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:include schemaLocation="Paragraph.xsd"/>
+	<xs:element name="DocWriter">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/DocWriterDef.xml"/>
+					<component type="sequence" caption="DocWriter" propertyPanel="true" metaCaption="$Title(text.xml)$"/>
+					<translation lang="es" caption="Escribir Doc"/>
+					<translation lang="fr" caption="Écrire Doc"/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-contents-group"/>"
+						<widget-icon iconClass="doc-writer"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<settings showThrough="true"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="Instructions" minOccurs="0"/>
+				<xs:element name="Entry" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Entry"/>
+								<translation lang="es" caption="Entrada"/>
+								<translation lang="fr" caption="Entrée"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Label" type="RichTextType" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo><jupiter>
+<component caption="Label" type="wysiwyg"/>
+<property name="text.text"/>
+</jupiter></xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="UserPrompt" type="SimpleBlockType">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="User Prompt"/>
+											<translation lang="es" caption="Mensaje para el Usuario"/>
+											<translation lang="fr" caption="Message pour l'Utilisateur"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Field">
+								<xs:complexType>
+									<xs:attribute name="name" type="xs:string"/>
+									<xs:attribute name="charLimit" type="xs:integer"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element minOccurs="0" name="ModelResponse" type="RichTextType">
+								<xs:annotation>
+									<xs:appinfo><jupiter>
+<component caption="Model Response" type="wysiwyg"/>
+<property name="text.xml"/>
+</jupiter></xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+							<xs:element minOccurs="0" ref="Hint"/>
+							<xs:element minOccurs="0" ref="Advice"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="FilterMetadata" minOccurs="0"/>
+				<xs:element minOccurs="0" ref="LOM"/>
+			</xs:sequence>
+			<xs:attribute name="TemplateURI">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="media" caption="HTML Template" showThrough="false" allowedFileFormats=".html"/>
+							<property name="media.uri"/>
+							<translation lang="es" caption="Plantilla HTML"/>
+							<translation lang="fr" caption="Modèle HTML"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

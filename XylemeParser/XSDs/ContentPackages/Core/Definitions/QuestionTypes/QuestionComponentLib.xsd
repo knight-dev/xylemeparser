@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+    <xs:include schemaLocation="../ParaComponents.xsd"/>
+    <xs:include schemaLocation="WebActvityBehavior.xsd"/>
+    <xs:include schemaLocation="Remediation.xsd"/>
+    <xs:include schemaLocation="../Metadata/FilterMetadata.xsd"/>
+    <xs:element name="Results">
+        <xs:annotation>
+            <xs:appinfo>
+                <jupiter>
+                    <component type="sequence" caption="Results"/>
+                    <translation lang="es" caption="Resultados"/>
+                    <translation lang="fr" caption="Résultats"/>
+                </jupiter>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Result" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <jupiter>
+                                <component type="sequence" caption="Results"/>
+                                <translation lang="es" caption="Resultados"/>
+                                <translation lang="fr" caption="Résultats"/>
+                            </jupiter>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="SimpleBlock"/>
+                        </xs:sequence>
+                        <xs:attribute name="min_correct" type="xs:integer"/>
+                        <xs:attribute name="max_correct" type="xs:integer"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="QuestionStemBlockType">
+        <xs:choice maxOccurs="unbounded">
+            <xs:element ref="RichText"/>
+            <xs:element ref="Figure"/>
+            <xs:element ref="Table"/>
+            <xs:element ref="List"/>
+            <xs:element ref="Instructions"/>
+            <xs:element ref="Flash"/>
+            <xs:element ref="Audio"/>
+            <xs:element ref="Movie"/>
+        </xs:choice>
+    </xs:complexType>
+    <xs:element name="QuestionStem" type="QuestionStemBlockType">
+        <xs:annotation>
+            <xs:appinfo>
+                <jupiter>
+                    <component showThrough="true" type="sequence" caption="Question Stem"/>
+                    <property-owner/>
+                    <translation lang="es" caption="Pregunta"/>
+                    <translation lang="fr" caption="Question"/>
+                </jupiter>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="Feedback">
+        <xs:annotation>
+            <xs:appinfo>
+                <jupiter>
+                    <component type="sequence" caption="Feedback"/>
+                    <property name="value"/>
+                    <translation lang="es" caption="Realimentación"/>
+                    <translation lang="fr" caption="Réaction"/>
+                </jupiter>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="PositiveFeedback" type="RichTextType">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <jupiter>
+                                <component type="wysiwyg" caption="Correct Feedback"/>
+                                <property name="text.text"/>
+                                <widget-properties>
+                                    <property name="option-property" value="true"/>
+                                    <property name="property-layout-index" value="1"/>
+                                </widget-properties>
+                                <translation lang="es" caption="Realimentación Positiva"/>
+                                <translation lang="fr" caption="Réactionn Positive"/>
+                            </jupiter>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="NegativeFeedback" type="RichTextType">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <jupiter>
+                                <component type="wysiwyg" caption="Incorrect Feedback"/>
+                                <property name="text.text"/>
+                                <widget-properties>
+                                    <property name="option-property" value="true"/>
+                                    <property name="property-layout-index" value="2"/>
+                                </widget-properties>
+                                <translation lang="es" caption="Realimentación Negativa"/>
+                                <translation lang="fr" caption="Réaction Negative"/>
+                            </jupiter>
+                        </xs:appinfo>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:attribute name="CognitionLevel">
+        <xs:annotation>
+            <xs:appinfo>
+                <jupiter>
+                    <component type="implicit" caption="Cognition level"/>
+                    <property name="value" default="none"/>
+                    <widget-properties>
+                        <property name="option-property" tabName="Basic" value="true"/>
+                    </widget-properties>
+                </jupiter>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:enumeration value="Knowledge"/>
+                <xs:enumeration value="Comprehension"/>
+                <xs:enumeration value="Application"/>
+                <xs:enumeration value="Analysis"/>
+                <xs:enumeration value="Synthesis"/>
+                <xs:enumeration value="Evaluation"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="Weight" default="1.0">
+        <xs:annotation>
+            <xs:appinfo>
+                <jupiter>
+                    <component type="implicit" caption="Weight"/>
+                    <property name="value" default="none"/>
+                    <widget-properties>
+                        <property name="option-property" tabName="Basic" value="true"/>
+                    </widget-properties>
+                </jupiter>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:simpleType>
+            <xs:restriction base="xs:decimal">
+                <xs:minInclusive value="0"/>
+                <xs:maxInclusive value="1.0"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="IsCorrect" type="xs:boolean"/>
+    <xs:element name="Hint" type="RichTextType">
+        <xs:annotation>
+            <xs:appinfo>
+                <jupiter>
+                    <component type="wysiwyg" caption="Hint"/>
+                    <property-owner/>
+                    <translation lang="es" caption="Pista"/>
+                    <translation lang="fr" caption="Nuance"/>
+                    <property name="text.text"/>
+                    <widget-properties>
+                        <toolbar-item group_id="toolbar-question-content-group"/>
+                    </widget-properties>
+                </jupiter>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:element>
+    <xs:element name="Advice">
+        <xs:annotation>
+            <xs:appinfo>
+                <jupiter>
+                    <component type="sequence" caption="Advice"/>
+                    <translation lang="es" caption="Consejo"/>
+                    <translation lang="fr" caption="Conseil"/>
+                    <widget-properties>
+                        <toolbar-item group_id="toolbar-question-content-group"/>
+                    </widget-properties>
+                </jupiter>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Title" minOccurs="0"/>
+                <xs:choice maxOccurs="unbounded">
+                    <xs:element ref="RichText"/>
+                    <xs:element ref="List"/>
+                    <xs:element ref="Figure"/>
+                    <xs:element ref="Table"/>
+                    <xs:element ref="Movie"/>
+                    <xs:element ref="Flash"/>
+                    <xs:element ref="Audio"/>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:attribute name="name" type="xs:string">
+        <xs:annotation>
+            <xs:appinfo>
+                <jupiter>
+                    <component type="text" caption="Name"/>
+                    <translation lang="es" caption="Nombre"/>
+                    <property name="text.text"/>
+                    <widget-properties>
+                        <property name="option-property" tabName="Basic" value="true"/>
+                    </widget-properties>
+                </jupiter>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:attribute>
+    <xs:element name="Variables">
+        <xs:annotation>
+            <xs:appinfo>
+                <jupiter>
+                    <component type="sequence" caption="Variables"/>
+                    <translation lang="es" caption="Variables"/>
+                </jupiter>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Variable" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <jupiter>
+                                <component type="sequence" caption="Variable"/>
+                                <translation lang="es" caption="Variable"/>
+                            </jupiter>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:element name="Range">
+                                <xs:annotation>
+                                    <xs:appinfo>
+                                        <jupiter>
+                                            <component type="sequence" caption="Range"/>
+                                            <translation lang="es" caption="Rango"/>
+                                        </jupiter>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:attribute name="min" type="xs:float" use="required"/>
+                                    <xs:attribute name="max" type="xs:float" use="required"/>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="Set">
+                                <xs:annotation>
+                                    <xs:appinfo>
+                                        <jupiter>
+                                            <component type="sequence" caption="Number Set"/>
+                                            <translation lang="es" caption="Conjunto de Números"/>
+                                        </jupiter>
+                                    </xs:appinfo>
+                                </xs:annotation>
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="value" type="xs:float" maxOccurs="unbounded"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:choice>
+                        <xs:attribute name="VariableName" type="xs:string"/>
+                        <xs:attribute name="DecimalDigits" type="xs:integer" use="optional" default="0"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:attribute name="MatchAtLeast" type="xs:integer" default="1">
+        <xs:annotation>
+            <xs:appinfo>
+                <jupiter>
+                    <component type="implicit" caption="Match at least"/>
+                    <property name="value"/>
+                    <widget-properties>
+                        <property name="option-property" tabName="Basic" value="true"/>
+                    </widget-properties>
+                </jupiter>
+            </xs:appinfo>
+        </xs:annotation>
+    </xs:attribute>
+
+    <xs:attribute name="FieldCharSize" type="xs:integer" />
+    <xs:attribute name="FieldCharLimit" type="xs:integer" />
+
+    <xs:element name="TextMatches">
+        <xs:annotation>
+            <xs:appinfo>
+                <jupiter>
+                    <component type="sequence" caption="Text Matches"/>
+                    <translation lang="es" caption="Coincidencias de Texto"/>
+                </jupiter>
+            </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="TextMatch" maxOccurs="unbounded"/>
+            </xs:sequence>
+            <xs:attribute ref="MatchAtLeast"/>
+            <xs:attribute ref="FieldCharLimit" use="optional">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jupiter>
+                            <component type="implicit" caption="Field char limit"/>
+                            <property name="value"/>
+                            <widget-properties>
+                                <property name="option-property" tabName="Basic" value="true"/>
+                            </widget-properties>
+                        </jupiter>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:attribute>
+            <xs:attribute ref="FieldCharSize" use="optional">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jupiter>
+                            <component type="implicit" caption="Field char size"/>
+                            <property name="value"/>
+                            <widget-properties>
+                                <property name="option-property" tabName="Basic" value="true"/>
+                            </widget-properties>
+                        </jupiter>
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="TextMatch">
+        <xs:annotation>
+	        <xs:appinfo>
+	            <jupiter>
+	                <component type="sequence" caption="Text Match"/>
+	                <translation lang="es" caption="Coincidencia de Texto"/>
+	                <property-owner/>
+	            </jupiter>
+	        </xs:appinfo>
+        </xs:annotation>
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Pattern" maxOccurs="unbounded">
+                    <xs:annotation>
+                        <xs:appinfo>
+                            <jupiter>
+                                <component type="sequence" caption="Pattern"/>
+                                <property-owner/>
+                                <translation lang="es" caption="Patrón"/>
+                            </jupiter>
+                        </xs:appinfo>
+                    </xs:annotation>
+                    <xs:complexType>
+                        <xs:attribute name="Text" type="xs:string">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <jupiter>
+                                        <component type="implicit" showThrough="true" caption="Correct answer" />
+                                        <property name="value"/>
+                                    </jupiter>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:attribute>
+
+
+                        <xs:attribute name="IgnoreSpaces" type="xs:boolean" use="optional">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <jupiter>
+                                        <component type="implicit" caption="Ignore spaces" />
+                                        <property name="value"/>
+                                        <widget-properties>
+                                            <property name="hint" value="when set to True, the System will disable case sensitivity"/>
+                                            <property name="option-property" value="true"/>
+                                            <property name="property-group-editor-type" value="basic-group"/>
+                                            <property name="property-group-editor-name" value="properties.group.fill_in_blank.pattern.ignore"/>
+                                            <property name="property-layout-span" value="full"/>
+                                        </widget-properties>
+                                    </jupiter>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:attribute>
+
+                        <xs:attribute name="IgnoreCase" type="xs:boolean" use="optional">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <jupiter>
+                                        <component type="implicit" caption="Ignore cases" />
+                                        <property name="value"/>
+                                        <widget-properties>
+                                            <property name="option-property" value="true"/>
+                                            <property name="property-group-editor-type" value="basic-group"/>
+                                            <property name="property-group-editor-name" value="properties.group.fill_in_blank.pattern.ignore"/>
+                                            <property name="property-layout-span" value="half"/>
+                                        </widget-properties>
+                                    </jupiter>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:attribute>
+
+                        <xs:attribute name="IgnoreExtraWords" type="xs:boolean" use="optional">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <jupiter>
+                                        <component type="implicit" caption="Ignore extra words" />
+                                        <property name="value"/>
+                                        <widget-properties>
+                                            <property name="option-property" value="true"/>
+                                            <property name="property-group-editor-type" value="basic-group"/>
+                                            <property name="property-group-editor-name" value="properties.group.fill_in_blank.pattern.ignore"/>
+                                            <property name="property-layout-span" value="half"/>
+                                        </widget-properties>
+                                    </jupiter>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:attribute>
+
+                        <xs:attribute name="IgnoreHyphensAndMinus" type="xs:boolean" use="optional">
+                            <xs:annotation>
+                                <xs:appinfo>
+                                    <jupiter>
+                                        <component type="implicit" caption="Ignore hyphens and minus" />
+                                        <property name="value"/>
+                                        <widget-properties>
+                                            <property name="option-property" value="true"/>
+                                            <property name="property-group-editor-type" value="basic-group"/>
+                                            <property name="property-group-editor-name" value="properties.group.fill_in_blank.pattern.ignore"/>
+                                            <property name="property-layout-span" value="half"/>
+                                        </widget-properties>
+                                    </jupiter>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute ref="MatchAtLeast"/>
+            <xs:attribute ref="Weight"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="FeedbackType">
+        <xs:choice maxOccurs="unbounded">
+            <xs:element ref="RichText"/>
+            <xs:element ref="Figure"/>
+            <xs:element ref="List"/>
+            <xs:element ref="Table"/>
+            <xs:element ref="Audio"/>
+            <xs:element ref="Movie"/>
+            <xs:element ref="Flash"/>
+            <xs:element ref="FlashXML"/>
+        </xs:choice>
+    </xs:complexType>
+</xs:schema>

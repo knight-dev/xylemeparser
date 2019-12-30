@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="Figure"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="ImageOverlay.xsd"/>
+	<xs:include schemaLocation="ParaComponents.xsd"/>
+	<xs:element name="Figure" type="FigureType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/FigureDef.xml"/>
+					<component type="sequence" widget-type="figure" caption="Figure" shortcutkey="f" metaCaption="$Caption(text.xml)$"/>
+					<property-owner/>
+					<translation lang="es" caption="Figura"/>
+					<translation lang="fr" caption="Figure"/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-media-group"/>
+						<widget-icon iconClass="figure"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="FigureType">
+		<xs:sequence>
+			<xs:element ref="MediaObject"/>
+			<xs:element ref="Caption" minOccurs="0"/>
+			<xs:element ref="FilterMetadata" minOccurs="0"/>
+			<xs:element ref="LOM" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="borderType" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:appinfo><jupiter>
+				<component caption="Border Type" collectionGUID="48bbbb31-9ffd-4bc8-83ce-e448482865d6" type="mmlchoice" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;" propertyPanel="true" showTitle="true"/>
+				<property name="choice.value"/>
+				<widget-properties>
+					<property name="option-property" tabName="Basic" value="true"/>
+					<property name="property-layout-index" value="1"/>
+					<property name="property-layout-span" value="full"/>
+				</widget-properties>
+				</jupiter></xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="MediaObject" type="MediaObjectType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/MediaObjectDef.xml"/>
+					<component type="sequence" caption="Image Object" metaCaption="$Title(text.xml)$" propertyPanel="true" showTitle="false" panelIcon="Core/Definitions/Media/figure.png"/>
+					<property-owner/>
+					<translation lang="es" caption="Objeto - Imagen"/>
+					<translation lang="fr" caption="Objet - Image"/>
+					<widget-properties>
+						<toolbar-item group_id="media"/>
+						<widget-icon largeIcon="Core/Definitions/Media/icons/figure-large.png" smallIcon="Core/Definitions/Media/icons/figure-small.png"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ImageType">
+		<xs:annotation>
+			<xs:appinfo>
+                <jupiter>
+                    <component type="sequence" propertyPanel="true" panelIcon="Core/Definitions/Media/figure.png" caption="Image"/>
+                    <translation lang="es" caption="Imagen"/>
+                    <translation lang="fr" caption="Image"/>
+                </jupiter>
+            </xs:appinfo>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="LOM" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:appinfo>
+                    <jupiter>
+                        <component type="implicit" caption="name"/>
+                        <translation lang="es" caption="Nombre"/>
+                        <property name="value"/>
+                        <widget-properties>
+                            <property name="option-property" tabName="Basic" value="true"/>
+                            <property name="property-layout-index" value="7"/>
+                        </widget-properties>
+                    </jupiter>
+                </xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="uri" type="xs:anyURI" use="required">
+			<xs:annotation>
+				<xs:appinfo>
+                    <jupiter>
+                        <component type="media" showThrough="true" caption="Image File" width="$../width(value)$" height="$../height(value)$" allowedFileFormats=".jpeg, .jpg, .png, .gif, .tif, .tiff, .eps, .wmf, .emf, .wmz, .emz, .svg"/>
+                        <translation lang="es" caption="Archivo de Imagen"/>
+                        <translation lang="fr" caption="Fichier d'Image"/>
+                        <property name="media.uri"/>
+                        <widget-properties>
+                            <property name="option-property" tabName="Basic" value="true"/>
+                            <property name="property-layout-index" value="1"/>
+                            <property name="property-layout-span" value="full"/>
+                        </widget-properties>
+                    </jupiter>
+                </xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="measureType" use="optional" type="xs:string">
+			<xs:annotation>
+				<xs:appinfo>
+                    <jupiter>
+                        <component type="list" caption="measureType" values="pixel cm" labels="pixel cm"/>
+                        <translation lang="es" caption="Unidad de medida" labels="pixel cm"/>
+                        <property name="choice.value"/>
+                        <widget-properties>
+                            <property name="option-property" tabName="Basic" value="true"/>
+                            <property name="property-layout-index" value="8"/>
+                        </widget-properties>
+                    </jupiter>
+                </xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="width" type="xs:float" use="optional">
+			<xs:annotation>
+				<xs:appinfo>
+                    <jupiter>
+                        <component type="implicit" caption="width"/>
+                        <translation lang="es" caption="Ancho"/>
+                        <property name="value"/>
+                        <widget-properties>
+                            <property name="option-property" tabName="Basic" value="true"/>
+                            <property name="property-group-editor-type" value="dimension" />
+                            <property name="property-group-editor-name" value="properties.group.dimensions" />
+                            <property name="property-group-editor-item-key" value="properties.dimension.width" />
+                            <property name="property-layout-index" value="3"/>
+                        </widget-properties>
+                    </jupiter>
+                </xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="height" type="xs:float" use="optional">
+			<xs:annotation>
+				<xs:appinfo>
+                    <jupiter>
+                        <component type="implicit" caption="height"/>
+                        <translation lang="es" caption="Alto"/>
+                        <property name="value"/>
+                        <widget-properties>
+                            <property name="option-property" tabName="Basic" value="true"/>
+                            <property name="property-group-editor-type" value="dimension" />
+                            <property name="property-group-editor-name" value="properties.group.dimensions" />
+                            <property name="property-group-editor-item-key" value="properties.dimension.height" />
+                            <property name="property-layout-index" value="4"/>
+                        </widget-properties>
+                    </jupiter>
+                </xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="altText" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:appinfo>
+                    <jupiter>
+                        <component type="implicit" caption="altText"/>
+                        <translation lang="es" caption="Texto Alt"/>
+                        <property name="value"/>
+                        <widget-properties>
+                            <property name="option-property" tabName="Basic" value="true"/>
+                            <property name="property-layout-span" value="full"/>
+                            <property name="property-layout-index" value="2"/>
+                        </widget-properties>
+                    </jupiter>
+                </xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="longDesc" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:appinfo>
+                    <jupiter>
+                        <component type="implicit" caption="longDesc"/>
+                        <translation lang="es" caption="Descripción"/>
+                        <property name="value"/>
+                        <widget-properties>
+                            <property name="option-property" tabName="Basic" value="true"/>
+                            <property name="property-layout-span" value="full"/>
+                            <property name="property-layout-multilines" value="large"/>
+                            <property name="property-layout-index" value="9"/>
+                        </widget-properties>
+                    </jupiter>
+                </xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="ProductionNote" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:appinfo>
+                    <jupiter>
+                        <component type="implicit" caption="ProductionNote"/>
+                        <translation lang="es" caption="Nota de Producción"/>
+                        <property name="value"/>
+                        <widget-properties>
+                            <property name="option-property" tabName="Basic" value="true"/>
+                            <property name="property-layout-span" value="full"/>
+                            <property name="property-layout-multilines" value="large"/>
+                            <property name="property-layout-index" value="10"/>
+                        </widget-properties>
+                    </jupiter>
+                </xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="origWidth" type="xs:integer" use="optional">
+			<xs:annotation>
+				<xs:appinfo>
+                    <jupiter>
+                        <component type="implicit" isvisible="false"/>
+                        <property name="value"/>
+                    </jupiter>
+                </xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="origHeight" type="xs:integer" use="optional">
+			<xs:annotation>
+				<xs:appinfo>
+                    <jupiter>
+                        <component type="implicit" isvisible="false"/>
+                        <property name="value"/>
+                    </jupiter>
+                </xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+        <xs:attribute name="thumbWidth" type="xs:integer" use="optional" default="50">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jupiter>
+                        <component type="implicit" caption="thumbWidth"/>
+                        <translation lang="es" caption="Ancho de Imagen Miniatura"/>
+                        <property name="value"/>
+                        <widget-properties>
+                            <property name="option-property" tabName="Basic" value="true"/>
+                            <property name="property-group-editor-type" value="dimension" />
+                            <property name="property-group-editor-name" value="properties.editor.thumb_dimensions_label" />
+                            <property name="property-group-editor-item-key" value="properties.dimension.width" />
+                            <property name="property-layout-index" value="5"/>
+                        </widget-properties>
+                    </jupiter>
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+		<xs:attribute name="thumbHeight" type="xs:integer" use="optional">
+			<xs:annotation>
+				<xs:appinfo>
+                    <jupiter>
+                        <component type="implicit" caption="thumbHeight"/>
+                        <translation lang="es" caption="Alto de Imagen Miniatura"/>
+                        <property name="value"/>
+                        <widget-properties>
+                            <property name="option-property" tabName="Basic" value="true"/>
+                            <property name="property-group-editor-type" value="dimension" />
+                            <property name="property-group-editor-name" value="properties.editor.thumb_dimensions_label" />
+                            <property name="property-group-editor-item-key" value="properties.dimension.height" />
+                            <property name="property-layout-index" value="6"/>
+                        </widget-properties>
+                    </jupiter>
+                </xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="MediaObjectType">
+		<xs:sequence>
+			<xs:element ref="Title" minOccurs="0"/>
+			<xs:element name="ImageBehavior" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo><jupiter>
+<component caption="Image Behavior" type="sequence"/>
+</jupiter></xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:choice>
+                    <xs:element name="Popup">
+                        <xs:annotation>
+                                <xs:appinfo>
+                                    <jupiter>
+                                        <component type="sequence" caption="Popup"/>
+                                    </jupiter>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+						<xs:element ref="Xref">
+                        <xs:annotation>
+                                <xs:appinfo>
+                                    <jupiter>
+                                        <component type="sequence" caption="Xref"/>
+                                    </jupiter>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+						<xs:element ref="Href">
+                              <xs:annotation>
+                                <xs:appinfo>
+                                    <jupiter>
+                                        <component type="sequence" caption="Href"/>
+                                    </jupiter>
+                                </xs:appinfo>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:choice>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Renditions">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="sequence" caption="Renditions"/>
+							<translation lang="es" caption="Interpretaciones"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Print" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="sequence" caption="Print Resolution"/>
+										<property-owner/>
+										<translation lang="es" caption="Resolución de Impresión"/>
+                                        <widget-properties>
+                                            <widget-icon iconClass="print"/>
+                                        </widget-properties>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="ImageType">
+										<xs:sequence>
+											<xs:element ref="OverlayObjects" minOccurs="0"/>
+										</xs:sequence>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Web">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="sequence" caption="Web"/>
+										<property-owner/>
+										<translation lang="es" caption="Web"/>
+                                        <widget-properties>
+                                            <widget-icon iconClass="web"/>
+                                        </widget-properties>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="ImageType">
+										<xs:sequence>
+											<xs:element ref="OverlayObjects" minOccurs="0"/>
+										</xs:sequence>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="eBook" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="sequence" caption="Ebook"/>
+										<property-owner/>
+										<translation lang="es" caption="Libro Electrónico"/>
+                                        <widget-properties>
+                                            <widget-icon iconClass="ebook"/>
+                                        </widget-properties>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="ImageType">
+										<xs:sequence>
+											<xs:element ref="OverlayObjects" minOccurs="0"/>
+										</xs:sequence>
+									</xs:extension>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Mobile" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="sequence" caption="Mobile"/>
+										<property-owner/>
+										<translation lang="es" caption="Móvil"/>
+                                        <widget-properties>
+                                            <widget-icon iconClass="mobile"/>
+                                        </widget-properties>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="ImageType"/>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Source" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="media" showThrough="true" caption="Source File" width="$../width(text.text)$" height="$../height(text.text)$"/>
+										<translation lang="es" caption="Archivo Fuente"/>
+										<property name="media.uri"/>
+										<widget-properties>
+											<property name="option-property" value="true"/>
+										</widget-properties>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProductionNote" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="implicit" caption="ProductionNote"/>
+							<translation lang="es" caption="Nota de Producción"/>
+							<property name="value"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute ref="wrap" use="optional"/>
+	</xs:complexType>
+	<xs:attributeGroup name="TextStyle">
+		<xs:attribute name="top-x" type="xs:integer" use="required"/>
+		<xs:attribute name="left-y" type="xs:integer" use="required"/>
+		<xs:attribute name="RectHeightPixel" type="xs:integer" use="required"/>
+		<xs:attribute name="RectWidthPixel" type="xs:integer" use="required"/>
+		<xs:attribute name="Font-size" type="xs:integer" use="optional" default="10"/>
+		<xs:attribute name="Font-color" type="xs:string" use="optional" default="black"/>
+	</xs:attributeGroup>
+	<xs:element name="Icon">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/IconDef.xml"/>
+					<component type="sequence" widget-type="icon" caption="Icon" metaCaption="Icon:$name(value)$" propertyPanel="true" showTitle="true" panelIcon="Core/Definitions/Media/figure.png"/>
+					<property-owner/>
+					<translation lang="es" caption="Icono"/>
+					<translation lang="fr" caption="Icône"/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-media-group"/>
+						<widget-icon iconClass="icon"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ImageType">
+					<xs:sequence>
+						<xs:element ref="FilterMetadata" minOccurs="0"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="StoryBoardImage" type="ImageType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Storyboard Image"/>
+					<translation lang="es" caption="Imagen - Guión Gráfico"/>
+					<translation lang="fr" caption="Image - Storyboard"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="AltText" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="text" caption="altText" multiline="true"/>
+					<translation lang="es" caption="Texto Alt"/>
+					<translation lang="fr" caption="Texte Alt"/>
+					<property name="text.text"/>
+                </jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="Logo">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/LogoDef.xml"/>
+					<component type="sequence" caption="Logo" metaCaption="Logo:$name(value)$" propertyPanel="true" showTitle="true" panelIcon="Core/Definitions/Media/figure.png"/>
+					<translation lang="es" caption="Logo"/>
+					<translation lang="fr" caption="Logo"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="ImageType">
+					<xs:sequence>
+						<xs:element ref="FilterMetadata" minOccurs="0"/>
+					</xs:sequence>
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Caption" type="TitleType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component showThrough="true" css2="font-weight:bold;" align="center" type="wysiwyg" caption="Figure Caption"/>
+					<translation lang="es" caption="Leyenda de Figura"/>
+					<translation lang="fr" caption="Légende de Figure"/>
+					<property name="text.text"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="BarCode">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Bar Code" metaCaption="Bar code:$name(value)$" propertyPanel="true" showTitle="true" panelIcon="Core/Definitions/Media/figure.png"/>
+					<translation lang="es" caption="Código de Barras"/>
+					<translation lang="fr" caption="Code de Barres"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:choice>
+					<xs:element name="BarCodeText" type="xs:string"/>
+					<xs:element name="BarCodeImage" type="ImageType">
+						<xs:annotation>
+							<xs:appinfo>
+								<jupiter>
+									<component type="sequence" caption="Bar Code Image" metaCaption="Barcode:$name(value)$" propertyPanel="true" showTitle="true" panelIcon="Core/Definitions/Media/figure.png"/>
+									<translation lang="es" caption="Imagen - Código de Barras"/>
+									<translation lang="fr" caption="Image - Code de Barres"/>
+								</jupiter>
+							</xs:appinfo>
+						</xs:annotation>
+					</xs:element>
+				</xs:choice>
+				<xs:element ref="FilterMetadata" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:attribute name="wrap" type="xs:string">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="list" caption="wrap" values="left right" labels="left right"/>
+					<translation lang="es" caption="Envoltura" labels="izquierda derecha"/>
+					<property name="choice.value"/>
+                    <widget-properties>
+                        <property name="option-property" tabName="Basic" value="true"/>
+                        <translation lang="ru" tabName="Основные"/>
+                    </widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:attribute>
+	<xs:element name="LongDesc" type="xs:string"/>
+</xs:schema>

@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="List"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="ParaComponents.xsd"/>
+	<xs:element name="List" type="ListType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/ListDef.xml"/>
+					<component type="sequence" caption="List"  shortcutkey="l"/>
+					<property-owner/>
+					<translation lang="es" caption="Lista"/>
+					<translation lang="fr" caption="Liste"/>
+					<widget-properties>
+						<property name="add-child-action-type" value="Item"/>
+						<toolbar-item group_id="toolbar-contents-group"/>
+						<widget-icon iconClass="list"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="ListType">
+		<xs:sequence>
+			<xs:element name="ListPreamble" type="RichTextType" minOccurs="0">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="wysiwyg" caption="Preamble" css2="bottom-border-width:1px;font-size:12;font-style:italic;" showBorder="false" menuUseParent="true"/>
+							<property-owner/>
+							<translation lang="es" caption="Preámbulo"/>
+							<translation lang="fr" caption="Préambule"/>
+							<property name="text.text"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ItemBlock">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Item" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:appinfo>
+									<jupiter>
+										<component type="sequence" widget-type="ListItem" indent="10" caption="List Item" appendPoint="true"/>
+										<property-owner/>
+										<translation lang="es" caption="Ítem de Lista"/>
+										<translation lang="fr" caption="Item de Liste"/>
+									</jupiter>
+								</xs:appinfo>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element ref="Icon" minOccurs="0"/>
+									<xs:element name="ItemPara" type="RichTextType">
+										<xs:annotation>
+											<xs:appinfo>
+												<jupiter>
+													<component type="wysiwyg" css2="Sublist/ItemBlock/Item/Sublist/ItemBlock/Item=background-image:'Core/definitions/media/bullet3'|Sublist/ItemBlock/Item=background-image:'Core/definitions/media/bullet2'|background-image:'Core/definitions/media/bullet'" caption="Item text" menuUseParent="true"/>
+													<translation lang="es" caption="Texto del Ítem"/>
+													<translation lang="fr" caption="Texte du Item"/>
+													<property name="text.text"/>
+													<widget-properties>
+														<property name="delegate-to-parent" value="1"/>
+														<property name="delegate-display" value="hidden"/>
+													</widget-properties>
+												</jupiter>
+											</xs:appinfo>
+										</xs:annotation>
+									</xs:element>
+									<xs:choice minOccurs="0" maxOccurs="unbounded">
+										<xs:element ref="RichText"/>
+										<xs:element ref="Table"/>
+										<xs:element name="SubList" type="ListType">
+											<xs:annotation>
+												<xs:appinfo>
+													<jupiter>
+														<component type="sequence" caption="Sub List"/>
+														<translation lang="es" caption="Sub Lista"/>
+														<translation lang="fr" caption="Sub Liste"/>
+													</jupiter>
+												</xs:appinfo>
+											</xs:annotation>
+										</xs:element>
+										<xs:element ref="Figure"/>
+										<xs:element ref="Code"/>
+										<xs:element ref="FilterMetadata"/>
+										<xs:element ref="CustomNote"/>
+										<xs:element ref="MarginNote"/>
+										<xs:element ref="HorizontalRuleLines"/>
+									</xs:choice>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="FilterMetadata" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="ListMarker" use="optional" default="Bullet">
+			<xs:annotation>
+				<xs:appinfo>
+					<jupiter>
+						<component type="implicit" propertyPanel="true" caption="List Marker" panelIcon="Core/Definitions/Media/list.png" />
+						<translation lang="es" caption="Marcador de Lista"/>
+						<translation lang="fr" caption="Marqueur de Liste"/>
+						<property name="value"/>
+                        <widget-properties>
+                            <property name="option-property" tabName="Basic" value="true"/>
+                            <translation lang="ru" tabName="Основные"/>
+                        </widget-properties>
+					</jupiter>
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="Bullet"/>
+					<xs:enumeration value="Numeric"/>
+					<xs:enumeration value="UppercaseAlpha"/>
+					<xs:enumeration value="LowercaseAlpha"/>
+					<xs:enumeration value="Checkmark"/>
+					<xs:enumeration value="Arrow"/>
+					<xs:enumeration value="mDash"/>
+					<xs:enumeration value="nDash"/>
+					<xs:enumeration value="Disk"/>
+					<xs:enumeration value="LowercaseRoman"/>
+					<xs:enumeration value="UppercaseRoman"/>
+					<xs:enumeration value="NoBullet"/>
+					<xs:enumeration value="Custom1"/>
+					<xs:enumeration value="Custom2"/>
+					<xs:enumeration value="Custom3"/>
+					<xs:enumeration value="Custom4"/>
+					<xs:enumeration value="Custom5"/>
+					<xs:enumeration value="Custom6"/>
+					<xs:enumeration value="Custom7"/>
+					<xs:enumeration value="Custom8"/>
+					<xs:enumeration value="Custom9"/>
+					<xs:enumeration value="Custom10"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="ListMarkerDelimiter" use="optional">
+			<xs:annotation>
+				<xs:appinfo>
+					<jupiter>
+						<component type="implicit" propertyPanel="true" caption="List Delimiter" panelIcon="Core/Definitions/Media/list.png" />
+						<translation lang="es" caption=" Delimitador del Marcador de Lista "/>
+						<translation lang="fr" caption="Délimiteur du Marqueur de Liste "/>
+						<property name="value"/>
+                        <widget-properties>
+                            <property name="option-property" tabName="Basic" value="true"/>
+                            <translation lang="ru" tabName="Основные"/>
+                        </widget-properties>
+					</jupiter>
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="."/>
+					<xs:enumeration value=")"/>
+					<xs:enumeration value="()"/>
+					<xs:enumeration value=","/>
+					<xs:enumeration value="none"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="StartAtNumber" type="xs:integer" use="optional">
+			<xs:annotation>
+				<xs:appinfo>
+					<jupiter>
+						<component type="implicit" propertyPanel="true" caption="StartAtNumber" panelIcon="Core/Definitions/Media/list.png"/>
+						<translation lang="es" caption="EmpezarEnNúmero"/>
+						<translation lang="fr" caption="CommencerAuNuméro"/>
+						<property name="value"/>
+                        <widget-properties>
+                            <property name="option-property" tabName="Basic" value="true"/>
+                            <translation lang="ru" tabName="Основные"/>
+                        </widget-properties>
+					</jupiter>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="Build" use="optional">
+			<xs:annotation>
+				<xs:appinfo>
+					<jupiter>
+						<component type="implicit" propertyPanel="true" caption="Build" panelIcon="Core/Definitions/Media/list.png"/>
+						<translation lang="es" caption="Crear"/>
+						<translation lang="fr" caption="Créer"/>
+						<property name="value"/>
+                        <widget-properties>
+                            <property name="option-property" tabName="Basic" value="true"/>
+                            <translation lang="ru" tabName="Основные"/>
+                        </widget-properties>
+					</jupiter>
+				</xs:appinfo>
+			</xs:annotation>
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:enumeration value="AllAtOnce"/>
+					<xs:enumeration value="OneAtTime"/>
+					<xs:enumeration value="OneAtTimeEmphasize"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<!-- xml2pptx animation support -->
+		<!-- end of xml2pptx animation support -->
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2006 sp1 U (http://www.altova.com) by Jeffrey Katzman (Xyleme Inc) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="MasterMetadataLists.xsd"/>
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="FilterMetadata"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="FilterMetadata">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/FilterMetadataDef.xml"/>
+					<component type="sequence" caption="Filter Metadata"  propertyPanel="true" panelIcon="Core/Definitions/Media/DocFilter-24x24-a.png"  shortcutkey="m" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Filtrar Metadatos"/>
+					<translation lang="fr" caption="Filtrer métadonnées"/>
+					<widget-properties>
+						<property name="option-property" tabName="Filter Metadata" value="false"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="TargetOutputs" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/Metadata/TargetOutputsDef.xml"/>
+								<component type="sequence" collectionGUID="c0a82c1e-112d9e3c-8d611-2d9e-3c8dd99e0feb602d" editor="collectionchoice" showTitle="true" caption="Target Outputs" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+								<translation lang="es" caption="Publicaciones Meta"/>
+								<translation lang="fr" caption="Publications Cible"/>
+								<widget-properties>
+									<property name="option-property" value="false"/>
+								</widget-properties>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element ref="TargetAudiences" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<link def="Core/Definitions/Metadata/TargetAudiencesDef.xml"/>
+								<component type="sequence" collectionGUID="c0a80f65-11c10bb2-45711-c10b-b245fc5ba4a63f57" editor="collectionchoice" showTitle="true" caption="Target Audiences" css="color:rgb(30, 21,196);font-size:16;font-family:Tahoma;font-weight:bold;"/>
+								<translation lang="es" caption="Audiencia Meta"/>
+								<translation lang="fr" caption="Audiences Cible"/>
+								<widget-properties>
+									<property name="option-property" value="false"/>
+								</widget-properties>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

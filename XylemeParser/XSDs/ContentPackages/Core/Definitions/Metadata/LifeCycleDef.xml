@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+
+
+<xml_lat_definition name="Life Cycle" schema="LOM.xsd">
+	<property name="name" value="Ciclo de Vida" lang="es"/>
+	<!--map name="xsl">
+	</map-->
+	<map name="xsltargets">
+		<item name="web" value="html"/>
+		<item name="print" value="pdf"/>
+	</map>
+	<property name="ss" value="false"/>
+	<list name="groups">
+		<item value="content"/>
+	</list>
+	<list name="menu">
+		<item value="LOM"/>
+	</list>
+	<list name="menu" lang="es">
+		<item value="LOM"/>
+	</list>
+</xml_lat_definition>

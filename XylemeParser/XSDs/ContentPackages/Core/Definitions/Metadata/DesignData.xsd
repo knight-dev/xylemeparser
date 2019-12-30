@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="../ParaComponents.xsd"/>
+	<xs:include schemaLocation="../../../IA/Definitions/IaComponents.xsd"/>
+	<xs:include schemaLocation="LOM.xsd"/>
+	<xs:include schemaLocation="../CardDeck.xsd"/>
+	<xs:include schemaLocation="../TopicTypes/Supplement.xsd"/>
+	<xs:element name="DesignData">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/Metadata/DesignDataDef.xml"/>
+					<component type="sequence" caption="Design Data" propertyPanel="true" panelIcon="Core/Definitions/Media/DesignData-24x24-a.png" showTitle="true"/>
+					<property-owner/>
+					<translation lang="es" caption="Datos de Diseño"/>
+					<translation lang="fr" caption="Données de Conception"/>"
+					<widget-properties>
+						<widget-icon iconClass="design-data"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Notes" type="SimpleBlockType" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Notes"/>
+								<translation lang="es" caption="Notas"/>
+								<translation lang="fr" caption="Notes"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Contributors" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Contributors"/>
+								<translation lang="es" caption="Colaboradores"/>
+								<translation lang="fr" caption="Colaborateurs"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element ref="Contributor" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="ClassroomSetup" minOccurs="0"/>
+				<xs:element ref="DAA_Metadata" minOccurs="0"/>
+				<xs:element name="Supplements" minOccurs="0">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" caption="Supplements"/>
+								<translation lang="es" caption="Suplementos"/>
+								<translation lang="fr" caption="Suppléments"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:choice maxOccurs="unbounded">
+							<xs:element ref="Supplement"/>
+							<xs:element ref="CardDeck"/>
+							<xs:element ref="FlashCards"/>
+						</xs:choice>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="Competencies" minOccurs="0"/>
+				<xs:element ref="EducationalObjective" minOccurs="0"/>
+				<xs:element ref="LOM" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ClassroomSetup">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<!--link def="TextBook/Definitions/GeneralSetupDef.xml"/-->
+					<component type="sequence" caption="General Setup" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Preparacipon General"/>
+					<translation lang="fr" caption="Configuration générale"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="HardwareRequirements" minOccurs="0"/>
+				<xs:element ref="SetupInstructions" minOccurs="0"/>
+				<xs:element name="Materials" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="InstructorMaterials" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="Instructor Materials"/>
+											<translation lang="es" caption="Materiales del Instructor"/>
+											<translation lang="fr" caption="Matériaux de l'instructeur"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="Material" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="ParticipantMaterials" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="Student Materials"/>
+											<translation lang="es" caption="Materiales - Estudiante"/>
+											<translation lang="fr" caption="Matériaux de l'étudiant"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="Material" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="LabFiles" minOccurs="0">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="Lab Files"/>
+											<translation lang="es" caption="Archivos Laboratorio"/>
+											<translation lang="fr" caption="Fichiers Laboratoire"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="LabFile" type="xs:string" maxOccurs="unbounded"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="SupplementalMedia" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="text" caption="Supplemental Media"/>
+											<translation lang="es" caption="Suplemento Multimedia"/>
+											<translation lang="fr" caption="Média Supplementaire"/>
+											<property name="text.text"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="HardwareRequirements">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Hardware Requirements" isvisible="false"/>
+					<translation lang="es" caption="Requisitos Hardware"/>
+					<translation lang="fr" caption="Exigences de Hardware"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Processor" type="xs:string" use="required"/>
+			<xs:attribute name="HardDisk" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="RAM" type="xs:string" use="required"/>
+			<xs:attribute name="CD-ROM" type="xs:boolean" use="required"/>
+			<xs:attribute name="NIC" type="xs:boolean" use="required"/>
+			<xs:attribute name="SoundCard_Speakers" type="xs:boolean" use="required"/>
+			<xs:attribute name="Video" type="xs:boolean" use="required"/>
+			<xs:attribute name="Monitor" type="xs:string" use="required"/>
+			<xs:attribute name="Hub" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="1-Additional"/>
+						<xs:enumeration value="2-EnoughHubs"/>
+						<xs:enumeration value="3-2Hubs"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="Router" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="AdditionalHardware">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Additional Hardware"/>
+					<translation lang="es" caption="Hardware Adicional"/>
+					<translation lang="fr" caption="Hardware Supplémentaire"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Topic" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SetupInstructions">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="Setup Instructions"/>
+					<translation lang="es" caption="Instrucciones de Preparación"/>
+					<translation lang="fr" caption="Instructions de Préparation"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="Topic"/>
+				<xs:element ref="Procedure"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DAA_Metadata">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="sequence" caption="DAA Metadata"/>
+					<translation lang="es" caption="Metadatos DAA"/>
+					<translation lang="fr" caption="Métadonnées DAA"/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Min_Duration" type="xs:integer"/>
+				<xs:element name="PageCount" type="xs:integer"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Material" type="xs:string"/>
+</xs:schema>

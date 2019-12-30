@@ -1,0 +1,9 @@
+<formatter-config>
+	<!-- PDF v1.5 is required for NativePPT -->
+	<!-- Do not change embed-all-fonts. It must be "base14" or you will run into platform-specific issues. -->
+	<pdf-settings pdf-version="PDF1.5" embed-all-fonts="base14"  tagged-pdf ="true"
+
+	              image-downsampling="bicubic" image-downsampling-above-dpi="150" image-downsampling-target-dpi="96"
+	              grayscale-downsampling="bicubic" grayscale-downsampling-above-dpi="150" grayscale-downsampling-target-dpi="96"
+	              monochrome-downsampling="bicubic" monochrome-downsampling-above-dpi="300" monochrome-downsampling-target-dpi="200"/>
+</formatter-config>

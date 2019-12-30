@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="TitledBlock"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="NoteTypes.xsd"/>
+	<xs:element name="TitledBlock" type="TitledBlockType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/TitledBlockDef.xml"/>
+					<component type="sequence" caption="Titled Block" metaCaption="$Title(text.xml)$"/>
+					<translation lang="es" caption="Bloque con Título"/>
+					<translation lang="fr" caption="Bloc Intitulé"/>
+					<widget-properties>
+						<property name="quick-insert" value="true"/>
+						<toolbar-item group_id="toolbar-container-group"/>
+						<widget-icon largeIcon="Core/Definitions/Media/icons/titledblock-large.png" smallIcon="Core/Definitions/Media/icons/titledblock-small.png"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="TitledBlockType">
+		<xs:sequence>
+			<xs:element ref="Title">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<component type="wysiwyg" caption="Title" css2="font-size:16;font-family:Times New Roman;font-weight:bold;"/>
+							<translation lang="es" caption="Título"/>
+							<translation lang="fr" caption="Titre"/>
+							<property name="text.xml"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:element>
+			<xs:element ref="Icon" minOccurs="0"/>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="ParaBlock"/>
+				<xs:element ref="TitledBlock"/>
+			</xs:choice>
+			<xs:element ref="FilterMetadata" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

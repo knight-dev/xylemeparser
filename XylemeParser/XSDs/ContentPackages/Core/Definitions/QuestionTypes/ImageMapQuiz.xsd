@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="ImageMap"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:include schemaLocation="../ParaComponents.xsd"/>
+	<xs:element name="ImageMapQuiz">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<link def="Core/Definitions/QuestionTypes/ImageMapQuizDef.xml"/>
+					<component propertyPanel="true" panelIcon="Core/Definitions/Media/Q-24x24-b.png" type="sequence" caption="ImageMap Quiz" metaCaption="$name(text.text)$" isvisible="false" hidden="true" css="color:rgb(30, 21,196);font-size:12;font-family:Tahoma;font-weight:bold;"/>
+					<translation lang="es" caption="Prueba Corta - Mapa de Imagen"/>
+					<translation lang="fr" caption="Quiz - Carte d'image"/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-question-web-group"/>
+						<widget-icon largeIcon="Core/Definitions/Media/icons/imagemap-assessment-large.png" smallIcon="Core/Definitions/Media/icons/imagemap-assessment-small.png"/>
+					</widget-properties>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Title"/>
+				<xs:element ref="Instructions" minOccurs="0"/>
+				<xs:element ref="BaseImage"/>
+				<xs:element name="HotSpots">
+					<xs:annotation>
+						<xs:appinfo>
+							<jupiter>
+								<component type="sequence" editor="imagemap" caption="Hot Spots"/>
+								<translation lang="es" caption="Hot Spots"/>
+								<translation lang="fr" caption="Hot Spots"/>
+							</jupiter>
+						</xs:appinfo>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="HotSpot" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:appinfo>
+										<jupiter>
+											<component type="sequence" caption="Hot Spot"/>
+											<translation lang="es" caption="Hot Spot"/>
+											<translation lang="fr" caption="Hot Spot"/>
+										</jupiter>
+									</xs:appinfo>
+								</xs:annotation>
+								<!--The imagemap component expects minOccurs to be 0.-->
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="Name" type="xs:string"/>
+										<xs:element ref="HotSpotType"/>
+										<xs:element name="HotSpotContent">
+											<xs:annotation>
+												<xs:appinfo>
+													<jupiter>
+														<component type="sequence" caption="Hot Spot Text"/>
+														<translation lang="es" caption="Hot Spot - Texto"/>
+														<translation lang="fr" caption="Hot Spot - Texte"/>
+													</jupiter>
+												</xs:appinfo>
+											</xs:annotation>
+											<xs:complexType>
+												<xs:sequence>
+												<xs:choice minOccurs="0" maxOccurs="unbounded">
+												<xs:element ref="MultipleChoice"/>
+												<xs:element ref="ImageMapAssessment"/>
+												<xs:element ref="SequenceActivity"/>
+												<xs:element ref="FillInBlank"/>
+												<xs:element ref="BinDrop"/>
+												<xs:element ref="Matrix"/>
+												<xs:element ref="DragDrop"/>
+												</xs:choice>
+												<xs:element ref="AltText" minOccurs="0"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element ref="Results"/>
+				<xs:element ref="LOM" minOccurs="0"/>
+				<xs:element ref="CompetencyDefinition" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element minOccurs="0" ref="AssessmentItemDetails"/>
+			</xs:sequence>
+			<xs:attribute ref="name"/>
+			<xs:attribute name="HotSpotEvent" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Click"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="wrap" use="optional">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="left"/>
+						<xs:enumeration value="right"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="OutlineColor" default="red">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="transparent"/>
+						<xs:enumeration value="black"/>
+						<xs:enumeration value="white"/>
+						<xs:enumeration value="yellow"/>
+						<xs:enumeration value="red"/>
+						<xs:enumeration value="blue"/>
+						<xs:enumeration value="green"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute ref="Weight" use="optional"/>
+			<xs:attribute ref="MinPassingScore" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

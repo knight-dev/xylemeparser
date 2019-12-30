@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 sp1 (x64) (http://www.altova.com) by Jeffrey Scott Katzman (Xyleme) -->
+<!--
+
+Copyright c 2015 Xyleme, Inc., 1881 9th Street, Suite 300, Boulder, Colorado 80302 USA.
+All rights reserved.
+
+This file and related documentation are protected by copyright and
+are distributed under licenses regarding their use, copying, distribution,
+and decompilation. No part of this product or related documentation may
+be reproduced or transmitted in any form or by any means, electronic or
+mechanical, for any purpose, without the express written permission of
+Xyleme, Inc.
+
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	attributeFormDefault="unqualified">
+	<xs:include schemaLocation="Metadata/FilterMetadata.xsd"/>
+	<xs:include schemaLocation="InLineElementsLib.xsd"/>
+	<xs:annotation>
+		<xs:appinfo>
+			<jupiter>
+				<root name="RichText"/>
+			</jupiter>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="RichText" type="RichTextType">
+		<xs:annotation>
+			<xs:appinfo>
+				<jupiter>
+					<component type="wysiwyg" caption="Rich Text" showBorder="false" shortcutkey="r" css2="Solution=border-bottom-width:1px;|SystemResponse/Example/ParaBlock/NoteBlock/ParaBlock=background-image:'Core/Definitions/Media/note';font-family:monospace;|NoteBlock/ParaBlock=background-image:'Core/Definitions/Media/note';border-color:rgb(200,200,200);border-top-width:1px;border-bottom-width:1px;font-weight:bold;font-family:tahoma;|Warning=background-image:'Core/Definitions/Media/warningnew';border-color:rgb(200,200,200);border-top-width:1px;border-bottom-width:1px;font-weight:bold;font-family:tahoma;|Caution=background-image:'Core/Definitions/Media/cautionnew';border-color:rgb(200,200,200);border-top-width:1px;border-bottom-width:1px;font-weight:bold;font-family:tahoma;|margin-bottom:3px;margin-top:3px;|NoteBlock=background-image:'Core/Definitions/Media/note';border-color:rgb(200,200,200);border-top-width:1px;border-bottom-width:1px;font-weight:bold;font-family:tahoma;|Tip=background-image:'Core/Definitions/Media/tipnew';border-color:rgb(200,200,200);border-top-width:1px;border-bottom-width:1px;font-weight:bold;font-family:tahoma;|KeyPoint=background-image:'Core/Definitions/Media/key_terms';border-color:rgb(200,200,200);border-top-width:1px;border-bottom-width:1px;font-weight:bold;font-family:tahoma;|CriticalControlPoint=background-image:'Core/Definitions/Media/CriticalControlPoint';border-color:rgb(200,200,200);border-top-width:1px;border-bottom-width:1px;font-weight:bold;font-family:tahoma;"/>
+					<translation lang="es" caption="Texto Enriquecido"/>
+					<translation lang="fr" caption="Texte Enrichi"/>
+					<property name="text.text"/>
+					<widget-properties>
+						<toolbar-item group_id="toolbar-contents-group"/>
+						<widget-icon iconClass="rich-text"/>
+					</widget-properties>
+					<property-owner/>
+				</jupiter>
+			</xs:appinfo>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="RichTextType" mixed="true">
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element ref="Emph"/>
+			<xs:element ref="Italic"/>
+			<xs:element ref="Underline"/>
+			<xs:element ref="DoubleUnderline"/>
+			<xs:element ref="Strike"/>
+			<xs:element ref="InLineCode"/>
+			<xs:element ref="InLineTerm"/>
+			<xs:element ref="InLineLabFile"/>
+			<xs:element ref="InLineKeyword"/>
+			<xs:element ref="InLineKeyboard"/>
+			<xs:element ref="InLineMenuSelection"/>
+			<xs:element ref="InLineTypeThis"/>
+			<xs:element ref="InLineApplicationPrompt"/>
+			<xs:element ref="InLineWindowName"/>
+			<xs:element ref="Xref"/>
+			<xs:element ref="InternalLink"/>
+			<xs:element ref="Href"/>
+			<xs:element ref="AutoNumberToken"/>
+			<xs:element ref="IndexMarker"/>
+			<xs:element ref="Sub"/>
+			<xs:element ref="Sup"/>
+			<xs:element ref="InLineInstructorText"/>
+			<xs:element ref="InLineImage"/>
+			<xs:element ref="InLineEquation"/>
+			<xs:element ref="CommandName"/>
+			<xs:element ref="SyntaxArg"/>
+			<xs:element ref="SyntaxKeyword"/>
+			<xs:element ref="InLineQuote"/>
+			<xs:element ref="InLineVariableText"/>
+			<xs:element ref="EndTextWrap"/>
+			<xs:element name="Metadata">
+				<xs:annotation>
+					<xs:appinfo>
+						<jupiter>
+							<settings image="/Core/Definitions/Media/MD.gif" caption="Filter Metadata"/>
+							<property-owner/>
+							<translation lang="es" caption="Filtrar Metadatos"/>
+							<translation lang="fr" caption="Filtrer Métadonnées"/>
+						</jupiter>
+					</xs:appinfo>
+				</xs:annotation>
+				<xs:complexType mixed="false">
+					<xs:sequence>
+						<xs:element ref="FilterMetadata"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element ref="Footnote"/>
+			<xs:element ref="Formula"/>
+			<xs:element ref="Overline"/>
+			<xs:element ref="Highlight"/>
+			<xs:element ref="InLineHotText"/>
+		</xs:choice>
+	</xs:complexType>
+</xs:schema>
