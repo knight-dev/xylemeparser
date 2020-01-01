@@ -222,6 +222,11 @@ namespace LessonParser
             string data = "<Figure><MediaObject><Renditions><Web thumbWidth=\"50\" uri=\"DataCenter/ProductTraining/" + this.CourseCode + "/SG/" + this.ModuleCode + "/" + this.LessonCode + "/" + this.CourseCode + "_1-0_" + ImageName + ".png\"/><Source>DataCenter/ProductTraining/" + this.CourseCode + "/SG/" + this.ModuleCode + "/" + this.LessonCode + "/" + this.CourseCode + "_1-0_" + ImageName + ".pptx</Source></Renditions></MediaObject></Figure>";
             return data;
         }
+        public string LabFigure(String ImageName)
+        {
+            string data = "<Figure><MediaObject><Renditions><Web thumbWidth=\"50\" uri=\"" + ImageName + "/></Renditions></MediaObject></Figure>";
+            return data;
+        }
         public string TitledBlock(String Title, String Content)
         {
             string data = "<TitledBlock><Title>" + Title + "</Title>" + ParaBlock(Content) + "</TitledBlock>";
@@ -239,6 +244,16 @@ namespace LessonParser
         }
 
         // labs
+        public string Lab(String title, String Content)
+        {
+            string data = "<Topic xmlns:xy=\"http://xyleme.com/xylink\" xy:type=\"Core/Definitions/TopicTypes/TopicDef.xml\"><Title>"+title+"</Title><Introduction><Title>Introduction</Title><ParaBlock><RichText>Lab intro</RichText></ParaBlock></Introduction>" + Content + "</Topic>";
+            return data;
+        }
+        public string Procedure(String title, String Content, String Activity = "<RichText>Lab Activity</RichText>")
+        {
+            string data = "<Procedure><Title>"+title+"</Title><StepGroup numberedSteps=\"true\"><Title>Activity</Title><ParaBlock>"+Activity+"</ParaBlock>" + Content + "</StepGroup><TitledBlock><Title>Activity Verification</Title><ParaBlock><RichText>lab activity verification</RichText></ParaBlock></TitledBlock></Procedure>";
+            return data;
+        }
         public string Step(String Content)
         {
             string data = "<Step>" + Content + "</Step>";
@@ -251,7 +266,7 @@ namespace LessonParser
         }
         public string StepUserAction(String Content)
         {
-            string data = "<UserAction>" + Content + "</UserAction>";
+            string data = "<UserAction><ActionDescription>" + Content + "</ActionDescription></UserAction>";
             return data;
         }
         public string StepResponseDescription(String Content)

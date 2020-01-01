@@ -777,9 +777,24 @@ namespace LessonParser
         public bool isTask(String text)
         {
             Regex regex = new Regex(@"task\s+\d+");
-            Match match = regex.Match(text.ToLower().ToString());
+            Match match = regex.Match(text.Trim().ToLower().ToString());
 
             if (match.Success && match.Index == 0) {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(text.ToString());
+                Console.ForegroundColor = ConsoleColor.White;
+                return true;
+            }
+
+            return false;
+        }
+        public bool isTaskActivity(String text)
+        {
+            Regex regex = new Regex(@"activity");
+            Match match = regex.Match(text.Trim().ToLower().ToString());
+
+            if (match.Success && match.Index == 0)
+            {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(text.ToString());
                 Console.ForegroundColor = ConsoleColor.White;
@@ -793,7 +808,7 @@ namespace LessonParser
         {
             
             Regex regex = new Regex(@"step\s+\d+");
-            Match match = regex.Match(text.ToLower().ToString());
+            Match match = regex.Match(text.Trim().ToLower().ToString());
             
             if (match.Success && match.Index == 0)
             {
@@ -810,7 +825,7 @@ namespace LessonParser
         {
             //Console.WriteLine(text.ToString());
             Regex regex = new Regex(@"discovery\s+\d+");
-            Match match = regex.Match(text.ToLower().ToString());
+            Match match = regex.Match(text.Trim().ToLower().ToString());
 
             if (match.Success && match.Index == 0)
             {

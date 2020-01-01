@@ -25,6 +25,16 @@ namespace LessonParser
         public ImagePart ImagePart { get; set; }
         public string increment { get; set; } = "";
     }
+    class LabTaskXml {
+        public string Title { get; set; }
+        public List<string> Activity { get; set; }
+        public List<LabStepXml> Steps { get; set; }
+    }
+    class LabStepXml
+    {
+        public string Action { get; set; }
+        public List<string> Response { get; set; }
+    }
     class XParseLab
     {
         // show paragraph details
@@ -86,6 +96,13 @@ namespace LessonParser
                 List<LabImage> labImages = new List<LabImage>();
                 List<LabImage> taskImages = new List<LabImage>();
                 List<LabImage> stepImages = new List<LabImage>();
+
+                // store xml info
+                List<LabStepXml> labSteps = new List<LabStepXml>();
+                List<LabTaskXml> labTasks = new List<LabTaskXml>();
+
+                //
+                List<string> lastTaskActivity = new List<string>();
 
                 string txt = "";
                 //Console.WriteLine(Body.ChildElements.Count);
@@ -200,15 +217,16 @@ namespace LessonParser
                         // steps
                         if (XUtil.isStep(plainText))
                         {
-                            string Notes = "";
+                            List<string> Notes = new List<string>();
                             int stepEndPosition = 0;
+                            LabStepXml labStepXml = new LabStepXml();
 
                             // store image information
                             if (stepImages.Count > 0) {
                                 // get step number
                                 Match result = Regex.Match(plainText, @"\d+");
                                 // reverse img since in reverse order
-                                stepImages.Reverse();
+                                //stepImages.Reverse();
 
                                 // save step number if success
                                 if (result.Success) {
@@ -218,7 +236,7 @@ namespace LessonParser
                                         "s", "t", "u", "v", "w", "x", "y", "z"
                                     };
                                     // save ending position of step literal
-                                    stepEndPosition = result.Groups[0].Index;
+                                    //stepEndPosition = result.Captures[0].Index + result.Captures[0].Length;
                                     for (int c = 0; c < stepImages.Count; c++)
                                     {
                                         stepImages[c].step = int.Parse(result.Groups[0].Value);
@@ -230,6 +248,7 @@ namespace LessonParser
                                     }
 
                                     // add to task and clear step
+                                    stepImages.Reverse();
                                     taskImages.AddRange(stepImages);
                                     stepImages.Clear();
                                 }
@@ -238,19 +257,66 @@ namespace LessonParser
 
                             // get formatted step text
                             string formattedText = applyFormatting(Paragraph);
-                            string stepText = V4Template.Step(formattedText.Substring(stepEndPosition+1));
-                            Console.WriteLine("* " + stepText);
-                            Notes = GetNotes(x + paragraphs.Count - 1, x+1, Elements);
+                            string t = Regex.Replace(formattedText, @"Step\s+\d+", "");
+                            string stepAction = V4Template.StepUserAction(t.Trim());
+                            
+                            Notes = GetNotes(x + paragraphs.Count-1, x+1, Elements);
+                            var data = string.Join("", Notes.ToArray());
+                            string responseText = "";
+
+                            int nCount = 0;
+                            //Notes.Reverse();
+                            foreach(var n in Notes)
+                            {
+                                if (n != "<imageplaceholder/>" && !n.Contains("<CustomNote>") && !n.Contains("<List>") && !n.Contains("<RichText>") && nCount < 1)
+                                {
+                                    nCount++;
+                                    // get response text and remove from main list
+                                    responseText = n;                                    
+                                }
+                            }
+                            if (nCount == 1)
+                            {
+                                Notes.Remove(responseText);
+                            }
+                            
+                            //responseText = V4Template.StepResponseDescription(responseText);
+                            string stepResponse = V4Template.StepResponse(V4Template.StepResponseDescription(data));
+                            string fullStep = V4Template.Step(stepAction + stepResponse);
+                            labStepXml.Action = stepAction;
+                            List<string> res = new List<string>();
+                            if (drawings > 0) {
+                                res.Add("<imageplaceholder/>");
+                            }
+                            res.Add(responseText != "" ? V4Template.StepResponseDescription(responseText) : "<ResponseDescription/>");
+                            res.AddRange(Notes);
+                            labStepXml.Response = res;
+                            labSteps.Add(labStepXml); 
+                            //Console.WriteLine("* " + fullStep);
                             //paragraphs.Remove(paragraphs.Last());
                             //GetNotes(x + paragraphs.Count, x + 1, Elements, MainDocumentPart);
-                            Console.WriteLine(Environment.NewLine + "Step: " + Notes);
+                            //Console.WriteLine(Environment.NewLine + "Step: " + Notes);
 
                             // reset paragraph numbering 
                             paragraphs.Clear();
                         }
+
+                        // detect tasks
+                        if (XUtil.isTaskActivity(plainText))
+                        {
+                            List<string> Notes = new List<string>();
+                            Notes = GetNotes(x + paragraphs.Count - 1, x + 1, Elements);
+                            var data = string.Join("", Notes.ToArray());
+                            Console.WriteLine(Environment.NewLine + "Activity: " + data);
+                            lastTaskActivity = Notes;
+                            // reset paragraph numbering
+                            paragraphs.Clear();
+                        }
+
                         // detect tasks
                         if (XUtil.isTask(plainText))
                         {
+                            LabTaskXml labTaskXml = new LabTaskXml();
                             // store image information
                             if (taskImages.Count > 0)
                             {
@@ -271,6 +337,17 @@ namespace LessonParser
                                 }
 
                             }
+
+                            // get formatted task text
+                            string formattedText = applyFormatting(Paragraph);
+                            string t = Regex.Replace(formattedText, @"Task\s+\d+:", "");
+                            labTaskXml.Title = t.Trim();
+                            labTaskXml.Activity = lastTaskActivity;
+                            labSteps.Reverse();
+                            labTaskXml.Steps = new List<LabStepXml>();
+                            labTaskXml.Steps.AddRange(labSteps);
+                            labTasks.Add(labTaskXml);
+                            labSteps.Clear();
                             // get an array with the correct answers
                             //Console.WriteLine(Environment.NewLine + Paragraph.InnerText);
                             taskNumber++;
@@ -278,20 +355,83 @@ namespace LessonParser
                             paragraphs.Clear();
                         }
 
+                        labImages.Reverse();
                         if (XUtil.isLab(plainText))
                         {
+                            // get formatted lab text
+                            string formattedText = applyFormatting(Paragraph);
+                            string t = Regex.Replace(formattedText, @"Discovery\s+\d+:", "");
+                            labName = t.Trim();
+                            string ilabName = Regex.Replace(labName, @"\s+", "_");
+
                             // get an array with the correct answers
                             Console.WriteLine(Environment.NewLine + "Saving {0} images...", labImages.Count);
                             foreach (var img in labImages)
                             {
 
-                                string imgname = string.Format("{0}_{1}_{2}_Task-{3}_{4}{5}.png", imagePrefix, version, labName, img.task.ToString().PadLeft(2, '0'), img.step.ToString().PadLeft(3, '0'), img.increment);
+                                string imgname = string.Format("{0}_{1}_{2}_Task-{3}_{4}{5}.png", imagePrefix, version, ilabName, img.task.ToString().PadLeft(2, '0'), img.step.ToString().PadLeft(3, '0'), img.increment);
                                 Console.WriteLine(imgname);
 
                                 // convert image part to stream and save
                                 //Bitmap image = new Bitmap(img.ImagePart.GetStream());
                                 //image.Save(SourceDirectory + imgname, System.Drawing.Imaging.ImageFormat.Png);
                             }
+                            int u = 0;
+                            int h = 0;
+                            int k = 0;
+                            int imgtrack = 0;
+                            labSteps.Reverse();
+                            labTasks.Reverse();
+                            foreach (var task in labTasks) {
+                                h++;
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("Task: " + h);
+                                Console.ForegroundColor = ConsoleColor.White;
+                                k = 0;
+                                string fullstep = "";
+                                string allSteps = "";
+                                string allTasks = "";
+                                foreach (var step in task.Steps)
+                                {
+                                    k++;
+                                    Console.ForegroundColor = ConsoleColor.Blue;
+                                    Console.WriteLine("Step: " + k);
+                                    Console.ForegroundColor = ConsoleColor.White;
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                    //Console.WriteLine(step.Action);
+                                    //fullstep += step.Action;
+                                    Console.ForegroundColor = ConsoleColor.White;
+
+                                    string response = "";
+                                    foreach (var r in step.Response)
+                                    {
+                                        if (r.Count() > 0)
+                                        {
+                                            if (r == "<imageplaceholder/>")
+                                            {
+                                                LabImage img = labImages[imgtrack];
+                                                string imgname = string.Format("_PORTFOLIO_2.0/DevNet/Level_200/Concentrations/DEVWBX/v1.0/{0}_{1}_{2}_Task-{3}_{4}{5}.png", imagePrefix, version, ilabName, img.task.ToString().PadLeft(2, '0'), img.step.ToString().PadLeft(3, '0'), img.increment);
+                                                //Console.WriteLine(V4Template.LabFigure(imgname));
+                                                response += V4Template.LabFigure(imgname);
+                                                imgtrack++;
+                                                //Console.WriteLine("...." + r);
+                                            }
+                                            else
+                                            {
+                                                //Console.WriteLine("...." + r);
+                                                response += r;
+                                            }
+
+                                        }
+                                    }
+
+                                    //Console.WriteLine(V4Template.StepResponse(response));
+                                    fullstep = V4Template.Step(step.Action + V4Template.StepResponse(response));
+                                    Console.WriteLine(fullstep);
+                                    u++;
+                                }
+                            }
+                            
                             // reset paragraph numbering 
                             paragraphs.Clear();
                         }
@@ -366,7 +506,7 @@ namespace LessonParser
             return intro;
         }
 
-        public string GetNotes(int start, int stop, OpenXmlElementList Elements)
+        public List<string> GetNotes(int start, int stop, OpenXmlElementList Elements)
         {
             List<string> paragraphs = new List<string>();
             List<string> notes = new List<string>();
@@ -441,19 +581,26 @@ namespace LessonParser
 
                         }
                         else
-                        {
+                        {                            
                             // richtext
                             notes.Add(V4Template.RichText(FormattedText));
                             paragraphs.Clear();
                         }
 
                     }
+
+                    // check for image
+                    if (Paragraph != null && Paragraph.Descendants<Drawing>().Count() > 0)
+                    {
+                        Console.WriteLine("!!!image detected!!!");
+                        notes.Add("<imageplaceholder/>");
+                    }
                 }
 
             }
             notes.Reverse();
-            var data = string.Join("", notes.ToArray());
-            return data;
+            //var data = string.Join("", notes.ToArray());
+            return notes;
         }
 
         public string GetList(int start, int stop, OpenXmlElementList Elements)
@@ -582,17 +729,17 @@ namespace LessonParser
                         else if (Run.RunProperties != null && text.Trim() != "") // prevent empty tags, should do this above but...
                         {
                             // Make text italic
-                            if (Run.RunProperties.Italic != null)
+                            if (Run.RunProperties.Italic != null && Run.RunProperties.Italic.Val != OnOffValue.FromBoolean(false))
                             {
                                 text = V4Template.Italic(text);
                             }
                             // Make text bold
-                            if (Run.RunProperties.Bold != null)
+                            if (Run.RunProperties.Bold != null && Run.RunProperties.Bold.Val != OnOffValue.FromBoolean(false))
                             {
                                 text = V4Template.Bold(text);
                             }
                             // Make text underlined
-                            if (Run.RunProperties.Underline != null)
+                            if (Run.RunProperties.Underline != null && Run.RunProperties.Underline.Val != OnOffValue.FromBoolean(false))
                             {
                                 text = V4Template.Underline(text);
                             }
@@ -620,13 +767,17 @@ namespace LessonParser
                     if (Hyperlink.Id != null)
                     {
                         var link = HyperlinkRelationships.FirstOrDefault(Tag => Tag.Id == Hyperlink.Id);
-                        if(link != null)
+                        if(HyperlinkRelationships.Count() > 0 && link != null)
                         {
                             Para += V4Template.Hyperlink(SecurityElement.Escape(link.Uri.AbsoluteUri), SecurityElement.Escape(Hyperlink.InnerText));
+                        }
+                        else
+                        {
+                            Para += V4Template.Hyperlink(SecurityElement.Escape(Hyperlink.InnerText), SecurityElement.Escape(Hyperlink.InnerText));
                         }                        
                     }
                 }
-            }
+            } 
 
             return Para;
         }
