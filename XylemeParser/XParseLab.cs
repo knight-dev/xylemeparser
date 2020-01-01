@@ -35,10 +35,21 @@ namespace LessonParser
         public string Action { get; set; }
         public List<string> Response { get; set; }
     }
+    enum QueueType
+    {
+        ListItem,
+        CodeLine,
+        Image,
+        RichText,
+        CustomNote
+    }
+    class ElementQueue {
+        public List<QueueType> Queued { get; set; }
+    }
     class XParseLab
     {
         // show paragraph details
-        public bool showParagraphSchema = true;
+        public bool showParagraphSchema = false;
         // ooxml util
         static XUtil XUtil = new XUtil();
         // xyleme xml template object
@@ -179,11 +190,11 @@ namespace LessonParser
                             foreach (PIC.BlipFill pic in Paragraph.Descendants<PIC.BlipFill>())
                             {
                                 i++;
-                                Console.WriteLine("========================================= pic" + i);
+                                //Console.WriteLine("========================================= pic" + i);
                                 D.Blip image = pic.Descendants<D.Blip>().FirstOrDefault();
                                 if (image != null)
                                 {
-                                    Console.WriteLine("========================================= blip pic");
+                                    //Console.WriteLine("========================================= blip pic");
                                     ImagePart part = MainDocumentPart.GetPartById(image.Embed.Value) as ImagePart;
 
                                     // new lab image class
@@ -263,6 +274,10 @@ namespace LessonParser
                             Notes = GetNotes(x + paragraphs.Count-1, x+1, Elements);
                             var data = string.Join("", Notes.ToArray());
                             string responseText = "";
+
+                            /// troubleshooting
+                            if (plainText.Contains("19"))
+                                return MainDocumentPart;
 
                             int nCount = 0;
                             //Notes.Reverse();
@@ -360,7 +375,8 @@ namespace LessonParser
                         {
                             // get formatted lab text
                             string formattedText = applyFormatting(Paragraph);
-                            string t = Regex.Replace(formattedText, @"Discovery\s+\d+:", "");
+                            //string t = Regex.Replace(formattedText, @"Discovery\s+\d+:", "");
+                            string t = Regex.Replace(formattedText, @"Lab\s+\d+:", "");
                             labName = t.Trim();
                             string ilabName = Regex.Replace(labName, @"\s+", "_");
 
@@ -382,6 +398,7 @@ namespace LessonParser
                             int imgtrack = 0;
                             labSteps.Reverse();
                             labTasks.Reverse();
+                            string allTasks = "";
                             foreach (var task in labTasks) {
                                 h++;
                                 Console.ForegroundColor = ConsoleColor.Red;
@@ -390,7 +407,6 @@ namespace LessonParser
                                 k = 0;
                                 string fullstep = "";
                                 string allSteps = "";
-                                string allTasks = "";
                                 foreach (var step in task.Steps)
                                 {
                                     k++;
@@ -427,11 +443,21 @@ namespace LessonParser
 
                                     //Console.WriteLine(V4Template.StepResponse(response));
                                     fullstep = V4Template.Step(step.Action + V4Template.StepResponse(response));
+                                    allSteps += fullstep;
                                     Console.WriteLine(fullstep);
                                     u++;
                                 }
+
+                                // store task and step xml
+                                string activ = string.Join("", task.Activity);
+                                allTasks += V4Template.Procedure(task.Title, allSteps, activ);
+                                allSteps = "";
                             }
-                            
+
+                            // store final lab xml
+                            string labxml = V4Template.Lab(labName, allTasks);
+                            File.WriteAllText(SourceDirectory + labName+".xml", labxml);
+                            //Console.WriteLine(Environment.NewLine + labxml);
                             // reset paragraph numbering 
                             paragraphs.Clear();
                         }
@@ -508,8 +534,14 @@ namespace LessonParser
 
         public List<string> GetNotes(int start, int stop, OpenXmlElementList Elements)
         {
-            List<string> paragraphs = new List<string>();
+            //List<string> paragraphs = new List<string>();
             List<string> notes = new List<string>();
+            //var els = Elements;
+            List<Paragraph> paragraphs = new List<Paragraph>();
+            ElementQueue elementQueue = new ElementQueue();
+            elementQueue.Queued = new List<QueueType>();
+
+            String lastParagraph = "";
 
             for (var x = start; x >= stop; x--)
             {
@@ -518,18 +550,22 @@ namespace LessonParser
                     //
                     var Paragraph = (Paragraph)Elements[x];
                     var FormattedText = applyFormatting(Paragraph).Trim();
+                    //ps.Add(Paragraph);
+                    paragraphs.Add(Paragraph);
+                    Console.WriteLine(Paragraph.InnerText);
 
+                    // get previous stored paragraph
                     Paragraph prevParagraph = new Paragraph();
                     ParagraphStyleId prevParagraphStyleId = new ParagraphStyleId();
 
                     //
-                    if (x < stop && Elements[x + 1] is Paragraph)
+                    if (paragraphs.Count > 1)
                     {
-                        prevParagraph = (Paragraph)Elements[x + 1];
+                        prevParagraph = paragraphs[paragraphs.Count - 2];
                         prevParagraphStyleId = prevParagraph.ParagraphProperties.ParagraphStyleId;
                     }
 
-                    // check if paragraph is subtopic
+                    // check paragraph style
                     ParagraphStyleId ParagraphStyleId = new ParagraphStyleId();
                     if (Paragraph.ParagraphProperties != null)
                     {
@@ -538,12 +574,150 @@ namespace LessonParser
 
                     // differentiate between list and richtext and log list items
                     var ListFormat = GetListFormat(Paragraph, Styles, Numbering, ParagraphStyleId);
-                    if (ParagraphStyleId != null && ParagraphStyleId.Val != null && ParagraphStyleId.Val.Value.ToLower().Contains("simpleblock"))
+
+                    // hangle last item
+                    if (x == stop) {
+
+                        // check if previous item was a list item
+                        var prevListFormat = GetListFormat(prevParagraph, Styles, Numbering, ParagraphStyleId);
+
+                        // check if current item is a list item
+                        if (Paragraph != null && Paragraph.Descendants<Drawing>().Any())
+                        {
+                            //Console.WriteLine("!!!image detected!!!");
+
+                            notes.Add("<imageplaceholder/>");
+                            lastParagraph = "image";
+                            paragraphs.Clear();
+                        }
+                        else if (ParagraphStyleId != null && ParagraphStyleId.Val != null && ParagraphStyleId.Val.Value.ToLower().Contains("simpleblock"))
+                        {
+                            // custom note
+                            notes.Add(V4Template.CustomNote(FormattedText));
+                            lastParagraph = "note";
+                            paragraphs.Clear();
+                        }
+                        else                        
+                        if (ListFormat != null || prevListFormat != null)
+                        {
+                            // reverse paragraph list                            
+                            paragraphs.Reverse();
+
+                            // get list items
+                            var list = GetList(paragraphs);
+
+                            // handle list items
+                            // identify preamble
+                            if (Paragraph.InnerText.Trim().Length > 0 && Paragraph.InnerText.TrimEnd().Last() == ':')
+                            {
+                                if (!string.IsNullOrEmpty(list))
+                                {
+                                    notes.Add(V4Template.List(list, FormattedText));
+                                }
+                            }
+                            else
+                            {
+                                if (!string.IsNullOrEmpty(list))
+                                {
+                                    notes.Add(V4Template.List(list));
+                                }
+
+                            }
+                            paragraphs.Clear();
+                        }else if (isCode(prevParagraph) || isCode(Paragraph))
+                        {
+                            // get list items
+                            var code = GetCode(paragraphs);
+                            notes.Add(V4Template.Code(code));
+                            paragraphs.Clear();
+                        }
+                        else
+                        {
+                            notes.Add(V4Template.RichText(FormattedText));
+                            lastParagraph = "text";
+                            paragraphs.Clear();
+                        }
+                    }
+                    else {
+
+                        // check if previous item was a list item
+                        var prevListFormat = GetListFormat(prevParagraph, Styles, Numbering, ParagraphStyleId);
+                        // check if current item is a list item
+                        if (Paragraph != null && Paragraph.Descendants<Drawing>().Any())
+                        {
+                            //Console.WriteLine("!!!image detected!!!");
+                            
+                            notes.Add("<imageplaceholder/>");
+                            lastParagraph = "image";
+                            paragraphs.Clear();
+                        }
+                        else if (ParagraphStyleId != null && ParagraphStyleId.Val != null && ParagraphStyleId.Val.Value.ToLower().Contains("simpleblock"))
+                        {
+                            // custom note
+                            notes.Add(V4Template.CustomNote(FormattedText));
+                            lastParagraph = "note";
+                            paragraphs.Clear();
+                        }
+                        else
+                        if (ListFormat == null && prevListFormat != null) {
+                            // reverse paragraph list                            
+                            paragraphs.Reverse();
+
+                            // get list items
+                            var list = GetList(paragraphs);
+
+                            // handle list items
+                            // identify preamble
+                            if (Paragraph.InnerText.Trim().Length > 0 && Paragraph.InnerText.TrimEnd().Last() == ':')
+                            {
+                                if (!string.IsNullOrEmpty(list))
+                                {
+                                    notes.Add(V4Template.List(list, FormattedText));
+                                    //paragraphs.Clear();
+                                }
+                            }
+                            else
+                            {
+                                if (!string.IsNullOrEmpty(list))
+                                {
+                                    notes.Add(V4Template.List(list));
+                                    //paragraphs.Clear();
+                                }
+
+                            }
+                            paragraphs.Clear();
+                        }else
+                        if (isCode(prevParagraph) && !isCode(Paragraph))
+                        {
+                            // reverse paragraph list                            
+                            paragraphs.Reverse();
+                            // get list items
+                            var code = GetCode(paragraphs);
+                            notes.Add(V4Template.Code(code));
+                            paragraphs.Clear();
+                        }
+                        else if (ListFormat == null && !isCode(Paragraph))
+                        {
+                            notes.Add(V4Template.RichText(FormattedText));
+                            lastParagraph = "text";
+                            paragraphs.Clear();
+                        }
+                    }
+
+                    /*if (ParagraphStyleId != null && ParagraphStyleId.Val != null && ParagraphStyleId.Val.Value.ToLower().Contains("simpleblock"))
                     {
                         // custom note
                         notes.Add(V4Template.CustomNote(FormattedText));
                         paragraphs.Clear();
 
+                    }
+                    else if (isCode(prevParagraph) && !isCode(Paragraph))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("code????");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        notes.Add(V4Template.Code(GetCode(x + paragraphs.Count, x + 1, Elements)));
+                        paragraphs.Clear();
                     }
                     else
                     {
@@ -560,7 +734,7 @@ namespace LessonParser
                             // reverse list                            
                             paragraphs.Reverse();
                             var list = GetList(x + paragraphs.Count, x + 1, Elements);
-                            paragraphs.Clear();
+                            
 
                             // identify preamble
                             if (Paragraph.InnerText.Trim() != "" && Paragraph.InnerText.TrimEnd().Last() == ':')
@@ -568,6 +742,7 @@ namespace LessonParser
                                 if (list != "")
                                 {
                                     notes.Add(V4Template.List(list, FormattedText));
+                                    //paragraphs.Clear();
                                 }
                             }
                             else
@@ -575,13 +750,17 @@ namespace LessonParser
                                 if (list != "")
                                 {
                                     notes.Add(V4Template.List(list));
+                                    //paragraphs.Clear();
                                 }
                                 notes.Add(V4Template.RichText(FormattedText));
                             }
 
                         }
                         else
-                        {                            
+                        {
+                            Console.ForegroundColor = ConsoleColor.Magenta;
+                            Console.WriteLine("richtext????");
+                            Console.ForegroundColor = ConsoleColor.White;
                             // richtext
                             notes.Add(V4Template.RichText(FormattedText));
                             paragraphs.Clear();
@@ -590,11 +769,11 @@ namespace LessonParser
                     }
 
                     // check for image
-                    if (Paragraph != null && Paragraph.Descendants<Drawing>().Count() > 0)
+                    if (Paragraph != null && Paragraph.Descendants<Drawing>().Any())
                     {
                         Console.WriteLine("!!!image detected!!!");
                         notes.Add("<imageplaceholder/>");
-                    }
+                    }*/
                 }
 
             }
@@ -603,16 +782,58 @@ namespace LessonParser
             return notes;
         }
 
-        public string GetList(int start, int stop, OpenXmlElementList Elements)
+        public bool isCode(Paragraph Paragraph) 
         {
-            List<string> paragraphs = new List<string>();
+            var rs = Paragraph.Descendants<Run>();
+            if (Paragraph.ParagraphProperties != null) {
+                ParagraphStyleId ParagraphStyleId = Paragraph.ParagraphProperties.ParagraphStyleId;
+                // get paragraph style
+                Style ParagraphStyle = new Style();
+                if (ParagraphStyleId != null)
+                {
+                    ParagraphStyle = Styles.Descendants<Style>().FirstOrDefault(tag => tag.StyleId == (string)ParagraphStyleId.Val);
+                    if (ParagraphStyle.StyleRunProperties != null && ParagraphStyle.StyleRunProperties.RunFonts != null && ParagraphStyle.StyleRunProperties.RunFonts.Ascii != null && ParagraphStyle.StyleRunProperties.RunFonts.Ascii.Value == "Courier New")
+                    {
+                        return true;
+                    }
+                }
+            }
+            
+            foreach (Run Run in rs) {
+                if (Run.RunProperties != null && Run.RunProperties.RunFonts != null && Run.RunProperties.RunFonts.Ascii != null && Run.RunProperties.RunFonts.Ascii.Value == "Courier New") {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public string GetCode(List<Paragraph> paragraphs) 
+        {
+            List<string> lines = new List<string>();
+            foreach (var Paragraph in paragraphs) {
+                    // get paragraph and save text
+                    var FormattedText = applyFormatting(Paragraph).Trim();
+                    lines.Add(FormattedText);
+            }
+
+            // restore normal paragraph order
+            lines.Reverse();
+            // convert list to string and return code block
+            string code = string.Join("", lines.ToArray());
+            return code;
+        }
+
+        public string GetList(List<Paragraph> paragraphs)
+        {
+            List<string> listitems = new List<string>();
             List<string> ListOrphans = new List<string>();
-            for (var x = start; x >= stop; x--)
+            //Console.WriteLine("start:"+start);
+            //Console.WriteLine("stop:" + start);
+            int count = 0;
+            foreach (var Paragraph in paragraphs)
             {
-                if (Elements[x] is Paragraph)
+                if (Paragraph is Paragraph)
                 {
                     // variables
-                    var Paragraph = (Paragraph)Elements[x];
                     var FormattedText = applyFormatting(Paragraph).Trim();
                     //
                     Paragraph prevParagraph = new Paragraph();
@@ -625,23 +846,21 @@ namespace LessonParser
                     var prevListFormat = new Level();
 
                     //
-                    if (x == start)
+                    if (count == 0)
                     {
                         // save list item
-                        paragraphs.Add(V4Template.ListItem(FormattedText));
+                        listitems.Add(V4Template.ListItem(FormattedText));
                         //Console.WriteLine(V4Template.ListItem(Paragraph.InnerText) + Environment.NewLine);               
 
                     }
                     else
                     {
-                        if (Elements[x + 1] is Paragraph)
+                        // get previous paragraph
+                        prevParagraph = paragraphs[count - 1];
+                        prevParagraphStyleId = prevParagraph.ParagraphProperties.ParagraphStyleId;
+                        if (prevParagraph != null && prevParagraph.ParagraphProperties != null)
                         {
-                            prevParagraph = (Paragraph)Elements[x + 1];
-                            prevParagraphStyleId = prevParagraph.ParagraphProperties.ParagraphStyleId;
-                            if (prevParagraph != null && prevParagraph.ParagraphProperties != null)
-                            {
-                                prevListFormat = GetListFormat(prevParagraph, Styles, Numbering, prevParagraphStyleId);
-                            }
+                            prevListFormat = GetListFormat(prevParagraph, Styles, Numbering, prevParagraphStyleId);
                         }
 
                         if (prevListFormat != null && prevListFormat.LevelIndex != null && ListFormat.LevelIndex < prevListFormat.LevelIndex)
@@ -649,23 +868,23 @@ namespace LessonParser
                             // assign sublist marker based orphan count (a reflection of sublist number)
                             var ListMarker = ListOrphans.Count % 2 == 0 ? "Bullet" : "nDash";
                             // restore order before conversion to string
-                            paragraphs.Reverse();
-                            var items = string.Join("", paragraphs.ToArray());
+                            listitems.Reverse();
+                            var items = string.Join("", listitems.ToArray());
                             // create sublist
                             var sublist = V4Template.SubList(FormattedText, items, ListMarker);
                             // reset paragraphs to prevent duplicates
-                            paragraphs.Clear();
+                            listitems.Clear();
                             // save sublist
-                            paragraphs.Add(sublist);
+                            listitems.Add(sublist);
 
                             // check if orphans are present
                             if (ListOrphans.Count > 0)
                             {
                                 // add orphans to end of sublist
-                                paragraphs.Add(ListOrphans.Last());
+                                listitems.Add(ListOrphans.Last());
                                 ListOrphans.Remove(ListOrphans.Last());
                                 // reverse again to maintain flow
-                                paragraphs.Reverse();
+                                listitems.Reverse();
                                 // reset orphan list
                                 //ListOrphans = new List<string>();
                             }
@@ -673,31 +892,32 @@ namespace LessonParser
                         else if (prevListFormat != null && prevListFormat.LevelIndex != null && ListFormat.LevelIndex > prevListFormat.LevelIndex)
                         {
                             // restore order before conversion to string
-                            paragraphs.Reverse();
-                            var items = string.Join("", paragraphs.ToArray());
+                            listitems.Reverse();
+                            var items = string.Join("", listitems.ToArray());
 
                             // add to orphan list for later use
                             ListOrphans.Add(items);
 
                             // reset paragraphs to prevent duplicates
-                            paragraphs.Clear();
+                            listitems.Clear();
 
                             // save list item
-                            paragraphs.Add(V4Template.ListItem(FormattedText));
+                            listitems.Add(V4Template.ListItem(FormattedText));
                         }
                         else
                         {
                             // save list item
-                            paragraphs.Add(V4Template.ListItem(FormattedText));
+                            listitems.Add(V4Template.ListItem(FormattedText));
                         }
                     }
+                    count++;
                 }
 
             }
 
             // restore normal paragraph order
-            paragraphs.Reverse();
-            var ListItems = string.Join("", paragraphs.ToArray());
+            listitems.Reverse();
+            var ListItems = string.Join("", listitems.ToArray());
             //Console.WriteLine(string.Join("", paragraphs.ToArray()) + Environment.NewLine);
             return ListItems;
         }
@@ -722,11 +942,11 @@ namespace LessonParser
                         string text = SecurityElement.Escape(Run.InnerText);
 
                         // identify code
-                        if (Run.RunProperties != null && Run.RunProperties.RunFonts != null && Run.RunProperties.RunFonts.Ascii != null && Run.RunProperties.RunFonts.Ascii.Value == "Courier New")
+                        /*if (Run.RunProperties != null && Run.RunProperties.RunFonts != null && Run.RunProperties.RunFonts.Ascii != null && Run.RunProperties.RunFonts.Ascii.Value == "Courier New")
                         {
                             text = V4Template.InLineCode(text);
                         }
-                        else if (Run.RunProperties != null && text.Trim() != "") // prevent empty tags, should do this above but...
+                        else*/ if (Run.RunProperties != null && text.Trim() != "") // prevent empty tags, should do this above but...
                         {
                             // Make text italic
                             if (Run.RunProperties.Italic != null && Run.RunProperties.Italic.Val != OnOffValue.FromBoolean(false))
@@ -849,11 +1069,15 @@ namespace LessonParser
                 {
                     var AbstractNumId = NumberingInstance.AbstractNumId;
                     AbstractNum AbstractNum = Numbering.Descendants<AbstractNum>().FirstOrDefault(tag => tag.AbstractNumberId == (int)AbstractNumId.Val);
-                    Level Level = AbstractNum.Descendants<Level>().FirstOrDefault(Tag => Tag.LevelIndex == (int)IndentLevel.Val);
-                    if (Level != null)
+                    var Levels = AbstractNum.Descendants<Level>();
+                    if (Levels.Count() > 0 && IndentLevel != null)
                     {
-                        return Level;
-                    }
+                        foreach (Level Level in Levels) {
+                            if (Level.LevelIndex == (int)IndentLevel.Val) {
+                                return Level;
+                            }
+                        }
+                    }                    
                 }
             }
 

@@ -224,7 +224,7 @@ namespace LessonParser
         }
         public string LabFigure(String ImageName)
         {
-            string data = "<Figure><MediaObject><Renditions><Web thumbWidth=\"50\" uri=\"" + ImageName + "/></Renditions></MediaObject></Figure>";
+            string data = "<Figure><MediaObject><Renditions><Web thumbWidth=\"50\" uri=\"" + ImageName + "\"/></Renditions></MediaObject></Figure>";
             return data;
         }
         public string TitledBlock(String Title, String Content)
@@ -246,7 +246,12 @@ namespace LessonParser
         // labs
         public string Lab(String title, String Content)
         {
-            string data = "<Topic xmlns:xy=\"http://xyleme.com/xylink\" xy:type=\"Core/Definitions/TopicTypes/TopicDef.xml\"><Title>"+title+"</Title><Introduction><Title>Introduction</Title><ParaBlock><RichText>Lab intro</RichText></ParaBlock></Introduction>" + Content + "</Topic>";
+            string data = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Topic xmlns:xy=\"http://xyleme.com/xylink\" xy:type=\"Core/Definitions/TopicTypes/TopicDef.xml\"><Title>"+title+"</Title><Introduction><Title>Introduction</Title><ParaBlock><RichText>Lab intro</RichText></ParaBlock></Introduction>" + Content + "</Topic>";
+            return data;
+        }
+        public string Code(String Content)
+        {
+            string data = "<Code>" + Content + "</Code>";
             return data;
         }
         public string Procedure(String title, String Content, String Activity = "<RichText>Lab Activity</RichText>")

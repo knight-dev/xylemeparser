@@ -791,6 +791,7 @@ namespace LessonParser
         public bool isTaskActivity(String text)
         {
             Regex regex = new Regex(@"activity");
+            //Regex regex = new Regex(@"activity");
             Match match = regex.Match(text.Trim().ToLower().ToString());
 
             if (match.Success && match.Index == 0)
@@ -824,7 +825,8 @@ namespace LessonParser
         public bool isLab(String text)
         {
             //Console.WriteLine(text.ToString());
-            Regex regex = new Regex(@"discovery\s+\d+");
+            //Regex regex = new Regex(@"discovery\s+\d+");
+            Regex regex = new Regex(@"lab\s+\d+");
             Match match = regex.Match(text.Trim().ToLower().ToString());
 
             if (match.Success && match.Index == 0)
