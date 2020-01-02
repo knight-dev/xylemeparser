@@ -792,8 +792,15 @@ namespace LessonParser
                     // parse tables
                     Table table = (Table)Elements[x];
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("!!!table!!!");
+                    //Console.WriteLine("!!!table!!!");
                     Console.ForegroundColor = ConsoleColor.White;
+                    //
+                    int colCount = 0;
+                    String cellXml = "";
+                    String headerXml = "";
+                    String bodyXml = "";
+                    String rowXml = "";
+                    String tableXml = "";
                     
                     // get rows
                     var rows = table.Descendants<TableRow>();
@@ -802,21 +809,39 @@ namespace LessonParser
                         int rowCount = 0;
                         foreach (TableRow tableRow in rows) {
                             var cells = tableRow.Descendants<TableCell>();
+                            // store cell data
                             if (cells.Any()) {
-                                foreach (var cell in cells) {
-                                    
+                                foreach (var cell in cells) {                                    
                                     var paras = cell.Descendants<Paragraph>();
                                     if (paras.Any())
                                     {
                                         foreach (var para in paras) {                                            
-                                           Console.WriteLine(applyFormatting(para));
+                                           //Console.WriteLine(applyFormatting(para));
+                                            String FormattedText = applyFormatting(para);
+                                            cellXml += V4Template.TableCell(V4Template.RichText(FormattedText));
                                         }
                                     }
                                 }
                             }
-                            
+                            // header row
+                            if (rowCount == 0) {
+                                // set column count
+                                colCount = cells.Count();
+                                headerXml = V4Template.TableHeader(V4Template.TableRow(cellXml));
+                                cellXml = "";
+                            }
+                            else
+                            {
+                                rowXml += V4Template.TableRow(cellXml);
+                                cellXml = "";
+                            }
+                            rowCount++;
                         }
+                        bodyXml = V4Template.TableBody(rowXml);
+                        tableXml = V4Template.Table("table title", V4Template.TableGroup(headerXml + bodyXml, colCount));
                     }
+                    notes.Add(tableXml);
+                    //Console.WriteLine(tableXml);
                 }
 
             }
