@@ -807,7 +807,8 @@ namespace LessonParser
                             }
                             else
                             {
-                                rowXml += V4Template.TableRow(cellXml);
+                                if (!string.IsNullOrEmpty(cellXml))
+                                    rowXml += V4Template.TableRow(cellXml);
                                 cellXml = "";
                             }
                             rowCount++;
@@ -854,7 +855,11 @@ namespace LessonParser
                 Style ParagraphStyle = new Style();
                 if (ParagraphStyleId != null)
                 {
-                    ParagraphStyle = Styles.Descendants<Style>().FirstOrDefault(tag => tag.StyleId == (string)ParagraphStyleId.Val);
+                    if (ParagraphStyleId.Val.InnerText.Contains("Item-Code"))
+                    {
+                        return true;
+                    }
+                    ParagraphStyle = Styles.Descendants<Style>().FirstOrDefault(tag => tag.StyleId == ParagraphStyleId.Val);
                     if (ParagraphStyle.StyleRunProperties != null && ParagraphStyle.StyleRunProperties.RunFonts != null && ParagraphStyle.StyleRunProperties.RunFonts.Ascii != null && ParagraphStyle.StyleRunProperties.RunFonts.Ascii.Value == "Courier New")
                     {
                         return true;
