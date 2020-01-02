@@ -66,8 +66,8 @@ namespace LessonParser
         // file locations
         public string SourceDirectory = Directory.GetCurrentDirectory() + @"\";
 
-        string imagePrefix = "DEVWBX";
-        string labName = "Retrieve_Created_Messages_to_Take_a_Compliance_Action";
+        string imagePrefix = "DEVIOT";
+        string labName = "";
         string version = "1-0-0_LAB";
 
         public MainDocumentPart OpenDocument(string documentFile)
@@ -288,7 +288,7 @@ namespace LessonParser
                             //Notes.Reverse();
                             foreach(var n in Notes)
                             {
-                                if (n != "<imageplaceholder/>" && !n.Contains("<CustomNote>") && !n.Contains("<List>") && !n.Contains("<Code>") && nCount < 1)
+                                if (n != "<imageplaceholder/>" && !n.Contains("<CustomNote>") && !n.Contains("</List>") && !n.Contains("<Code>") && nCount < 1)
                                 {
                                     nCount++;
                                     // get response text and remove from main list
@@ -472,7 +472,7 @@ namespace LessonParser
                                             if (r == "<imageplaceholder/>")
                                             {
                                                 LabImage img = labImages[imgtrack];
-                                                string imgname = string.Format("_PORTFOLIO_2.0/DevNet/Level_200/Concentrations/DEVWBX/v1.0/{0}_{1}_{2}_Task-{3}_{4}{5}.png", imagePrefix, version, ilabName, img.task.ToString().PadLeft(2, '0'), img.step.ToString().PadLeft(3, '0'), img.increment);
+                                                string imgname = string.Format("_PORTFOLIO_2.0/DevNet/Level_200/Concentrations/DEVIOT/v1.0/{0}_{1}_{2}_Task-{3}_{4}{5}.png", imagePrefix, version, ilabName, img.task.ToString().PadLeft(2, '0'), img.step.ToString().PadLeft(3, '0'), img.increment);
                                                 //Console.WriteLine(V4Template.LabFigure(imgname));
                                                 response += V4Template.LabFigure(imgname);
                                                 imgtrack++;
