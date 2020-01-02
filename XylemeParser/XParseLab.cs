@@ -117,7 +117,9 @@ namespace LessonParser
                 List<string> lastTaskActivityProcedure = new List<string>();
                 List<string> lastTaskActivityVerification = new List<string>();
 
-                string txt = "";
+                string jobaidxml = "";
+                string commandlistxml = "";
+
                 //Console.WriteLine(Body.ChildElements.Count);
                 var i = 0;
                 var Elements = Body.ChildElements;
@@ -397,7 +399,8 @@ namespace LessonParser
                             List<string> Notes = new List<string>();
                             Notes = GetNotes(x + paragraphs.Count - 1, x + 1, Elements);
                             var data = string.Join("", Notes.ToArray());
-                            Console.WriteLine(Environment.NewLine + "Command List: " + data);
+                            commandlistxml = V4Template.CommandList(data);
+                            //Console.WriteLine(Environment.NewLine + "Command List: " + data);
                             // reset paragraph numbering
                             paragraphs.Clear();
                         }
@@ -407,7 +410,8 @@ namespace LessonParser
                             List<string> Notes = new List<string>();
                             Notes = GetNotes(x + paragraphs.Count - 1, x + 1, Elements);
                             var data = string.Join("", Notes.ToArray());
-                            Console.WriteLine(Environment.NewLine + "Job Aid: " + data);
+                            jobaidxml = V4Template.JobAid(data);
+                            //Console.WriteLine(Environment.NewLine + "Job Aid: " + data);
                             // reset paragraph numbering
                             paragraphs.Clear();
                         }
@@ -431,8 +435,8 @@ namespace LessonParser
                                 Console.WriteLine(imgname);
 
                                 // convert image part to stream and save
-                                //Bitmap image = new Bitmap(img.ImagePart.GetStream());
-                                //image.Save(SourceDirectory + imgname, System.Drawing.Imaging.ImageFormat.Png);
+                                Bitmap image = new Bitmap(img.ImagePart.GetStream());
+                                image.Save(SourceDirectory + imgname, System.Drawing.Imaging.ImageFormat.Png);
                             }
                             int u = 0;
                             int h = 0;
@@ -498,55 +502,13 @@ namespace LessonParser
                             }
 
                             // store final lab xml
-                            string labxml = V4Template.Lab(labName, allTasks);
+                            string labxml = V4Template.Lab(labName, allTasks, "", jobaidxml, commandlistxml);
                             File.WriteAllText(SourceDirectory + labName+".xml", labxml);
                             //Console.WriteLine(Environment.NewLine + labxml);
                             // reset paragraph numbering 
                             paragraphs.Clear();
                         }
-                        /*
-                        // detect steps -- list step
-                        if (XUtil.isStep(ListFormat))
-                        {
-                            // get an array with the correct answers
-                            
-                            paragraphs.Remove(paragraphs.Last());
-                            GetNotes(x + paragraphs.Count, x + 1, Elements, MainDocumentPart);
-                            Console.WriteLine(Environment.NewLine + "Step: " + Paragraph.InnerText);
-
-                            // reset paragraph numbering 
-                            paragraphs.Clear();
-                        }
-                        if (XUtil.isStep(Paragraph.InnerText))
-                        {
-                            // get an array with the correct answers
-
-                            //paragraphs.Remove(paragraphs.Last());
-                            GetNotes(x + paragraphs.Count, x + 1, Elements, MainDocumentPart);
-                            Console.WriteLine(Environment.NewLine + "Step: " + Paragraph.InnerText);
-
-                            // reset paragraph numbering 
-                            paragraphs.Clear();
-                        }*/
-
-                        /*if (XUtil.isNote(ListFormat))
-                        {
-                            //
-                            Console.WriteLine(Environment.NewLine + "<notes>");
-                        }
-                        else if (XUtil.isNote(Paragraph))
-                        {
-                            //
-                            Console.WriteLine(Environment.NewLine + "<notes>");
-                        }*/
-                        // save every paragraph
-                        //paragraphs.Add(SecurityElement.Escape(Paragraph.InnerText));
-                        //Console.WriteLine(Paragraph.InnerText);
-
-
-
-
-                        //Console.WriteLine(Paragraph.InnerText);
+                        
                     }
                 }
                 

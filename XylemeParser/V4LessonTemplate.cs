@@ -281,9 +281,19 @@ namespace LessonParser
         }
 
         // labs
-        public string Lab(String title, String Content)
+        public string Lab(String title, String Content, String Topology, String JobAid, String CommandList)
         {
-            string data = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Topic xmlns:xy=\"http://xyleme.com/xylink\" xy:type=\"Core/Definitions/TopicTypes/TopicDef.xml\"><Title>"+title+"</Title><Introduction><Title>Introduction</Title><ParaBlock><RichText>Lab intro</RichText></ParaBlock></Introduction>" + Content + "</Topic>";
+            string data = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><Topic xmlns:xy=\"http://xyleme.com/xylink\" xy:type=\"Core/Definitions/TopicTypes/TopicDef.xml\"><Title>"+title+"</Title><Introduction><Title>Introduction</Title><ParaBlock><RichText>Lab intro</RichText></ParaBlock></Introduction>"+ Topology + JobAid + CommandList + Content + "</Topic>";
+            return data;
+        }
+        public string JobAid(String Content)
+        {
+            string data = "<Topic><Title>Job Aid</Title><ParaBlock>" + Content + "</ParaBlock></Topic>";
+            return data;
+        }
+        public string CommandList(String Content)
+        {
+            string data = "<Topic><Title>Command List</Title><ParaBlock>" + Content + "</ParaBlock></Topic>";
             return data;
         }
         public string Code(String Content)
