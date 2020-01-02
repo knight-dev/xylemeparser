@@ -243,6 +243,43 @@ namespace LessonParser
             return data;
         }
 
+        // table
+        public string TableCell(String Content)
+        {
+            string data = "<Cell align=\"left\" cell-bg=\"none\" colspan=\"1\" isInHeaderColumn=\"0\" rowspan=\"1\">" + Content + "</Cell>";
+            return data;
+        }
+        public string TableRow(String Content)
+        {
+            string data = "<TableRow>" + Content + "</TableRow>";
+            return data;
+        }
+        public string TableBody(String Content)
+        {
+            string data = "<TblBody>" + Content + "</TblBody>";
+            return data;
+        }
+        public string TableHeader(String Content)
+        {
+            string data = "<TblHeader>" + Content + "</TblHeader>";
+            return data;
+        }
+        public string TableGroup(String Content, int Cols)
+        {
+            string columns = "";
+            for(int i = 0; i < Cols; i++)
+            {
+                columns += "<TblCol width=\"\"/>";
+            }
+            string data = "<TblGroup>"+ columns + Content + "</TblGroup>";
+            return data;
+        }
+        public string Table(String title, String Content)
+        {
+            string data = "<Table align=\"\" border=\"true\" width=\"\"><TblTitle>"+title+"</TblTitle>" + Content + "</Table>";
+            return data;
+        }
+
         // labs
         public string Lab(String title, String Content)
         {
@@ -254,9 +291,9 @@ namespace LessonParser
             string data = "<Code>" + Content + "</Code>";
             return data;
         }
-        public string Procedure(String title, String Content, String Activity = "<RichText>Lab Activity</RichText>")
+        public string Procedure(String title, String Content, String Activity = "<RichText>Lab Activity</RichText>", String Verification = "<RichText>Lab Activity verification</RichText>")
         {
-            string data = "<Procedure><Title>"+title+"</Title><StepGroup numberedSteps=\"true\"><Title>Activity</Title><ParaBlock>"+Activity+"</ParaBlock>" + Content + "</StepGroup><TitledBlock><Title>Activity Verification</Title><ParaBlock><RichText>lab activity verification</RichText></ParaBlock></TitledBlock></Procedure>";
+            string data = "<Procedure><Title>"+title+"</Title><StepGroup numberedSteps=\"true\"><Title>Activity</Title><ParaBlock"+Activity+"</ParaBlock>" + Content + "</StepGroup><TitledBlock><Title>Activity Verification</Title><ParaBlock>"+Verification+"</ParaBlock></TitledBlock></Procedure>";
             return data;
         }
         public string Step(String Content)

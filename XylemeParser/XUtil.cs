@@ -776,28 +776,75 @@ namespace LessonParser
         
         public bool isTask(String text)
         {
-            Regex regex = new Regex(@"task\s+\d+");
-            Match match = regex.Match(text.Trim().ToLower().ToString());
+            //Regex regex = new Regex(@"task\s+\d+");
+            Match match = Regex.Match(text.Trim(), @"Task\s+\d+", RegexOptions.IgnoreCase);
 
             if (match.Success && match.Index == 0) {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(text.ToString());
+                Console.WriteLine(text);
                 Console.ForegroundColor = ConsoleColor.White;
                 return true;
             }
 
             return false;
         }
-        public bool isTaskActivity(String text)
+        public bool isTaskActivityProcedure(String text)
         {
-            Regex regex = new Regex(@"activity");
             //Regex regex = new Regex(@"activity");
-            Match match = regex.Match(text.Trim().ToLower().ToString());
+            //Regex regex = new Regex(@"activity");
+            Match match = Regex.Match(text.Trim(), @"Activity Procedure", RegexOptions.IgnoreCase);
 
             if (match.Success && match.Index == 0)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(text.ToString());
+                Console.WriteLine(text);
+                Console.ForegroundColor = ConsoleColor.White;
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool isTaskActivityVerification(String text)
+        {
+            //Regex regex = new Regex(@"activity");
+            //Regex regex = new Regex(@"activity");
+            Match match = Regex.Match(text.Trim(), @"Activity Verification", RegexOptions.IgnoreCase);
+
+            if (match.Success && match.Index == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(text);
+                Console.ForegroundColor = ConsoleColor.White;
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool isCommandList(String text)
+        {
+            Match match = Regex.Match(text.Trim(), @"Command List", RegexOptions.IgnoreCase);
+
+            if (match.Success && match.Index == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(text);
+                Console.ForegroundColor = ConsoleColor.White;
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool isJobAid(String text)
+        {
+            Match match = Regex.Match(text.Trim(), @"Job Aid", RegexOptions.IgnoreCase);
+
+            if (match.Success && match.Index == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(text);
                 Console.ForegroundColor = ConsoleColor.White;
                 return true;
             }
@@ -806,15 +853,14 @@ namespace LessonParser
         }
 
         public bool isStep(String text)
-        {
-            
-            Regex regex = new Regex(@"step\s+\d+");
-            Match match = regex.Match(text.Trim().ToLower().ToString());
-            
+        {            
+            //Regex regex = new Regex(@"step\s+\d+");
+            Match match = Regex.Match(text.Trim(), @"Step\s+\d+", RegexOptions.IgnoreCase);
+
             if (match.Success && match.Index == 0)
             {
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine(text.ToString());
+                Console.WriteLine(text);
                 Console.ForegroundColor = ConsoleColor.White;
                 return true;
             }
@@ -822,17 +868,30 @@ namespace LessonParser
             return false;
         }
 
-        public bool isLab(String text)
+        public bool isLab(Paragraph Paragraph, String text)
         {
             //Console.WriteLine(text.ToString());
             //Regex regex = new Regex(@"discovery\s+\d+");
-            Regex regex = new Regex(@"lab\s+\d+");
-            Match match = regex.Match(text.Trim().ToLower().ToString());
+            //Regex regex = new Regex(@"lab\s+\d+");
+            Match match = Regex.Match(text.Trim(), @"Discovery\s+\d+:", RegexOptions.IgnoreCase);
 
             if (match.Success && match.Index == 0)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine(text.ToString());
+                Console.WriteLine(text);
+                Console.ForegroundColor = ConsoleColor.White;
+                return true;
+            }
+
+            // check paragraph style
+            ParagraphStyleId ParagraphStyleId = new ParagraphStyleId();
+            if (Paragraph.ParagraphProperties != null)
+            {
+                ParagraphStyleId = Paragraph.ParagraphProperties.ParagraphStyleId;
+            }
+            if (ParagraphStyleId != null && ParagraphStyleId.Val == "Heading1") {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine(text);
                 Console.ForegroundColor = ConsoleColor.White;
                 return true;
             }
