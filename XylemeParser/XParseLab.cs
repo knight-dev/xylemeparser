@@ -787,10 +787,13 @@ namespace LessonParser
                                     var paras = cell.Descendants<Paragraph>();
                                     if (paras.Any())
                                     {
-                                        foreach (var para in paras) {                                            
-                                           //Console.WriteLine(applyFormatting(para));
+                                        foreach (var para in paras) {
+                                            //Console.WriteLine(applyFormatting(paracellXml += V4Template.TableCell(V4Template.RichText(FormattedText));
                                             String FormattedText = applyFormatting(para);
-                                            cellXml += V4Template.TableCell(V4Template.RichText(FormattedText));
+                                            if (!string.IsNullOrEmpty(FormattedText)) {
+                                                cellXml += V4Template.TableCell(V4Template.RichText(FormattedText));
+                                            }
+                                            
                                         }
                                     }
                                 }

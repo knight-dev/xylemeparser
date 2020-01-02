@@ -271,7 +271,7 @@ namespace LessonParser
             {
                 columns += "<TblCol width=\"\"/>";
             }
-            string data = "<TblGroup>"+ columns + Content + "</TblGroup>";
+            string data = "<TblGroup>"+ columns + Content + "<TblFooter/></TblGroup>";
             return data;
         }
         public string Table(String title, String Content)
@@ -303,7 +303,7 @@ namespace LessonParser
         }
         public string Procedure(String title, String Content, String Activity = "<RichText>Lab Activity</RichText>", String Verification = "<RichText>Lab Activity verification</RichText>")
         {
-            string data = "<Procedure><Title>"+title+"</Title><StepGroup numberedSteps=\"true\"><Title>Activity</Title><ParaBlock"+Activity+"</ParaBlock>" + Content + "</StepGroup><TitledBlock><Title>Activity Verification</Title><ParaBlock>"+Verification+"</ParaBlock></TitledBlock></Procedure>";
+            string data = "<Procedure><Title>"+title+"</Title><StepGroup numberedSteps=\"true\"><Title>Activity</Title><ParaBlock>"+Activity+"</ParaBlock>" + Content + "</StepGroup><TitledBlock><Title>Activity Verification</Title><ParaBlock>"+Verification+"</ParaBlock></TitledBlock></Procedure>";
             return data;
         }
         public string Step(String Content)
