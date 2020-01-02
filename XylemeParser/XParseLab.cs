@@ -402,6 +402,16 @@ namespace LessonParser
                             paragraphs.Clear();
                         }
 
+                        if (XUtil.isJobAid(plainText))
+                        {
+                            List<string> Notes = new List<string>();
+                            Notes = GetNotes(x + paragraphs.Count - 1, x + 1, Elements);
+                            var data = string.Join("", Notes.ToArray());
+                            Console.WriteLine(Environment.NewLine + "Job Aid: " + data);
+                            // reset paragraph numbering
+                            paragraphs.Clear();
+                        }
+
                         labImages.Reverse();
                         if (XUtil.isLab(Paragraph, plainText))
                         {
@@ -1030,7 +1040,9 @@ namespace LessonParser
                         {
                             text = V4Template.InLineCode(text);
                         }
-                        else*/ if (Run.RunProperties != null && text.Trim() != "") // prevent empty tags, should do this above but...
+                        else*/
+                        
+                        if (Run.RunProperties != null && text.Trim() != "") // prevent empty tags, should do this above but...
                         {
                             // Make text italic
                             if (Run.RunProperties.Italic != null && Run.RunProperties.Italic.Val != OnOffValue.FromBoolean(false))
@@ -1058,9 +1070,18 @@ namespace LessonParser
                                 text = V4Template.Subscript(text);
                             }
                         }
+                        if (Run.Descendants<Break>().Any())
+                        {
+                            string line = Environment.NewLine + text;
+                            // append run to paragraph
+                            Para += line;
+                        }
+                        else {
+                            // append run to paragraph
+                            Para += text;
+                        }
 
-                        // append run to paragraph
-                        Para += text;
+                        
                     }
                         
                 }
