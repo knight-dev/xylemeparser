@@ -70,6 +70,8 @@ namespace LessonParser
         string labName = "";
         string version = "1-0-0_LAB";
 
+        int tableCount = 0;
+
         public MainDocumentPart OpenDocument(string documentFile)
         {
             // xyleme xml template object
@@ -124,9 +126,13 @@ namespace LessonParser
                 var i = 0;
                 var Elements = Body.ChildElements;
                 int count = Elements.Count();
+                int tablecount = 0;
                 for (var x = count - 1; x >= 0; x--)
                 {
                     var Element = Elements[x];
+                    if (Element is Table) {
+                        tablecount++;
+                    }
                     if (Element is Paragraph)
                     {  
                         // create paragraphs
@@ -275,7 +281,8 @@ namespace LessonParser
                             string t = Regex.Replace(formattedText, @"Step\s+\d+", "");
                             string stepAction = V4Template.StepUserAction(t.Trim());
                             
-                            Notes = GetNotes(x + paragraphs.Count-1, x+1, Elements);
+                            Notes = GetNotes(x +tablecount+paragraphs.Count-1, x+1, Elements);
+                            tablecount = 0;
                             var data = string.Join("", Notes.ToArray());
                             string responseText = "";
 
@@ -291,10 +298,11 @@ namespace LessonParser
                                 if (n != "<imageplaceholder/>" && !n.Contains("<CustomNote>") && !n.Contains("</List>") && !n.Contains("<Code>") && nCount < 1)
                                 {
                                     nCount++;
+                                    resp = n;
                                     // get response text and remove from main list
                                     var repl = n.Replace("<RichText>", "");
                                     repl = repl.Replace("</RichText>", "");
-                                    resp = n;
+                                    
                                     responseText = repl;                                    
                                 }
                             }
@@ -328,9 +336,10 @@ namespace LessonParser
                         if (XUtil.isTaskActivityProcedure(plainText))
                         {
                             List<string> Notes = new List<string>();
-                            Notes = GetNotes(x + paragraphs.Count - 1, x + 1, Elements);
+                            Notes = GetNotes(x + tablecount + paragraphs.Count - 1, x + 1, Elements);
+                            tablecount = 0;
                             var data = string.Join("", Notes.ToArray());
-                            //Console.WriteLine(Environment.NewLine + "Activity Procedure: " + data);
+                            Console.WriteLine(Environment.NewLine + "Activity Procedure: " + data);
                             lastTaskActivityProcedure = Notes;
                             // reset paragraph numbering
                             paragraphs.Clear();
@@ -339,9 +348,10 @@ namespace LessonParser
                         if (XUtil.isTaskActivityVerification(plainText))
                         {
                             List<string> Notes = new List<string>();
-                            Notes = GetNotes(x + paragraphs.Count - 1, x + 1, Elements);
+                            Notes = GetNotes(x + tablecount + paragraphs.Count - 1, x + 1, Elements);
+                            tablecount = 0;
                             var data = string.Join("", Notes.ToArray());
-                            //Console.WriteLine(Environment.NewLine + "Activity Verification: " + data);
+                            Console.WriteLine(Environment.NewLine + "Activity Verification: " + data);
                             lastTaskActivityVerification = Notes;
                             // reset paragraph numbering
                             paragraphs.Clear();
@@ -350,6 +360,7 @@ namespace LessonParser
                         // detect tasks
                         if (XUtil.isTask(plainText))
                         {
+                            tablecount = 0;
                             LabTaskXml labTaskXml = new LabTaskXml();
                             // store image information
                             if (taskImages.Count > 0)
@@ -376,8 +387,10 @@ namespace LessonParser
                             string formattedText = applyFormatting(Paragraph);
                             string t = Regex.Replace(formattedText, @"Task\s+\d+:", "");
                             labTaskXml.Title = t.Trim();
-                            labTaskXml.Activity = lastTaskActivityProcedure;
-                            labTaskXml.Verification = lastTaskActivityVerification;
+                            labTaskXml.Activity = new List<string>();
+                            labTaskXml.Activity.AddRange(lastTaskActivityProcedure);
+                            labTaskXml.Verification = new List<string>();
+                            labTaskXml.Verification.AddRange(lastTaskActivityVerification);
                             lastTaskActivityProcedure.Clear();
                             lastTaskActivityProcedure.Add("<RichText>Lab Activity</RichText>");
                             lastTaskActivityVerification.Clear();
@@ -397,7 +410,8 @@ namespace LessonParser
                         if (XUtil.isCommandList(plainText))
                         {
                             List<string> Notes = new List<string>();
-                            Notes = GetNotes(x + paragraphs.Count - 1, x + 1, Elements);
+                            Notes = GetNotes(x + tablecount + paragraphs.Count - 1, x + 1, Elements);
+                            tablecount = 0;
                             var data = string.Join("", Notes.ToArray());
                             commandlistxml = V4Template.CommandList(data);
                             //Console.WriteLine(Environment.NewLine + "Command List: " + data);
@@ -408,7 +422,8 @@ namespace LessonParser
                         if (XUtil.isJobAid(plainText))
                         {
                             List<string> Notes = new List<string>();
-                            Notes = GetNotes(x + paragraphs.Count - 1, x + 1, Elements);
+                            Notes = GetNotes(x + tablecount + paragraphs.Count - 1, x + 1, Elements);
+                            tablecount = 0;
                             var data = string.Join("", Notes.ToArray());
                             jobaidxml = V4Template.JobAid(data);
                             //Console.WriteLine(Environment.NewLine + "Job Aid: " + data);
@@ -435,8 +450,8 @@ namespace LessonParser
                                 Console.WriteLine(imgname);
 
                                 // convert image part to stream and save
-                                Bitmap image = new Bitmap(img.ImagePart.GetStream());
-                                image.Save(SourceDirectory + imgname, System.Drawing.Imaging.ImageFormat.Png);
+                                //Bitmap image = new Bitmap(img.ImagePart.GetStream());
+                                //image.Save(SourceDirectory + imgname, System.Drawing.Imaging.ImageFormat.Png);
                             }
                             int u = 0;
                             int h = 0;
@@ -591,7 +606,7 @@ namespace LessonParser
                         if (ListFormat != null && prevListFormat != null)
                         {
                             // reverse paragraph list                            
-                            paragraphs.Reverse();
+                            //paragraphs.Reverse();
 
                             // get list items
                             var list = GetList(paragraphs);
@@ -620,7 +635,7 @@ namespace LessonParser
                             // get list items
                             //paragraphs.Reverse();
                             var code = GetCode(paragraphs);
-                            notes.Add(V4Template.Code(code));
+                            notes.Add(V4Template.Code(code.Trim()));
                             paragraphs.Clear();
                         }
 
@@ -628,8 +643,8 @@ namespace LessonParser
                         if (ListFormat == null && prevListFormat != null)
                         {
                             // reverse paragraph list   
-                            paragraphs.Last().Remove();
-                            paragraphs.Reverse();
+                            paragraphs.RemoveAt(paragraphs.Count - 1);
+                            //paragraphs.Reverse();
 
                             // get list items
                             var list = GetList(paragraphs);
@@ -658,12 +673,12 @@ namespace LessonParser
                         else if (isCode(prevParagraph) && !isCode(Paragraph))
                         {
                             // reverse paragraph list   
-                            paragraphs.Last().Remove();
+                            paragraphs.RemoveAt(paragraphs.Count - 1);
                             //paragraphs.Reverse();
 
                             // get list items
                             var code = GetCode(paragraphs);
-                            notes.Add(V4Template.Code(code));
+                            notes.Add(V4Template.Code(code.Trim()));
                             paragraphs.Clear();
                         }
 
@@ -717,7 +732,10 @@ namespace LessonParser
                         else
                         if (ListFormat == null && prevListFormat != null) {
                             // reverse paragraph list                            
-                            paragraphs.Reverse();
+                            //paragraphs.Reverse();
+
+                            // remove current paragraph since its not a list item
+                            paragraphs.RemoveAt(paragraphs.Count - 1);
 
                             // get list items
                             var list = GetList(paragraphs);
@@ -740,6 +758,8 @@ namespace LessonParser
                                     //paragraphs.Clear();
                                 }
 
+                                // add since current text isnt a preample
+                                notes.Add(V4Template.RichText(FormattedText));
                             }
                             paragraphs.Clear();
                         } else
@@ -749,7 +769,7 @@ namespace LessonParser
                             //paragraphs.Reverse();
                             // get list items
                             var code = GetCode(paragraphs);
-                            notes.Add(V4Template.Code(code));
+                            notes.Add(V4Template.Code(code.Trim()));
                             paragraphs.Clear();
                         }
                         else if (ListFormat == null && !isCode(Paragraph))
@@ -760,11 +780,12 @@ namespace LessonParser
                         }
                     }
 
-                } else if (Elements[x] is Table) {
+                } 
+                if (Elements[x] is Table) {
                     // parse tables
                     Table table = (Table)Elements[x];
                     Console.ForegroundColor = ConsoleColor.Red;
-                    //Console.WriteLine("!!!table!!!");
+                    Console.WriteLine("!!!table!!!");
                     Console.ForegroundColor = ConsoleColor.White;
                     //
                     int colCount = 0;
@@ -828,29 +849,32 @@ namespace LessonParser
 
         public bool isCode(Paragraph Paragraph) 
         {
-            var rs = Paragraph.Descendants<Run>();
-            foreach (Run Run in rs)
-            {
-                if (Run.RunProperties != null && Run.RunProperties.RunFonts != null && Run.RunProperties.RunFonts.Ascii != null && Run.RunProperties.RunFonts.Ascii.Value == "Courier New")
-                {
-                    return true;
-                }
-            }
-            
+            //Console.ForegroundColor = ConsoleColor.Yellow;
+            //Console.WriteLine(Paragraph.InnerText);
+            //Console.ForegroundColor = ConsoleColor.White;
+
             if (Paragraph.ParagraphProperties != null) {
                 if (Paragraph.ParagraphProperties.ParagraphMarkRunProperties != null && Paragraph.ParagraphProperties.ParagraphMarkRunProperties != null) {
                     var pmrp = Paragraph.ParagraphProperties.ParagraphMarkRunProperties;
-                    var fonts = pmrp.Descendants<RunFonts>();
+                    var fonts = Paragraph.ParagraphProperties.Descendants<RunFonts>();
                     if(fonts != null)
                     {
                         foreach (var font in fonts) {
-                            if (font.AsciiTheme != null) {
+                            if (font.Ascii == null || font.AsciiTheme != null) {
                                 return false;
+                            }
+                            if (font.Ascii != null && font.Ascii.Value != "Courier New")
+                            {
+                                return false;
+                            }
+                            if (font.Ascii != null && font.Ascii.Value == "Courier New")
+                            {
+                                return true;
                             }
                         }
                     }
                 }
-                    ParagraphStyleId ParagraphStyleId = Paragraph.ParagraphProperties.ParagraphStyleId;
+                ParagraphStyleId ParagraphStyleId = Paragraph.ParagraphProperties.ParagraphStyleId;
                 // get paragraph style
                 Style ParagraphStyle = new Style();
                 if (ParagraphStyleId != null)
@@ -866,8 +890,17 @@ namespace LessonParser
                     }
                 }
             }
-            
-            
+
+            var rs = Paragraph.Descendants<Run>();
+            foreach (Run Run in rs)
+            {
+                if (Run.RunProperties != null && Run.RunProperties.RunFonts != null && Run.RunProperties.RunFonts.Ascii != null && Run.RunProperties.RunFonts.Ascii.Value == "Courier New")
+                {
+                    return true;
+                }
+            }
+
+
             return false;
         }
         public string GetCode(List<Paragraph> paragraphs) 
@@ -893,9 +926,9 @@ namespace LessonParser
             //Console.WriteLine("start:"+start);
             //Console.WriteLine("stop:" + start);
             int count = 0;
-            foreach (var Paragraph in paragraphs)
+            foreach (Paragraph Paragraph in paragraphs)
             {
-                if (Paragraph is Paragraph)
+                if (!string.IsNullOrEmpty(Paragraph.InnerText))
                 {
                     // variables
                     var FormattedText = applyFormatting(Paragraph).Trim();
